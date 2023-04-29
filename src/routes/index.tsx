@@ -1,12 +1,11 @@
-import ErrorPage from '../page/error-page';
-import React from 'react';
+import MainPage from '../page/MainPage';
+import ErrorPage from '../page/ErrorPage';
 import { createBrowserRouter } from 'react-router-dom';
-import { Counter } from '../features/counter/Counter';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Counter />,
+    element: <MainPage />,
     errorElement: <ErrorPage />,
   },
 ]);

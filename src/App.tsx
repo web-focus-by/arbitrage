@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { RouterProvider } from 'react-router-dom';
 import russian from './lang/ru';
@@ -9,6 +9,10 @@ import { Provider } from 'react-redux';
 
 const App = () => {
   const dictionary = navigator.language.includes('en') ? english : russian;
+
+  useEffect(() => {
+    console.log(navigator);
+  }, [navigator]);
 
   return (
     <Provider store={store}>
