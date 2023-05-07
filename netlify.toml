@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "/api/*"
-  to =  "http://185.240.103.242:50051"
-  status = 200
-
