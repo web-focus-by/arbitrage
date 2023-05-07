@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { User, UserResponse } from '../../services/auth';
+import { RootState } from '../../store';
 
 type AuthState = {
   user: User | null;
@@ -23,9 +24,24 @@ const slice = createSlice({
       state.accessToken = access_token;
       state.refreshToken = refresh_token;
     },
+    logout: () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      return initialState;
+    },
+    checkToken: (state) => {
+      const token = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
+      if (token && user) {
+        state.accessToken = token;
+        state.user = JSON.parse(user);
+      }
+    },
   },
 });
 
-export const { setCredentials } = slice.actions;
+export const { setCredentials, logout, checkToken } = slice.actions;
 
 export default slice.reducer;
+
+export const selectCurrentUser = (state: RootState) => state.auth.user;

@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { useLoginMutation, LoginRequest } from '../../services/auth';
+import { useSignupMutation, LoginRequest } from '../../services/auth';
 import { useAppDispatch } from '../../store/hooks';
 import { setCredentials } from './authSlice';
 
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
-const Login = () => {
+const Signup = () => {
   const dispatch = useAppDispatch();
   const auth = useAuth();
-
-  const [formData, setFormData] = useState<LoginRequest>({ email: '1@m.com', password: 'q123' });
-  const [login, { isError }] = useLoginMutation();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState<LoginRequest>({ email: '', password: '' });
+  const [signup, { isError }] = useSignupMutation();
 
   const submitHandler = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const data = await login(formData).unwrap();
+      const data = await signup(formData).unwrap();
       dispatch(setCredentials(data));
     } catch (e) {
       //TODO вынести ошибку в тост
@@ -29,6 +29,7 @@ const Login = () => {
   if (auth.user) {
     return <Navigate to={'/private'} replace={true} />;
   }
+
   return (
     <div className={'container'}>
       <form method={'post'} onSubmit={submitHandler}>
@@ -54,11 +55,18 @@ const Login = () => {
             autoComplete={'current-password'}
           />
         </div>
-        {isError && 'Login error'}
-        <button>login</button>
+        {isError && 'Signup error'}
+        <button>Signup</button>
       </form>
+      <button
+        onClick={() => {
+          navigate('/login');
+        }}
+      >
+        Have acc? Go to Login
+      </button>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import appLogo from '../../../public/logo.svg';
 import style from './header.module.scss';
 import classNames from 'classnames';
+import { useAuth } from '../../hooks/useAuth';
 
 const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
 const Header = () => {
+  const navigate = useNavigate();
+  const auth = useAuth();
   return (
     <header className={style.header}>
       <div className={classNames(style.header__container, 'container')}>
@@ -24,7 +28,23 @@ const Header = () => {
         </nav>
         <div>Переключение темы</div>
         <div>
-          <button>Войти</button>
+          {auth.user ? (
+            <button
+              onClick={() => {
+                navigate('/private');
+              }}
+            >
+              Кабинет
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                navigate('/signup');
+              }}
+            >
+              Зарегистрироваться
+            </button>
+          )}
         </div>
       </div>
     </header>

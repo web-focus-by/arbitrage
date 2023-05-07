@@ -18,11 +18,11 @@ export interface LoginRequest {
 }
 
 export const api = createApi({
+  reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: '/api',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.accessToken;
-      console.log({ token });
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
@@ -36,11 +36,31 @@ export const api = createApi({
         method: 'POST',
         body: credentials,
       }),
+      transformResponse: (response: UserResponse) => {
+        const user = { last_name: 'LastName', first_name: 'FirstName' };
+        localStorage.setItem('token', response.access_token);
+        localStorage.setItem('user', JSON.stringify(user));
+        return { ...response, user };
+      },
     }),
+    signup: builder.mutation<UserResponse, LoginRequest>({
+      query: (credentials) => ({
+        url: '/signup',
+        method: 'POST',
+        body: credentials,
+      }),
+      transformResponse: (response: UserResponse) => {
+        const user = { last_name: 'LastName', first_name: 'FirstName' };
+        localStorage.setItem('token', response.access_token);
+        localStorage.setItem('user', JSON.stringify(user));
+        return { ...response, user };
+      },
+    }),
+
     protected: builder.mutation<{ message: string }, void>({
       query: () => 'protected',
     }),
   }),
 });
 
-export const { useLoginMutation, useProtectedMutation } = api;
+export const { useLoginMutation, useProtectedMutation, useSignupMutation } = api;
