@@ -5,7 +5,7 @@ import { setCredentials } from './authSlice';
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const [formData, setFormData] = useState<LoginRequest>({ username: '', password: '' });
+  const [formData, setFormData] = useState<LoginRequest>({ email: '1@m.com', password: 'q123' });
   const [login] = useLoginMutation();
 
   const submitHandler = async (event: React.ChangeEvent<HTMLFormElement>) => {
@@ -26,12 +26,12 @@ const Login = () => {
       <form method={'post'} onSubmit={submitHandler}>
         <div>
           <input
-            name="username"
+            name="email"
             type="text"
             placeholder="Email"
             required={true}
             onChange={handleChange}
-            value={formData.username}
+            value={formData.email}
             autoComplete={'username'}
           />
         </div>
