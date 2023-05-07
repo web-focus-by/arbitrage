@@ -19,10 +19,10 @@ export interface LoginRequest {
 export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BACKEND_BASE_URL,
-    prepareHeaders: (headers, { getState: RootState }) => {
+    prepareHeaders: (headers, { getState }) => {
       headers.set('Access-Control-Allow-Origin', '*');
       // By default, if we have a token in the store, let's use that for authenticated requests
-      const token = RootState().auth.token;
+      const token = (getState() as RootState).auth.token;
       console.log({ token });
       if (token) {
         headers.set('authorization', `Bearer ${token}`);

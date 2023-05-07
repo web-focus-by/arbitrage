@@ -11,7 +11,7 @@ const Login = () => {
   const submitHandler = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const data = await login(formData);
+      const data = await login(formData).unwrap();
       dispatch(setCredentials(data));
     } catch (e) {
       console.log(e);
