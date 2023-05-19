@@ -56,6 +56,15 @@ export const api = createApi({
         return { ...response, user };
       },
     }),
+    // getInfo: builder.query({
+    //   query: () => ({
+    //     url: '/info',
+    //     method: 'GET',
+    //     headers: {
+    //       'Content-Type': 'application/json; charset=utf-8',
+    //     },
+    //   }),
+    // }),
 
     protected: builder.mutation<{ message: string }, void>({
       query: () => 'protected',
