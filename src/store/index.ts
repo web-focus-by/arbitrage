@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import authReducer, { checkToken } from '../features/auth/authSlice';
 import themeReducer from '../features/theme/themeSlice';
 import { api } from '../services/auth';
@@ -9,7 +8,6 @@ export const store = configureStore({
     [api.reducerPath]: api.reducer,
     auth: authReducer,
     theme: themeReducer,
-    counter: counterReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
 });
