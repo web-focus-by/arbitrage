@@ -1,0 +1,67 @@
+@import 'media';
+
+$color-gray-1: #262626;
+$color-gray-2: #575757;
+$color-gray-3: #b7b7b7;
+$color-gray-4: #d9d9d9;
+$color-gray-4: #f4f6f9;
+$color-blue-1: #3366cc;
+$color-red-2: #f6e9e9;
+$color-white: #ffffff;
+
+$color-blue: #69b3e9;
+$color-yellow: #e9dc69;
+$color-purple: #9c7be1;
+
+$color-black: #131313;
+
+//$color-primary: #5324ff;
+//$color-primary2: #14005c;
+//$color-primary3: #1d00c3;
+//$color-primary4: #220c71;
+//$color-primary-hover: #3818af;
+//$color-primary-disabled: #c0afff;
+//$color-success: #17c964;
+//$color-danger: #ff1117;
+//$color-light: #f5f8fd;
+//$color-gray: #898e93;
+//$color-gray-hover: #d8d8d8;
+//$color-gray2: #dbdee7;
+//$color-gray3: #8d889a;
+//$color-gray4: #a5a2ae;
+//$color-dark: #0b0026;
+//$color-red: #f23433;
+//$color-palered: #ff8f77;
+//$color-palered1: #da5252;
+//$color-palered2: #ff8e8d;
+//$color-green: #7cc830;
+//$color-green1: #b4c83d;
+//$color-orange: #ff9900;
+//$color-yellow: #ffe600;
+//
+//$color-paleblue: #d6dfff;
+//$color-lightblue: #a5e9ff;
+//$color-lightgreen: #b9eabb;
+//$color-brightgreen: #d3ffa7;
+//$color-peach: #ffddd6;
+//$color-paleyellow: #ecedbb;
+
+//$font-primary: 'IBM Plex Sans', sans-serif;
+//$font-secondary: 'Moscow University', sans-serif;
+
+$transition-animate: cubic-bezier(0.215, 0.61, 0.355, 1);
+$transition-time: 0.5s;
+
+@mixin fadeOut($duration) {
+  opacity: 0;
+  visibility: hidden;
+
+  animation: fadeOut 3s $transition-animate infinite;
+  animation-delay: 15s;
+
+  @keyframes fadeOut {
+    to {
+      display: none;
+    }
+  }
+}

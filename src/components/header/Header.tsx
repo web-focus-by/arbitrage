@@ -3,11 +3,16 @@ import appLogo from '../../../public/logo.svg';
 import style from './header.module.scss';
 import classNames from 'classnames';
 import { useAuth } from '../../hooks/useAuth';
+import Switch from '@mui/material/Switch';
+import useTheme from '../../features/theme/useTheme.tsx';
+import { ETheme } from '../../features/theme/type.ts';
 
 const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
 const Header = () => {
   const navigate = useNavigate();
   const auth = useAuth();
+  const { theme, setThemeHandler } = useTheme();
+
   return (
     <header className={style.header}>
       <div className={classNames(style.header__container, 'container')}>
@@ -26,7 +31,9 @@ const Header = () => {
             ))}
           </ul>
         </nav>
-        <div>Переключение темы</div>
+        <div>
+          <Switch onClick={setThemeHandler} checked={theme === ETheme.light} />
+        </div>
         <div>
           {auth.user ? (
             <button
@@ -39,10 +46,10 @@ const Header = () => {
           ) : (
             <button
               onClick={() => {
-                navigate('/signup');
+                navigate('/login');
               }}
             >
-              Зарегистрироваться
+              Войти
             </button>
           )}
         </div>

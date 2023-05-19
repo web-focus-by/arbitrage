@@ -1,18 +1,42 @@
+@import 'settings';
+
+:root[data-theme='light'] {
+  --background-color: #{$color-white};
+  --text-color: #{$color-gray-1};
+}
+
+:root[data-theme='dark'] {
+  --background-color: #{$color-black};
+  --text-color: #{$color-white};
+}
+//
+//:root[data-theme='light'] {
+//  --background-color: #fff;
+//  --text-color: #262626;
+//}
+//
+//:root[data-theme='dark'] {
+//  --background-color: #131313;
+//  --text-color: #fff;
+//}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text-color);
+  background-color: var(--background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  transition: color $transition-time $transition-animate, background-color $transition-time $transition-animate;
 }
+
 *,
 ::after,
 ::before {
@@ -28,16 +52,15 @@ a {
   text-decoration: inherit;
 }
 
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   padding: 0;
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: color $transition-time $transition-animate, background-color $transition-time $transition-animate;
 }
 
 h1 {
@@ -55,27 +78,27 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  &:hover {
+    border-color: #646cff;
+  }
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+//@media (prefers-color-scheme: light) {
+//  :root {
+//    color: #213547;
+//    background-color: #ffffff;
+//  }
+//  a:hover {
+//    color: #747bff;
+//  }
+//  button {
+//    background-color: #f9f9f9;
+//  }
+//}
 
 #root {
   width: 100%;
