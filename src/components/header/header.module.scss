@@ -37,3 +37,18 @@
     }
   }
 }
+
+.modalWrapper {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 72px 0;
+  border-radius: 40px;
+  @include max-991 {
+    padding: 64px 0;
+    border-radius: 32px;
+  }
+  @include max-576 {
+    padding: 64px 20px;
+    margin: 0;
+  }
+}

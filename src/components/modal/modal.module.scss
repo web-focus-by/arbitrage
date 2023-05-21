@@ -1,6 +1,8 @@
 @import '../../style/media';
 
 .wrapper {
+  background-color: var(--background-color);
+  color: var(--text-color);
   padding: 72px clamp(130px, 11vw, 195px);
   border-radius: 40px;
   @include max-991 {
@@ -26,4 +28,8 @@
     right: 16px;
     top: 22px;
   }
+}
+
+.normalizeElement {
+  padding: 0;
 }

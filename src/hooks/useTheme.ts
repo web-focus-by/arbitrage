@@ -1,13 +1,13 @@
-import React from 'react';
-import { setTheme } from './themeSlice';
-import { useAppDispatch, useAppSelector } from '../../store/hooks.ts';
-import { ETheme } from './type.ts';
+import { useEffect } from 'react';
+import { setTheme } from '../features/theme/themeSlice.ts';
+import { useAppDispatch, useAppSelector } from '../store/hooks.ts';
+import { ETheme } from '../features/theme/type.ts';
 
 const useTheme = () => {
   const theme = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem('theme', theme);
   }, [theme]);

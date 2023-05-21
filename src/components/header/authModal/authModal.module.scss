@@ -1,0 +1,45 @@
+@import '../../../style/settings';
+@import '../../../style/media';
+
+.selectedTab {
+  background-color: $color-blue;
+}
+.selectedTabText {
+  color: $color-blue;
+}
+
+.container {
+  justify-content: space-around;
+  column-gap: 47px;
+  border-bottom: 1px solid $color-gray-3;
+
+  &__padding {
+    padding-left: clamp(130px, 11vw, 195px);
+    padding-right: clamp(130px, 11vw, 195px);
+  }
+  @include max-1200 {
+    column-gap: 57px;
+  }
+  @include max-991 {
+    column-gap: 56px;
+    &__padding {
+      padding-left: clamp(20px, 11vw, 130px);
+      padding-right: clamp(20px, 11vw, 130px);
+    }
+  }
+  @include max-576 {
+    column-gap: 40px;
+    &__padding {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}
+.tabs {
+  min-height: unset;
+}
+.tab {
+  padding: 0 0 16px;
+  line-height: 110%;
+  min-height: unset;
+}

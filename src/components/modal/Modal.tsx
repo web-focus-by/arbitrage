@@ -8,6 +8,7 @@ export type IModal = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   children: ReactNode;
   callbackClose?: () => void;
+  classNames?: string;
 } & typeof defaultProps;
 
 const defaultProps = {
@@ -21,8 +22,18 @@ const Modal: FC<IModal> = (props) => {
   };
 
   return (
-    <Dialog open={props.isOpen} onClose={handleClose} classes={{ paper: style.wrapper }}>
-      <DialogContent>{props.children}</DialogContent>
+    <Dialog
+      open={props.isOpen}
+      onClose={handleClose}
+      classes={{ paper: props.classNames ? props.classNames : style.wrapper }}
+    >
+      <DialogContent
+        classes={{
+          root: style.normalizeElement,
+        }}
+      >
+        {props.children}
+      </DialogContent>
       <DialogActions
         classes={{
           root: style.closeBtn,

@@ -3,13 +3,12 @@ import { useSignupMutation, LoginRequest } from '../../services/auth';
 import { useAppDispatch } from '../../store/hooks';
 import { setCredentials } from './authSlice';
 
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
 const Signup = () => {
   const dispatch = useAppDispatch();
   const auth = useAuth();
-  const navigate = useNavigate();
   const [formData, setFormData] = useState<LoginRequest>({ email: '', password: '' });
   const [signup, { isError }] = useSignupMutation();
 
@@ -58,13 +57,6 @@ const Signup = () => {
         {isError && 'Signup error'}
         <button>Signup</button>
       </form>
-      <button
-        onClick={() => {
-          navigate('/login');
-        }}
-      >
-        Have acc? Go to Login
-      </button>
     </div>
   );
 };

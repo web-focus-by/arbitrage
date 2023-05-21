@@ -5,12 +5,12 @@ import style from './header.module.scss';
 import classNames from 'classnames';
 import { useAuth } from '../../hooks/useAuth';
 import Switch from '@mui/material/Switch';
-import useTheme from '../../features/theme/useTheme.tsx';
+import useTheme from '../../hooks/useTheme.ts';
 import { ETheme } from '../../features/theme/type.ts';
 import Modal from '../modal/Modal.tsx';
+import AuthModal from './authModal/AuthModal.tsx';
 
 const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
-const ModalContent = () => <div>ModalContent</div>;
 const Header = () => {
   const navigate = useNavigate();
   const auth = useAuth();
@@ -55,7 +55,6 @@ const Header = () => {
           ) : (
             <button
               onClick={() => {
-                // navigate('/login');
                 handleClickOpen();
               }}
             >
@@ -64,7 +63,7 @@ const Header = () => {
           )}
         </div>
       </div>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} children={<ModalContent />} />
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} children={<AuthModal />} classNames={style.modalWrapper} />
     </header>
   );
 };
