@@ -1,0 +1,9 @@
+{
+  "login": "Войти",
+  "login.forgot.password": "Забыли пароль?",
+  "login.reset.password": "Восстановить",
+  "login.form.email": "E-mail",
+  "login.form.password": "Пароль",
+  "login.form.enter.email": "Введите e-mail",
+  "login.form.enter.password": "Введите пароль"
+}

@@ -43,6 +43,9 @@
   color: var(--text-color);
   padding: 72px 0;
   border-radius: 40px;
+  max-width: 710px;
+  width: 100%;
+
   @include max-991 {
     padding: 64px 0;
     border-radius: 32px;

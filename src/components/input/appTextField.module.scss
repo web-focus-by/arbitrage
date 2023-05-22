@@ -1,0 +1,31 @@
+@import '../../style/media';
+@import '../../style/settings';
+
+.wrapper {
+  width: 100%;
+}
+.input {
+  padding: 12px 12px;
+  border: 1px solid $color-gray-3;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 120%;
+  transition: border $transition-time $transition-animate;
+  color: var(--text-color);
+  &:hover {
+    border-color: $color-gray-2;
+  }
+  &:focus,
+  &:active {
+    border-color: $color-blue-1;
+  }
+  &[aria-invalid='true'] {
+    border-color: $color-red-1;
+  }
+}
+
+.label {
+  font-size: 16px;
+  line-height: 110%;
+  color: var(--text-color);
+}

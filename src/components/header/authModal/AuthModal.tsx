@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
 import style from './authModal.module.scss';
-import Login from '../../../features/auth/Login.tsx';
+import LoginForm from './login/LoginForm.tsx';
 import Signup from '../../../features/auth/Signup.tsx';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
@@ -32,13 +32,7 @@ const AuthModal = () => {
         value={value}
         onChange={handleChange}
         textColor="inherit"
-        // indicatorColor="inherit"
         aria-label="secondary tabs example"
-        // TabIndicatorProps={{
-        //   style: {
-        //     backgroundColor: '#D97D54',
-        //   },
-        // }}
         classes={{
           indicator: style.selectedTab,
           root: style.tabs,
@@ -59,7 +53,7 @@ const AuthModal = () => {
         />
       </Tabs>
       <TabPanel value={value} index={EModalView.login}>
-        <Login />
+        <LoginForm />
       </TabPanel>
       <TabPanel value={value} index={EModalView.auth}>
         <Signup />
@@ -79,7 +73,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`tab-${index}`}
       className={style.container__padding}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <div className={style.contentWrapper}>{children}</div>}
     </div>
   );
 }
