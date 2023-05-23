@@ -1,15 +1,18 @@
 @import '../../../../style/media';
 @import '/src/page/mainPage/style';
 @import '/src/style/index';
+@import '/src/page/mainPage/style';
 
 .container_headline{
   display: flex;
   flex-direction: row;
+  gap: 28px;
+  margin-top: 143px;
 
   .text_headline{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 64%;
 
     .main_headline_text{
       font-size: 76px;
@@ -20,11 +23,19 @@
       font-family: 'Proxima Nova';
       font-size: 20px;
       line-height: 26px;
+      margin-top: 16px;
     }
 
   }
 
   .img_headline{
+    width: 36%;
+    height: 640px;
+  }
 
+  .img_headline img{
+    height: 100%;
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.12));
+    border-radius: 24px;
   }
 }

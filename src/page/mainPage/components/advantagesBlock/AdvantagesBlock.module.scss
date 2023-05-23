@@ -1,0 +1,11 @@
+@import '../../../../style/media';
+@import '/src/page/mainPage/style';
+@import '/src/style/index';
+@import '/src/page/mainPage/style';
+
+.advantages_container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
