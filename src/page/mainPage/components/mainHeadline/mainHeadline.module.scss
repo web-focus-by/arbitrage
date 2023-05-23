@@ -1,0 +1,30 @@
+@import '../../../../style/media';
+@import '/src/page/mainPage/style';
+@import '/src/style/index';
+
+.container_headline{
+  display: flex;
+  flex-direction: row;
+
+  .text_headline{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+
+    .main_headline_text{
+      font-size: 76px;
+      line-height: 84px;
+    }
+
+    .main_headline_second_text{
+      font-family: 'Proxima Nova';
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+  }
+
+  .img_headline{
+
+  }
+}
