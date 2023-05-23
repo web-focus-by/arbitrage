@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
 import style from './authModal.module.scss';
 import LoginForm from './login/LoginForm.tsx';
-import Signup from '../../../features/auth/Signup.tsx';
+import RegisterForm from './register/RegisterForm.tsx';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 
@@ -56,7 +56,7 @@ const AuthModal = () => {
         <LoginForm />
       </TabPanel>
       <TabPanel value={value} index={EModalView.auth}>
-        <Signup />
+        <RegisterForm />
       </TabPanel>
     </Box>
   );

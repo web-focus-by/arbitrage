@@ -1,25 +1,16 @@
-import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-
-import { useLoginMutation } from '../../../../services/auth.ts';
+import { ILoginRequest, useLoginMutation } from '../../../../services/auth.ts';
 import { useAppDispatch } from '../../../../store/hooks.ts';
 import { setCredentials } from '../../../../features/auth/authSlice.ts';
 import { useAuth } from '../../../../hooks/useAuth.ts';
 import AppTextField from '../../../input/AppTextField.tsx';
 import style from './login.module.scss';
 import { useIntl } from 'react-intl';
-import { Link } from '@mui/material';
 import AppButton from '../../../button/AppButton.tsx';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { VALIDATION_REGEX } from '../../../../constants';
+import AppLink from '../../../link/AppLink.tsx';
 
-type TInputs = {
-  email: string;
-  password: string;
-};
-
-// {
-//   defaultValues: { email: '1@m.com', password: 'q123' },
-// }
 const LoginForm = () => {
   const dispatch = useAppDispatch();
   const auth = useAuth();
@@ -29,12 +20,13 @@ const LoginForm = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<TInputs>({
+  } = useForm<ILoginRequest>({
     defaultValues: { email: '', password: '' },
   });
+
   const [login, { isError }] = useLoginMutation();
 
-  const submitHandler: SubmitHandler<TInputs> = async (data) => {
+  const submitHandler: SubmitHandler<ILoginRequest> = async (data) => {
     try {
       const response = await login(data).unwrap();
       dispatch(setCredentials(response));
@@ -43,15 +35,11 @@ const LoginForm = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
-
   if (auth.user) {
     return <Navigate to={'/private'} replace={true} />;
   }
   return (
-    <form method={'post'} onSubmit={handleSubmit(submitHandler)} className={style.formWrapper}>
+    <form onSubmit={handleSubmit(submitHandler)} className={style.formWrapper}>
       <div className={style.inputsWrapper}>
         <Controller
           name="email"
@@ -59,7 +47,7 @@ const LoginForm = () => {
           rules={{
             required: formatMessage({ id: 'error.required' }),
             pattern: {
-              value: /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+$/,
+              value: VALIDATION_REGEX.email,
               message: formatMessage({ id: 'error.email.not.valid' }),
             },
           }}
@@ -68,10 +56,9 @@ const LoginForm = () => {
               name={name}
               type="text"
               placeholder={formatMessage({ id: 'login.form.enter.email' })}
-              // required={true}
               onChange={onChange}
               value={value}
-              autoComplete={'username'}
+              autoComplete={'email'}
               variant={'standard'}
               helperText={errors[name]?.message}
               label={formatMessage({ id: 'login.form.email' })}
@@ -105,9 +92,11 @@ const LoginForm = () => {
       <AppButton type={'submit'} color={'primary'}>
         {formatMessage({ id: 'login' })}
       </AppButton>
-      <div className={style.resetPasswordWrapper}>
+      <div className={style.additionalData}>
         <div>{formatMessage({ id: 'login.forgot.password' })}</div>
-        <Link underline="none">{formatMessage({ id: 'login.reset.password' })}</Link>
+        <AppLink underline="none" to={'/'}>
+          {formatMessage({ id: 'login.reset.password' })}
+        </AppLink>
       </div>
     </form>
   );

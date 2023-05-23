@@ -1,9 +1,16 @@
 {
   "login": "Войти",
+  "register": "Зарегистрироваться",
+  "register.confirm": "Нажимая кнопку “Зарегистрироваться”, вы соглашаетесь с {link}.",
+  "register.confirm.link.text": "политикой конфиденциальности",
   "login.forgot.password": "Забыли пароль?",
   "login.reset.password": "Восстановить",
+  "login.form.name": "Имя",
   "login.form.email": "E-mail",
   "login.form.password": "Пароль",
+  "login.form.telegram.username": "Ник в телеграм",
+  "login.form.enter.name": "Введите имя",
   "login.form.enter.email": "Введите e-mail",
-  "login.form.enter.password": "Введите пароль"
+  "login.form.enter.password": "Введите пароль",
+  "login.form.enter.telegram.username": "Например, @user"
 }
