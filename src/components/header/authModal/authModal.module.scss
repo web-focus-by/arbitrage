@@ -17,6 +17,7 @@
     padding-left: clamp(130px, 11vw, 195px);
     padding-right: clamp(130px, 11vw, 195px);
   }
+
   @include max-1200 {
     column-gap: 57px;
   }
@@ -44,5 +45,8 @@
   min-height: unset;
 }
 .contentWrapper {
-  margin-top: 48px;
+  margin-top: clamp(30px, 3vw, 48px);
+  @include max-1200 {
+    margin-top: 48px;
+  }
 }

@@ -1,7 +1,13 @@
+@import '../../../../style/settings';
+@import '../../../../style/media';
+
 .formWrapper {
   display: flex;
   flex-direction: column;
-  row-gap: 48px;
+  row-gap: clamp(30px, 3vw, 48px);
+  @include max-1200 {
+    row-gap: 48px;
+  }
 }
 
 .inputsWrapper {

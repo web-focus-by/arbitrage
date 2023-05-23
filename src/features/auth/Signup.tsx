@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSignupMutation, LoginRequest } from '../../services/auth';
+import { useSignupMutation, ILoginRequest } from '../../services/auth';
 import { useAppDispatch } from '../../store/hooks';
 import { setCredentials } from './authSlice';
 
@@ -9,7 +9,7 @@ import { useAuth } from '../../hooks/useAuth';
 const Signup = () => {
   const dispatch = useAppDispatch();
   const auth = useAuth();
-  const [formData, setFormData] = useState<LoginRequest>({ email: '', password: '' });
+  const [formData, setFormData] = useState<ILoginRequest>({ email: '', password: '' });
   const [signup, { isError }] = useSignupMutation();
 
   const submitHandler = async (event: React.ChangeEvent<HTMLFormElement>) => {

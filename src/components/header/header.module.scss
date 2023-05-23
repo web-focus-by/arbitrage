@@ -41,17 +41,22 @@
 .modalWrapper {
   background-color: var(--background-color);
   color: var(--text-color);
-  padding: 72px 0;
-  border-radius: 40px;
-  max-width: 710px;
+  padding: clamp(60px, 4vw, 72px) 0;
+  border-radius: clamp(32px, 3vw, 40px);
+  max-width: clamp(570px, 37vw, 710px);
   width: 100%;
-
+  @include max-1200 {
+    max-width: 710px;
+    border-radius: 40px;
+    padding: 72px 0;
+  }
   @include max-991 {
     padding: 64px 0;
     border-radius: 32px;
   }
   @include max-576 {
     padding: 64px 20px;
+    height: 100%;
     margin: 0;
   }
 }
