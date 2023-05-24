@@ -1,0 +1,28 @@
+{
+  "advHeadline.links.between.exchanges": "Связки между 10 топовыми биржами",
+  "advDescr.links.between.exchanges": "Сервис считывает данные с лучших бирж и рассчитывает спред для более чем 1500 монет.",
+
+  "advHeadline.convenient.filters": "Удобные фильтры",
+  "advDescr.convenient.filters": "С помощью фильтров можно настроить желаемую сумму сделки, спред, биржи, комиссии и многое другое.",
+
+  "advHeadline.quick.update.spreads": "Быстрое обновление спредов",
+  "advDescr.quick.update.spreads": "Сервис мониторит биржи 24/7 и обновляет спреды каждые 10 секунд.",
+
+  "advHeadline.calc.transaction.amount": "Расчёт суммы сделки",
+  "advDescr.calc.transaction.amount": "Сервис считает оптимальную сумму сделки для вашего депозита, при которой достигается максимальная прибыль.",
+
+  "advHeadline.check.output.networks": "Проверка вывода и сетей",
+  "advDescr.check.output.networks": "Сервис проверяет возможность ввода и вывода монет. Также проверяется совпадение сетей перевода на биржах.",
+
+  "advHeadline.commission.accounting": "Учёт комиссий",
+  "advDescr.commission.accounting": "Сервис рассчитывает комиссию за перевод и комиссию спота, после чего выдаёт чистый спред.",
+
+  "advHeadline.hedging": "Хеджирование",
+  "advDescr.hedging": "Хеджирование помогает избавиться от риска изменения цены при переводе монеты. Сервис проверяет и обозначает возможность хеджирования таких монет.",
+
+  "advHeadline.spread.alerts": "Оповещения о спредах",
+  "advDescr.spread.alerts": "Уведомления позволяют следить за рынком, даже когда вы не за комьютером. Мы отправляем оповещения в браузер и Telegram.",
+
+  "advHeadline.coin.transfer.time": "Время перевода монеты",
+  "advDescr.coin.transfer.time": "Сервис показывает возможное время перевода монеты между биржами."
+}

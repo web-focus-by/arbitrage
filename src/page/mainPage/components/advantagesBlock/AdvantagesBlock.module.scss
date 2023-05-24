@@ -8,4 +8,25 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
+
+  .advantage_block{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 466px;
+    height: 480px;
+    padding: 40px 47px 40px 40px;
+
+    .advantage_block_text{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-size: 20px;
+      line-height: 26px;
+
+      .advantage_block_text>div{
+        font-size: 24px;
+      }
+    }
+  }
 }
