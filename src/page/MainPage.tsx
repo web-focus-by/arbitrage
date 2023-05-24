@@ -5,7 +5,9 @@ const MainPage = () => {
   return (
     <>
       <Header />
-      <section>Контент</section>
+      <section>
+        <h1>H1 Headline</h1>
+      </section>
       <Footer />
     </>
   );
