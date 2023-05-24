@@ -1,20 +1,27 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
 
-export interface User {
+export interface IUser {
   first_name: string;
   last_name: string;
 }
 
-export interface UserResponse {
-  user: User;
+export interface IUserResponse {
+  user: IUser;
   access_token: string;
   refresh_token: string;
 }
 
-export interface LoginRequest {
+export interface ILoginRequest {
   email: string;
   password: string;
+}
+
+export interface ICustomError {
+  data: {
+    message: string;
+  };
+  status: number;
 }
 
 export const api = createApi({
@@ -30,26 +37,26 @@ export const api = createApi({
     },
   }),
   endpoints: (builder) => ({
-    login: builder.mutation<UserResponse, LoginRequest>({
+    login: builder.mutation<IUserResponse, ILoginRequest>({
       query: (credentials) => ({
         url: '/login',
         method: 'POST',
         body: credentials,
       }),
-      transformResponse: (response: UserResponse) => {
+      transformResponse: (response: IUserResponse) => {
         const user = { last_name: 'LastName', first_name: 'FirstName' };
         localStorage.setItem('token', response.access_token);
         localStorage.setItem('user', JSON.stringify(user));
         return { ...response, user };
       },
     }),
-    signup: builder.mutation<UserResponse, LoginRequest>({
+    signup: builder.mutation<IUserResponse, ILoginRequest>({
       query: (credentials) => ({
         url: '/signup',
         method: 'POST',
         body: credentials,
       }),
-      transformResponse: (response: UserResponse) => {
+      transformResponse: (response: IUserResponse) => {
         const user = { last_name: 'LastName', first_name: 'FirstName' };
         localStorage.setItem('token', response.access_token);
         localStorage.setItem('user', JSON.stringify(user));

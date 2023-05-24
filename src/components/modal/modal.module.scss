@@ -1,0 +1,66 @@
+@import '../../style/media';
+
+.wrapper {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 72px clamp(130px, 11vw, 140px);
+  border-radius: clamp(32px, 3vw, 40px);
+  max-width: clamp(570px, 37vw, 710px);
+  width: 100%;
+  @include max-1200 {
+    max-width: 710px;
+    border-radius: 40px;
+    padding: 72px 0;
+  }
+
+  @include max-991 {
+    padding: 64px clamp(20px, 11vw, 130px);
+    border-radius: 32px;
+  }
+  @include max-576 {
+    padding: 64px 20px;
+    margin: 0;
+    height: 100%;
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  right: 32px;
+  top: 24px;
+  padding: 0;
+  @include max-991 {
+    right: 24px;
+    top: 24px;
+  }
+  @include max-576 {
+    right: 16px;
+    top: 22px;
+  }
+}
+
+.normalizeElement {
+  padding: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  .title {
+    font-size: 32px;
+    line-height: 110%;
+    font-weight: 400;
+    text-align: center;
+    padding: 0;
+  }
+
+  .text {
+    font-size: 20px;
+    line-height: 130%;
+    text-align: center;
+    color: var(--text-color);
+  }
+}

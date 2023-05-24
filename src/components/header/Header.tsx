@@ -1,17 +1,26 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import appLogo from '../../../public/logo.svg';
 import style from './header.module.scss';
 import classNames from 'classnames';
 import { useAuth } from '../../hooks/useAuth';
 import Switch from '@mui/material/Switch';
-import useTheme from '../../features/theme/useTheme.tsx';
+import useTheme from '../../hooks/useTheme.ts';
 import { ETheme } from '../../features/theme/type.ts';
+import Modal from '../modal/Modal.tsx';
+import AuthModal from './authModal/AuthModal.tsx';
 
 const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
 const Header = () => {
   const navigate = useNavigate();
   const auth = useAuth();
   const { theme, setThemeHandler } = useTheme();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setIsOpen(true);
+  };
 
   return (
     <header className={style.header}>
@@ -46,7 +55,7 @@ const Header = () => {
           ) : (
             <button
               onClick={() => {
-                navigate('/login');
+                handleClickOpen();
               }}
             >
               Войти
@@ -54,6 +63,7 @@ const Header = () => {
           )}
         </div>
       </div>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} children={<AuthModal />} classNames={style.modalWrapper} />
     </header>
   );
 };

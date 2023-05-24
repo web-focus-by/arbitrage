@@ -1,0 +1,36 @@
+@import '../../../../style/settings';
+@import '../../../../style/media';
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: clamp(30px, 3vw, 48px);
+  @include max-1200 {
+    row-gap: 48px;
+  }
+}
+
+.inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.additionalData {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  padding: 19px 23px;
+  border-radius: 12px;
+  color: $color-red-1;
+  background-color: $color-red-error;
+  font-size: 16px;
+}

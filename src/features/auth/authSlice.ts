@@ -1,25 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { User, UserResponse } from '../../services/auth';
+import type { IUser, IUserResponse } from '../../services/auth';
 import { RootState } from '../../store';
 
 type AuthState = {
-  user: User | null;
+  user: IUser | null;
   accessToken: string | null;
   refreshToken: string | null;
+  registerFinished: boolean;
 };
 
 const initialState: AuthState = {
   user: null,
   accessToken: null,
   refreshToken: null,
+  registerFinished: false,
 };
 
 const slice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setCredentials: (state, { payload: { user, access_token, refresh_token } }: PayloadAction<UserResponse>) => {
+    setCredentials: (state, { payload: { user, access_token, refresh_token } }: PayloadAction<IUserResponse>) => {
       state.user = user;
       state.accessToken = access_token;
       state.refreshToken = refresh_token;
