@@ -9,7 +9,12 @@ const AppButton: FC<ButtonProps> = (props) => {
     <Button
       {...otherProps}
       disableRipple={true}
-      classes={{ ...classes, root: classNames(classes?.root, style.wrapper) }}
+      classes={{
+        ...classes,
+        root: classNames(classes?.root, style.wrapper),
+        textSecondary: classNames(classes?.textSecondary, style.secondary),
+        textPrimary: classNames(classes?.textPrimary, style.primary),
+      }}
     >
       {children}
     </Button>

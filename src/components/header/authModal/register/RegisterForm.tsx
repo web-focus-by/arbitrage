@@ -20,7 +20,7 @@ interface IUserRegister extends ILoginRequest {
   telegramName: string;
 }
 const RegisterForm = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const { formatMessage } = useIntl();
   const dispatch = useAppDispatch();
   const auth = useAuth();
