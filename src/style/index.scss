@@ -3,11 +3,46 @@
 :root[data-theme='light'] {
   --background-color: #{$color-white};
   --text-color: #{$color-gray-1};
+
+  //button-style
+
+  //primary-button
+  --primary-button-bacground-color: #{$color-black};
+  --primary-button-disabled-bacground-color: #{$color-gray-3};
+  --primary-button-hover-bacground-color: #{$color-blue-1};
+  --primary-button-color: #{$color-white};
+
+  //secondary-button
+  --secondary-button-bacground-color: #{$color-white};
+  --secondary-button-hover-bacground-color: #{$color-black};
+  --secondary-button-color: #{$color-black};
+  --secondary-button-hover-color: #{$color-white};
+  --secondary-border-color: #{$color-black};
+  --secondary-disabled-border-color: #{$color-gray-3};
+  --secondary-disabled-color: #{$color-gray-3};
 }
 
 :root[data-theme='dark'] {
   --background-color: #{$color-black};
   --text-color: #{$color-white};
+
+  //button-style
+
+  //primary-button
+  --primary-button-bacground-color: #{$color-blue-1};
+  --primary-button-disabled-bacground-color: #{$color-gray-1};
+  --primary-button-hover-bacground-color: #{$color-blue-2};
+  --primary-button-color: #{$color-white};
+
+  //secondary-button
+  --secondary-button-bacground-color: #{$color-black};
+  --secondary-button-hover-bacground-color: #{$color-gray-1};
+  --secondary-button-color: #{$color-white};
+  --secondary-button-hover-color: #{$color-white};
+  --secondary-border-color: #{$color-white};
+  --secondary-border-hover-color: #{$color-gray-1};
+  --secondary-disabled-border-color: #{$color-gray-3};
+  --secondary-disabled-color: #{$color-gray-3};
 }
 //
 //:root[data-theme='light'] {
@@ -79,13 +114,6 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-  &:hover {
-    border-color: #646cff;
-  }
-  &:focus,
-  &:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
 }
 
 //@media (prefers-color-scheme: light) {
@@ -114,4 +142,20 @@ button {
 ol,
 ul {
   list-style: none;
+}
+
+h4 {
+  //styleName: Desktop/H4 Headline;
+  font-family: Gilroy, sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 31px;
+  letter-spacing: 0;
+  text-align: left;
+  text-transform: none;
+}
+
+.button-padding {
+  padding-left: 46px;
+  padding-right: 46px;
 }
