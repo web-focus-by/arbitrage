@@ -1,20 +1,27 @@
 import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
-import { Dialog, DialogActions, DialogContent, IconButton } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { ETheme } from '../../features/theme/type.ts';
 import { useAppSelector } from '../../store/hooks.ts';
 import style from './modal.module.scss';
+import classNames from 'classnames';
+
+interface IModalContent {
+  title?: string | ReactNode;
+  text?: string | ReactNode;
+  actions?: ReactNode | ReactNode[];
+}
 
 export type IModal = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  children: ReactNode;
   callbackClose?: () => void;
   classNames?: string;
-} & typeof defaultProps;
+  children?: ReactNode;
+} & typeof defaultProps &
+  IModalContent;
 
 const defaultProps = {
-  children: <></>,
   isOpen: false,
 };
 const Modal: FC<IModal> = (props) => {
@@ -32,10 +39,20 @@ const Modal: FC<IModal> = (props) => {
     >
       <DialogContent
         classes={{
-          root: style.normalizeElement,
+          root: classNames(style.normalizeElement, { [style.content]: !props.children }),
         }}
       >
-        {props.children}
+        {props.children ? (
+          props.children
+        ) : (
+          <>
+            <DialogTitle component={'h4'} classes={{ root: style.title }}>
+              {props.title}
+            </DialogTitle>
+            <DialogContentText classes={{ root: style.text }}>{props.text}</DialogContentText>
+            <DialogActions>{props.actions}</DialogActions>
+          </>
+        )}
       </DialogContent>
       <DialogActions
         classes={{

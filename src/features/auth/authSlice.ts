@@ -7,12 +7,14 @@ type AuthState = {
   user: IUser | null;
   accessToken: string | null;
   refreshToken: string | null;
+  registerFinished: boolean;
 };
 
 const initialState: AuthState = {
   user: null,
   accessToken: null,
   refreshToken: null,
+  registerFinished: false,
 };
 
 const slice = createSlice({

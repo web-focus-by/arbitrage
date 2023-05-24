@@ -17,6 +17,13 @@ export interface ILoginRequest {
   password: string;
 }
 
+export interface ICustomError {
+  data: {
+    message: string;
+  };
+  status: number;
+}
+
 export const api = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
