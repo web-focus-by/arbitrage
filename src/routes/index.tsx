@@ -2,7 +2,8 @@ import MainPage from '../page/MainPage';
 import ErrorPage from '../page/ErrorPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { PrivateOutlet } from './PrivateOutlet';
-import PrivateRoute from '../page/PrivateRoute';
+import Dashboard from '../page/Dashboard.tsx';
+import Profile from '../page/Profile.tsx';
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,12 @@ const router = createBrowserRouter([
     element: <PrivateOutlet />,
     children: [
       {
-        path: 'private',
-        element: <PrivateRoute />,
+        path: 'dashboard',
+        element: <Dashboard />,
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
       },
     ],
   },
