@@ -6,9 +6,9 @@ const MainHeadline = () => {
   return (
       <div className={classNames(style.mainPageContainer, style.container_headline, style.container, style.spacing_between_blocks)}>
         <div className={style.text_headline}>
-          <div className={style.main_headline_text}>
+          <h1>
             Сервис по поиску арбитражных сделок
-          </div>
+          </h1>
           <div className={style.main_headline_second_text}>
             Мониторинг спредов в реальном времени для любых сумм между m биржами.
           </div>

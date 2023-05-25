@@ -5,6 +5,8 @@ import AdvantagesBlock from "./mainPage/components/advantagesBlock/AdvantagesBlo
 import VideoBlock from "./mainPage/components/videoBlock/VideoBlock";
 import EarningInfoBlock from "./mainPage/components/EarningInfoBlock/EarningInfoBlock";
 import RatesBlock from "./mainPage/components/RatesBlock/RatesBlock";
+import InfoAboutTgBotsBlock from "./mainPage/components/InfoAboutTgBotsBlock/InfoAboutTgBotsBlock";
+import OurPartners from "./mainPage/components/OurPartners/OurPartners";
 
 const MainPage = () => {
   return (
@@ -15,6 +17,8 @@ const MainPage = () => {
       <VideoBlock />
       <EarningInfoBlock/>
       <RatesBlock/>
+      <InfoAboutTgBotsBlock/>
+      <OurPartners/>
       <Footer />
     </>
   );

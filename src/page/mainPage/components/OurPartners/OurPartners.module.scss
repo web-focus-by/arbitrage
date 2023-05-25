@@ -1,0 +1,13 @@
+@import '../../../../style/media';
+@import '/src/page/mainPage/style';
+@import '/src/style/index';
+@import '/src/page/mainPage/style';
+
+.OurPartnersContainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 97px;
+  row-gap: 50px;
+  justify-content: space-around;
+}

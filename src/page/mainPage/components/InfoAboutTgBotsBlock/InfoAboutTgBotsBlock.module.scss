@@ -1,0 +1,22 @@
+@import '../../../../style/media';
+@import '/src/page/mainPage/style';
+@import '/src/style/index';
+@import '/src/page/mainPage/style';
+
+.InfoAboutTgBotsBlockContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+
+  .InfoAboutTgBotsBlockText{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    button{
+      width: max-content;
+      padding: 20px 46px;
+    }
+  }
+}
