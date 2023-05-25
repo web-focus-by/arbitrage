@@ -1,6 +1,6 @@
 import style from './mainHeadline.module.scss';
 import classNames from "classnames";
-import PrimaryButton from "../primaryButton/PrimaryButton";
+import AppButton from "../../../../components/button/AppButton";
 
 const MainHeadline = () => {
   return (
@@ -12,7 +12,9 @@ const MainHeadline = () => {
           <div className={style.main_headline_second_text}>
             Мониторинг спредов в реальном времени для любых сумм между m биржами.
           </div>
-          {/*<PrimaryButton value={"Выбрать тариф"}></PrimaryButton>*/}
+          <div className={style.main_headline_button}>
+            <AppButton color={'primary'}>Выбрать тариф</AppButton>
+          </div>
         </div>
         <div className={style.img_headline}>
           <img src={'src/page/mainPage/img/img_headline.jpg'}/>

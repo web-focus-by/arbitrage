@@ -16,6 +16,8 @@
     width: 466px;
     height: 480px;
     padding: 40px 47px 40px 40px;
+    border: 1px solid #B7B7B7;
+    border-radius: 32px;
 
     .advantage_block_text{
       display: flex;
@@ -24,7 +26,7 @@
       font-size: 20px;
       line-height: 26px;
 
-      .advantage_block_text>div{
+      :first-child{
         font-size: 24px;
       }
     }

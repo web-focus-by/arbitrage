@@ -12,6 +12,7 @@
   .text_headline{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 64%;
 
     .main_headline_text{
@@ -24,6 +25,15 @@
       font-size: 20px;
       line-height: 26px;
       margin-top: 16px;
+    }
+
+    .main_headline_button{
+      width: max-content;
+      margin-top: 48px;
+    }
+
+    .main_headline_button button{
+      padding: 20px 46px;
     }
 
   }
