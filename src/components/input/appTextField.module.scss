@@ -20,7 +20,7 @@
     border-color: $color-blue-1;
   }
   &[aria-invalid='true'] {
-    border-color: $color-red-1;
+    border-color: $color-red-error;
   }
 }
 
