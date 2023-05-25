@@ -10,3 +10,4 @@ export default defineConfig({
     },
   },
 });
+// assetsInclude: ['**/*.otf', '**/*.ttf', '**/*.woff', '**/*.woff2'],

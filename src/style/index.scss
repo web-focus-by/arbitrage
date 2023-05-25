@@ -1,5 +1,7 @@
 @import 'settings';
 @import 'typography';
+@import 'public/assets/fonts/ProximaNova/stylesheet';
+@import 'public/assets/fonts/RSRockStar/stylesheet';
 
 :root[data-theme='light'] {
   --background-color: #{$color-white};
@@ -131,23 +133,25 @@ button {
 .container {
   margin: 0 auto;
   max-width: 1440px;
-  width: calc(100% - 40px);
+  width: 100%;
+  padding: 0 80px;
+  @include max-1200 {
+    padding: 0 65px;
+  }
+  @include max-991 {
+    padding: 0 40px;
+  }
+  @include max-768 {
+    padding: 0 clamp(16px, 5.2vw, 40px);
+  }
+  @include max-576 {
+    padding: 0 16px;
+  }
 }
 
 ol,
 ul {
   list-style: none;
-}
-
-h4 {
-  //styleName: Desktop/H4 Headline;
-  font-family: Gilroy, sans-serif;
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 31px;
-  letter-spacing: 0;
-  text-align: left;
-  text-transform: none;
 }
 
 .button-padding {
