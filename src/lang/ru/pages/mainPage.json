@@ -24,5 +24,16 @@
   "advDescr.spread.alerts": "Уведомления позволяют следить за рынком, даже когда вы не за комьютером. Мы отправляем оповещения в браузер и Telegram.",
 
   "advHeadline.coin.transfer.time": "Время перевода монеты",
-  "advDescr.coin.transfer.time": "Сервис показывает возможное время перевода монеты между биржами."
+  "advDescr.coin.transfer.time": "Сервис показывает возможное время перевода монеты между биржами.",
+
+  "ratesBlock.term.week": "Неделя",
+  "ratesBlock.term.month": "Месяц",
+  "ratesBlock.term.forever": "Навсегда",
+  "ratesBlock.price.week": "33 USDT",
+  "ratesBlock.price.month": "75 USDT",
+  "ratesBlock.price.forever": "350 USDT",
+  "ratesBlock.content.inter.exchange.scanner": "Межбиржевой сканер",
+  "ratesBlock.content.inter.exchange.tg.bot": "Межбиржевой телеграм бот",
+  "ratesBlock.content.user.chat": "Чат пользователей",
+  "ratesBlock.content.intra.exchange.tg.bot": "Внутрибиржевой телеграм бот"
 }

@@ -1,0 +1,38 @@
+@import '../../../../style/media';
+@import '/src/page/mainPage/style';
+@import '/src/style/index';
+@import '/src/page/mainPage/style';
+
+.earningInfoBlockContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  .earningInfoBlockText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+
+    :nth-child(2){
+      width: 90%;
+      font-size: 20px;
+      line-height: 26px;
+      color: #575757;
+    }
+  }
+
+  .earningInfoBlockImg{
+    width: 50%;
+    border-radius: 40px;
+    background-color: #3366CC;
+    padding: 149px 63px;
+
+    img{
+      width: 100%;
+      filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.12));
+      border-radius: 12px;
+
+    }
+  }
+}
