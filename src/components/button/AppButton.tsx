@@ -11,7 +11,7 @@ const AppButton: FC<ButtonProps> = (props) => {
       disableRipple={true}
       classes={{
         ...classes,
-        root: classNames(classes?.root, style.wrapper),
+        root: classNames(classes?.root, style.wrapper, 'button-text'),
         textSecondary: classNames(classes?.textSecondary, style.secondary),
         textPrimary: classNames(classes?.textPrimary, style.primary),
       }}

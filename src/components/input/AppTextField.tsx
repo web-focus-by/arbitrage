@@ -12,7 +12,7 @@ const AppTextField: FC<TextFieldProps> = (props) => {
         ...props.InputProps,
         classes: {
           ...props.InputProps?.classes,
-          input: classNames(props.InputProps?.classes?.input, style.input),
+          input: classNames(props.InputProps?.classes?.input, style.input, 'text2'),
         },
         disableUnderline: true,
       }}
@@ -20,7 +20,7 @@ const AppTextField: FC<TextFieldProps> = (props) => {
         ...props.InputLabelProps,
         classes: {
           ...props.InputLabelProps?.classes,
-          root: classNames(props.InputLabelProps?.classes?.root, style.label),
+          root: classNames(props.InputLabelProps?.classes?.root, style.label, 'text2'),
         },
         focused: false,
         shrink: true,

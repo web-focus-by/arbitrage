@@ -1,0 +1,14 @@
+{
+  "profile.title": "Профиль",
+  "profile.personal.data": "Личные данные",
+  "profile.change.password": "Изменение пароля",
+  "profile.save.changes": "Сохранить изменения",
+  "profile.additional.resources": "Дополнительные ресурсы",
+  "profile.additional.resources.inter.exchange.bot": "Межбиржевой бот",
+  "profile.additional.resources.intra.exchange.bot": "Внутрибиржевой бот",
+  "profile.additional.resources.chat": "Чат",
+  "profile.subscription": "Подписка",
+  "profile.subscription.empty.content": "Подписка отсутствует, вы можете выбрать подходящий тариф, перейдя по кнопке ниже.",
+  "profile.subscription.btn.select": "Выбрать тариф",
+  "profile.delete.text": "Хотите удалить аккаунт?"
+}

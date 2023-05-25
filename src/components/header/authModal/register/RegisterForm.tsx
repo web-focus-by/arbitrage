@@ -15,7 +15,7 @@ import AppLink from '../../../link/AppLink.tsx';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import Modal from '../../../modal/Modal.tsx';
 
-interface IUserRegister extends ILoginRequest {
+export interface IUserRegister extends ILoginRequest {
   username: string;
   telegramName: string;
 }

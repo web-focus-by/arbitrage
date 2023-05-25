@@ -47,7 +47,7 @@ const Header = () => {
           {auth.user ? (
             <button
               onClick={() => {
-                navigate('/private');
+                navigate('/dashboard');
               }}
             >
               Кабинет

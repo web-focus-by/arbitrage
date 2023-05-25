@@ -24,7 +24,7 @@ export interface ICustomError {
   status: number;
 }
 
-export const api = createApi({
+export const apiAuth = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: '/api',
@@ -44,10 +44,9 @@ export const api = createApi({
         body: credentials,
       }),
       transformResponse: (response: IUserResponse) => {
-        const user = { last_name: 'LastName', first_name: 'FirstName' };
         localStorage.setItem('token', response.access_token);
-        localStorage.setItem('user', JSON.stringify(user));
-        return { ...response, user };
+        localStorage.setItem('user', JSON.stringify(response.user));
+        return { ...response };
       },
     }),
     signup: builder.mutation<IUserResponse, ILoginRequest>({
@@ -57,21 +56,11 @@ export const api = createApi({
         body: credentials,
       }),
       transformResponse: (response: IUserResponse) => {
-        const user = { last_name: 'LastName', first_name: 'FirstName' };
         localStorage.setItem('token', response.access_token);
-        localStorage.setItem('user', JSON.stringify(user));
-        return { ...response, user };
+        localStorage.setItem('user', JSON.stringify(response.user));
+        return { ...response };
       },
     }),
-    // getInfo: builder.query({
-    //   query: () => ({
-    //     url: '/info',
-    //     method: 'GET',
-    //     headers: {
-    //       'Content-Type': 'application/json; charset=utf-8',
-    //     },
-    //   }),
-    // }),
 
     protected: builder.mutation<{ message: string }, void>({
       query: () => 'protected',
@@ -79,4 +68,4 @@ export const api = createApi({
   }),
 });
 
-export const { useLoginMutation, useProtectedMutation, useSignupMutation } = api;
+export const { useLoginMutation, useProtectedMutation, useSignupMutation } = apiAuth;

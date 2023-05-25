@@ -1,0 +1,93 @@
+@import '../../style/media';
+
+.wrapper {
+  margin-top: clamp(80px, 5.3vw, 100px);
+  @include max-1200 {
+    margin-top: 85px;
+  }
+  @include max-991 {
+    margin-top: 70px;
+  }
+  @include max-576 {
+    margin-top: 50px;
+  }
+}
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 110px;
+  margin-top: 44px;
+  flex-direction: column;
+  @include max-991 {
+    grid-template-columns: 1fr;
+    row-gap: clamp(56px, 8.5vw, 64px);
+    margin-top: 40px;
+  }
+  @include max-576 {
+    row-gap: 56px;
+    margin-top: 32px;
+  }
+}
+.formSection {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 36px;
+  @include max-576 {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    margin-top: 16px;
+  }
+}
+.formSectionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  @include max-1440 {
+    gap: clamp(45px, 4vw, 56px);
+  }
+  @include max-991 {
+    gap: clamp(32px, 6.25vw, 48px);
+  }
+  @include max-576 {
+    gap: 32px;
+  }
+}
+.btn {
+  padding: 20px 46px;
+  @include max-576 {
+    width: 100%;
+  }
+}
+.btnWrapper {
+  margin-top: 48px;
+  @include max-1440 {
+    margin-top: clamp(40px, 3.4vw, 48px);
+  }
+  @include max-991 {
+    display: flex;
+    justify-content: right;
+    margin-top: clamp(32px, 6.25vw, 48px);
+  }
+  @include max-576 {
+    justify-content: center;
+    margin-top: 32px;
+  }
+}
+.additionalDataWrapper {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.textItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.subscriptionWrapper {
+  margin-top: 56px;
+}
+.deleteAcc {
+  margin-top: 72px;
+}

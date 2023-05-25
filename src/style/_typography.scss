@@ -1,7 +1,9 @@
-@import '../../public/assets/fonts/ProximaNova/stylesheet';
-@import '../../public/assets/fonts/RSRockStar/stylesheet';
+@import 'public/assets/fonts/ProximaNova/stylesheet';
+@import 'public/assets/fonts/RSRockStar/stylesheet';
 @import 'media';
-h1 {
+
+h1,
+.h1 {
   font-family: 'RockStar', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -15,7 +17,8 @@ h1 {
     font-size: clamp(39px, 8vw, 60px);
   }
 }
-h2 {
+h2,
+.h2 {
   font-family: 'RockStar', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -29,7 +32,8 @@ h2 {
     font-size: clamp(26px, 6.25vw, 48px);
   }
 }
-h3 {
+h3,
+.h3 {
   font-family: 'RockStar', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -47,7 +51,8 @@ h3 {
     font-family: 'RockStar', sans-serif;
   }
 }
-h4 {
+h4,
+.h4 {
   font-family: 'RockStar', sans-serif;
   font-style: normal;
   font-weight: 400;

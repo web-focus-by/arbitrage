@@ -2,5 +2,7 @@
   "error.required": "Данное поле является обязательным",
   "error.email.not.valid": "Неверный формат почты",
   "error.telegram.username.not.valid": "Неверный формат ника телеграмма",
-  "error.user.already.exist": "Пользователь с таким email уже существует"
+  "error.user.already.exist": "Пользователь с таким email уже существует",
+  "error.user.not.exist": "Пользователь не существует",
+  "error.passwords.not.match": "Пароли не совпадают"
 }
