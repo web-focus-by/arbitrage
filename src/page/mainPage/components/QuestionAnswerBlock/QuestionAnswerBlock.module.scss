@@ -1,0 +1,28 @@
+@import '../../../../style/media';
+@import '/src/page/mainPage/style';
+@import '/src/style/index';
+@import '/src/page/mainPage/style';
+
+.questionAnswerAccordion {
+  box-shadow: none;
+  border-bottom: 1px solid #B7B7B7;
+
+  .questionAnswerAccordionIcon{
+    div{
+      justify-content: space-between;
+
+      .questionAnswerAccordionSvg{
+        transform: rotate(135deg);
+      }
+    }
+  }
+
+  &:before{
+    display: none;
+  }
+
+  &:last-child{
+    border-bottom: none;
+  }
+
+}

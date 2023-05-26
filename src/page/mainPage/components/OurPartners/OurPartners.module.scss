@@ -11,3 +11,13 @@
   row-gap: 50px;
   justify-content: space-around;
 }
+
+.ourPartnersHeadline{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+
+  img{
+    height: max-content;
+  }
+}
