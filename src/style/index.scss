@@ -23,6 +23,9 @@
   --secondary-border-color: #{$color-black};
   --secondary-disabled-border-color: #{$color-gray-3};
   --secondary-disabled-color: #{$color-gray-3};
+
+  //check-box-style
+  --check-box-checked-color: #{$color-black};
 }
 
 :root[data-theme='dark'] {
@@ -46,6 +49,9 @@
   --secondary-border-hover-color: #{$color-gray-1};
   --secondary-disabled-border-color: #{$color-gray-3};
   --secondary-disabled-color: #{$color-gray-3};
+
+  //check-box-style
+  --check-box-checked-color: #{$color-blue-1};
 }
 //
 //:root[data-theme='light'] {
@@ -157,4 +163,8 @@ ul {
 .button-padding {
   padding-left: 46px;
   padding-right: 46px;
+}
+
+path {
+  transition: fill $transition-time $transition-animate;
 }

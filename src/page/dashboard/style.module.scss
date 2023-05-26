@@ -1,0 +1,14 @@
+@import '../../style/media';
+
+.wrapper {
+  margin-top: clamp(80px, 5.3vw, 100px);
+  @include max-1200 {
+    margin-top: 85px;
+  }
+  @include max-991 {
+    margin-top: 70px;
+  }
+  @include max-576 {
+    margin-top: 50px;
+  }
+}

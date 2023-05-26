@@ -1,0 +1,34 @@
+@import '../../style/settings';
+
+.checkbox {
+  path {
+    fill: $color-gray-2;
+  }
+  &:hover {
+    path {
+      fill: $color-blue-1;
+    }
+  }
+  &:active {
+    path {
+      fill: $color-blue-2;
+    }
+  }
+}
+.focused {
+  svg {
+    border: 1px solid $color-blue-1;
+    border-radius: 6px;
+  }
+}
+.checkboxChecked {
+  path {
+    fill: var(--check-box-checked-color);
+  }
+}
+.checkboxDisabled.checkbox {
+  opacity: 0.25;
+  path {
+    fill: $color-blue-1;
+  }
+}
