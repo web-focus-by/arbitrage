@@ -3,5 +3,15 @@
   "dashboard.select.subtitle": "Выберите биржи",
   "dashboard.select.buy": "Покупка",
   "dashboard.select.sell": "Продажа",
-  "dashboard.setting.subtitle": "Настройте параметры"
+  "dashboard.setting.subtitle": "Настройте параметры",
+  "dashboard.submit": "Применить",
+  "dashboard.select.all": "Все",
+  "dashboard.select.binance": "Binance",
+  "dashboard.select.bybit": "Bybit",
+  "dashboard.select.kucoin": "Kucoin",
+  "dashboard.select.okx": "OKX",
+  "dashboard.select.gateio": "Gateio",
+  "dashboard.select.huobi": "Huobi",
+  "dashboard.select.poloniex": "Poloniex",
+  "dashboard.select.mexc": "Mexc"
 }

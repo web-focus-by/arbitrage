@@ -16,6 +16,7 @@ const AppCheckbox: FC<ICheckboxProps> = ({ checkboxProps, formControlLabelProps 
       control={
         <Checkbox
           {...checkboxProps}
+          checked={(checkboxProps?.value as boolean) ?? false}
           disableRipple={true}
           classes={{
             ...checkboxProps?.classes,

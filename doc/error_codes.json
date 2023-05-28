@@ -1,0 +1,40 @@
+{
+  "error_codes": [
+    {
+      "code": 200,
+      "message": "Success"
+    },
+    {
+      "code": 400,
+      "message": "Required parameter is missing"
+    },
+    {
+      "code": 401,
+      "message": "User already exist"
+    },
+    {
+      "code": 402,
+      "message": "User not found"
+    },
+    {
+      "code": 403,
+      "message": "Wrong password"
+    },
+    {
+      "code": 404,
+      "message": "Wrong refresh token"
+    },
+    {
+      "code": 405,
+      "message": "Invalid signature"
+    },
+    {
+      "code": 406,
+      "message": "Token expired"
+    },
+    {
+      "code": 407,
+      "message": "Invalid parameter"
+    }
+  ]
+}
