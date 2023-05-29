@@ -140,18 +140,20 @@ button {
   margin: 0 auto;
   max-width: 1440px;
   width: 100%;
-  padding: 0 80px;
-  @include max-1200 {
-    padding: 0 65px;
-  }
-  @include max-991 {
-    padding: 0 40px;
-  }
-  @include max-768 {
-    padding: 0 clamp(16px, 5.2vw, 40px);
-  }
-  @include max-576 {
-    padding: 0 16px;
+  &Padding {
+    padding: 0 80px;
+    @include max-1200 {
+      padding: 0 65px;
+    }
+    @include max-991 {
+      padding: 0 40px;
+    }
+    @include max-768 {
+      padding: 0 clamp(16px, 5.2vw, 40px);
+    }
+    @include max-576 {
+      padding: 0 16px;
+    }
   }
 }
 
