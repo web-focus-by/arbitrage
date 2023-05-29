@@ -1,15 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer, { checkToken } from '../features/auth/authSlice';
 import themeReducer from '../features/theme/themeSlice';
-import { api } from '../services/auth';
+import { apiAuth } from '../services/auth';
+import { apiUserInfo } from '../services/userInfo.ts';
 
 export const store = configureStore({
   reducer: {
-    [api.reducerPath]: api.reducer,
+    [apiAuth.reducerPath]: apiAuth.reducer,
+    [apiUserInfo.reducerPath]: apiUserInfo.reducer,
     auth: authReducer,
     theme: themeReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiAuth.middleware).concat(apiUserInfo.middleware),
 });
 
 store.dispatch(checkToken());
