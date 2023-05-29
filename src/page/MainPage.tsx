@@ -8,6 +8,7 @@ import RatesBlock from "./mainPage/components/RatesBlock/RatesBlock";
 import InfoAboutTgBotsBlock from "./mainPage/components/InfoAboutTgBotsBlock/InfoAboutTgBotsBlock";
 import OurPartners from "./mainPage/components/OurPartners/OurPartners";
 import QuestionAnswerBlock from "./mainPage/components/QuestionAnswerBlock/QuestionAnswerBlock";
+import QuestionsRemainBlock from "./mainPage/components/QuestionsRemainBlock/QuestionsRemainBlock";
 
 const MainPage = () => {
   return (
@@ -21,6 +22,7 @@ const MainPage = () => {
       <InfoAboutTgBotsBlock/>
       <OurPartners/>
       <QuestionAnswerBlock/>
+      <QuestionsRemainBlock/>
       <Footer />
     </>
   );

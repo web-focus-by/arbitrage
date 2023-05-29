@@ -4,25 +4,24 @@
 @import '/src/page/mainPage/style';
 
 .questionAnswerAccordion {
-  box-shadow: none;
-  border-bottom: 1px solid #B7B7B7;
 
-  .questionAnswerAccordionIcon{
-    div{
-      justify-content: space-between;
+  .questionAnswerAccordionHeadline{
+    font-size: 24px;
+    line-height: 26px;
+    width: 78%;
+  }
 
-      .questionAnswerAccordionSvg{
-        transform: rotate(135deg);
-      }
+  .questionAnswerAccordionText{
+    font-size: 20px;
+    line-height: 26px;
+    width: 78%;
+  }
+
+  &>div{
+    padding: 26px 0px;
+
+    &>div{
+      padding: 0;
     }
   }
-
-  &:before{
-    display: none;
-  }
-
-  &:last-child{
-    border-bottom: none;
-  }
-
 }

@@ -1,0 +1,35 @@
+@import '../../../../style/media';
+@import '/src/page/mainPage/style';
+@import '/src/style/index';
+@import '/src/page/mainPage/style';
+
+.QuestionsRemainBlockContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 140px 150px 140px;
+  background: linear-gradient(95.29deg, #4176E0 0.8%, #2150AE 105.44%);
+  border-radius: 40px;
+
+  .QuestionsRemainBlockText{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    &>div{
+      margin-bottom: 0px;
+      color: #FFFFFF;
+    }
+
+    .textUnderHeadline{
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+
+  .QuestionsRemainBlockButton{
+    button{
+      padding: 20px 46px;
+    }
+  }
+}

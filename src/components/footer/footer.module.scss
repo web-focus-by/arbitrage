@@ -1,0 +1,43 @@
+@import '../../style/media';
+
+.footer{
+  padding: 120px 200px 48px;
+  background: #262626;
+  border-radius: 88px 88px 0px 0px;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 97px;
+
+  &__nav {
+    width: max-content;
+    &__list {
+      display: flex;
+      flex-direction: row;
+      gap: 64px;
+      width: max-content;
+    }
+    &__item {
+    }
+  }
+
+  .footerMainLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+
+    .footer_social{
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+    }
+  }
+
+
+  .footerEndLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
