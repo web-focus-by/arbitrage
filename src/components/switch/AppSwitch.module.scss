@@ -2,8 +2,6 @@
 @import '../../style/settings';
 
 .root {
-  left: 2px;
-  top: 2px;
   width: 44px;
   height: 28px;
   border-radius: 14px;
@@ -56,4 +54,8 @@
 .thumb {
   width: 24px;
   height: 24px;
+}
+
+.label {
+  margin-left: 12px;
 }

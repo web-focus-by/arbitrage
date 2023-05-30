@@ -310,6 +310,23 @@ const FilterDashboard = () => {
               )}
             />
             <Controller
+              name={'fee'}
+              control={control}
+              render={({ field }) => (
+                <AppTextField
+                  value={field.value}
+                  onChange={field.onChange}
+                  name={field.name}
+                  type={'text'}
+                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  variant={'standard'}
+                  label={formatMessage({ id: 'dashboard.input.value.fee.max' })}
+                  placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
+                  classes={{ root: style.textFieldWrapper }}
+                />
+              )}
+            />
+            <Controller
               name={'highRisk'}
               control={control}
               render={({ field }) => (
@@ -333,12 +350,19 @@ const FilterDashboard = () => {
                 />
               )}
             />
-            <AppSwitch />
+            <Controller
+              name={'notification'}
+              control={control}
+              render={({ field: { ref, value, onChange } }) => (
+                <AppSwitch
+                  switchProps={{ inputRef: ref, value: value, onChange: onChange }}
+                  formControlLabelProps={{ label: formatMessage({ id: 'dashboard.input.value.send.notification' }) }}
+                />
+              )}
+            />
+            <AppButton type={'submit'}>{formatMessage({ id: 'dashboard.submit' })}</AppButton>
           </div>
         </div>
-      </div>
-      <div className={style.subRowWrapper}>
-        <AppButton type={'submit'}>{formatMessage({ id: 'dashboard.submit' })}</AppButton>
       </div>
     </form>
   );

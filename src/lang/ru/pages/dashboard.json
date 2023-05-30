@@ -21,6 +21,8 @@
   "dashboard.input.value.profit.spread": "Спред, %",
   "dashboard.input.value.blacklist.coins": "Черный список монет",
   "dashboard.input.value.blacklist.network": "Черный список сетей",
+  "dashboard.input.value.fee.max": "Максимальная комиссия, $",
   "dashboard.input.value.high.risk": "Высокий риск",
-  "dashboard.input.value.hedge.type": "Хеджирование"
+  "dashboard.input.value.hedge.type": "Хеджирование",
+  "dashboard.input.value.send.notification": "Присылать уведомления"
 }

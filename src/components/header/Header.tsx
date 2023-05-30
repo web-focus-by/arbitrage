@@ -41,7 +41,7 @@ const Header = () => {
           </ul>
         </nav>
         <div>
-          <AppSwitch onClick={setThemeHandler} checked={theme === ETheme.light} />
+          <AppSwitch switchProps={{ onClick: setThemeHandler, checked: theme === ETheme.light }} />
         </div>
         <div>
           {auth.user ? (
