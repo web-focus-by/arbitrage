@@ -13,5 +13,14 @@
   "dashboard.select.gateio": "Gateio",
   "dashboard.select.huobi": "Huobi",
   "dashboard.select.poloniex": "Poloniex",
-  "dashboard.select.mexc": "Mexc"
+  "dashboard.select.mexc": "Mexc",
+  "dashboard.input.value.min": "Минимальный объем, $",
+  "dashboard.input.value.placeholder": "Например, 200",
+  "dashboard.input.value.max": "Максимальный объем, $",
+  "dashboard.input.value.profit": "Прибыль, $",
+  "dashboard.input.value.profit.spread": "Спред, %",
+  "dashboard.input.value.blacklist.coins": "Черный список монет",
+  "dashboard.input.value.blacklist.network": "Черный список сетей",
+  "dashboard.input.value.high.risk": "Высокий риск",
+  "dashboard.input.value.hedge.type": "Хеджирование"
 }

@@ -9,9 +9,11 @@ import { Controller, SubmitHandler, useForm, UseFormGetValues } from 'react-hook
 import AppButton from '../../../../components/button/AppButton.tsx';
 import { useAuth } from '../../../../hooks/useAuth.ts';
 import { SHOP_ARR } from '../../../../constants';
+import AppTextField from '../../../../components/input/AppTextField.tsx';
+import AppAutocomplete, { TAppAutocompleteOptions } from '../../../../components/autocomplete/AppAutocomplete.tsx';
 
 interface IFilterSelect {
-  [key: string]: boolean | { [key: string]: boolean };
+  [key: string]: boolean | string | IFilterSelect;
 }
 
 enum CheckboxGroup {
@@ -39,6 +41,14 @@ const FilterDashboard = () => {
   const [buyIndeterminate, setBuyIndeterminate] = useState(false);
   const [sellIndeterminate, setSellIndeterminate] = useState(false);
   const { user } = useAuth();
+
+  const blackListCoinsOptions: TAppAutocompleteOptions[] = useMemo(() => {
+    // return user?.blacklist_coins.map((el) => el.toLowerCase());
+    return SHOP_ARR.map((el) => ({
+      title: el,
+      value: el.toLowerCase(),
+    }));
+  }, []);
 
   const {
     watch,
@@ -96,7 +106,7 @@ const FilterDashboard = () => {
   }, [errors]);
 
   useEffect(() => {
-    console.log(user?.markets_buy.reduce((acc, val) => ({ ...acc, [val]: true }), {}));
+    console.log({ user });
   }, [user]);
 
   return (
@@ -194,10 +204,132 @@ const FilterDashboard = () => {
       </div>
       <div className={style.rowWrapper}>
         <div className={'subtitle2'}>{formatMessage({ id: 'dashboard.setting.subtitle' })}</div>
-
-        <div></div>
+        <div>
+          <div className={classNames(style.subRowWrapper, style.inputRowWrapper)}>
+            <Controller
+              name={'valueMin'}
+              control={control}
+              render={({ field }) => {
+                return (
+                  <AppTextField
+                    {...field}
+                    type={'text'}
+                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                    variant={'standard'}
+                    label={formatMessage({ id: 'dashboard.input.value.min' })}
+                    placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
+                    classes={{ root: style.textFieldWrapper }}
+                  />
+                );
+              }}
+            />
+            <Controller
+              name={'valueMax'}
+              control={control}
+              render={({ field }) => (
+                <AppTextField
+                  {...field}
+                  type={'text'}
+                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  variant={'standard'}
+                  label={formatMessage({ id: 'dashboard.input.value.max' })}
+                  placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
+                  classes={{ root: style.textFieldWrapper }}
+                />
+              )}
+            />
+            <Controller
+              name={'profit'}
+              control={control}
+              render={({ field }) => (
+                <AppTextField
+                  {...field}
+                  type={'text'}
+                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  variant={'standard'}
+                  label={formatMessage({ id: 'dashboard.input.value.profit' })}
+                  placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
+                  classes={{ root: style.textFieldWrapper }}
+                />
+              )}
+            />
+            <Controller
+              name={'profitSpread'}
+              control={control}
+              render={({ field }) => (
+                <AppTextField
+                  {...field}
+                  type={'text'}
+                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  variant={'standard'}
+                  label={formatMessage({ id: 'dashboard.input.value.profit.spread' })}
+                  placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
+                  classes={{ root: style.textFieldWrapper }}
+                />
+              )}
+            />
+            <Controller
+              name={'blackListCoins'}
+              control={control}
+              render={({ field: { ref, onChange, ...field } }) => (
+                <AppAutocomplete
+                  ref={ref}
+                  onChange={onChange}
+                  options={blackListCoinsOptions}
+                  textFieldProps={field}
+                  multiple={true}
+                  classes={{ root: style.textFieldWrapper }}
+                  aria-label={formatMessage({ id: 'dashboard.input.value.blacklist.coins' })}
+                  placeholder={formatMessage({ id: 'select.options' })}
+                />
+              )}
+            />
+            <Controller
+              name={'blackListNetwork'}
+              control={control}
+              render={({ field: { ref, onChange, ...field } }) => (
+                <AppAutocomplete
+                  ref={ref}
+                  onChange={onChange}
+                  options={blackListCoinsOptions}
+                  textFieldProps={field}
+                  multiple={true}
+                  classes={{ root: style.textFieldWrapper }}
+                  aria-label={formatMessage({ id: 'dashboard.input.value.blacklist.network' })}
+                  placeholder={formatMessage({ id: 'select.options' })}
+                />
+              )}
+            />
+            <Controller
+              name={'highRisk'}
+              control={control}
+              render={({ field }) => (
+                <AppCheckbox
+                  checkboxProps={{
+                    ...field,
+                  }}
+                  formControlLabelProps={{ label: formatMessage({ id: 'dashboard.input.value.high.risk' }) }}
+                />
+              )}
+            />
+            <Controller
+              name={'hedgeType'}
+              control={control}
+              render={({ field }) => (
+                <AppCheckbox
+                  checkboxProps={{
+                    ...field,
+                  }}
+                  formControlLabelProps={{ label: formatMessage({ id: 'dashboard.input.value.hedge.type' }) }}
+                />
+              )}
+            />
+          </div>
+        </div>
       </div>
-      <AppButton type={'submit'}>{formatMessage({ id: 'dashboard.submit' })}</AppButton>
+      <div className={style.subRowWrapper}>
+        <AppButton type={'submit'}>{formatMessage({ id: 'dashboard.submit' })}</AppButton>
+      </div>
     </form>
   );
 };
