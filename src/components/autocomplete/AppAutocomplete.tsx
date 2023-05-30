@@ -5,7 +5,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import AppTextField from '../input/AppTextField.tsx';
 import classNames from 'classnames';
-import style from './AppAutocomplete.module.scss';
+import style from './appAutocomplete.module.scss';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -25,6 +25,9 @@ const AppAutocomplete: FC<IAppAutocomplete> = (props) => {
       {...otherProps}
       options={props.options ?? []}
       limitTags={1}
+      isOptionEqualToValue={(option, value) => {
+        return option?.value === value?.value;
+      }}
       disableCloseOnSelect
       classes={{ ...props.classes, root: classNames(props.classes?.root, style.wrapper) }}
       getOptionLabel={(option) => {

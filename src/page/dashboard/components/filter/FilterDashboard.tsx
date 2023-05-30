@@ -11,6 +11,7 @@ import { useAuth } from '../../../../hooks/useAuth.ts';
 import { SHOP_ARR } from '../../../../constants';
 import AppTextField from '../../../../components/input/AppTextField.tsx';
 import AppAutocomplete, { TAppAutocompleteOptions } from '../../../../components/autocomplete/AppAutocomplete.tsx';
+import AppSwitch from '../../../../components/switch/AppSwitch.tsx';
 
 interface IFilterSelect {
   [key: string]: boolean | string | string[] | TAppAutocompleteOptions[] | IFilterSelect;
@@ -298,9 +299,6 @@ const FilterDashboard = () => {
               control={control}
               render={({ field: { onChange, ...field } }) => (
                 <AppAutocomplete
-                  isOptionEqualToValue={(option, value) => {
-                    return option?.value === value?.value;
-                  }}
                   onChange={(_, data) => onChange(data)}
                   options={blackListCoinsOptions}
                   textFieldProps={field}
@@ -335,6 +333,7 @@ const FilterDashboard = () => {
                 />
               )}
             />
+            <AppSwitch />
           </div>
         </div>
       </div>

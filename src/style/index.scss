@@ -26,6 +26,16 @@
 
   //check-box-style
   --check-box-checked-color: #{$color-black};
+
+  //switch-style
+  --switch-color: #{$color-white};
+  --switch-unchecked-background-color: #{$color-gray-5};
+  --switch-checked-background-color: #{$color-blue-1};
+  --switch-disabled-background-color: #{$color-blue-5};
+  --switch-hover-checked-background-color: #{$color-blue-4};
+  --switch-hover-unchecked-background-color: #{$color-gray-8};
+  --switch-pressed-unchecked-background-color: #{$color-gray-9};
+  --switch-pressed-checked-background-color: #{$color-blue-3};
 }
 
 :root[data-theme='dark'] {
@@ -52,6 +62,16 @@
 
   //check-box-style
   --check-box-checked-color: #{$color-blue-1};
+
+  //switch-style
+  --switch-color: #{$color-white};
+  --switch-unchecked-background-color: #{$color-gray-5};
+  --switch-checked-background-color: #{$color-blue-1};
+  --switch-disabled-background-color: #{$color-blue-5};
+  --switch-hover-checked-background-color: #{$color-blue-6};
+  --switch-hover-unchecked-background-color: #{$color-gray-6};
+  --switch-pressed-unchecked-background-color: #{$color-gray-7};
+  --switch-pressed-checked-background-color: #{$color-blue-7};
 }
 //
 //:root[data-theme='light'] {
