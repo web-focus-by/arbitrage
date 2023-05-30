@@ -13,7 +13,7 @@ import AppTextField from '../../../../components/input/AppTextField.tsx';
 import AppAutocomplete, { TAppAutocompleteOptions } from '../../../../components/autocomplete/AppAutocomplete.tsx';
 
 interface IFilterSelect {
-  [key: string]: boolean | string | IFilterSelect;
+  [key: string]: boolean | string | string[] | TAppAutocompleteOptions[] | IFilterSelect;
 }
 
 enum CheckboxGroup {
@@ -61,6 +61,8 @@ const FilterDashboard = () => {
     defaultValues: {
       buy: user?.markets_buy.reduce((acc, val) => ({ ...acc, [val]: true }), {}),
       sell: user?.markets_sell.reduce((acc, val) => ({ ...acc, [val]: true }), {}),
+      blackListNetwork: [],
+      blackListCoins: [],
     },
   });
 
@@ -212,7 +214,9 @@ const FilterDashboard = () => {
               render={({ field }) => {
                 return (
                   <AppTextField
-                    {...field}
+                    value={field.value}
+                    onChange={field.onChange}
+                    name={field.name}
                     type={'text'}
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
                     variant={'standard'}
@@ -228,7 +232,9 @@ const FilterDashboard = () => {
               control={control}
               render={({ field }) => (
                 <AppTextField
-                  {...field}
+                  value={field.value}
+                  onChange={field.onChange}
+                  name={field.name}
                   type={'text'}
                   inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
                   variant={'standard'}
@@ -243,7 +249,9 @@ const FilterDashboard = () => {
               control={control}
               render={({ field }) => (
                 <AppTextField
-                  {...field}
+                  value={field.value}
+                  onChange={field.onChange}
+                  name={field.name}
                   type={'text'}
                   inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
                   variant={'standard'}
@@ -258,7 +266,9 @@ const FilterDashboard = () => {
               control={control}
               render={({ field }) => (
                 <AppTextField
-                  {...field}
+                  value={field.value}
+                  onChange={field.onChange}
+                  name={field.name}
                   type={'text'}
                   inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
                   variant={'standard'}
@@ -271,10 +281,9 @@ const FilterDashboard = () => {
             <Controller
               name={'blackListCoins'}
               control={control}
-              render={({ field: { ref, onChange, ...field } }) => (
+              render={({ field: { onChange, ...field } }) => (
                 <AppAutocomplete
-                  ref={ref}
-                  onChange={onChange}
+                  onChange={(_, data) => onChange(data)}
                   options={blackListCoinsOptions}
                   textFieldProps={field}
                   multiple={true}
@@ -287,10 +296,12 @@ const FilterDashboard = () => {
             <Controller
               name={'blackListNetwork'}
               control={control}
-              render={({ field: { ref, onChange, ...field } }) => (
+              render={({ field: { onChange, ...field } }) => (
                 <AppAutocomplete
-                  ref={ref}
-                  onChange={onChange}
+                  isOptionEqualToValue={(option, value) => {
+                    return option?.value === value?.value;
+                  }}
+                  onChange={(_, data) => onChange(data)}
                   options={blackListCoinsOptions}
                   textFieldProps={field}
                   multiple={true}

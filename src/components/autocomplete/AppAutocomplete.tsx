@@ -16,13 +16,15 @@ interface IAppAutocomplete
     AutocompleteProps<TAppAutocompleteOptions, boolean | undefined, boolean | undefined, boolean | undefined>,
     'renderInput' | 'renderOption' | 'getOptionLabel'
   > {
-  textFieldProps?: Omit<React.ComponentProps<typeof AppTextField>, 'onChange' | 'value' | 'name' | 'label'>;
+  textFieldProps?: Omit<React.ComponentProps<typeof AppTextField>, 'onChange' | 'label'>;
 }
 const AppAutocomplete: FC<IAppAutocomplete> = (props) => {
+  const { textFieldProps, ...otherProps } = props;
   return (
     <Autocomplete
-      {...props}
+      {...otherProps}
       options={props.options ?? []}
+      limitTags={1}
       disableCloseOnSelect
       classes={{ ...props.classes, root: classNames(props.classes?.root, style.wrapper) }}
       getOptionLabel={(option) => {
@@ -35,20 +37,25 @@ const AppAutocomplete: FC<IAppAutocomplete> = (props) => {
           {option.title}
         </li>
       )}
-      renderInput={(params) => (
-        <AppTextField
-          {...params}
-          {...props.textFieldProps}
-          type={'text'}
-          variant={'standard'}
-          label={props['aria-label']}
-          placeholder={props.placeholder}
-          InputProps={{
-            classes: { input: classNames(style.input, 'text2'), root: classNames(style.textField) },
-            ...params.InputProps,
-          }}
-        />
-      )}
+      renderInput={(params) => {
+        return (
+          <AppTextField
+            {...params}
+            name={textFieldProps?.name ?? ''}
+            value={textFieldProps?.value ?? ''}
+            onBlur={textFieldProps?.onBlur}
+            type={'text'}
+            variant={'standard'}
+            label={props['aria-label']}
+            placeholder={props.placeholder}
+            InputProps={{
+              ...params.InputProps,
+              inputRef: textFieldProps?.ref,
+              classes: { input: classNames(style.input, 'text2'), root: classNames(style.textField) },
+            }}
+          />
+        );
+      }}
     />
   );
 };
