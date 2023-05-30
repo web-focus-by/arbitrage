@@ -20,7 +20,7 @@ const Footer = () => {
         <nav className={style.footer__nav}>
           <ul className={style.footer__nav__list}>
             {navItems.map((el, i) => (
-              <li key={'nav_el_' + i} className={style.footer__nav__item}>
+              <li key={'nav_el_' + i} className={classNames(style.footer__nav__item, style.text)}>
                 {el}
               </li>
             ))}
@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className={style.footerEndLine}>
+      <div className={classNames(style.footerEndLine, style.text2)}>
         <div>© Decipad 2023 · Designed on the internet</div>
         <div>Политика конфиденциальности</div>
       </div>

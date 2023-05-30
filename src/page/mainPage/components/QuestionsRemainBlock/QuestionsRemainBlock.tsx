@@ -9,7 +9,7 @@ const QuestionsRemainBlock = () => {
       <div className={style.QuestionsRemainBlockContainer}>
         <div className={style.QuestionsRemainBlockText}>
           <BlockTitle value={"Остались вопросы?"}/>
-          <div className={style.textUnderHeadline}>Пишите нам в телеграме.</div>
+          <div className={style.text}>Пишите нам в телеграме.</div>
         </div>
         <div className={style.QuestionsRemainBlockButton}>
           <AppButton color={'primary'}>Перейти</AppButton>

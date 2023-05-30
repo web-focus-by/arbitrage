@@ -51,10 +51,10 @@ const AdvantagesBlock = () => {
         {dataAdvantages.map((item) => (
           <div key={item.id} className={style.advantage_block}>
             <div className={style.advantage_block_text}>
-              <div>
+              <div className={style.subtitle1}>
                 {formatMessage({id: item.adv_headline})}
               </div>
-              <div>
+              <div className={style.text}>
                 {formatMessage({id: item.adv_descr})}
               </div>
             </div>

@@ -2,3 +2,27 @@
 @import '/src/page/mainPage/style';
 @import '/src/style/index';
 @import '/src/page/mainPage/style';
+
+.MySwiper{
+  .swiperItem{
+    width: 710px;
+    height: 441px;
+  }
+}
+
+.MySwiperClass{
+  position: relative;
+}
+
+.navigationButtons{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  position: absolute;
+  right: 12.5%;
+  top: -16%;
+
+  div{
+    cursor: pointer;
+  }
+}

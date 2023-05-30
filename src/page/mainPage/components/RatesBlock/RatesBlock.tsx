@@ -31,15 +31,15 @@ const RatesBlock = () => {
       <div className={style.ratesBlockContainer}>
           {dataRates.map((item) => (
             <div key={item.id} className={style.ratesBlockItem}>
-                <div className={style.ratesTerm}>
+                <h4 className={style.ratesTerm}>
                   {formatMessage({id: item.ratesTerm})}
-                </div>
+                </h4>
                 <div className={style.ratesBlockItemContent}>
                   <div>
-                    <div className={style.ratesPrice}>
+                    <div className={classNames(style.ratesPrice, style.prise)}>
                       {formatMessage({id: item.ratesPrice})}
                     </div>
-                    <div className={style.ratesContentText}>
+                    <div className={classNames(style.ratesContentText, style.text)}>
                       <div className={style.ratesContent}>
                         <CheckIcon sx={{color: '#3366CC'}}/>
                         {formatMessage({id: item.ratesContentInterExchangeScanner})}

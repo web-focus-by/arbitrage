@@ -8,7 +8,7 @@ const EarningInfoBlock = () => {
       <div className={style.earningInfoBlockContainer}>
         <div className={style.earningInfoBlockText}>
           <BlockTitle value={"Заработок на растущем и падающем рынке"}/>
-          <div>Куда бы не пошёл рынок, вверх или вниз, всегда есть арбитражные ситуации,
+          <div className={style.text}>Куда бы не пошёл рынок, вверх или вниз, всегда есть арбитражные ситуации,
             на которых можно зарабатывать.</div>
         </div>
         <div className={style.earningInfoBlockImg}>

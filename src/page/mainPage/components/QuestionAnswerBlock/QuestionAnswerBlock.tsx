@@ -51,10 +51,10 @@ const QuestionAnswerBlock = () => {
     <div className={style.questionAnswerAccordion}>
       <Accordion onChange={handleChange('panel1')}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography className={style.questionAnswerAccordionHeadline}>С какой суммы можно начать торговать и какая средняя прибыль?</Typography>
+          <Typography className={classNames(style.questionAnswerAccordionHeadline, style.subtitle2)}>С какой суммы можно начать торговать и какая средняя прибыль?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className={style.questionAnswerAccordionText}>
+          <Typography className={classNames(style.questionAnswerAccordionText, style.text)}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
             sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
@@ -64,10 +64,10 @@ const QuestionAnswerBlock = () => {
       </Accordion>
       <Accordion onChange={handleChange('panel2')}>
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography className={style.questionAnswerAccordionHeadline}>Как часто появляются спреды, как долго они живут?</Typography>
+          <Typography className={classNames(style.questionAnswerAccordionHeadline, style.subtitle2)}>Как часто появляются спреды, как долго они живут?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className={style.questionAnswerAccordionText}>
+          <Typography className={classNames(style.questionAnswerAccordionText, style.text)}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
             sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
@@ -77,10 +77,10 @@ const QuestionAnswerBlock = () => {
       </Accordion>
       <Accordion onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography className={style.questionAnswerAccordionHeadline}>Как отбирать спреды, которые можно крутить?</Typography>
+          <Typography className={classNames(style.questionAnswerAccordionHeadline, style.subtitle2)}>Как отбирать спреды, которые можно крутить?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className={style.questionAnswerAccordionText}>
+          <Typography className={classNames(style.questionAnswerAccordionText, style.text)}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
             sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
@@ -90,10 +90,10 @@ const QuestionAnswerBlock = () => {
       </Accordion>
       <Accordion onChange={handleChange('panel4')}>
         <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-          <Typography className={style.questionAnswerAccordionHeadline}>Блокируют ли биржи аккаунт за частые переводы?</Typography>
+          <Typography className={classNames(style.questionAnswerAccordionHeadline, style.subtitle2)}>Блокируют ли биржи аккаунт за частые переводы?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className={style.questionAnswerAccordionText}>
+          <Typography className={classNames(style.questionAnswerAccordionText, style.text)}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
             sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,

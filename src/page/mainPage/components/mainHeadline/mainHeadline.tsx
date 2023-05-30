@@ -9,7 +9,7 @@ const MainHeadline = () => {
           <h1>
             Сервис по поиску арбитражных сделок
           </h1>
-          <div className={style.main_headline_second_text}>
+          <div className={classNames(style.main_headline_second_text, style.text)}>
             Мониторинг спредов в реальном времени для любых сумм между m биржами.
           </div>
           <div className={style.main_headline_button}>

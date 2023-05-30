@@ -8,9 +8,9 @@ interface Props {
 
 const BlockTitle = (props: Props) => {
   return (
-    <div className={style.blockTitle}>
+    <h2 className={style.blockTitle}>
       {props.value}
-    </div>
+    </h2>
   );
 };
 
