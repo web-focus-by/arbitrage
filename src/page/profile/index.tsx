@@ -20,7 +20,7 @@ const Profile = () => {
   return (
     <>
       <Header />
-      <div className={'container'}>
+      <div className={'container containerPadding'}>
         <div className={style.wrapper}>
           <h3 className={classNames({ h1: windowSize.width < 1200 })}>{formatMessage({ id: 'profile.title' })}</h3>
           <div className={style.content}>

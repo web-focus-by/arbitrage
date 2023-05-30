@@ -23,6 +23,7 @@ const AppCheckbox: FC<ICheckboxProps> = ({ checkboxProps, formControlLabelProps 
             root: classNames(checkboxProps?.classes?.root, style.checkbox),
             checked: classNames(checkboxProps?.classes?.checked, style.checkboxChecked),
             disabled: classNames(checkboxProps?.classes?.disabled, style.checkboxDisabled),
+            indeterminate: classNames(checkboxProps?.classes?.indeterminate, style.checkboxIndeterminate),
           }}
           focusVisibleClassName={classNames(checkboxProps?.focusVisibleClassName, style.focused)}
         />

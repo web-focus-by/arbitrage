@@ -5,11 +5,13 @@ import { useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import AppCheckbox from '../../../../components/checkbox/AppCheckbox.tsx';
 import useWindow from '../../../../hooks/useWindow.ts';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm, UseFormGetValues } from 'react-hook-form';
 import AppButton from '../../../../components/button/AppButton.tsx';
+import { useAuth } from '../../../../hooks/useAuth.ts';
+import { SHOP_ARR } from '../../../../constants';
 
 interface IFilterSelect {
-  [key: string]: boolean;
+  [key: string]: boolean | { [key: string]: boolean };
 }
 
 enum CheckboxGroup {
@@ -17,11 +19,15 @@ enum CheckboxGroup {
   sell = 'sell',
 }
 
+enum CheckboxAll {
+  buy = 'buyAll',
+  sell = 'sellAll',
+}
+
 const checkboxes = (row: CheckboxGroup) => {
-  const shopArr = ['Binance', 'Bybit', 'Kucoin', 'OKX', 'Gateio', 'Huobi', 'Poloniex', 'Mexc'];
   return [
-    ...shopArr.map((el) => ({
-      name: el,
+    ...SHOP_ARR.map((el) => ({
+      name: el.toLowerCase(),
       checkboxGroup: row,
       label: 'dashboard.select.' + el.toLowerCase(),
     })),
@@ -31,6 +37,8 @@ const FilterDashboard = () => {
   const { formatMessage } = useIntl();
   const { windowSize } = useWindow();
   const [buyIndeterminate, setBuyIndeterminate] = useState(false);
+  const [sellIndeterminate, setSellIndeterminate] = useState(false);
+  const { user } = useAuth();
 
   const {
     watch,
@@ -40,7 +48,10 @@ const FilterDashboard = () => {
     setValue,
     formState: { errors },
   } = useForm<IFilterSelect>({
-    defaultValues: {},
+    defaultValues: {
+      buy: user?.markets_buy.reduce((acc, val) => ({ ...acc, [val]: true }), {}),
+      sell: user?.markets_sell.reduce((acc, val) => ({ ...acc, [val]: true }), {}),
+    },
   });
 
   const subtitleClass = useMemo(() => {
@@ -57,36 +68,36 @@ const FilterDashboard = () => {
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name?.includes(CheckboxGroup.buy) && value[CheckboxGroup.buy]) {
-        const isSomeSelected = Object.entries(value[CheckboxGroup.buy]).some((el) => {
-          if (el[1] === true) {
-            setBuyIndeterminate(true);
-            return true;
-          }
-          return false;
-        });
-        const isAllSelected = Object.entries(value[CheckboxGroup.buy]).every((el) => {
-          return el[1] === true;
-        });
-
-        if (isAllSelected) {
-          if (getValues('buyAll') === false || getValues('buyAll') === undefined) {
-            setValue('buyAll', true);
-          }
-        } else {
-          if (getValues('buyAll') === true) {
-            setValue('buyAll', false);
-          }
-        }
-
-        if (!isSomeSelected) setBuyIndeterminate(false);
+        checkboxesHandler(
+          value as IFilterSelect,
+          setBuyIndeterminate,
+          getValues,
+          setValue,
+          CheckboxGroup.buy,
+          CheckboxAll.buy,
+        );
+      }
+      if (name?.includes(CheckboxGroup.sell) && value[CheckboxGroup.sell]) {
+        checkboxesHandler(
+          value as IFilterSelect,
+          setSellIndeterminate,
+          getValues,
+          setValue,
+          CheckboxGroup.sell,
+          CheckboxAll.sell,
+        );
       }
     });
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, [getValues, setValue, watch]);
 
   useEffect(() => {
-    console.log(errors);
+    console.log({ errors });
   }, [errors]);
+
+  useEffect(() => {
+    console.log(user?.markets_buy.reduce((acc, val) => ({ ...acc, [val]: true }), {}));
+  }, [user]);
 
   return (
     <form onSubmit={handleSubmit(submitForm)}>
@@ -97,7 +108,7 @@ const FilterDashboard = () => {
             <div className={classNames(subtitleClass)}>{formatMessage({ id: 'dashboard.select.buy' })}</div>
             <div>
               <Controller
-                name={'buyAll'}
+                name={CheckboxAll.buy}
                 control={control}
                 render={({ field }) => (
                   <AppCheckbox
@@ -138,7 +149,46 @@ const FilterDashboard = () => {
           </div>
           <div className={style.subRowWrapper}>
             <div className={classNames(subtitleClass)}>{formatMessage({ id: 'dashboard.select.sell' })}</div>
-            <div></div>
+            <div>
+              <Controller
+                name={CheckboxAll.sell}
+                control={control}
+                render={({ field }) => (
+                  <AppCheckbox
+                    checkboxProps={{
+                      ...field,
+                      indeterminate: field.value ? false : sellIndeterminate,
+                      onClick: (e) => {
+                        const target = e.target as HTMLInputElement;
+                        setValue(
+                          CheckboxGroup.sell,
+                          Object.assign(
+                            {},
+                            ...checkboxes(CheckboxGroup.sell).map((el) => ({ [el.name]: target.checked })),
+                          ),
+                        );
+                      },
+                    }}
+                    formControlLabelProps={{ label: formatMessage({ id: 'dashboard.select.all' }) }}
+                  />
+                )}
+              />
+              {checkboxes(CheckboxGroup.sell).map((item, index) => (
+                <Controller
+                  name={item.checkboxGroup + '.' + item.name}
+                  key={item.label + index}
+                  control={control}
+                  render={({ field }) => (
+                    <AppCheckbox
+                      checkboxProps={{
+                        ...field,
+                      }}
+                      formControlLabelProps={{ label: formatMessage({ id: item.label }) }}
+                    />
+                  )}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -150,6 +200,50 @@ const FilterDashboard = () => {
       <AppButton type={'submit'}>{formatMessage({ id: 'dashboard.submit' })}</AppButton>
     </form>
   );
+};
+
+interface ICheckboxHandler {
+  (
+    value: IFilterSelect,
+    setIndeterminateHandler: (value: boolean) => void,
+    getValues: UseFormGetValues<IFilterSelect>,
+    setValue: (name: string, value: boolean) => void,
+    checkboxType: CheckboxGroup,
+    checkboxAll: CheckboxAll,
+  ): void;
+}
+
+const checkboxesHandler: ICheckboxHandler = (
+  value,
+  setIndeterminateHandler,
+  getValues,
+  setValue,
+  checkboxType,
+  checkboxAll,
+) => {
+  if (!value[checkboxType]) return;
+  const isSomeSelected = Object.entries(value[checkboxType]).some((el) => {
+    if (el[1] === true) {
+      setIndeterminateHandler(true);
+      return true;
+    }
+    return false;
+  });
+  const isAllSelected = Object.entries(value[checkboxType]).every((el) => {
+    return el[1] === true;
+  });
+
+  if (isAllSelected) {
+    if (!getValues(checkboxAll) || getValues(checkboxAll) === undefined) {
+      setValue(checkboxAll, true);
+    }
+  } else {
+    if (getValues(checkboxAll)) {
+      setValue(checkboxAll, false);
+    }
+  }
+
+  if (!isSomeSelected) setIndeterminateHandler(false);
 };
 
 export default FilterDashboard;

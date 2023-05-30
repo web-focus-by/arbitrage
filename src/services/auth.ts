@@ -2,8 +2,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
 
 export interface IUser {
-  first_name: string;
-  last_name: string;
+  fee: number;
+  hedge_type: number;
+  markets_buy: string[];
+  markets_sell: string[];
+  max_pages: number;
+  page: number;
+  percent_spread: number;
+  profit_spread: number;
+  volume_max: number;
+  volume_min: number;
 }
 
 export interface IUserResponse {
