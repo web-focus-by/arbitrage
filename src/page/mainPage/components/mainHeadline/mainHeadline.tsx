@@ -4,7 +4,7 @@ import AppButton from "../../../../components/button/AppButton";
 
 const MainHeadline = () => {
   return (
-      <div className={classNames(style.mainPageContainer, style.container_headline, style.container, style.spacing_between_blocks)}>
+      <div className={classNames(style.mainPageContainer, style.container_headline, style.spacing_between_blocks)}>
         <div className={style.text_headline}>
           <h1>
             Сервис по поиску арбитражных сделок

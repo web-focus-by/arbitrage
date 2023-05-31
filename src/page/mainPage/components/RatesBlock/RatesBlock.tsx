@@ -26,7 +26,7 @@ const dataRates = [
 const RatesBlock = () => {
   const { formatMessage } = useIntl();
   return(
-    <div className={classNames(style.mainPageContainer, style.container, style.spacing_between_blocks)}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
       <BlockTitle value={"Тарифы"}/>
       <div className={style.ratesBlockContainer}>
           {dataRates.map((item) => (

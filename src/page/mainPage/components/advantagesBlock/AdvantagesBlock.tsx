@@ -45,7 +45,7 @@ const dataAdvantages = [
 const AdvantagesBlock = () => {
   const { formatMessage } = useIntl();
   return (
-    <div className={classNames(style.mainPageContainer, style.container, style.spacing_between_blocks)}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
       <BlockTitle value={"Преимущества"}/>
       <div className={style.advantages_container}>
         {dataAdvantages.map((item) => (

@@ -1,4 +1,5 @@
 @import '../../style/media';
+@import '/src/style/index';
 
 .header {
   position: relative;
@@ -18,13 +19,10 @@
   &__logo {
     display: flex;
     align-items: baseline;
+    width: 15.5%;
 
-    &_wrapper {
-      margin-right: 12px;
-    }
-
-    h1 {
-      font-size: 16px;
+    img{
+      width: 100%;
     }
   }
 

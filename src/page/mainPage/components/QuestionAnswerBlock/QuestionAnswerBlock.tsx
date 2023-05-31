@@ -46,7 +46,7 @@ const QuestionAnswerBlock = () => {
     };
 
   return (
-    <div className={classNames(style.mainPageContainer, style.container, style.spacing_between_blocks)}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
     <BlockTitle value={"Вопрос-ответ"}/>
     <div className={style.questionAnswerAccordion}>
       <Accordion onChange={handleChange('panel1')}>

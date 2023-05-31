@@ -4,7 +4,7 @@ import BlockTitle from "../BlockTitles/BlockTitle";
 
 const EarningInfoBlock = () => {
   return(
-    <div className={classNames(style.mainPageContainer, style.container, style.spacing_between_blocks)}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
       <div className={style.earningInfoBlockContainer}>
         <div className={style.earningInfoBlockText}>
           <BlockTitle value={"Заработок на растущем и падающем рынке"}/>

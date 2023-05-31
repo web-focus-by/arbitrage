@@ -5,10 +5,10 @@ import BlockTitle from "../BlockTitles/BlockTitle";
 
 const InfoAboutTgBotsBlock = () => {
   return (
-    <div className={classNames(style.mainPageContainer, style.container, style.spacing_between_blocks)}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
       <div className={style.InfoAboutTgBotsBlockContainer}>
         <div className={style.InfoAboutTgBotsBlockText}>
-          <BlockTitle value={"В дополнение к браузерной версии сервис предоставляет удобные телеграм боты для межбиржевого и внутрибиржевого арбитража."}/>
+          <h3>В дополнение к браузерной версии сервис предоставляет удобные телеграм боты для межбиржевого и внутрибиржевого арбитража.</h3>
           <AppButton color={'primary'}>Перейти</AppButton>
         </div>
         <div>

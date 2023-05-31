@@ -5,7 +5,7 @@ import BlockTitle from "../BlockTitles/BlockTitle";
 
 const QuestionsRemainBlock = () => {
   return (
-    <div className={classNames(style.mainPageContainer, style.container, style.spacing_between_blocks)}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
       <div className={style.QuestionsRemainBlockContainer}>
         <div className={style.QuestionsRemainBlockText}>
           <BlockTitle value={"Остались вопросы?"}/>

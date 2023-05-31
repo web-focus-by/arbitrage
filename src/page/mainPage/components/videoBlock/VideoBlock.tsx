@@ -21,12 +21,12 @@ const VideoBlock = () => {
   }, []);
   return(
     <div className={style.spacing_between_blocks}>
-      <div className={classNames(style.mainPageContainer, style.container)}>
+      <div className={classNames(style.mainPageContainer)}>
         <BlockTitle value={"Видео"}/>
       </div>
       <div className={style.MySwiperClass}>
         <Swiper
-          spaceBetween={20}
+          spaceBetween={'1%'}
           slidesPerView={2.68}
           loop={true}
           modules={[Navigation]}
@@ -56,8 +56,8 @@ const VideoBlock = () => {
           </SwiperSlide>
         </Swiper>
         <div className={style.navigationButtons}>
-          <div className={style.prev_arrow} onClick={handlePrev}><img src={'src/page/mainPage/img/videoBlock/ArrowLeft.svg'}/></div>
-          <div className={style.next_arrow} onClick={handleNext}><img src={'src/page/mainPage/img/videoBlock/ArrowRight.svg'}/></div>
+          <div onClick={handlePrev}><img src={'src/page/mainPage/img/videoBlock/ArrowLeft.svg'}/></div>
+          <div onClick={handleNext}><img src={'src/page/mainPage/img/videoBlock/ArrowRight.svg'}/></div>
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@
     flex-direction: column;
     justify-content: center;
     width: 64%;
+    margin-bottom: 5%;
 
     .main_headline_second_text{
       margin-top: 16px;
@@ -33,6 +34,10 @@
   .img_headline{
     width: 36%;
     height: 640px;
+
+    @include max-1440{
+      height: 520px;
+    }
   }
 
   .img_headline img{
