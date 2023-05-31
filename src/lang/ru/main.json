@@ -3,5 +3,6 @@
   "modal.auth": "Регистрация",
   "link": "Ссылка",
   "delete": "Удалить",
-  "select.options": "Выберите вариант"
+  "select.options": "Выберите вариант",
+  "filter": "Фильтр"
 }

@@ -13,6 +13,8 @@ const AppSwitch: FC<IAppSwitchProps> = (props) => {
   const { switchProps, formControlLabelProps } = props;
   return (
     <FormControlLabel
+      {...formControlLabelProps}
+      classes={{ root: style.resetMargin }}
       control={
         <Switch
           {...switchProps}

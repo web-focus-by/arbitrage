@@ -50,7 +50,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
 
-        '401':
+        '408':
           description: User already exist
           content:
             application/json:
@@ -165,16 +165,8 @@ paths:
   /info:
     get:
       summary: Получение информации о пользователе
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                access_token:
-                  type: string
-                  required: true
+      security:
+        - bearer_auth: [ ]
       responses:
         '200':
           description: OK
@@ -186,8 +178,8 @@ paths:
                   user_info:
                     $ref: '#/components/schemas/user_info'
 
-        '400':
-          description: Required parameter is missing
+        '401':
+          description: Authorization invalids
           content:
             application/json:
               schema:
@@ -216,6 +208,8 @@ paths:
 
     post:
       summary: Изменение параметров пользователя
+      security:
+        - bearer_auth: [ ]
       requestBody:
         required: true
         content:
@@ -223,12 +217,15 @@ paths:
             schema:
               type: object
               properties:
-                access_token:
-                  type: string
-                  required: true
                 name:
                   type: string
-                  description: Имя пользователя
+                  required: false
+                telegram:
+                  type: string
+                  required: false
+                email:
+                  type: string
+                  required: false
                 page:
                   type: integer
                   required: false
@@ -267,8 +264,8 @@ paths:
                   user_info:
                     $ref: '#/components/schemas/user_info'
 
-        '400':
-          description: Required parameter is missing
+        '401':
+          description: Authorization invalid
           content:
             application/json:
               schema:
@@ -302,177 +299,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
 
-  /change/telegram:
-    post:
-      summary: Изменение привязанного телеграм профиля
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                access_token:
-                  type: string
-                  required: true
-                telegram:
-                  type: string
-                  required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: Success
-
-        '400':
-          description: Required parameter is missing
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-        '402':
-          description: User not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-        '406':
-          description: Token expired
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-        '407':
-          description: Invalid parameter
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-  /change/email:
-    post:
-      summary: Изменение привязанной почты
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                access_token:
-                  type: string
-                  required: true
-                email:
-                  type: string
-                  required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: Success
-
-        '400':
-          description: Required parameter is missing
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-        '402':
-          description: User not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-        '406':
-          description: Token expired
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-        '407':
-          description: Invalid parameter
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-  /change/password:
-    post:
-      summary: Изменение пароля
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                access_token:
-                  type: string
-                  required: true
-                password:
-                  type: string
-                  required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: Success
-
-        '400':
-          description: Required parameter is missing
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-        '402':
-          description: User not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-        '406':
-          description: Token expired
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-        '407':
-          description: Invalid parameter
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
   /pay:
     get:
       summary: Оплата
+      security:
+        - bearer_auth: []
       requestBody:
         required: true
         content:
@@ -480,9 +311,6 @@ paths:
             schema:
               type: object
               properties:
-                access_token:
-                  type: string
-                  required: true
                 payment_amount:
                   type: string
                   required: true
@@ -507,8 +335,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
 
-        '406':
-          description: Token expired
+        '401':
+          description: Authorization invalid
           content:
             application/json:
               schema:
@@ -521,9 +349,141 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
 
-components:
-  schemas:
+  /black_list:
+    get:
+      summary: Получение чёрного списка монет и сетей
+      security:
+        - bearer_auth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  monets:
+                    type: array
+                    items:
+                      type: string
+                    required: true
+                  chains:
+                    type: array
+                    items:
+                      type: string
+                    required: true
+        '401':
+          description: Authorization invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
 
+    put:
+      summary: Добавление монеты или сети в чёрный список
+      security:
+        - bearer_auth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                option:
+                  type: string
+                  required: true
+                  description: monet - блокировка монеты, chain - сети
+                name:
+                  type: string
+                  required: true
+                  description: Имя добавляемой монеты/сети
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+        '401':
+          description: Authorization invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+
+  /recover_password:
+    get:
+      summary: Восстановление пароля
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+  /general/videos:
+    get:
+      summary: Ссылки на видео для блока на главной странице
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  videos:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        link:
+                          type: string
+                        image:
+                          type: string
+                          description: Путь к картинке
+
+  /general/markets:
+    get:
+      summary: Список бирж и их названия
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  markets:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        market:
+                          type: string
+                          description: Системное название, например, "gateio"
+                        name:
+                          type: string
+                          description: Название биржи, например "Gate.io"
+
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
     user_info:
       type: object
       properties:
@@ -557,7 +517,14 @@ components:
         volume_max:
           type: string
           description: Максимальный объем
-
+        markets_buy:
+          type: array
+          items:
+            type: string
+        markets_sell:
+          type: array
+          items:
+            type: string
     error_message:
       type: object
       properties:

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import style from './filterDashboard.module.scss';
 import { useIntl } from 'react-intl';
 import { useEffect, useMemo } from 'react';
@@ -36,7 +36,10 @@ const checkboxes = (row: CheckboxGroup) => {
     })),
   ];
 };
-const FilterDashboard = () => {
+interface IFilterDashboardProps {
+  closeModalHandler: () => void;
+}
+const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
   const { formatMessage } = useIntl();
   const { windowSize } = useWindow();
   const [buyIndeterminate, setBuyIndeterminate] = useState(false);
@@ -84,6 +87,7 @@ const FilterDashboard = () => {
 
   const submitForm: SubmitHandler<IFilterSelect> = (data) => {
     console.log(data);
+    closeModalHandler();
   };
 
   useEffect(() => {
@@ -122,12 +126,13 @@ const FilterDashboard = () => {
 
   return (
     <form onSubmit={handleSubmit(submitForm)}>
+      {windowSize.width < 991 && <span className={'h1'}>{formatMessage({ id: 'filter' })}</span>}
       <div className={style.rowWrapper}>
         <div className={'subtitle2'}>{formatMessage({ id: 'dashboard.select.subtitle' })}</div>
         <div>
           <div className={style.subRowWrapper}>
             <div className={classNames(subtitleClass)}>{formatMessage({ id: 'dashboard.select.buy' })}</div>
-            <div>
+            <div className={style.checkBoxWrapper}>
               <Controller
                 name={CheckboxAll.buy}
                 control={control}
@@ -170,7 +175,7 @@ const FilterDashboard = () => {
           </div>
           <div className={style.subRowWrapper}>
             <div className={classNames(subtitleClass)}>{formatMessage({ id: 'dashboard.select.sell' })}</div>
-            <div>
+            <div className={style.checkBoxWrapper}>
               <Controller
                 name={CheckboxAll.sell}
                 control={control}
@@ -330,7 +335,9 @@ const FilterDashboard = () => {
                   variant={'standard'}
                   label={formatMessage({ id: 'dashboard.input.value.fee.max' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
-                  classes={{ root: style.textFieldWrapper }}
+                  classes={{
+                    root: classNames(style.textFieldWrapper, style.lastTextWrapper),
+                  }}
                 />
               )}
             />
@@ -369,7 +376,9 @@ const FilterDashboard = () => {
               )}
             />
             <div className={style.btnWrapper}>
-              <AppButton type={'submit'}>{formatMessage({ id: 'dashboard.submit' })}</AppButton>
+              <AppButton type={'submit'} classes={{ root: style.btn }}>
+                {formatMessage({ id: 'dashboard.submit' })}
+              </AppButton>
             </div>
           </div>
         </div>

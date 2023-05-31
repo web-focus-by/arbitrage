@@ -1,23 +1,79 @@
+@import '../../../../style/media';
+@import '../../../../style/settings';
+
 .rowWrapper {
-  margin-top: 48px;
+  margin-top: clamp(39px, 2.5vw, 48px);
+  @include max-1200 {
+    margin-top: 40px;
+  }
+  @include max-576 {
+    margin-top: 32px;
+  }
 }
+
 .subRowWrapper {
-  margin-top: 24px;
+  margin-top: clamp(20px, 1.2vw, 24px);
+  @include max-1200 {
+    margin-top: 24px;
+  }
+  @include max-576 {
+    margin-top: 32px;
+  }
+}
+
+.checkBoxWrapper {
+  @include max-991 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .textFieldWrapper {
-  max-width: 220px;
+  max-width: clamp(178px, 11.5vw, 220px);
+  @include max-1200 {
+    max-width: 280px;
+  }
+  @include max-991 {
+    max-width: calc(50% - 10px);
+  }
+  @include max-576 {
+    max-width: 100%;
+  }
 }
+
 .inputRowWrapper {
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: center;
   flex-wrap: wrap;
-  column-gap: 40px;
-  row-gap: 20px;
+  column-gap: clamp(32px, 2.1vw, 40px);
+  row-gap: clamp(16px, 1.1vw, 20px);
+
+  @include max-1200 {
+    column-gap: 24px;
+    row-gap: 25px;
+  }
+  @include max-991 {
+    width: 100%;
+    column-gap: 20px;
+  }
 }
 .btnWrapper {
   display: flex;
   justify-content: flex-end;
   flex-grow: 2;
+  @include max-991 {
+    justify-content: center;
+  }
+  .btn {
+    @include max-576 {
+      width: 100%;
+    }
+  }
+}
+.lastTextWrapper {
+  @include max-991 {
+    max-width: 100%;
+    flex-grow: 2;
+  }
 }

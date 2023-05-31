@@ -10,7 +10,7 @@
     },
     {
       "code": 401,
-      "message": "User already exist"
+      "message": "Authorization invalid"
     },
     {
       "code": 402,
@@ -35,6 +35,14 @@
     {
       "code": 407,
       "message": "Invalid parameter"
+    },
+    {
+      "code": 408,
+      "message": "User already exist"
+    },
+    {
+      "code": 409,
+      "message": "Wrong request path"
     }
   ]
 }
