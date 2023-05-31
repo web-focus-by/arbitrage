@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: Arbitrage Services WebSocket API
+  version: 0.1.0
+
+servers:
+  - url: ws://185.240.103.242:50052
+
+paths:
+
+  /spreads:
+    get:
+      summary: Получение спредов
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  spreads:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/spread'
+
+
+        '400':
+          description: Required parameter is missing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+        '406':
+          description: Token expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+components:
+  schemas:
+
+    spread:
+      type: object
+      properties:
+        ask_market:
+          type: string
+          description: Биржа покупки
+        bid_market:
+          type: string
+          description: Биржа продажи
+        profit_spread:
+          type: string
+          description: Прибыль в долларах
+        percent_spread:
+          type: string
+          description: Прибыль в процентах
+        ask_volume:
+          type: string
+          description: Сумма покупки
+        bid_volume:
+          type: string
+          description: Сумма продажи
+        avg_ask_price:
+          type: string
+          description: Средняя цена покупки
+        avg_bid_price:
+          type: string
+          description: Средняя цена продажи
+        volume:
+          type: string
+          description: Количество монет к покупке
+        withdraw_fee:
+          type: string
+          description: Комиссия сети в монетах
+        ask_spot_fee:
+          type: string
+          description: Комиссия спота на бирже покупки в долларах
+        bid_spot_fee:
+          type: string
+          description: Комиссия спота на бирже продажи в долларах
+        network:
+          type: string
+          description: Сеть перевода
+        ask_index:
+          type: integer
+          description: Количество ордеров для покупки
+        bid_index:
+          type: integer
+          description: Количество ордеров для продажи
+        hedge:
+          type: integer
+          description: 0 - нет хеджа, 1 - есть хедж
+
+    error_message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Описание ошибки

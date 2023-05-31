@@ -1,0 +1,18 @@
+.rowWrapper {
+  margin-top: 48px;
+}
+.subRowWrapper {
+  margin-top: 24px;
+}
+.textFieldWrapper {
+  max-width: 220px;
+}
+.inputRowWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 40px;
+  row-gap: 20px;
+}

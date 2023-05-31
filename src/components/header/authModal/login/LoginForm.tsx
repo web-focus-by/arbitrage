@@ -36,7 +36,7 @@ const LoginForm = () => {
   };
 
   if (auth.user) {
-    return <Navigate to={'/private'} replace={true} />;
+    return <Navigate to={'/dashboard'} replace={true} />;
   }
   return (
     <form onSubmit={handleSubmit(submitHandler)} className={style.formWrapper}>

@@ -4,12 +4,12 @@ import appLogo from '../../../public/logo.svg';
 import style from './header.module.scss';
 import classNames from 'classnames';
 import { useAuth } from '../../hooks/useAuth';
-import Switch from '@mui/material/Switch';
 import useTheme from '../../hooks/useTheme.ts';
 import { ETheme } from '../../features/theme/type.ts';
 import Modal from '../modal/Modal.tsx';
 import AuthModal from './authModal/AuthModal.tsx';
 import AppButton from "../button/AppButton";
+import AppSwitch from '../switch/AppSwitch.tsx';
 
 const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
 const Header = () => {
@@ -39,7 +39,7 @@ const Header = () => {
           </ul>
         </nav>
         <div>
-          <Switch onClick={setThemeHandler} checked={theme === ETheme.light} />
+          <AppSwitch switchProps={{ onClick: setThemeHandler, checked: theme === ETheme.light }} />
         </div>
         <div>
           {auth.user ? (

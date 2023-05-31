@@ -6,6 +6,11 @@ import appLogo from '../../../public/logo.svg';
 import classNames from 'classnames';
 
 const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
+import React from 'react';
+import { useAppDispatch } from '../../store/hooks.ts';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../../features/auth/authSlice.ts';
+
 const Footer = () => {
 
   return (
@@ -39,6 +44,35 @@ const Footer = () => {
         <div>Политика конфиденциальности</div>
       </div>
     </footer>
+  );
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const logoutHandler = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    dispatch(logout());
+    navigate('/');
+  };
+
+  return (
+    <div className={'container'}>
+      <div>PrivateRoute</div>
+      <button
+        onClick={() => {
+          navigate('/');
+        }}
+      >
+        Landing
+      </button>
+      <button
+        onClick={() => {
+          navigate('/profile');
+        }}
+      >
+        Profile
+      </button>
+      <button onClick={logoutHandler}>Logout</button>
+    </div>
   );
 };
 

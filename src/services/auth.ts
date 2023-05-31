@@ -2,12 +2,20 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
 
 export interface IUser {
-  first_name: string;
-  last_name: string;
+  fee: number;
+  hedge_type: number;
+  markets_buy: string[];
+  markets_sell: string[];
+  max_pages: number;
+  page: number;
+  percent_spread: number;
+  profit_spread: number;
+  volume_max: number;
+  volume_min: number;
 }
 
 export interface IUserResponse {
-  user: IUser;
+  user_info: IUser;
   access_token: string;
   refresh_token: string;
 }
@@ -45,7 +53,7 @@ export const apiAuth = createApi({
       }),
       transformResponse: (response: IUserResponse) => {
         localStorage.setItem('token', response.access_token);
-        localStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.setItem('user', JSON.stringify(response.user_info));
         return { ...response };
       },
     }),
@@ -57,7 +65,7 @@ export const apiAuth = createApi({
       }),
       transformResponse: (response: IUserResponse) => {
         localStorage.setItem('token', response.access_token);
-        localStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.setItem('user', JSON.stringify(response.user_info));
         return { ...response };
       },
     }),

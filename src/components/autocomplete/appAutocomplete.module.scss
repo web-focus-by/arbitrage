@@ -1,0 +1,29 @@
+@import '../../style/media';
+@import '../../style/settings';
+
+.wrapper {
+  width: 100%;
+}
+.textField {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  border: 1px solid $color-gray-3;
+  border-radius: 8px;
+
+  transition: border $transition-time $transition-animate;
+  color: var(--text-color);
+  &:hover {
+    border-color: $color-gray-2;
+  }
+  &:focus,
+  &:active {
+    border-color: $color-blue-1;
+  }
+  &[aria-invalid='true'] {
+    border-color: $color-red-error;
+  }
+}
+.input {
+  border: none;
+}
