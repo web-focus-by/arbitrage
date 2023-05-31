@@ -3,7 +3,6 @@ import { RootState } from '../store';
 
 export interface IUser {
   fee: number;
-  hedge_type: number;
   markets_buy: string[];
   markets_sell: string[];
   max_pages: number;
@@ -12,6 +11,9 @@ export interface IUser {
   profit_spread: number;
   volume_max: number;
   volume_min: number;
+  monitoring: 0 | 1;
+  risk_type: 0 | 1;
+  hedge_type: 0 | 1;
 }
 
 export interface IUserResponse {

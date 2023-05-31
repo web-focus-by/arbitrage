@@ -14,7 +14,7 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <div className={style.container}>
+      <div className={classNames(style.container, style.containerPadding)}>
         <div className={style.wrapper}>
           <h3 className={classNames({ h1: windowSize.width < 1200 })}>{formatMessage({ id: 'dashboard.title' })}</h3>
           <FilterDashboard />

@@ -1,12 +1,15 @@
 import Checkbox, { CheckboxProps } from '@mui/material/Checkbox';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
 import style from './appCheckbox.module.scss';
 import { FormControlLabel, FormControlLabelProps } from '@mui/material';
 
+interface IFormControlLabelProps extends Omit<FormControlLabelProps, 'control' | 'label'> {
+  label?: React.ReactNode | string;
+}
 interface ICheckboxProps {
   checkboxProps?: CheckboxProps;
-  formControlLabelProps?: Omit<FormControlLabelProps, 'control'>;
+  formControlLabelProps?: IFormControlLabelProps;
 }
 
 const AppCheckbox: FC<ICheckboxProps> = ({ checkboxProps, formControlLabelProps }) => {

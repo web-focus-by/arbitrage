@@ -14,7 +14,7 @@ import AppAutocomplete, { TAppAutocompleteOptions } from '../../../../components
 import AppSwitch from '../../../../components/switch/AppSwitch.tsx';
 
 interface IFilterSelect {
-  [key: string]: boolean | string | string[] | TAppAutocompleteOptions[] | IFilterSelect;
+  [key: string]: boolean | number | string | string[] | TAppAutocompleteOptions[] | IFilterSelect;
 }
 
 enum CheckboxGroup {
@@ -64,6 +64,14 @@ const FilterDashboard = () => {
       sell: user?.markets_sell.reduce((acc, val) => ({ ...acc, [val]: true }), {}),
       blackListNetwork: [],
       blackListCoins: [],
+      volumeMin: user?.volume_min,
+      volumeMax: user?.volume_max,
+      profit: user?.profit_spread,
+      profitSpread: user?.percent_spread,
+      fee: user?.fee,
+      notification: !!user?.monitoring,
+      highRisk: !!user?.risk_type,
+      hedgeType: !!user?.hedge_type,
     },
   });
 
@@ -210,7 +218,7 @@ const FilterDashboard = () => {
         <div>
           <div className={classNames(style.subRowWrapper, style.inputRowWrapper)}>
             <Controller
-              name={'valueMin'}
+              name={'volumeMin'}
               control={control}
               render={({ field }) => {
                 return (
@@ -229,7 +237,7 @@ const FilterDashboard = () => {
               }}
             />
             <Controller
-              name={'valueMax'}
+              name={'volumeMax'}
               control={control}
               render={({ field }) => (
                 <AppTextField
@@ -360,7 +368,9 @@ const FilterDashboard = () => {
                 />
               )}
             />
-            <AppButton type={'submit'}>{formatMessage({ id: 'dashboard.submit' })}</AppButton>
+            <div className={style.btnWrapper}>
+              <AppButton type={'submit'}>{formatMessage({ id: 'dashboard.submit' })}</AppButton>
+            </div>
           </div>
         </div>
       </div>

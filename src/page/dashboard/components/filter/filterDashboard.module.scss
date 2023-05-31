@@ -16,3 +16,8 @@
   column-gap: 40px;
   row-gap: 20px;
 }
+.btnWrapper {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 2;
+}
