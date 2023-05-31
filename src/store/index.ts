@@ -3,16 +3,18 @@ import authReducer, { checkToken } from '../features/auth/authSlice';
 import themeReducer from '../features/theme/themeSlice';
 import { apiAuth } from '../services/auth';
 import { apiUserInfo } from '../services/userInfo.ts';
+import { apiGeneralInfo } from '../services/generalInfo.ts';
 
 export const store = configureStore({
   reducer: {
     [apiAuth.reducerPath]: apiAuth.reducer,
     [apiUserInfo.reducerPath]: apiUserInfo.reducer,
+    [apiGeneralInfo.reducerPath]: apiGeneralInfo.reducer,
     auth: authReducer,
     theme: themeReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiAuth.middleware).concat(apiUserInfo.middleware),
+    getDefaultMiddleware().concat(apiAuth.middleware).concat(apiUserInfo.middleware).concat(apiGeneralInfo.middleware),
 });
 
 store.dispatch(checkToken());

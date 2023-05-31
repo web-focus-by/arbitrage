@@ -134,7 +134,7 @@ const TableDashboard = () => {
       <div className={classNames(style.tableWrapper)}>
         {data.length > 0 ? (
           <TableContainer component={Paper} classes={{ root: style.tableContainer }}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <Table sx={{ minWidth: 700 }} aria-label="customized table" classes={{ root: style.table }}>
               <TableHead>
                 <TableRow>
                   {headTableItems.map((item, index) => (

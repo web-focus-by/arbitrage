@@ -8,9 +8,11 @@ import FilterDashboard from './components/filter/FilterDashboard.tsx';
 import TableDashboard from './components/table/TableDashboard.tsx';
 import AppButton from '../../components/button/AppButton.tsx';
 import Modal from '../../components/modal/Modal.tsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useGetMarketsInfoQuery } from '../../services/generalInfo.ts';
 
 const Dashboard = () => {
+  const { data, error, isLoading } = useGetMarketsInfoQuery('');
   const { formatMessage } = useIntl();
   const { windowSize } = useWindow();
   const [isOpen, setIsOpen] = useState(false);
@@ -18,12 +20,28 @@ const Dashboard = () => {
   const closeModalHandler = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    console.log({ data });
+  }, [data]);
+
+  useEffect(() => {
+    console.log({ error });
+  }, [error]);
+
+  useEffect(() => {
+    console.log({ isLoading });
+  }, [isLoading]);
+
   return (
     <>
       <Header />
-      <div className={classNames(style.container, style.containerPadding)}>
-        <div className={style.wrapper}>
-          <h3 className={classNames({ h1: windowSize.width < 1200 })}>{formatMessage({ id: 'dashboard.title' })}</h3>
+
+      <div className={style.wrapper}>
+        <div className={classNames(style.container, style.containerPadding)}>
+          <h3 className={classNames({ h1: windowSize.width < 1200 }, style.title)}>
+            {formatMessage({ id: 'dashboard.title' })}
+          </h3>
           {windowSize.width > 991 ? (
             <FilterDashboard closeModalHandler={closeModalHandler} />
           ) : (
@@ -39,6 +57,8 @@ const Dashboard = () => {
               </AppButton>
             </div>
           )}
+        </div>
+        <div className={classNames(style.container, style.containerPadding, style.tablePadding)}>
           <TableDashboard />
         </div>
       </div>

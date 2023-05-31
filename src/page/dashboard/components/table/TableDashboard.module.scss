@@ -2,7 +2,16 @@
 @import '../../../../style/settings';
 
 .wrapper {
-  margin-top: 68px;
+  margin-top: 72px;
+  @include max-1200 {
+    margin-top: 68px;
+  }
+  @include max-991 {
+    margin-top: 40px;
+  }
+  @include max-576 {
+    margin-top: 32px;
+  }
 }
 .tableWrapper {
   margin-top: 24px;
@@ -11,9 +20,12 @@
   text-align: center;
 }
 .tableContainer {
+  box-shadow: none;
   border: 1px solid $color-gray-4;
   border-radius: 8px;
-  box-shadow: none;
+  @include max-1200 {
+    border-radius: 8px 0 0 8px;
+  }
 }
 .resetMarginRight {
   margin-right: 0;

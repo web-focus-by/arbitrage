@@ -38,6 +38,11 @@
     }
   }
 }
+.tablePadding {
+  @include max-1200 {
+    padding-right: 0;
+  }
+}
 
 .filterButton {
   display: flex;
@@ -45,6 +50,13 @@
   margin-top: 40px;
   .btnPadding {
     padding: 20px 46px;
+    @include max-576 {
+      width: 100%;
+    }
+  }
+  @include max-576 {
+    width: 100%;
+    margin-top: 32px;
   }
 }
 
@@ -57,5 +69,11 @@
 
   @include max-576 {
     padding: 72px 16px;
+  }
+}
+
+.title {
+  @include max-576 {
+    word-break: break-word;
   }
 }
