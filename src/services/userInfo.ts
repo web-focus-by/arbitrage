@@ -1,18 +1,9 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { RootState } from '../store';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQueryWithReauth } from './query.ts';
 
 export const apiUserInfo = createApi({
   reducerPath: 'apiUserInfo',
-  baseQuery: fetchBaseQuery({
-    baseUrl: '/api',
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth.accessToken;
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: baseQueryWithReauth,
   tagTypes: ['UserInfo'],
   endpoints: (builder) => ({
     getUserInfo: builder.query({

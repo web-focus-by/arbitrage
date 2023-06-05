@@ -11,7 +11,7 @@ import { useAuth } from '../../../../hooks/useAuth.ts';
 import AppTextField from '../../../../components/input/AppTextField.tsx';
 import AppAutocomplete, { TAppAutocompleteOptions } from '../../../../components/autocomplete/AppAutocomplete.tsx';
 import AppSwitch from '../../../../components/switch/AppSwitch.tsx';
-import { selectAllMarkets, selectAllVideos } from '../../../../features/general/generalSlice.ts';
+import { selectAllMarkets } from '../../../../features/general/generalSlice.ts';
 import { useAppSelector } from '../../../../store/hooks.ts';
 
 interface IFilterSelect {
@@ -38,7 +38,6 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
   const [sellIndeterminate, setSellIndeterminate] = useState(false);
   const { user } = useAuth();
   const markets = useAppSelector(selectAllMarkets);
-  const videos = useAppSelector(selectAllVideos);
 
   const blackListCoinsOptions: TAppAutocompleteOptions[] = useMemo(() => {
     // return user?.blacklist_coins.map((el) => el.toLowerCase());
@@ -131,10 +130,6 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
   useEffect(() => {
     console.log({ user });
   }, [user]);
-
-  useEffect(() => {
-    console.log({ videos });
-  }, [videos]);
 
   return (
     <form onSubmit={handleSubmit(submitForm)}>
@@ -244,7 +239,7 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
                     onChange={field.onChange}
                     name={field.name}
                     type={'text'}
-                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                    inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                     variant={'standard'}
                     label={formatMessage({ id: 'dashboard.input.value.min' })}
                     placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
@@ -262,7 +257,7 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
                   onChange={field.onChange}
                   name={field.name}
                   type={'text'}
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
                   label={formatMessage({ id: 'dashboard.input.value.max' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
@@ -279,7 +274,7 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
                   onChange={field.onChange}
                   name={field.name}
                   type={'text'}
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
                   label={formatMessage({ id: 'dashboard.input.value.profit' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
@@ -296,7 +291,7 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
                   onChange={field.onChange}
                   name={field.name}
                   type={'text'}
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
                   label={formatMessage({ id: 'dashboard.input.value.profit.spread' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
@@ -343,7 +338,7 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
                   onChange={field.onChange}
                   name={field.name}
                   type={'text'}
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
                   label={formatMessage({ id: 'dashboard.input.value.fee.max' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}

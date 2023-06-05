@@ -1,6 +1,7 @@
 export const VALIDATION_REGEX = {
   email: /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+$/,
   telegramUsername: /^@[a-zA-Z]+$/,
+  flatNumber: /^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/,
 };
 
 export const SHOP_ARR = [

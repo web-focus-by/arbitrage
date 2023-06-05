@@ -1,5 +1,5 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { RootState } from '../store';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQuery } from './query.ts';
 
 export interface IUser {
   fee: number;
@@ -22,6 +22,8 @@ export interface IUserResponse {
   refresh_token: string;
 }
 
+export type TCredentialsRestore = Omit<IUserResponse, 'user_info'>;
+
 export interface ILoginRequest {
   email: string;
   password: string;
@@ -36,16 +38,7 @@ export interface ICustomError {
 
 export const apiAuth = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: '/api',
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth.accessToken;
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: baseQuery,
   endpoints: (builder) => ({
     login: builder.mutation<IUserResponse, ILoginRequest>({
       query: (credentials) => ({
@@ -55,9 +48,17 @@ export const apiAuth = createApi({
       }),
       transformResponse: (response: IUserResponse) => {
         localStorage.setItem('token', response.access_token);
+        localStorage.setItem('refresh_token', response.refresh_token);
         localStorage.setItem('user', JSON.stringify(response.user_info));
         return { ...response };
       },
+    }),
+    refresh: builder.mutation<IUserResponse, void>({
+      query: (credentials) => ({
+        url: '/refresh',
+        method: 'POST',
+        body: credentials,
+      }),
     }),
     signup: builder.mutation<IUserResponse, ILoginRequest>({
       query: (credentials) => ({
@@ -67,15 +68,18 @@ export const apiAuth = createApi({
       }),
       transformResponse: (response: IUserResponse) => {
         localStorage.setItem('token', response.access_token);
+        localStorage.setItem('refresh_token', response.refresh_token);
         localStorage.setItem('user', JSON.stringify(response.user_info));
         return { ...response };
       },
     }),
-
-    protected: builder.mutation<{ message: string }, void>({
-      query: () => 'protected',
+    logout: builder.mutation<void, void>({
+      query: () => ({
+        url: '/logout',
+        method: 'POST',
+      }),
     }),
   }),
 });
 
-export const { useLoginMutation, useProtectedMutation, useSignupMutation } = apiAuth;
+export const { useLoginMutation, useSignupMutation, useLogoutMutation } = apiAuth;
