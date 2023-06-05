@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import style from './filterDashboard.module.scss';
 import { useIntl } from 'react-intl';
 import { useEffect, useMemo } from 'react';
@@ -8,10 +8,11 @@ import useWindow from '../../../../hooks/useWindow.ts';
 import { Controller, SubmitHandler, useForm, UseFormGetValues } from 'react-hook-form';
 import AppButton from '../../../../components/button/AppButton.tsx';
 import { useAuth } from '../../../../hooks/useAuth.ts';
-import { SHOP_ARR } from '../../../../constants';
 import AppTextField from '../../../../components/input/AppTextField.tsx';
 import AppAutocomplete, { TAppAutocompleteOptions } from '../../../../components/autocomplete/AppAutocomplete.tsx';
 import AppSwitch from '../../../../components/switch/AppSwitch.tsx';
+import { selectAllMarkets, selectAllVideos } from '../../../../features/general/generalSlice.ts';
+import { useAppSelector } from '../../../../store/hooks.ts';
 
 interface IFilterSelect {
   [key: string]: boolean | number | string | string[] | TAppAutocompleteOptions[] | IFilterSelect;
@@ -27,15 +28,6 @@ enum CheckboxAll {
   sell = 'sellAll',
 }
 
-const checkboxes = (row: CheckboxGroup) => {
-  return [
-    ...SHOP_ARR.map((el) => ({
-      name: el.toLowerCase(),
-      checkboxGroup: row,
-      label: 'dashboard.select.' + el.toLowerCase(),
-    })),
-  ];
-};
 interface IFilterDashboardProps {
   closeModalHandler: () => void;
 }
@@ -45,14 +37,30 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
   const [buyIndeterminate, setBuyIndeterminate] = useState(false);
   const [sellIndeterminate, setSellIndeterminate] = useState(false);
   const { user } = useAuth();
+  const markets = useAppSelector(selectAllMarkets);
+  const videos = useAppSelector(selectAllVideos);
 
   const blackListCoinsOptions: TAppAutocompleteOptions[] = useMemo(() => {
     // return user?.blacklist_coins.map((el) => el.toLowerCase());
-    return SHOP_ARR.map((el) => ({
-      title: el,
-      value: el.toLowerCase(),
+    console.log({ markets });
+    return markets.map((el) => ({
+      title: el.name,
+      value: el.market,
     }));
-  }, []);
+  }, [markets]);
+
+  const checkboxes = useCallback(
+    (row: CheckboxGroup) => {
+      return [
+        ...markets.map((el) => ({
+          name: el.market,
+          checkboxGroup: row,
+          label: el.name,
+        })),
+      ];
+    },
+    [markets],
+  );
 
   const {
     watch,
@@ -124,6 +132,10 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
     console.log({ user });
   }, [user]);
 
+  useEffect(() => {
+    console.log({ videos });
+  }, [videos]);
+
   return (
     <form onSubmit={handleSubmit(submitForm)}>
       {windowSize.width < 991 && <span className={'h1'}>{formatMessage({ id: 'filter' })}</span>}
@@ -159,14 +171,14 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
               {checkboxes(CheckboxGroup.buy).map((item, index) => (
                 <Controller
                   name={item.checkboxGroup + '.' + item.name}
-                  key={item.label + index}
+                  key={item.name + index}
                   control={control}
                   render={({ field }) => (
                     <AppCheckbox
                       checkboxProps={{
                         ...field,
                       }}
-                      formControlLabelProps={{ label: formatMessage({ id: item.label }) }}
+                      formControlLabelProps={{ label: item.label }}
                     />
                   )}
                 />
@@ -202,14 +214,14 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
               {checkboxes(CheckboxGroup.sell).map((item, index) => (
                 <Controller
                   name={item.checkboxGroup + '.' + item.name}
-                  key={item.label + index}
+                  key={item.name + index}
                   control={control}
                   render={({ field }) => (
                     <AppCheckbox
                       checkboxProps={{
                         ...field,
                       }}
-                      formControlLabelProps={{ label: formatMessage({ id: item.label }) }}
+                      formControlLabelProps={{ label: item.label }}
                     />
                   )}
                 />

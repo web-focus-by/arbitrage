@@ -26,23 +26,11 @@
     },
     {
       "code": 405,
-      "message": "Invalid signature"
-    },
-    {
-      "code": 406,
-      "message": "Token expired"
-    },
-    {
-      "code": 407,
       "message": "Invalid parameter"
     },
     {
-      "code": 408,
+      "code": 406,
       "message": "User already exist"
-    },
-    {
-      "code": 409,
-      "message": "Wrong request path"
     }
   ]
 }

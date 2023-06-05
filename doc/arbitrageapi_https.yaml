@@ -141,20 +141,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
 
-        '402':
-          description: User not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
-        '403':
-          description: Wrong password
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-
         '404':
           description: Wrong refresh token
           content:
@@ -215,54 +201,15 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  required: false
-                telegram:
-                  type: string
-                  required: false
-                email:
-                  type: string
-                  required: false
-                page:
-                  type: integer
-                  required: false
-                max_pages:
-                  type: integer
-                  required: false
-                monitoring:
-                  type: integer
-                  required: false
-                profit_spread:
-                  type: string
-                  required: false
-                percent_spread:
-                  type: string
-                  required: false
-                hedge_type:
-                  type: integer
-                  required: false
-                risk_type:
-                  type: integer
-                  required: false
-                volume_min:
-                  type: string
-                  required: false
-                volume_max:
-                  type: string
-                  required: false
+              $ref: '#/components/schemas/user_info'
+
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  user_info:
-                    $ref: '#/components/schemas/user_info'
+                $ref: '#/components/schemas/error_message'
 
         '401':
           description: Authorization invalid
@@ -490,9 +437,15 @@ components:
         name:
           type: string
           description: Имя пользователя
+        telegram:
+          type: integer
+          description: Телеграм
+        email:
+          type: string
+          description: Почта
         page:
           type: integer
-          description: Страница, на которой находится пользователь
+          description: Страница, на которой находится пользователь (нумерация с нуля)
         max_pages:
           type: integer
           description: Всего страниц для пользователя

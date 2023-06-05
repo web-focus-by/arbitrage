@@ -8,11 +8,9 @@ import FilterDashboard from './components/filter/FilterDashboard.tsx';
 import TableDashboard from './components/table/TableDashboard.tsx';
 import AppButton from '../../components/button/AppButton.tsx';
 import Modal from '../../components/modal/Modal.tsx';
-import { useEffect, useState } from 'react';
-import { useGetMarketsInfoQuery } from '../../services/generalInfo.ts';
+import { useState } from 'react';
 
 const Dashboard = () => {
-  const { data, error, isLoading } = useGetMarketsInfoQuery('');
   const { formatMessage } = useIntl();
   const { windowSize } = useWindow();
   const [isOpen, setIsOpen] = useState(false);
@@ -20,18 +18,6 @@ const Dashboard = () => {
   const closeModalHandler = () => {
     setIsOpen(false);
   };
-
-  useEffect(() => {
-    console.log({ data });
-  }, [data]);
-
-  useEffect(() => {
-    console.log({ error });
-  }, [error]);
-
-  useEffect(() => {
-    console.log({ isLoading });
-  }, [isLoading]);
 
   return (
     <>

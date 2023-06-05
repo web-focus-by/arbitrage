@@ -5,9 +5,13 @@ import english from './lang/eng';
 import router from './routes';
 import { store } from './store';
 import { Provider } from 'react-redux';
+import { apiGeneralInfo } from './services/generalInfo.ts';
 
 const App = () => {
   const dictionary = navigator.language.includes('en') ? english : russian;
+
+  store.dispatch(apiGeneralInfo.endpoints.getMarketsInfo.initiate());
+  store.dispatch(apiGeneralInfo.endpoints.getVideosInfo.initiate());
 
   return (
     <Provider store={store}>

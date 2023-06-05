@@ -3,4 +3,13 @@ export const VALIDATION_REGEX = {
   telegramUsername: /^@[a-zA-Z]+$/,
 };
 
-export const SHOP_ARR = ['Binance', 'Bybit', 'Kucoin', 'OKX', 'Gateio', 'Huobi', 'Poloniex', 'Mexc'];
+export const SHOP_ARR = [
+  { market: 'binance', name: 'Binance' },
+  { market: 'bybit', name: 'Bybit' },
+  { market: 'kucoin', name: 'Kucoin' },
+  { market: 'okx', name: 'OKX' },
+  { market: 'gateio', name: 'Gateio' },
+  { market: 'huobi', name: 'Huobi' },
+  { market: 'poloniex', name: 'Poloniex' },
+  { market: 'mexc', name: 'Mexc' },
+];
