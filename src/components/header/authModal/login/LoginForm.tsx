@@ -35,7 +35,7 @@ const LoginForm = () => {
     }
   };
 
-  if (auth.user) {
+  if (auth) {
     return <Navigate to={'/dashboard'} replace={true} />;
   }
   return (

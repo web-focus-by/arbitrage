@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { IUser, IUserResponse } from '../../services/auth';
-import { RootState } from '../../store';
 import { TCredentialsRestore } from '../../services/auth';
 
 type AuthState = {
@@ -9,6 +8,7 @@ type AuthState = {
   accessToken: string | null;
   refreshToken: string | null;
   registerFinished: boolean;
+  isAuth: boolean;
 };
 
 const initialState: AuthState = {
@@ -16,6 +16,7 @@ const initialState: AuthState = {
   accessToken: null,
   refreshToken: null,
   registerFinished: false,
+  isAuth: false,
 };
 
 const slice = createSlice({
@@ -23,6 +24,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     setCredentials: (state, { payload: { user_info, access_token, refresh_token } }: PayloadAction<IUserResponse>) => {
+      state.isAuth = true;
       state.user = user_info;
       state.accessToken = access_token;
       state.refreshToken = refresh_token;
@@ -41,12 +43,11 @@ const slice = createSlice({
     },
     checkToken: (state) => {
       const token = localStorage.getItem('token');
-      const user = localStorage.getItem('user');
       const refreshToken = localStorage.getItem('refresh_token');
-      if (token && user) {
+      if (token) {
+        state.isAuth = true;
         state.accessToken = token;
         state.refreshToken = refreshToken;
-        state.user = JSON.parse(user);
       }
     },
   },
@@ -55,5 +56,3 @@ const slice = createSlice({
 export const { setCredentials, logout, checkToken, restoreCredentials } = slice.actions;
 
 export default slice.reducer;
-
-export const selectCurrentUser = (state: RootState) => state.auth.user;

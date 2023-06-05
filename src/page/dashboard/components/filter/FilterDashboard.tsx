@@ -7,12 +7,12 @@ import AppCheckbox from '../../../../components/checkbox/AppCheckbox.tsx';
 import useWindow from '../../../../hooks/useWindow.ts';
 import { Controller, SubmitHandler, useForm, UseFormGetValues } from 'react-hook-form';
 import AppButton from '../../../../components/button/AppButton.tsx';
-import { useAuth } from '../../../../hooks/useAuth.ts';
 import AppTextField from '../../../../components/input/AppTextField.tsx';
 import AppAutocomplete, { TAppAutocompleteOptions } from '../../../../components/autocomplete/AppAutocomplete.tsx';
 import AppSwitch from '../../../../components/switch/AppSwitch.tsx';
-import { selectAllMarkets } from '../../../../features/general/generalSlice.ts';
+import { selectAllMarkets } from '../../../../features/general/generalSelect.ts';
 import { useAppSelector } from '../../../../store/hooks.ts';
+import { selectUserInfo } from '../../../../features/userInfo/userInfoSelect.ts';
 
 interface IFilterSelect {
   [key: string]: boolean | number | string | string[] | TAppAutocompleteOptions[] | IFilterSelect;
@@ -36,12 +36,10 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
   const { windowSize } = useWindow();
   const [buyIndeterminate, setBuyIndeterminate] = useState(false);
   const [sellIndeterminate, setSellIndeterminate] = useState(false);
-  const { user } = useAuth();
+  const user = useAppSelector(selectUserInfo);
   const markets = useAppSelector(selectAllMarkets);
 
   const blackListCoinsOptions: TAppAutocompleteOptions[] = useMemo(() => {
-    // return user?.blacklist_coins.map((el) => el.toLowerCase());
-    console.log({ markets });
     return markets.map((el) => ({
       title: el.name,
       value: el.market,

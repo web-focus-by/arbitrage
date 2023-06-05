@@ -44,7 +44,7 @@ const Header = () => {
           <AppSwitch switchProps={{ onClick: setThemeHandler, checked: theme === ETheme.light }} />
         </div>
         <div>
-          {auth.user ? (
+          {auth ? (
             <button
               onClick={() => {
                 navigate('/dashboard');

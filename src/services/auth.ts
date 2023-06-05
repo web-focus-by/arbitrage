@@ -49,7 +49,6 @@ export const apiAuth = createApi({
       transformResponse: (response: IUserResponse) => {
         localStorage.setItem('token', response.access_token);
         localStorage.setItem('refresh_token', response.refresh_token);
-        localStorage.setItem('user', JSON.stringify(response.user_info));
         return { ...response };
       },
     }),
@@ -69,7 +68,6 @@ export const apiAuth = createApi({
       transformResponse: (response: IUserResponse) => {
         localStorage.setItem('token', response.access_token);
         localStorage.setItem('refresh_token', response.refresh_token);
-        localStorage.setItem('user', JSON.stringify(response.user_info));
         return { ...response };
       },
     }),

@@ -1,12 +1,16 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from './query.ts';
+import { IUser } from './auth.ts';
 
+interface IUserResponse {
+  user_info: IUser;
+}
 export const apiUserInfo = createApi({
   reducerPath: 'apiUserInfo',
   baseQuery: baseQueryWithReauth,
   tagTypes: ['UserInfo'],
   endpoints: (builder) => ({
-    getUserInfo: builder.query({
+    getUserInfo: builder.query<IUserResponse, void>({
       query: () => ({
         url: '/info',
         method: 'GET',
@@ -28,3 +32,4 @@ export const apiUserInfo = createApi({
 });
 
 export const { useGetUserInfoQuery, useUpdateUserInfoMutation } = apiUserInfo;
+export const selectVideosResult = apiUserInfo.endpoints.getUserInfo.select();

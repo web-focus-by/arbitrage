@@ -1,9 +1,16 @@
-import { useMemo } from 'react';
-import { useAppSelector } from '../store/hooks';
-import { selectCurrentUser } from '../features/auth/authSlice';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { apiUserInfo } from '../services/userInfo.ts';
 
 export const useAuth = () => {
-  const user = useAppSelector(selectCurrentUser);
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const dispatch = useAppDispatch();
 
-  return useMemo(() => ({ user }), [user]);
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(apiUserInfo.endpoints.getUserInfo.initiate());
+    }
+  }, [dispatch, isAuth]);
+
+  return isAuth;
 };
