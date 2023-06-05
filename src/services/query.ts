@@ -17,6 +17,17 @@ export const baseQuery = fetchBaseQuery({
   },
 });
 
+export const baseQueryWs = fetchBaseQuery({
+  baseUrl: '/',
+  prepareHeaders: (headers, { getState }) => {
+    const token = (getState() as RootState).auth.accessToken;
+    if (token) {
+      headers.set('authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
+
 export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
   args,
   api,

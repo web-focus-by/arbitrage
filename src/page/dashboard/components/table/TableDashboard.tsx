@@ -125,14 +125,14 @@ const headTableItems: THeadTableItems[] = [
 ];
 
 const TableDashboard = () => {
-  const data: ITableContent[] = mockDataTable;
+  const data1: ITableContent[] = mockDataTable;
   const { formatMessage } = useIntl();
 
   return (
     <div className={style.wrapper}>
       <div className={'subtitle2'}>{formatMessage({ id: 'dashboard.result.subtitle' })}</div>
       <div className={classNames(style.tableWrapper)}>
-        {data.length > 0 ? (
+        {data1.length > 0 ? (
           <TableContainer component={Paper} classes={{ root: style.tableContainer }}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table" classes={{ root: style.table }}>
               <TableHead>
@@ -145,7 +145,7 @@ const TableDashboard = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data.map((row, index) => (
+                {data1.map((row, index) => (
                   <TableRow key={row.monet + index}>
                     <AppTableCell>{row.monet}</AppTableCell>
                     <AppTableCell>${row.volume}</AppTableCell>
