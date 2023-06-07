@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { IUser, IUserResponse } from '../../services/auth';
 import { TCredentialsRestore } from '../../services/auth';
+import { resetWebSocket } from '../../utils/webSoket.ts';
 
 type AuthState = {
   user: IUser | null;
@@ -39,6 +40,7 @@ const slice = createSlice({
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       localStorage.removeItem('refresh_token');
+      resetWebSocket();
       return initialState;
     },
     checkToken: (state) => {

@@ -1,5 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQuery } from './query.ts';
+import { baseQuery } from '../utils/query.ts';
+import { apiUserInfo } from './userInfo.ts';
+import { apiTable } from './table.ts';
 
 export interface IUser {
   fee: number;
@@ -39,6 +41,7 @@ export interface ICustomError {
 export const apiAuth = createApi({
   reducerPath: 'authApi',
   baseQuery: baseQuery,
+  tagTypes: ['Auth'],
   endpoints: (builder) => ({
     login: builder.mutation<IUserResponse, ILoginRequest>({
       query: (credentials) => ({
@@ -76,6 +79,10 @@ export const apiAuth = createApi({
         url: '/logout',
         method: 'POST',
       }),
+      async onQueryStarted(_, { dispatch }) {
+        dispatch(apiTable.util.resetApiState());
+        dispatch(apiUserInfo.util.resetApiState());
+      },
     }),
   }),
 });

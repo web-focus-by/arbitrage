@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQueryWithReauth } from './query.ts';
+import { baseQueryWithReauth } from '../utils/query.ts';
 import { IUser } from './auth.ts';
 
 interface IUserResponse {

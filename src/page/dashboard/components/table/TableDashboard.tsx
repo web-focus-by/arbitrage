@@ -5,6 +5,8 @@ import mockDataTable from './tableDashboard.mock.json';
 import { Paper, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material';
 import AppTableCell from '../../../../components/table/сell/AppTableCell.tsx';
 import AppCheckbox from '../../../../components/checkbox/AppCheckbox.tsx';
+import { useGetMessagesQuery } from '../../../../services/table.ts';
+import { useEffect } from 'react';
 
 // ask_market:
 // description: Биржа покупки
@@ -127,6 +129,11 @@ const headTableItems: THeadTableItems[] = [
 const TableDashboard = () => {
   const data1: ITableContent[] = mockDataTable;
   const { formatMessage } = useIntl();
+  const { data, ...other } = useGetMessagesQuery();
+
+  useEffect(() => {
+    console.log({ data, other });
+  }, [data, other]);
 
   return (
     <div className={style.wrapper}>

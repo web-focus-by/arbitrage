@@ -2,7 +2,7 @@ import { BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError } from '@re
 import { RootState } from '../store';
 import { Mutex } from 'async-mutex';
 import { logout, restoreCredentials } from '../features/auth/authSlice.ts';
-import { TCredentialsRestore } from './auth.ts';
+import { TCredentialsRestore } from '../services/auth.ts';
 
 const mutex = new Mutex();
 

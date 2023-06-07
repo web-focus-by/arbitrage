@@ -15,6 +15,7 @@ const Footer = () => {
       console.log('logout');
       const data = await logout();
       console.log(data);
+
       dispatch(logoutAction());
     } catch (e) {
       //Обработка ошибки
