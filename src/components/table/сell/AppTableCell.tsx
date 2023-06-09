@@ -11,6 +11,7 @@ const AppTableCell: FC<IAppTableCellProps> = (props) => {
       {...otherProps}
       classes={{
         ...classes,
+        root: classNames(classes?.root, style.tableRoot),
         head: classNames(classes?.head, style.tableHead, 'table-headline'),
         body: classNames(classes?.body, style.tableBody, 'text2'),
       }}

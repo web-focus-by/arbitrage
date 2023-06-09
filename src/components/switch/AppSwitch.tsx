@@ -1,5 +1,5 @@
 import Switch, { SwitchProps } from '@mui/material/Switch';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import classNames from 'classnames';
 import style from './AppSwitch.module.scss';
 import { FormControlLabel, FormControlLabelProps } from '@mui/material';
@@ -11,7 +11,9 @@ interface IAppSwitchProps {
 
 const AppSwitch: FC<IAppSwitchProps> = (props) => {
   const { switchProps, formControlLabelProps } = props;
-  // console.log(switchProps);
+  useEffect(() => {
+    console.log(switchProps);
+  }, [switchProps]);
   return (
     <FormControlLabel
       {...formControlLabelProps}
@@ -19,6 +21,7 @@ const AppSwitch: FC<IAppSwitchProps> = (props) => {
       control={
         <Switch
           {...switchProps}
+          checked={switchProps.checked ?? (switchProps.value as boolean) ?? false}
           disableRipple={true}
           classes={{
             root: classNames(switchProps.classes?.root, style.root, style.resetPadding),

@@ -396,9 +396,9 @@ const FilterDashboard = () => {
             <Controller
               name={'notification'}
               control={control}
-              render={({ field: { ref, value, onChange } }) => (
+              render={({ field }) => (
                 <AppSwitch
-                  switchProps={{ inputRef: ref, value: value, onChange: onChange }}
+                  switchProps={{ ...field }}
                   formControlLabelProps={{ label: formatMessage({ id: 'dashboard.input.value.send.notification' }) }}
                 />
               )}

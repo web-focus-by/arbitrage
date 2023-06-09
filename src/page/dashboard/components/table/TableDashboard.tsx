@@ -19,6 +19,10 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import useWindow from '../../../../hooks/useWindow.ts';
 import { useGetMessagesQuery } from '../../../../services/table.ts';
+import AppPagination from '../../../../components/pagination/AppPagination.tsx';
+import { useAppSelector } from '../../../../store/hooks.ts';
+import { selectUserInfo } from '../../../../features/userInfo/userInfoSelect.ts';
+import { useUpdateUserInfoMutation } from '../../../../services/userInfo.ts';
 
 export interface ITableContent {
   base_coin: string;
@@ -108,6 +112,8 @@ const TableDashboard = () => {
   const tableHead: React.MutableRefObject<HTMLTableRowElement | null> = useRef(null);
   const { data } = useGetMessagesQuery();
   const [tableHeadWidth, setTableHeadWidth] = useState([] as number[]);
+  const user = useAppSelector(selectUserInfo);
+  const [updateUserInfo] = useUpdateUserInfoMutation();
 
   const updateTableHeadWidth = () => {
     if (tableHead.current) {
@@ -120,6 +126,10 @@ const TableDashboard = () => {
     }
   };
 
+  const changePageHandler = (_: React.ChangeEvent<unknown>, page: number) => {
+    updateUserInfo({ page });
+  };
+
   useEffect(() => {
     updateTableHeadWidth();
   }, [tableHead, windowSize.width, data]);
@@ -129,32 +139,35 @@ const TableDashboard = () => {
       <div className={'subtitle2'}>{formatMessage({ id: 'dashboard.result.subtitle' })}</div>
       <div className={classNames(style.tableWrapper)}>
         {data && data.length > 0 ? (
-          <TableContainer component={Paper} classes={{ root: style.tableContainer }}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized collapsible table" classes={{ root: style.table }}>
-              <TableHead>
-                <TableRow ref={tableHead}>
-                  {headTableItems.map((item, index) => (
-                    <AppTableCell key={item.name + index}>
-                      {formatMessage({ id: 'dashboard.table.head.' + item.name })}
-                    </AppTableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {Object.entries(transformData(data)).map(([baseCoin, tableContent], coinIndex) => {
-                  return (
-                    <NestedRow
-                      item={tableContent}
-                      name={baseCoin}
-                      key={baseCoin + coinIndex}
-                      headerWidthData={tableHeadWidth}
-                      updateTableHeadWidth={updateTableHeadWidth}
-                    />
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <>
+            <TableContainer component={Paper} classes={{ root: style.tableContainer }}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized collapsible table" classes={{ root: style.table }}>
+                <TableHead>
+                  <TableRow ref={tableHead}>
+                    {headTableItems.map((item, index) => (
+                      <AppTableCell key={item.name + index}>
+                        {formatMessage({ id: 'dashboard.table.head.' + item.name })}
+                      </AppTableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {Object.entries(transformData(data)).map(([baseCoin, tableContent], coinIndex) => {
+                    return (
+                      <NestedRow
+                        item={tableContent}
+                        name={baseCoin}
+                        key={baseCoin + coinIndex}
+                        headerWidthData={tableHeadWidth}
+                        updateTableHeadWidth={updateTableHeadWidth}
+                      />
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <AppPagination count={user?.max_pages} page={user?.page ?? 1} onChange={changePageHandler} />
+          </>
         ) : (
           <div className={classNames('subtitle3', style.textCenter)}>
             {formatMessage({ id: 'dashboard.table.err.empty' })}

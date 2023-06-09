@@ -23,3 +23,9 @@
     padding: 20px 12px;
   }
 }
+
+.tableRoot {
+  background-color: var(--table-head-background-color);
+  color: var(--table-text-color);
+  transition: background-color $transition-time $transition-animate, color $transition-time $transition-animate;
+}
