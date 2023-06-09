@@ -11,6 +11,7 @@ interface IAppSwitchProps {
 
 const AppSwitch: FC<IAppSwitchProps> = (props) => {
   const { switchProps, formControlLabelProps } = props;
+  // console.log(switchProps);
   return (
     <FormControlLabel
       {...formControlLabelProps}

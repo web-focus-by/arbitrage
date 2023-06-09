@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import style from './TableDashboard.module.scss';
 import { useIntl } from 'react-intl';
 import classNames from 'classnames';
-// import mockDataTable from './tableDashboard.mock.json';
+import mockDataTable from './tableDashboard.mock.json';
 import {
   Collapse,
   Paper,
@@ -108,7 +108,7 @@ const TableDashboard = () => {
   const { windowSize } = useWindow();
   const { formatMessage } = useIntl();
   const tableHead: React.MutableRefObject<HTMLTableRowElement | null> = useRef(null);
-  const { data, ...other } = useGetMessagesQuery();
+  const { data } = useGetMessagesQuery();
   const [tableHeadWidth, setTableHeadWidth] = useState([] as number[]);
 
   const updateTableHeadWidth = () => {
@@ -125,10 +125,6 @@ const TableDashboard = () => {
   useEffect(() => {
     updateTableHeadWidth();
   }, [tableHead, windowSize.width, data]);
-
-  useEffect(() => {
-    console.log({ other });
-  }, [other]);
 
   return (
     <div className={style.wrapper}>

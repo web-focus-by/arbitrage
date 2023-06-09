@@ -31,5 +31,5 @@ export const apiUserInfo = createApi({
   }),
 });
 
-export const { useGetUserInfoQuery, useUpdateUserInfoMutation } = apiUserInfo;
+export const { useUpdateUserInfoMutation } = apiUserInfo;
 export const selectVideosResult = apiUserInfo.endpoints.getUserInfo.select();

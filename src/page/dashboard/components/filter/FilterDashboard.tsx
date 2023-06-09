@@ -5,7 +5,7 @@ import { useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import AppCheckbox from '../../../../components/checkbox/AppCheckbox.tsx';
 import useWindow from '../../../../hooks/useWindow.ts';
-import { Controller, SubmitHandler, useForm, UseFormGetValues } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import AppButton from '../../../../components/button/AppButton.tsx';
 import AppTextField from '../../../../components/input/AppTextField.tsx';
 import AppAutocomplete, { TAppAutocompleteOptions } from '../../../../components/autocomplete/AppAutocomplete.tsx';
@@ -13,31 +13,71 @@ import AppSwitch from '../../../../components/switch/AppSwitch.tsx';
 import { selectAllMarkets } from '../../../../features/general/generalSelect.ts';
 import { useAppSelector } from '../../../../store/hooks.ts';
 import { selectUserInfo } from '../../../../features/userInfo/userInfoSelect.ts';
+import Modal from '../../../../components/modal/Modal.tsx';
+import { checkboxesHandler, getDefaultFormData, getEmptyFormData, transformFormData } from './filterDashboard.ts';
+import { useUpdateUserInfoMutation } from '../../../../services/userInfo.ts';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { lazy, number, string } from 'yup';
 
-interface IFilterSelect {
+export interface IFilterSelect {
   [key: string]: boolean | number | string | string[] | TAppAutocompleteOptions[] | IFilterSelect;
 }
 
-enum CheckboxGroup {
+export enum CheckboxGroup {
   buy = 'buy',
   sell = 'sell',
 }
 
-enum CheckboxAll {
+export enum CheckboxAll {
   buy = 'buyAll',
   sell = 'sellAll',
 }
 
 interface IFilterDashboardProps {
-  closeModalHandler: () => void;
+  closeModalHandler?: () => void;
 }
-const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
+
+const geValidateFunc = (value = '') =>
+  value === ''
+    ? string().test('required', '', (val: string | undefined) => {
+        if (val) {
+          return val.length > 0;
+        }
+        return false;
+      })
+    : number().positive().required();
+
+const schema = yup.object({
+  blackListCoins: yup.array().of(yup.object().shape({ title: yup.string(), value: yup.string() })),
+  blackListNetwork: yup.array().of(yup.object().shape({ title: yup.string(), value: yup.string() })),
+  volumeMin: lazy(geValidateFunc),
+  volumeMax: lazy(geValidateFunc),
+  profit: lazy(geValidateFunc),
+  profitSpread: lazy(geValidateFunc),
+  fee: lazy(geValidateFunc),
+  highRisk: yup.boolean(),
+  hedgeType: yup.string(),
+  notification: yup.boolean(),
+});
+
+const FilterDashboard: FC<IFilterDashboardProps> = () => {
   const { formatMessage } = useIntl();
   const { windowSize } = useWindow();
+  const [isOpen, setIsOpen] = useState(false);
   const [buyIndeterminate, setBuyIndeterminate] = useState(false);
   const [sellIndeterminate, setSellIndeterminate] = useState(false);
+  const [updateUserInfo] = useUpdateUserInfoMutation();
   const user = useAppSelector(selectUserInfo);
   const markets = useAppSelector(selectAllMarkets);
+
+  const marketNameArray = useMemo(() => {
+    return markets.map((el) => el.market);
+  }, [markets]);
+
+  const closeModalHandler = () => {
+    setIsOpen(false);
+  };
 
   const blackListCoinsOptions: TAppAutocompleteOptions[] = useMemo(() => {
     return markets.map((el) => ({
@@ -65,22 +105,17 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
     handleSubmit,
     getValues,
     setValue,
-    formState: { errors },
+    reset,
+    formState: { errors, isValid },
   } = useForm<IFilterSelect>({
-    defaultValues: {
-      buy: user?.markets_buy.reduce((acc, val) => ({ ...acc, [val]: true }), {}),
-      sell: user?.markets_sell.reduce((acc, val) => ({ ...acc, [val]: true }), {}),
-      blackListNetwork: [],
-      blackListCoins: [],
-      volumeMin: user?.volume_min,
-      volumeMax: user?.volume_max,
-      profit: user?.profit_spread,
-      profitSpread: user?.percent_spread,
-      fee: user?.fee,
-      notification: !!user?.monitoring,
-      highRisk: !!user?.risk_type,
-      hedgeType: !!user?.hedge_type,
-    },
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+    defaultValues: useMemo(() => {
+      if (user) {
+        return getDefaultFormData(user, marketNameArray);
+      }
+      return getEmptyFormData();
+    }, [user, marketNameArray]),
   });
 
   const subtitleClass = useMemo(() => {
@@ -90,14 +125,24 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
     return 'subtitle3';
   }, [windowSize.width]);
 
-  const submitForm: SubmitHandler<IFilterSelect> = (data) => {
+  const submitForm: SubmitHandler<IFilterSelect> = async (data) => {
     console.log(data);
+    try {
+      if (isValid) {
+        const response = await updateUserInfo(transformFormData(data)).unwrap();
+        console.log({ response });
+      }
+    } catch (error) {
+      //TODO handle error
+      console.log({ error });
+    }
+
     closeModalHandler();
   };
 
   useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name?.includes(CheckboxGroup.buy) && value[CheckboxGroup.buy]) {
+    const subscription = watch((value, { name, type }) => {
+      if ((name?.includes(CheckboxGroup.buy) && value[CheckboxGroup.buy]) || type === undefined) {
         checkboxesHandler(
           value as IFilterSelect,
           setBuyIndeterminate,
@@ -107,7 +152,7 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
           CheckboxAll.buy,
         );
       }
-      if (name?.includes(CheckboxGroup.sell) && value[CheckboxGroup.sell]) {
+      if ((name?.includes(CheckboxGroup.sell) && value[CheckboxGroup.sell]) || type === undefined) {
         checkboxesHandler(
           value as IFilterSelect,
           setSellIndeterminate,
@@ -126,10 +171,12 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
   }, [errors]);
 
   useEffect(() => {
-    console.log({ user });
-  }, [user]);
+    if (user) {
+      reset(getDefaultFormData(user, marketNameArray));
+    }
+  }, [reset, user, marketNameArray]);
 
-  return (
+  const Form = (
     <form onSubmit={handleSubmit(submitForm)}>
       {windowSize.width < 991 && <span className={'h1'}>{formatMessage({ id: 'filter' })}</span>}
       <div className={style.rowWrapper}>
@@ -242,6 +289,8 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
                     label={formatMessage({ id: 'dashboard.input.value.min' })}
                     placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                     classes={{ root: style.textFieldWrapper }}
+                    error={!!errors.volumeMin}
+                    helperText={errors.volumeMin && formatMessage({ id: 'error.' + errors.volumeMin?.type })}
                   />
                 );
               }}
@@ -260,6 +309,8 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
                   label={formatMessage({ id: 'dashboard.input.value.max' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                   classes={{ root: style.textFieldWrapper }}
+                  error={!!errors.volumeMax}
+                  helperText={errors.volumeMax && formatMessage({ id: 'error.' + errors.volumeMax?.type })}
                 />
               )}
             />
@@ -277,6 +328,8 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
                   label={formatMessage({ id: 'dashboard.input.value.profit' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                   classes={{ root: style.textFieldWrapper }}
+                  error={!!errors.profit}
+                  helperText={errors.profit && formatMessage({ id: 'error.' + errors.profit?.type })}
                 />
               )}
             />
@@ -294,6 +347,8 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
                   label={formatMessage({ id: 'dashboard.input.value.profit.spread' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                   classes={{ root: style.textFieldWrapper }}
+                  error={!!errors.profitSpread}
+                  helperText={errors.profitSpread && formatMessage({ id: 'error.' + errors.profitSpread?.type })}
                 />
               )}
             />
@@ -343,6 +398,8 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
                   classes={{
                     root: classNames(style.textFieldWrapper, style.lastTextWrapper),
                   }}
+                  error={!!errors.fee}
+                  helperText={errors.fee && formatMessage({ id: 'error.' + errors.fee?.type })}
                 />
               )}
             />
@@ -390,50 +447,24 @@ const FilterDashboard: FC<IFilterDashboardProps> = ({ closeModalHandler }) => {
       </div>
     </form>
   );
-};
 
-interface ICheckboxHandler {
-  (
-    value: IFilterSelect,
-    setIndeterminateHandler: (value: boolean) => void,
-    getValues: UseFormGetValues<IFilterSelect>,
-    setValue: (name: string, value: boolean) => void,
-    checkboxType: CheckboxGroup,
-    checkboxAll: CheckboxAll,
-  ): void;
-}
-
-const checkboxesHandler: ICheckboxHandler = (
-  value,
-  setIndeterminateHandler,
-  getValues,
-  setValue,
-  checkboxType,
-  checkboxAll,
-) => {
-  if (!value[checkboxType]) return;
-  const isSomeSelected = Object.entries(value[checkboxType]).some((el) => {
-    if (el[1] === true) {
-      setIndeterminateHandler(true);
-      return true;
-    }
-    return false;
-  });
-  const isAllSelected = Object.entries(value[checkboxType]).every((el) => {
-    return el[1] === true;
-  });
-
-  if (isAllSelected) {
-    if (!getValues(checkboxAll) || getValues(checkboxAll) === undefined) {
-      setValue(checkboxAll, true);
-    }
-  } else {
-    if (getValues(checkboxAll)) {
-      setValue(checkboxAll, false);
-    }
+  if (windowSize.width > 991) {
+    return Form;
   }
-
-  if (!isSomeSelected) setIndeterminateHandler(false);
+  return (
+    <div className={style.filterButton}>
+      <AppButton
+        classes={{ root: style.btnPadding }}
+        color={'secondary'}
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        {formatMessage({ id: 'filter' })}
+      </AppButton>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} children={Form} classNames={style.modalWrapper} />
+    </div>
+  );
 };
 
 export default FilterDashboard;
