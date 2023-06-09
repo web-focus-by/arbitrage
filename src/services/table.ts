@@ -1,8 +1,9 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
-import { getWebSocket } from '../utils/webSoket.ts';
+import { getWebSocket, resetWebSocket } from '../utils/webSoket.ts';
 import { ITableContent } from '../page/dashboard/components/table/TableDashboard.tsx';
 import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { restoreCredentials } from '../features/auth/authSlice.ts';
 
 function isJsonString(str: string) {
   try {
@@ -29,10 +30,9 @@ export const apiTable = createApi({
       queryFn: () => {
         return { data: [] };
       },
-      async onCacheEntryAdded(arg, { getState, updateCachedData, cacheDataLoaded, cacheEntryRemoved }) {
+      providesTags: ['Table'],
+      async onCacheEntryAdded(arg, { getState, updateCachedData, cacheDataLoaded, cacheEntryRemoved, dispatch }) {
         const token = (getState() as RootState).auth.accessToken;
-
-        console.log({ state: getState() });
 
         // create a websocket connection when the cache subscription starts
         const ws = getWebSocket();
@@ -49,11 +49,32 @@ export const apiTable = createApi({
           // if it is a message and for the appropriate channel,
           // update our query result with the received message
 
-          const listener = (event: MessageEvent) => {
+          const listener = async (event: MessageEvent) => {
             if (!isJsonString(event.data)) {
               return;
             }
             const data = JSON.parse(event.data);
+            if ('message' in data) {
+              if (data.message === 'Authorization invalid') {
+                try {
+                  const response = await fetch('api/refresh', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ refresh_token: (getState() as RootState).auth.refreshToken }),
+                  });
+                  const newToken = await response.json();
+
+                  dispatch(restoreCredentials({ ...newToken }));
+
+                  ws.send(JSON.stringify({ access_token: (getState() as RootState).auth.accessToken }));
+                } catch (e) {
+                  dispatch(apiTable.util.resetApiState());
+                }
+                return;
+              }
+            }
             if (!isMessage(data) || data.channel !== arg) return;
 
             updateCachedData(() => {
@@ -72,7 +93,7 @@ export const apiTable = createApi({
         // await cacheEntryRemoved;
         await cacheEntryRemoved;
         // perform cleanup steps once the `cacheEntryRemoved` promise resolves
-        ws.close();
+        resetWebSocket();
       },
     }),
   }),

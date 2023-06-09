@@ -79,6 +79,7 @@ export const apiAuth = createApi({
         url: '/logout',
         method: 'POST',
       }),
+      invalidatesTags: ['Auth'],
       async onQueryStarted(_, { dispatch }) {
         dispatch(apiTable.util.resetApiState());
         dispatch(apiUserInfo.util.resetApiState());
