@@ -7,6 +7,7 @@ import classNames from 'classnames';
 
 const AppLink: FC<RouterLinkProps & LinkProps> = (props) => {
   const { children, classes, ...otherProps } = props;
+  console.log(props.to);
   return (
     <Link
       {...otherProps}

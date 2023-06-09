@@ -3,6 +3,7 @@ import { RootState } from '../store';
 import { Mutex } from 'async-mutex';
 import { logout, restoreCredentials } from '../features/auth/authSlice.ts';
 import { TCredentialsRestore } from '../services/auth.ts';
+import { apiTable } from '../services/table.ts';
 
 const mutex = new Mutex();
 
@@ -52,6 +53,7 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
         );
         if (refreshResult.data) {
           api.dispatch(restoreCredentials({ ...(refreshResult.data as TCredentialsRestore) }));
+          api.dispatch(apiTable.util.invalidateTags(['Table']));
           // retry the initial query
           result = await baseQuery(args, api, extraOptions);
         } else {

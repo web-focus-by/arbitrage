@@ -1,17 +1,8 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQueryWs } from '../utils/query.ts';
 import { RootState } from '../store';
 import { getWebSocket } from '../utils/webSoket.ts';
-
-export type Channel = 'redux' | 'general';
-
-export interface Message {
-  id: number;
-  channel: Channel;
-  userName: string;
-  text: string;
-  glossary: object;
-}
+import { ITableContent } from '../page/dashboard/components/table/TableDashboard.tsx';
+import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 function isJsonString(str: string) {
   try {
@@ -21,7 +12,7 @@ function isJsonString(str: string) {
   }
   return true;
 }
-const isMessage = (data: Message) => {
+const isMessage = (data: ITableContent) => {
   return typeof data === 'object';
   // return !!data;
 
@@ -29,10 +20,12 @@ const isMessage = (data: Message) => {
 };
 export const apiTable = createApi({
   reducerPath: 'apiTable',
-  baseQuery: baseQueryWs,
+  baseQuery: fetchBaseQuery({
+    baseUrl: '/',
+  }),
   tagTypes: ['Table'],
   endpoints: (build) => ({
-    getMessages: build.query<Message[], void>({
+    getMessages: build.query<ITableContent[], void>({
       queryFn: () => {
         return { data: [] };
       },

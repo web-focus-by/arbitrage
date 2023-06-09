@@ -39,5 +39,6 @@
   "dashboard.table.head.network": "Сеть",
   "dashboard.table.head.fee.network": "Комиссия сети",
   "dashboard.table.head.time": "Время",
-  "dashboard.table.head.hedge": "Хеджирование"
+  "dashboard.table.head.hedge": "Хеджирование",
+  "dashboard.table.multiline.spread.text": "Ещё {count} спредов"
 }
