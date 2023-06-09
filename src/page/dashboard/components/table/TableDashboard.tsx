@@ -23,6 +23,7 @@ import AppPagination from '../../../../components/pagination/AppPagination.tsx';
 import { useAppSelector } from '../../../../store/hooks.ts';
 import { selectUserInfo } from '../../../../features/userInfo/userInfoSelect.ts';
 import { useUpdateUserInfoMutation } from '../../../../services/userInfo.ts';
+import AppLink from '../../../../components/link/AppLink.tsx';
 
 export interface ITableContent {
   base_coin: string;
@@ -313,14 +314,14 @@ const Row = ({
       <AppTableCell sx={{ width: tdWidth ? tdWidth[3] : 'unset' }}>{row.percent_spread}%</AppTableCell>
       <AppTableCell sx={{ width: tdWidth ? tdWidth[4] : 'unset' }}>
         <div>
-          <a href={row.ask_url.replace(/"/g, '')} target={'_blank'}>
+          <AppLink to={row.ask_url} target={'_blank'} referrerPolicy={'no-referrer'}>
             {row.ask_market}
-          </a>
+          </AppLink>
         </div>
         <div>
-          <a href={row.bid_url.replace(/"/g, '')} target={'_blank'}>
+          <AppLink to={row.bid_url} target={'_blank'} referrerPolicy={'no-referrer'}>
             {row.bid_market}
-          </a>
+          </AppLink>
         </div>
       </AppTableCell>
       <AppTableCell sx={{ width: tdWidth ? tdWidth[5] : 'unset' }}>

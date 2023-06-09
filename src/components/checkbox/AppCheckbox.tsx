@@ -3,9 +3,11 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import style from './appCheckbox.module.scss';
 import { FormControlLabel, FormControlLabelProps } from '@mui/material';
+import AppTooltip from '../toollip/AppTooltip.tsx';
 
 interface IFormControlLabelProps extends Omit<FormControlLabelProps, 'control' | 'label'> {
   label?: React.ReactNode | string;
+  tooltip?: string | React.ReactNode;
 }
 interface ICheckboxProps {
   checkboxProps?: CheckboxProps;
@@ -33,7 +35,10 @@ const AppCheckbox: FC<ICheckboxProps> = ({ checkboxProps, formControlLabelProps 
       }
       label={
         formControlLabelProps?.label && (
-          <span className={classNames(style.label, 'text2')}>{formControlLabelProps.label}</span>
+          <span className={classNames(style.label, 'text2')}>
+            {formControlLabelProps.label}
+            {formControlLabelProps.tooltip && <AppTooltip title={formControlLabelProps.tooltip} />}
+          </span>
         )
       }
     />

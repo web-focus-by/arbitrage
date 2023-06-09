@@ -26,6 +26,7 @@ import {
 } from './filterDashboard.ts';
 import { useUpdateUserInfoMutation } from '../../../../services/userInfo.ts';
 import { yupResolver } from '@hookform/resolvers/yup';
+import AppLink from '../../../../components/link/AppLink.tsx';
 
 const FilterDashboard = () => {
   const { formatMessage } = useIntl();
@@ -377,7 +378,10 @@ const FilterDashboard = () => {
                   checkboxProps={{
                     ...field,
                   }}
-                  formControlLabelProps={{ label: formatMessage({ id: 'dashboard.input.value.high.risk' }) }}
+                  formControlLabelProps={{
+                    label: formatMessage({ id: 'dashboard.input.value.high.risk' }),
+                    tooltip: formatMessage({ id: 'dashboard.tooltip.height.risk' }),
+                  }}
                 />
               )}
             />
@@ -389,7 +393,19 @@ const FilterDashboard = () => {
                   checkboxProps={{
                     ...field,
                   }}
-                  formControlLabelProps={{ label: formatMessage({ id: 'dashboard.input.value.hedge.type' }) }}
+                  formControlLabelProps={{
+                    label: formatMessage({ id: 'dashboard.input.value.hedge.type' }),
+                    tooltip: formatMessage(
+                      { id: 'dashboard.tooltip.hedge' },
+                      {
+                        video: (
+                          <AppLink to={'https://youtu.be/PhgUKN4ZHxY'} target={'_blank'} referrerPolicy={'no-referrer'}>
+                            {formatMessage({ id: 'video' })}
+                          </AppLink>
+                        ),
+                      },
+                    ),
+                  }}
                 />
               )}
             />
