@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import style from './filterDashboard.module.scss';
 import { useIntl } from 'react-intl';
 import { useEffect, useMemo } from 'react';
@@ -14,54 +14,20 @@ import { selectAllMarkets } from '../../../../features/general/generalSelect.ts'
 import { useAppSelector } from '../../../../store/hooks.ts';
 import { selectUserInfo } from '../../../../features/userInfo/userInfoSelect.ts';
 import Modal from '../../../../components/modal/Modal.tsx';
-import { checkboxesHandler, getDefaultFormData, getEmptyFormData, transformFormData } from './filterDashboard.ts';
+import {
+  CheckboxAll,
+  checkboxesHandler,
+  CheckboxGroup,
+  getDefaultFormData,
+  getEmptyFormData,
+  IFilterSelect,
+  schema,
+  transformFormData,
+} from './filterDashboard.ts';
 import { useUpdateUserInfoMutation } from '../../../../services/userInfo.ts';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { lazy, number, string } from 'yup';
 
-export interface IFilterSelect {
-  [key: string]: boolean | number | string | string[] | TAppAutocompleteOptions[] | IFilterSelect;
-}
-
-export enum CheckboxGroup {
-  buy = 'buy',
-  sell = 'sell',
-}
-
-export enum CheckboxAll {
-  buy = 'buyAll',
-  sell = 'sellAll',
-}
-
-interface IFilterDashboardProps {
-  closeModalHandler?: () => void;
-}
-
-const geValidateFunc = (value = '') =>
-  value === ''
-    ? string().test('required', '', (val: string | undefined) => {
-        if (val) {
-          return val.length > 0;
-        }
-        return false;
-      })
-    : number().positive().required();
-
-const schema = yup.object({
-  blackListCoins: yup.array().of(yup.object().shape({ title: yup.string(), value: yup.string() })),
-  blackListNetwork: yup.array().of(yup.object().shape({ title: yup.string(), value: yup.string() })),
-  volumeMin: lazy(geValidateFunc),
-  volumeMax: lazy(geValidateFunc),
-  profit: lazy(geValidateFunc),
-  profitSpread: lazy(geValidateFunc),
-  fee: lazy(geValidateFunc),
-  highRisk: yup.boolean(),
-  hedgeType: yup.string(),
-  notification: yup.boolean(),
-});
-
-const FilterDashboard: FC<IFilterDashboardProps> = () => {
+const FilterDashboard = () => {
   const { formatMessage } = useIntl();
   const { windowSize } = useWindow();
   const [isOpen, setIsOpen] = useState(false);

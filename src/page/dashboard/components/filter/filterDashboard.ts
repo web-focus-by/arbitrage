@@ -1,6 +1,22 @@
 import { UseFormGetValues } from 'react-hook-form';
 import { IUser } from '../../../../services/auth.ts';
-import { CheckboxAll, CheckboxGroup, IFilterSelect } from './FilterDashboard.tsx';
+import { lazy, number, string } from 'yup';
+import * as yup from 'yup';
+import { TAppAutocompleteOptions } from '../../../../components/autocomplete/AppAutocomplete.tsx';
+
+export interface IFilterSelect {
+  [key: string]: boolean | number | string | string[] | TAppAutocompleteOptions[] | IFilterSelect;
+}
+
+export enum CheckboxGroup {
+  buy = 'buy',
+  sell = 'sell',
+}
+
+export enum CheckboxAll {
+  buy = 'buyAll',
+  sell = 'sellAll',
+}
 
 export interface ICheckboxHandler {
   (
@@ -100,3 +116,38 @@ export const transformFormData = (data: IFilterSelect) => {
     hedge_type: data.hedgeType ? 1 : 0,
   };
 };
+
+const geValidateFunc = (value = '') =>
+  value === ''
+    ? string().test('required', '', (val: string | undefined) => {
+        if (val) {
+          return val.length > 0;
+        }
+        return false;
+      })
+    : number().positive().required();
+
+export const schema = yup.object({
+  buy: yup
+    .object()
+    .shape({})
+    .test('buy', '', (value: IFilterSelect) => {
+      return Object.values(value).some((el) => el);
+    }),
+  sell: yup
+    .object()
+    .shape({})
+    .test('sell', '', (value: IFilterSelect) => {
+      return Object.values(value).some((el) => el);
+    }),
+  blackListCoins: yup.array().of(yup.object().shape({ title: yup.string(), value: yup.string() })),
+  blackListNetwork: yup.array().of(yup.object().shape({ title: yup.string(), value: yup.string() })),
+  volumeMin: lazy(geValidateFunc),
+  volumeMax: lazy(geValidateFunc),
+  profit: lazy(geValidateFunc),
+  profitSpread: lazy(geValidateFunc),
+  fee: lazy(geValidateFunc),
+  highRisk: yup.boolean(),
+  hedgeType: yup.string(),
+  notification: yup.boolean(),
+});

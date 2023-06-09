@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import style from './TableDashboard.module.scss';
 import { useIntl } from 'react-intl';
 import classNames from 'classnames';
-import mockDataTable from './tableDashboard.mock.json';
 import {
   Collapse,
   Paper,
@@ -104,7 +103,6 @@ const headTableItems: THeadTableItems[] = [
 ];
 
 const TableDashboard = () => {
-  // const data: ITableContent[] = mockDataTable;
   const { windowSize } = useWindow();
   const { formatMessage } = useIntl();
   const tableHead: React.MutableRefObject<HTMLTableRowElement | null> = useRef(null);
