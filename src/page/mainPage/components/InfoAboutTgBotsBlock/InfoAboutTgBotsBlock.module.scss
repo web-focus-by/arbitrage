@@ -8,6 +8,15 @@
   flex-direction: row;
   gap: 100px;
 
+  @include max-1200{
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  @include max-991{
+    gap: 32px;
+  }
+
   .InfoAboutTgBotsBlockText{
     width: 60%;
     display: flex;
@@ -15,9 +24,49 @@
     justify-content: center;
     gap: 48px;
 
+    @include max-1440{
+      width: 72%;
+      gap: 39px;
+    }
+
+    @include max-1200{
+      width: 100%;
+    }
+
+    @include max-991{
+      gap: 32px;
+    }
+    @include max-576{
+      gap: 36px;
+    }
+
     button{
       width: max-content;
       padding: 20px 46px;
+
+      @include max-1440{
+        padding: 13px 37px;
+      }
+      @include max-1200{
+        padding: 21px 82px;
+      }
+      @include max-576{
+        width: 100%;
+        padding: 16px 0px;
+      }
+    }
+  }
+
+  .InfoAboutTgBotsBlockImg{
+    img{
+      width: 100%;
+    }
+    @include max-1200{
+      width: 62.5%;
+      margin: 0 auto;
+    }
+    @include max-991{
+      width: 100%;
     }
   }
 }

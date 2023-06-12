@@ -3,6 +3,12 @@
   margin: 0 auto;
   max-width: 1440px;
   width: 86%;
+  @include max-1200{
+    width: 87.5%;
+  }
+  @include max-768{
+    width: 90%;
+  }
   &Padding {
     padding: 0 80px;
     @include max-1200 {
@@ -21,5 +27,18 @@
 }
 
 .spacing_between_blocks{
-  margin-bottom: 240px;
+  margin-bottom: 12.5%;
+
+  @include max-1440{
+    margin-bottom: 10.23%;
+  }
+  @include max-1200{
+    margin-bottom: 13%;
+  }
+  @include max-991{
+    margin-bottom: 17.5%;
+  }
+  @include max-576{
+    margin-bottom: 25.5%;
+  }
 }

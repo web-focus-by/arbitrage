@@ -26,7 +26,7 @@ h2,
   line-height: 104%;
 
   @include max-1200 {
-    font-size: 50px;
+    font-size: 48px;
   }
   @include max-768 {
     font-size: clamp(26px, 6.25vw, 48px);
@@ -41,14 +41,14 @@ h3,
   line-height: 130%;
 
   @include max-1200 {
-    font-family: 'Proxima Nova', sans-serif;
+    font-family: 'RockStar', sans-serif;
     font-size: 28px;
   }
   @include max-768 {
-    font-size: clamp(20px, 4.7vw, 36px);
+    font-size: calc(20px + (28 - 20) * ( (100vw - 375px) / ( 768 - 375) ));
   }
-  @include max-576 {
-    font-family: 'RockStar', sans-serif;
+  @include max-576{
+    line-height: 140%;
   }
 }
 h4,
@@ -59,7 +59,7 @@ h4,
   font-size: clamp(28px, 1.7vw, 32px);
   line-height: 110%;
   @include max-1200 {
-    font-size: clamp(24px, 2.4vw, 28px);
+    font-size: 28px;
   }
   @include max-768 {
     font-size: clamp(20px, 4vw, 28px);
@@ -71,6 +71,19 @@ h4,
   font-weight: 400;
   font-size: 36px;
   line-height: 110%;
+
+  @include max-1440 {
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 28px;
+  }
+
+  @include max-1200 {
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 36px;
+  }
+  @include max-576{
+    font-size: 32px;
+  }
 }
 .subtitle1 {
   font-family: 'RockStar', sans-serif;
@@ -78,11 +91,11 @@ h4,
   font-weight: 400;
   font-size: clamp(20px, 1.25vw, 24px);
   line-height: 110%;
-  @include max-991 {
+  @include max-1200 {
     font-size: 28px;
   }
-  @include max-576 {
-    font-size: 32px;
+  @include max-768 {
+    font-size: calc(20px + (28 - 20) * ( (100vw - 375px) / ( 768 - 375) ));
   }
 }
 .subtitle2 {
@@ -92,10 +105,10 @@ h4,
   font-size: clamp(20px, 1.25vw, 24px);
   line-height: 110%;
   @include max-991 {
-    font-size: 24px;
+    font-size: calc(20px + (24 - 20) * ( (100vw - 768px) / ( 1024 - 768) ));
   }
   @include max-768 {
-    font-size: clamp(20px, 3.2vw, 24px);
+    font-size: 20px;
   }
 }
 .subtitle3 {
@@ -111,6 +124,12 @@ h4,
   font-weight: 400;
   font-size: clamp(18px, 1vw, 20px);
   line-height: 130%;
+  @include max-1440{
+    font-size: 16px;
+  }
+  @include max-1200{
+    font-size: 18px;
+  }
   @include max-768 {
     font-size: clamp(16px, 2.5vw, 18px);
   }
@@ -127,8 +146,11 @@ h4,
   font-family: 'Proxima Nova', sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
+  font-size: clamp(13px, 0.95vw, 18px);
   line-height: 100%;
+  @include max-1200{
+    font-size: 18px;
+  }
 
   @include max-768 {
     font-size: clamp(16px, 2.5vw, 18px);

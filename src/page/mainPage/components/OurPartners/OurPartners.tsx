@@ -29,16 +29,36 @@ const OurPartners = () => {
         </BootstrapTooltip>
       </div>
       <div className={style.OurPartnersContainer}>
-        <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/Binance.svg'}/>
-        <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/OKX.svg'}/>
-        <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/Bybit.svg'}/>
-        <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/KUCOIN.svg'}/>
-        <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/Bitget.svg'}/>
-        <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/MEXC.svg'}/>
-        <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/huobi.svg'}/>
-        <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/gateIO.svg'}/>
-        <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/Bitmart.svg'}/>
-        <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/Poloniex.svg'}/>
+        <div className={style.OurPartnersContainerImg}>
+          <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/Binance.svg'}/>
+        </div>
+        <div className={style.OurPartnersContainerImg}>
+          <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/OKX.svg'}/>
+        </div>
+        <div className={style.OurPartnersContainerImg}>
+          <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/Bybit.svg'}/>
+        </div>
+        <div className={style.OurPartnersContainerImg}>
+          <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/KUCOIN.svg'}/>
+        </div>
+        <div className={style.OurPartnersContainerImg}>
+          <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/Bitget.svg'}/>
+        </div>
+        <div className={style.OurPartnersContainerImg}>
+          <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/MEXC.svg'}/>
+        </div>
+        <div className={style.OurPartnersContainerImg}>
+          <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/huobi.svg'}/>
+        </div>
+        <div className={style.OurPartnersContainerImg}>
+          <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/gateIO.svg'}/>
+        </div>
+        <div className={style.OurPartnersContainerImg}>
+          <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/Bitmart.svg'}/>
+        </div>
+        <div className={style.OurPartnersContainerImg}>
+          <img src={'src/page/mainPage/components/OurPartners/logoPartnersImg/Poloniex.svg'}/>
+        </div>
       </div>
     </div>
   );

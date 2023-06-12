@@ -27,11 +27,28 @@ const VideoBlock = () => {
       <div className={style.MySwiperClass}>
         <Swiper
           spaceBetween={'1%'}
-          slidesPerView={2.68}
-          loop={true}
+          slidesPerView={'auto'}
           modules={[Navigation]}
           className={style.MySwiper}
           ref={sliderRef}
+          breakpoints={{
+            1367:{
+              spaceBetween: '1%',
+              slidesPerView: 'auto'
+            },
+            1024:{
+              spaceBetween: '2%',
+              slidesPerView: 'auto'
+            },
+            768:{
+              spaceBetween: '3%',
+              slidesPerView: 'auto'
+            },
+            320:{
+              spaceBetween: '5%',
+              slidesPerView: 'auto'
+            }
+          }}
         >
           <SwiperSlide className={style.swiperItem}>
             <img src={'src/page/mainPage/img/videoBlock/videoImage.png'}/>

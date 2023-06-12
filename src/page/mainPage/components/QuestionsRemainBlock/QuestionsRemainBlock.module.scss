@@ -8,27 +8,72 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 140px 150px 140px;
+  padding: 140px 150px 140px 140px;
   background: linear-gradient(95.29deg, #4176E0 0.8%, #2150AE 105.44%);
   border-radius: 40px;
+
+  @include max-1440{
+    padding: 114px 123px 114px 114px;
+  }
+  @include max-1365{
+    padding: calc(64px + (114 - 64) * ( (100vw - 1024px) / ( 1366 - 1024) ))
+    calc(68px + (123 - 68) * ( (100vw - 1024px) / ( 1366 - 1024) ));
+    gap: calc(232px + (190 - 232) * ( (100vw - 1024px) / ( 1366 - 1024) ));
+  }
+  @include max-991{
+    padding: 64px
+    calc(54px + (68 - 54) * ( (100vw - 768px) / ( 1024 - 768) ));
+    gap: calc(122px + (232 - 122) * ( (100vw - 768px) / ( 1024 - 768) ));
+    border-radius: calc(32px + (40 - 32) * ( (100vw - 768px) / ( 1024 - 768) ));
+  }
+  @include max-576{
+    gap: calc(32px + (122 - 32) * ( (100vw - 375px) / ( 768 - 375) ));
+    padding: 80px 16px 113px;
+    border-radius: 32px 32px 0px 0px;
+    flex-direction: column;
+  }
 
   .QuestionsRemainBlockText{
     display: flex;
     flex-direction: column;
     gap: 8px;
     color: #FFFFFF;
+
+    @include max-576{
+      width: 100%;
+      gap: 4px;
+    }
     &>div{
       margin-bottom: 0px;
     }
 
-    h2{
+    .h2{
       color: #FFFFFF;
+      margin-bottom: 0px;
     }
   }
 
   .QuestionsRemainBlockButton{
     button{
       padding: 20px 46px;
+      @include max-1365{
+        font-size: calc(16px + (18 - 16) * ( (100vw - 1024px) / ( 1366 - 1024) ));
+        padding: calc(16px + (20 - 16) * ( (100vw - 1024px) / ( 1366 - 1024) ))
+        46px;
+      }
+      @include max-991{
+        font-size: 18px;
+        padding: calc(20px + (16 - 20) * ( (100vw - 768px) / ( 1024 - 768) ))
+        46px;
+      }
+      @include max-576{
+        padding: 16px 0px;
+        font-size: 16px;
+        width: 100%;
+      }
+    }
+    @include max-576{
+      width: 100%;
     }
   }
 }

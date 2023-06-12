@@ -11,7 +11,7 @@ const InfoAboutTgBotsBlock = () => {
           <h3>В дополнение к браузерной версии сервис предоставляет удобные телеграм боты для межбиржевого и внутрибиржевого арбитража.</h3>
           <AppButton color={'primary'}>Перейти</AppButton>
         </div>
-        <div>
+        <div className={style.InfoAboutTgBotsBlockImg}>
           <img src='src/page/mainPage/components/InfoAboutTgBotsBlock/img/InfoAboutTgBotsBlockImg.png'/>
         </div>
       </div>

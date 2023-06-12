@@ -47,7 +47,7 @@ const QuestionAnswerBlock = () => {
 
   return (
     <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
-    <BlockTitle value={"Вопрос-ответ"}/>
+    <BlockTitle className={style.h2} value={"Вопрос-ответ"}/>
     <div className={style.questionAnswerAccordion}>
       <Accordion onChange={handleChange('panel1')}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
@@ -104,45 +104,6 @@ const QuestionAnswerBlock = () => {
     </div>
     </div>
   );
-
-  // return (
-  //   <div className={classNames(style.mainPageContainer, style.container, style.spacing_between_blocks)}>
-  //
-  //     <BlockTitle value={"Вопрос-ответ"}/>
-  //     <div>
-  //       <Accordion className={style.questionAnswerAccordion}>
-  //         <AccordionSummary
-  //           expandIcon={<AddIcon />}
-  //           aria-controls="panel1a-content"
-  //           id="panel1a-header"
-  //         >
-  //           <Typography>Accordion 1</Typography>
-  //         </AccordionSummary>
-  //         <AccordionDetails>
-  //           <Typography>
-  //             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-  //             malesuada lacus ex, sit amet blandit leo lobortis eget.
-  //           </Typography>
-  //         </AccordionDetails>
-  //       </Accordion>
-  //       <Accordion className={style.questionAnswerAccordion}>
-  //         <AccordionSummary
-  //           expandIcon={<AddIcon />}
-  //           aria-controls="panel2a-content"
-  //           id="panel2a-header"
-  //         >
-  //           <Typography>Accordion 2</Typography>
-  //         </AccordionSummary>
-  //         <AccordionDetails>
-  //           <Typography>
-  //             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-  //             malesuada lacus ex, sit amet blandit leo lobortis eget.
-  //           </Typography>
-  //         </AccordionDetails>
-  //       </Accordion>
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default QuestionAnswerBlock;

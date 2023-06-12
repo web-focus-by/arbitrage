@@ -126,6 +126,9 @@ body {
   background: var(--background-color);
   color: var(--text-color);
   transition: color $transition-time $transition-animate, background-color $transition-time $transition-animate;
+  @include max-1200{
+    overflow-x: initial;
+  }
 }
 
 button {
@@ -161,20 +164,6 @@ button {
   margin: 0 auto;
   max-width: 1440px;
   width: 100%;
-  &Padding {
-    padding: 0 80px;
-    @include max-1200 {
-      padding: 0 65px;
-    }
-    @include max-991 {
-      padding: 0 40px;
-    }
-    @include max-768 {
-      padding: 0 clamp(16px, 5.2vw, 40px);
-    }
-    @include max-576 {
-      padding: 0 16px;
-    }
   &Padding {
     @include max-1440 {
       padding: 0 80px;

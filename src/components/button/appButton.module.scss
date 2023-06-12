@@ -12,6 +12,10 @@
   &:hover {
     background-color: $color-blue-1;
   }
+
+  @include max-1440{
+    border-radius: 8px;
+  }
 }
 
 .primary {

@@ -5,4 +5,14 @@
 
 .blockTitle{
   margin-bottom: 56px;
+
+  @include max-1440{
+    margin-bottom: 40px;
+  }
+  @include max-1200{
+    margin-bottom: 36px;
+  }
+  @include max-768{
+    margin-bottom: calc(26px + (36 - 26) * ( (100vw - 375px) / ( 768 - 375) ));
+  }
 }
