@@ -164,7 +164,7 @@ const Header = () => {
                     <path d="M5 8H27" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M5 24H27" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <div className={classNames(style.burgerTextBlock, { [style.isOpenBurgerMenu]: isOpenBurger })}>
+                  <div className={classNames(style.burgerTextBlock, { [style.openBurgerMenu]: isOpenBurger })}>
                     <div className={style.burgerMobileMenu}>
                       <nav className={style.header__nav}>
                         <ul className={style.header__nav__list}>

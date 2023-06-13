@@ -1,6 +1,7 @@
 import style from './InfoAboutTgBotsBlock.module.scss';
 import classNames from 'classnames';
 import AppButton from '../../../../components/button/AppButton';
+import imgInfoAboutTgBotsBlock from '../../../../../public/mainPage/InfoAboutTgBotsBlockImg.png';
 
 const InfoAboutTgBotsBlock = () => {
   return (
@@ -14,7 +15,7 @@ const InfoAboutTgBotsBlock = () => {
           <AppButton color={'primary'}>Перейти</AppButton>
         </div>
         <div className={style.InfoAboutTgBotsBlockImg}>
-          <img src="src/page/mainPage/components/InfoAboutTgBotsBlock/img/InfoAboutTgBotsBlockImg.png" />
+          <img src={imgInfoAboutTgBotsBlock} />
         </div>
       </div>
     </div>
