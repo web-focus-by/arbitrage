@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: Arbitrage Services WebSocket API
+  version: 0.1.0
+
+servers:
+  - url: ws://185.240.103.242:50052
+
+paths:
+
+  /spreads:
+    get:
+      summary: Получение спредов
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  spreads:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/spread'
+
+
+        '400':
+          description: Required parameter is missing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+        '406':
+          description: Token expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+components:
+  schemas:
+
+    spread:
+      type: object
+      properties:
+        base_coin:
+          type: string
+          description: Базовая монета, а паре BTC/USDT - BTC
+          required: true
+        quote_coin:
+          type: string
+          description: Базовая монета, а паре BTC/USDT - USDT
+          required: true
+        ask_market:
+          type: string
+          description: Биржа покупки
+          required: true
+        ask_url:
+          type: string
+          description: Ссылка на монету на бирже покупки
+          required: true
+        bid_market:
+          type: string
+          description: Биржа продажи
+          required: true
+        bid_url:
+          type: string
+          description: Ссылка на монету на бирже продажи
+          required: true
+        profit_spread:
+          type: string
+          description: Прибыль в долларах
+          required: true
+        percent_spread:
+          type: string
+          description: Прибыль в процентах
+          required: true
+        ask_volume:
+          type: string
+          description: Сумма покупки
+          required: true
+        bid_volume:
+          type: string
+          description: Сумма продажи
+          required: true
+        avg_ask_price:
+          type: string
+          description: Средняя цена покупки
+          required: true
+        avg_bid_price:
+          type: string
+          description: Средняя цена продажи
+          required: true
+        ask_monets_volume:
+          type: string
+          description: Количество монет к покупке
+          required: true
+        bid_monets_volume:
+          type: string
+          description: Количество монет к продаже
+          required: true
+        withdraw_fee:
+          type: string
+          description: Комиссия сети в монетах
+          required: true
+        ask_spot_fee:
+          type: string
+          description: Комиссия спота на бирже покупки в долларах
+          required: true
+        bid_spot_fee:
+          type: string
+          description: Комиссия спота на бирже продажи в долларах
+          required: true
+        network:
+          type: string
+          description: Сеть перевода
+          required: true
+        ask_index:
+          type: integer
+          description: Диапазон ордеров для покупки
+          required: true
+        ask_limits_start:
+          type: string
+          required: false
+          description: Начало диапазона цен на покупку, если только один ордер - отсутствует
+        ask_limits_end:
+          type: string
+          required: false
+          description: Конец диапазона цен на покупку, если только один ордер - отсутствует
+        bid_index:
+          type: integer
+          description: Диапазон ордеров для продажи
+          required: true
+        bid_limits_start:
+          type: string
+          required: false
+          description: Начало диапазона цен на продажу, если только один ордер - отсутствует
+        bid_limits_end:
+          type: string
+          required: false
+          description: Конец диапазона цен на продажу, если только один ордер - отсутствует
+        hedge:
+          type: integer
+          description: 0 - нет хеджа, 1 - есть хедж
+          required: true
+        withdraw_time_category:
+          type: integer
+          description: 0 - зелёный, 1 - жёлтый, 2 - красный; может отсутствовать
+          required: false
+        withdraw_time_text:
+          type: string
+          description: Текстовое описание времени
+          required: false
+
+    error_message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Описание ошибки

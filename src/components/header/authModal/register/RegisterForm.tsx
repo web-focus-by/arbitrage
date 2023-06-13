@@ -52,10 +52,10 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    if (auth.user) {
+    if (auth) {
       setIsOpen(true);
     }
-  }, [auth.user]);
+  }, [auth]);
 
   const navigateHandler = () => {
     navigate('/private');

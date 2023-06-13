@@ -2,5 +2,8 @@
   "modal.login": "Вход",
   "modal.auth": "Регистрация",
   "link": "Ссылка",
-  "delete": "Удалить"
+  "delete": "Удалить",
+  "select.options": "Выберите вариант",
+  "filter": "Фильтр",
+  "video": "Видео"
 }

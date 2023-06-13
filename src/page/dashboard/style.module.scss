@@ -1,0 +1,46 @@
+@import '../../style/media';
+
+.wrapper {
+  margin-top: clamp(80px, 5.3vw, 100px);
+  @include max-1200 {
+    margin-top: 85px;
+  }
+  @include max-991 {
+    margin-top: 70px;
+  }
+  @include max-576 {
+    margin-top: 50px;
+  }
+}
+
+.container {
+  max-width: calc(1520px + 80px * 2);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
+  @include max-1440 {
+    max-width: calc(1235px + 65.5px * 2);
+  }
+
+  &Padding {
+    @include max-1440 {
+      padding: 0 65px;
+    }
+
+    @include max-991 {
+      padding: 0 40px;
+    }
+    @include max-768 {
+      padding: 0 clamp(16px, 5.2vw, 40px);
+    }
+    @include max-576 {
+      padding: 0 16px;
+    }
+  }
+}
+
+.title {
+  @include max-576 {
+    word-break: break-word;
+  }
+}

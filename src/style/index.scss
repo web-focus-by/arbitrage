@@ -23,6 +23,29 @@
   --secondary-border-color: #{$color-black};
   --secondary-disabled-border-color: #{$color-gray-3};
   --secondary-disabled-color: #{$color-gray-3};
+
+  //check-box-style
+  --check-box-checked-color: #{$color-black};
+
+  //switch-style
+  --switch-color: #{$color-white};
+  --switch-unchecked-background-color: #{$color-gray-5};
+  --switch-checked-background-color: #{$color-blue-1};
+  --switch-disabled-background-color: #{$color-blue-5};
+  --switch-hover-checked-background-color: #{$color-blue-4};
+  --switch-hover-unchecked-background-color: #{$color-gray-8};
+  --switch-pressed-unchecked-background-color: #{$color-gray-9};
+  --switch-pressed-checked-background-color: #{$color-blue-3};
+
+  //table-style
+  --table-head-background-color: #{$color-white};
+  --table-body-background-color: #{$color-white};
+  --table-text-color: #{$color-black};
+
+  //pagination-style
+  --pagination-background-color: #{$color-blue-1};
+  --pagination-text-color: #{$color-blue-1};
+  --pagination-selected-text-color: #{$color-white-1};
 }
 
 :root[data-theme='dark'] {
@@ -46,6 +69,29 @@
   --secondary-border-hover-color: #{$color-gray-1};
   --secondary-disabled-border-color: #{$color-gray-3};
   --secondary-disabled-color: #{$color-gray-3};
+
+  //check-box-style
+  --check-box-checked-color: #{$color-blue-1};
+
+  //switch-style
+  --switch-color: #{$color-white};
+  --switch-unchecked-background-color: #{$color-gray-5};
+  --switch-checked-background-color: #{$color-blue-1};
+  --switch-disabled-background-color: #{$color-blue-5};
+  --switch-hover-checked-background-color: #{$color-blue-6};
+  --switch-hover-unchecked-background-color: #{$color-gray-6};
+  --switch-pressed-unchecked-background-color: #{$color-gray-7};
+  --switch-pressed-checked-background-color: #{$color-blue-7};
+
+  //table-style
+  --table-head-background-color: #{$color-black};
+  --table-body-background-color: #{$color-black};
+  --table-text-color: #{$color-white};
+
+  //pagination-style
+  --pagination-background-color: #{$color-blue-8};
+  --pagination-text-color: #{$color-blue-8};
+  --pagination-selected-text-color: #{$color-white-1};
 }
 //
 //:root[data-theme='light'] {
@@ -134,18 +180,22 @@ button {
   margin: 0 auto;
   max-width: 1440px;
   width: 100%;
-  padding: 0 80px;
-  @include max-1200 {
-    padding: 0 65px;
-  }
-  @include max-991 {
-    padding: 0 40px;
-  }
-  @include max-768 {
-    padding: 0 clamp(16px, 5.2vw, 40px);
-  }
-  @include max-576 {
-    padding: 0 16px;
+  &Padding {
+    @include max-1440 {
+      padding: 0 80px;
+    }
+    @include max-1200 {
+      padding: 0 65px;
+    }
+    @include max-991 {
+      padding: 0 40px;
+    }
+    @include max-768 {
+      padding: 0 clamp(16px, 5.2vw, 40px);
+    }
+    @include max-576 {
+      padding: 0 16px;
+    }
   }
 }
 
@@ -157,4 +207,8 @@ ul {
 .button-padding {
   padding-left: 46px;
   padding-right: 46px;
+}
+
+path {
+  transition: fill $transition-time $transition-animate;
 }

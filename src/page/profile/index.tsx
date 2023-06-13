@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import Header from '../../components/header/Header.tsx';
 import Footer from '../../components/footer/Footer.tsx';
 import { useIntl } from 'react-intl';
@@ -7,6 +6,7 @@ import AppButton from '../../components/button/AppButton.tsx';
 import AppLink from '../../components/link/AppLink.tsx';
 import classNames from 'classnames';
 import ProfileForm from './components/profileForm/ProfileForm.tsx';
+import useWindow from '../../hooks/useWindow.ts';
 
 const additionalData = [
   { name: 'profile.additional.resources.inter.exchange.bot', link: '/' },
@@ -15,24 +15,12 @@ const additionalData = [
 ];
 const Profile = () => {
   const { formatMessage } = useIntl();
-  const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
-
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setWindowSize(() => ({ width: window.innerWidth, height: window.innerHeight }));
-    };
-
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
+  const { windowSize } = useWindow();
 
   return (
     <>
       <Header />
-      <div className={'container'}>
+      <div className={'container containerPadding'}>
         <div className={style.wrapper}>
           <h3 className={classNames({ h1: windowSize.width < 1200 })}>{formatMessage({ id: 'profile.title' })}</h3>
           <div className={style.content}>
