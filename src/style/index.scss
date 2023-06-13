@@ -36,6 +36,16 @@
   --switch-hover-unchecked-background-color: #{$color-gray-8};
   --switch-pressed-unchecked-background-color: #{$color-gray-9};
   --switch-pressed-checked-background-color: #{$color-blue-3};
+
+  //table-style
+  --table-head-background-color: #{$color-white};
+  --table-body-background-color: #{$color-white};
+  --table-text-color: #{$color-black};
+
+  //pagination-style
+  --pagination-background-color: #{$color-blue-1};
+  --pagination-text-color: #{$color-blue-1};
+  --pagination-selected-text-color: #{$color-white-1};
 }
 
 :root[data-theme='dark'] {
@@ -72,6 +82,16 @@
   --switch-hover-unchecked-background-color: #{$color-gray-6};
   --switch-pressed-unchecked-background-color: #{$color-gray-7};
   --switch-pressed-checked-background-color: #{$color-blue-7};
+
+  //table-style
+  --table-head-background-color: #{$color-black};
+  --table-body-background-color: #{$color-black};
+  --table-text-color: #{$color-white};
+
+  //pagination-style
+  --pagination-background-color: #{$color-blue-8};
+  --pagination-text-color: #{$color-blue-8};
+  --pagination-selected-text-color: #{$color-white-1};
 }
 //
 //:root[data-theme='light'] {

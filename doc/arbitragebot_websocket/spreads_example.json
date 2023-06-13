@@ -1,0 +1,30 @@
+{
+    "data":
+    [
+        {
+            "user_id": 1052189519,
+            "spreads":
+            [
+                {
+                    "monet": "BTC/USDT",
+                    "ask_market": "binance",
+                    "bid_market": "bybit",
+                    "profit_spread": "10",
+                    "percent_spread": "1.22",
+                    "ask_volume": "1000.2",
+                    "bid_volume": "1020.3",
+                    "avg_ask_price": "23000.1",
+                    "avg_bid_price": "23100.2",
+                    "volume": "0.043",
+                    "withdraw_fee": "0.0004",
+                    "ask_spot_fee": "0.4",
+                    "bid_spot_fee": "0.41",
+                    "network": "ERC20",
+                    "ask_index": 2,
+                    "bid_index": 3,
+                    "hedge": true
+                }
+            ]
+        }
+    ]
+}

@@ -1,9 +1,10 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { RootState } from '../store';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQuery } from '../utils/query.ts';
+import { apiUserInfo } from './userInfo.ts';
+import { apiTable } from './table.ts';
 
 export interface IUser {
   fee: number;
-  hedge_type: number;
   markets_buy: string[];
   markets_sell: string[];
   max_pages: number;
@@ -12,6 +13,9 @@ export interface IUser {
   profit_spread: number;
   volume_max: number;
   volume_min: number;
+  monitoring: 0 | 1;
+  risk_type: 0 | 1;
+  hedge_type: 0 | 1;
 }
 
 export interface IUserResponse {
@@ -19,6 +23,8 @@ export interface IUserResponse {
   access_token: string;
   refresh_token: string;
 }
+
+export type TCredentialsRestore = Omit<IUserResponse, 'user_info'>;
 
 export interface ILoginRequest {
   email: string;
@@ -34,16 +40,8 @@ export interface ICustomError {
 
 export const apiAuth = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: '/api',
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth.accessToken;
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: baseQuery,
+  tagTypes: ['Auth'],
   endpoints: (builder) => ({
     login: builder.mutation<IUserResponse, ILoginRequest>({
       query: (credentials) => ({
@@ -53,9 +51,16 @@ export const apiAuth = createApi({
       }),
       transformResponse: (response: IUserResponse) => {
         localStorage.setItem('token', response.access_token);
-        localStorage.setItem('user', JSON.stringify(response.user_info));
+        localStorage.setItem('refresh_token', response.refresh_token);
         return { ...response };
       },
+    }),
+    refresh: builder.mutation<IUserResponse, void>({
+      query: (credentials) => ({
+        url: '/refresh',
+        method: 'POST',
+        body: credentials,
+      }),
     }),
     signup: builder.mutation<IUserResponse, ILoginRequest>({
       query: (credentials) => ({
@@ -65,15 +70,22 @@ export const apiAuth = createApi({
       }),
       transformResponse: (response: IUserResponse) => {
         localStorage.setItem('token', response.access_token);
-        localStorage.setItem('user', JSON.stringify(response.user_info));
+        localStorage.setItem('refresh_token', response.refresh_token);
         return { ...response };
       },
     }),
-
-    protected: builder.mutation<{ message: string }, void>({
-      query: () => 'protected',
+    logout: builder.mutation<void, void>({
+      query: () => ({
+        url: '/logout',
+        method: 'POST',
+      }),
+      invalidatesTags: ['Auth'],
+      async onQueryStarted(_, { dispatch }) {
+        dispatch(apiTable.util.resetApiState());
+        dispatch(apiUserInfo.util.resetApiState());
+      },
     }),
   }),
 });
 
-export const { useLoginMutation, useProtectedMutation, useSignupMutation } = apiAuth;
+export const { useLoginMutation, useSignupMutation, useLogoutMutation } = apiAuth;

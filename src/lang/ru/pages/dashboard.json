@@ -39,5 +39,11 @@
   "dashboard.table.head.network": "Сеть",
   "dashboard.table.head.fee.network": "Комиссия сети",
   "dashboard.table.head.time": "Время",
-  "dashboard.table.head.hedge": "Хеджирование"
+  "dashboard.table.head.hedge": "Хеджирование",
+  "dashboard.table.multiline.spread.text": "Ещё {count} спредов",
+  "dashboard.tooltip.income": "Минимальная чистая прибыль за сделку",
+  "dashboard.tooltip.spread": "Минимальный спред за сделку",
+  "dashboard.tooltip.max.fee": "Максимальная комиссия за вывод",
+  "dashboard.tooltip.hedge": "При заполнении ячейки будут приходить только спреды с возможностью хеджирования. Подробно о хеджировании рассказываем в {video}",
+  "dashboard.tooltip.height.risk": "В режиме «высокий риск» добавятся спреды больше 10%. Новичкам не рекомендуется выбирать режим \"Высокий риск\". Часто большие спреды возникают в случае пампов (резкого роста цены), которые советуем пропускать, так как курс в любой момент может сильно упасть."
 }

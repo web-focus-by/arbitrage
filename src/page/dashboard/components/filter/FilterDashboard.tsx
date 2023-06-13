@@ -1,55 +1,70 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import style from './filterDashboard.module.scss';
 import { useIntl } from 'react-intl';
 import { useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import AppCheckbox from '../../../../components/checkbox/AppCheckbox.tsx';
 import useWindow from '../../../../hooks/useWindow.ts';
-import { Controller, SubmitHandler, useForm, UseFormGetValues } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import AppButton from '../../../../components/button/AppButton.tsx';
-import { useAuth } from '../../../../hooks/useAuth.ts';
-import { SHOP_ARR } from '../../../../constants';
 import AppTextField from '../../../../components/input/AppTextField.tsx';
 import AppAutocomplete, { TAppAutocompleteOptions } from '../../../../components/autocomplete/AppAutocomplete.tsx';
 import AppSwitch from '../../../../components/switch/AppSwitch.tsx';
+import { selectAllMarkets } from '../../../../features/general/generalSelect.ts';
+import { useAppSelector } from '../../../../store/hooks.ts';
+import { selectUserInfo } from '../../../../features/userInfo/userInfoSelect.ts';
+import Modal from '../../../../components/modal/Modal.tsx';
+import {
+  CheckboxAll,
+  checkboxesHandler,
+  CheckboxGroup,
+  getDefaultFormData,
+  getEmptyFormData,
+  IFilterSelect,
+  schema,
+  transformFormData,
+} from './filterDashboard.ts';
+import { useUpdateUserInfoMutation } from '../../../../services/userInfo.ts';
+import { yupResolver } from '@hookform/resolvers/yup';
+import AppLink from '../../../../components/link/AppLink.tsx';
 
-interface IFilterSelect {
-  [key: string]: boolean | string | string[] | TAppAutocompleteOptions[] | IFilterSelect;
-}
-
-enum CheckboxGroup {
-  buy = 'buy',
-  sell = 'sell',
-}
-
-enum CheckboxAll {
-  buy = 'buyAll',
-  sell = 'sellAll',
-}
-
-const checkboxes = (row: CheckboxGroup) => {
-  return [
-    ...SHOP_ARR.map((el) => ({
-      name: el.toLowerCase(),
-      checkboxGroup: row,
-      label: 'dashboard.select.' + el.toLowerCase(),
-    })),
-  ];
-};
 const FilterDashboard = () => {
   const { formatMessage } = useIntl();
   const { windowSize } = useWindow();
+  const [isOpen, setIsOpen] = useState(false);
   const [buyIndeterminate, setBuyIndeterminate] = useState(false);
   const [sellIndeterminate, setSellIndeterminate] = useState(false);
-  const { user } = useAuth();
+  const [updateUserInfo] = useUpdateUserInfoMutation();
+  const user = useAppSelector(selectUserInfo);
+  const markets = useAppSelector(selectAllMarkets);
+
+  const marketNameArray = useMemo(() => {
+    return markets.map((el) => el.market);
+  }, [markets]);
+
+  const closeModalHandler = () => {
+    setIsOpen(false);
+  };
 
   const blackListCoinsOptions: TAppAutocompleteOptions[] = useMemo(() => {
-    // return user?.blacklist_coins.map((el) => el.toLowerCase());
-    return SHOP_ARR.map((el) => ({
-      title: el,
-      value: el.toLowerCase(),
+    return markets.map((el) => ({
+      title: el.name,
+      value: el.market,
     }));
-  }, []);
+  }, [markets]);
+
+  const checkboxes = useCallback(
+    (row: CheckboxGroup) => {
+      return [
+        ...markets.map((el) => ({
+          name: el.market,
+          checkboxGroup: row,
+          label: el.name,
+        })),
+      ];
+    },
+    [markets],
+  );
 
   const {
     watch,
@@ -57,14 +72,17 @@ const FilterDashboard = () => {
     handleSubmit,
     getValues,
     setValue,
-    formState: { errors },
+    reset,
+    formState: { errors, isValid },
   } = useForm<IFilterSelect>({
-    defaultValues: {
-      buy: user?.markets_buy.reduce((acc, val) => ({ ...acc, [val]: true }), {}),
-      sell: user?.markets_sell.reduce((acc, val) => ({ ...acc, [val]: true }), {}),
-      blackListNetwork: [],
-      blackListCoins: [],
-    },
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+    defaultValues: useMemo(() => {
+      if (user) {
+        return getDefaultFormData(user, marketNameArray);
+      }
+      return getEmptyFormData();
+    }, [user, marketNameArray]),
   });
 
   const subtitleClass = useMemo(() => {
@@ -74,13 +92,24 @@ const FilterDashboard = () => {
     return 'subtitle3';
   }, [windowSize.width]);
 
-  const submitForm: SubmitHandler<IFilterSelect> = (data) => {
+  const submitForm: SubmitHandler<IFilterSelect> = async (data) => {
     console.log(data);
+    try {
+      if (isValid) {
+        const response = await updateUserInfo(transformFormData(data)).unwrap();
+        console.log({ response });
+      }
+    } catch (error) {
+      //TODO handle error
+      console.log({ error });
+    }
+
+    closeModalHandler();
   };
 
   useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name?.includes(CheckboxGroup.buy) && value[CheckboxGroup.buy]) {
+    const subscription = watch((value, { name, type }) => {
+      if ((name?.includes(CheckboxGroup.buy) && value[CheckboxGroup.buy]) || type === undefined) {
         checkboxesHandler(
           value as IFilterSelect,
           setBuyIndeterminate,
@@ -90,7 +119,7 @@ const FilterDashboard = () => {
           CheckboxAll.buy,
         );
       }
-      if (name?.includes(CheckboxGroup.sell) && value[CheckboxGroup.sell]) {
+      if ((name?.includes(CheckboxGroup.sell) && value[CheckboxGroup.sell]) || type === undefined) {
         checkboxesHandler(
           value as IFilterSelect,
           setSellIndeterminate,
@@ -109,17 +138,20 @@ const FilterDashboard = () => {
   }, [errors]);
 
   useEffect(() => {
-    console.log({ user });
-  }, [user]);
+    if (user) {
+      reset(getDefaultFormData(user, marketNameArray));
+    }
+  }, [reset, user, marketNameArray]);
 
-  return (
+  const Form = (
     <form onSubmit={handleSubmit(submitForm)}>
+      {windowSize.width < 991 && <span className={'h1'}>{formatMessage({ id: 'filter' })}</span>}
       <div className={style.rowWrapper}>
         <div className={'subtitle2'}>{formatMessage({ id: 'dashboard.select.subtitle' })}</div>
         <div>
           <div className={style.subRowWrapper}>
             <div className={classNames(subtitleClass)}>{formatMessage({ id: 'dashboard.select.buy' })}</div>
-            <div>
+            <div className={style.checkBoxWrapper}>
               <Controller
                 name={CheckboxAll.buy}
                 control={control}
@@ -146,14 +178,14 @@ const FilterDashboard = () => {
               {checkboxes(CheckboxGroup.buy).map((item, index) => (
                 <Controller
                   name={item.checkboxGroup + '.' + item.name}
-                  key={item.label + index}
+                  key={item.name + index}
                   control={control}
                   render={({ field }) => (
                     <AppCheckbox
                       checkboxProps={{
                         ...field,
                       }}
-                      formControlLabelProps={{ label: formatMessage({ id: item.label }) }}
+                      formControlLabelProps={{ label: item.label }}
                     />
                   )}
                 />
@@ -162,7 +194,7 @@ const FilterDashboard = () => {
           </div>
           <div className={style.subRowWrapper}>
             <div className={classNames(subtitleClass)}>{formatMessage({ id: 'dashboard.select.sell' })}</div>
-            <div>
+            <div className={style.checkBoxWrapper}>
               <Controller
                 name={CheckboxAll.sell}
                 control={control}
@@ -189,14 +221,14 @@ const FilterDashboard = () => {
               {checkboxes(CheckboxGroup.sell).map((item, index) => (
                 <Controller
                   name={item.checkboxGroup + '.' + item.name}
-                  key={item.label + index}
+                  key={item.name + index}
                   control={control}
                   render={({ field }) => (
                     <AppCheckbox
                       checkboxProps={{
                         ...field,
                       }}
-                      formControlLabelProps={{ label: formatMessage({ id: item.label }) }}
+                      formControlLabelProps={{ label: item.label }}
                     />
                   )}
                 />
@@ -210,7 +242,7 @@ const FilterDashboard = () => {
         <div>
           <div className={classNames(style.subRowWrapper, style.inputRowWrapper)}>
             <Controller
-              name={'valueMin'}
+              name={'volumeMin'}
               control={control}
               render={({ field }) => {
                 return (
@@ -219,17 +251,19 @@ const FilterDashboard = () => {
                     onChange={field.onChange}
                     name={field.name}
                     type={'text'}
-                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                    inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                     variant={'standard'}
                     label={formatMessage({ id: 'dashboard.input.value.min' })}
                     placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                     classes={{ root: style.textFieldWrapper }}
+                    error={!!errors.volumeMin}
+                    helperText={errors.volumeMin && formatMessage({ id: 'error.' + errors.volumeMin?.type })}
                   />
                 );
               }}
             />
             <Controller
-              name={'valueMax'}
+              name={'volumeMax'}
               control={control}
               render={({ field }) => (
                 <AppTextField
@@ -237,11 +271,13 @@ const FilterDashboard = () => {
                   onChange={field.onChange}
                   name={field.name}
                   type={'text'}
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
                   label={formatMessage({ id: 'dashboard.input.value.max' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                   classes={{ root: style.textFieldWrapper }}
+                  error={!!errors.volumeMax}
+                  helperText={errors.volumeMax && formatMessage({ id: 'error.' + errors.volumeMax?.type })}
                 />
               )}
             />
@@ -254,11 +290,13 @@ const FilterDashboard = () => {
                   onChange={field.onChange}
                   name={field.name}
                   type={'text'}
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
                   label={formatMessage({ id: 'dashboard.input.value.profit' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                   classes={{ root: style.textFieldWrapper }}
+                  error={!!errors.profit}
+                  helperText={errors.profit && formatMessage({ id: 'error.' + errors.profit?.type })}
                 />
               )}
             />
@@ -271,11 +309,13 @@ const FilterDashboard = () => {
                   onChange={field.onChange}
                   name={field.name}
                   type={'text'}
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
                   label={formatMessage({ id: 'dashboard.input.value.profit.spread' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                   classes={{ root: style.textFieldWrapper }}
+                  error={!!errors.profitSpread}
+                  helperText={errors.profitSpread && formatMessage({ id: 'error.' + errors.profitSpread?.type })}
                 />
               )}
             />
@@ -318,11 +358,15 @@ const FilterDashboard = () => {
                   onChange={field.onChange}
                   name={field.name}
                   type={'text'}
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', 'aria-valuemin': 0 }}
+                  inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
                   label={formatMessage({ id: 'dashboard.input.value.fee.max' })}
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
-                  classes={{ root: style.textFieldWrapper }}
+                  classes={{
+                    root: classNames(style.textFieldWrapper, style.lastTextWrapper),
+                  }}
+                  error={!!errors.fee}
+                  helperText={errors.fee && formatMessage({ id: 'error.' + errors.fee?.type })}
                 />
               )}
             />
@@ -334,7 +378,10 @@ const FilterDashboard = () => {
                   checkboxProps={{
                     ...field,
                   }}
-                  formControlLabelProps={{ label: formatMessage({ id: 'dashboard.input.value.high.risk' }) }}
+                  formControlLabelProps={{
+                    label: formatMessage({ id: 'dashboard.input.value.high.risk' }),
+                    tooltip: formatMessage({ id: 'dashboard.tooltip.height.risk' }),
+                  }}
                 />
               )}
             />
@@ -346,70 +393,60 @@ const FilterDashboard = () => {
                   checkboxProps={{
                     ...field,
                   }}
-                  formControlLabelProps={{ label: formatMessage({ id: 'dashboard.input.value.hedge.type' }) }}
+                  formControlLabelProps={{
+                    label: formatMessage({ id: 'dashboard.input.value.hedge.type' }),
+                    tooltip: formatMessage(
+                      { id: 'dashboard.tooltip.hedge' },
+                      {
+                        video: (
+                          <AppLink to={'https://youtu.be/PhgUKN4ZHxY'} target={'_blank'} referrerPolicy={'no-referrer'}>
+                            {formatMessage({ id: 'video' })}
+                          </AppLink>
+                        ),
+                      },
+                    ),
+                  }}
                 />
               )}
             />
             <Controller
               name={'notification'}
               control={control}
-              render={({ field: { ref, value, onChange } }) => (
+              render={({ field }) => (
                 <AppSwitch
-                  switchProps={{ inputRef: ref, value: value, onChange: onChange }}
+                  switchProps={{ ...field }}
                   formControlLabelProps={{ label: formatMessage({ id: 'dashboard.input.value.send.notification' }) }}
                 />
               )}
             />
-            <AppButton type={'submit'}>{formatMessage({ id: 'dashboard.submit' })}</AppButton>
+            <div className={style.btnWrapper}>
+              <AppButton type={'submit'} classes={{ root: style.btn }}>
+                {formatMessage({ id: 'dashboard.submit' })}
+              </AppButton>
+            </div>
           </div>
         </div>
       </div>
     </form>
   );
-};
 
-interface ICheckboxHandler {
-  (
-    value: IFilterSelect,
-    setIndeterminateHandler: (value: boolean) => void,
-    getValues: UseFormGetValues<IFilterSelect>,
-    setValue: (name: string, value: boolean) => void,
-    checkboxType: CheckboxGroup,
-    checkboxAll: CheckboxAll,
-  ): void;
-}
-
-const checkboxesHandler: ICheckboxHandler = (
-  value,
-  setIndeterminateHandler,
-  getValues,
-  setValue,
-  checkboxType,
-  checkboxAll,
-) => {
-  if (!value[checkboxType]) return;
-  const isSomeSelected = Object.entries(value[checkboxType]).some((el) => {
-    if (el[1] === true) {
-      setIndeterminateHandler(true);
-      return true;
-    }
-    return false;
-  });
-  const isAllSelected = Object.entries(value[checkboxType]).every((el) => {
-    return el[1] === true;
-  });
-
-  if (isAllSelected) {
-    if (!getValues(checkboxAll) || getValues(checkboxAll) === undefined) {
-      setValue(checkboxAll, true);
-    }
-  } else {
-    if (getValues(checkboxAll)) {
-      setValue(checkboxAll, false);
-    }
+  if (windowSize.width > 991) {
+    return Form;
   }
-
-  if (!isSomeSelected) setIndeterminateHandler(false);
+  return (
+    <div className={style.filterButton}>
+      <AppButton
+        classes={{ root: style.btnPadding }}
+        color={'secondary'}
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        {formatMessage({ id: 'filter' })}
+      </AppButton>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} children={Form} classNames={style.modalWrapper} />
+    </div>
+  );
 };
 
 export default FilterDashboard;

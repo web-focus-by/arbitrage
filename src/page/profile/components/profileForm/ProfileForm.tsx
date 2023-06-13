@@ -5,8 +5,6 @@ import { VALIDATION_REGEX } from '../../../../constants';
 import AppButton from '../../../../components/button/AppButton.tsx';
 import { IUserRegister } from '../../../../components/header/authModal/register/RegisterForm.tsx';
 import { useIntl } from 'react-intl';
-import { useEffect } from 'react';
-import { useGetUserInfoQuery } from '../../../../services/userInfo.ts';
 
 interface IProfileForm extends IUserRegister {
   newPassword?: string;
@@ -15,7 +13,6 @@ interface IProfileForm extends IUserRegister {
 
 const ProfileForm = () => {
   const { formatMessage } = useIntl();
-  const { data, error, isLoading } = useGetUserInfoQuery('');
   const {
     control,
     watch,
@@ -28,10 +25,6 @@ const ProfileForm = () => {
   const submitHandler: SubmitHandler<IProfileForm> = (data) => {
     console.log(data);
   };
-
-  useEffect(() => {
-    console.log({ data, error, isLoading });
-  }, [data, error, isLoading]);
 
   return (
     <form onSubmit={handleSubmit(submitHandler)} className={style.formSectionWrapper}>
