@@ -146,7 +146,7 @@ body {
   background: var(--background-color);
   color: var(--text-color);
   transition: color $transition-time $transition-animate, background-color $transition-time $transition-animate;
-  @include max-1200{
+  @include max-1200 {
     overflow-x: initial;
   }
 }
@@ -215,4 +215,8 @@ ul {
 
 path {
   transition: fill $transition-time $transition-animate;
+}
+
+.fixed-position {
+  position: fixed;
 }
