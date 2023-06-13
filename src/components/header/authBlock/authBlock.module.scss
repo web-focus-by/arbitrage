@@ -1,0 +1,32 @@
+@import '../../../style/settings';
+@import '../../../style/media';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+.icon {
+  margin-right: 35px;
+  color: var(--bell-background-color);
+  path {
+    stroke: var(--bell-border-color);
+  }
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.arrowWrapper {
+  border-radius: 4px;
+  margin-left: 8px;
+  padding: 0;
+  transition: background-color $transition-time $transition-animate;
+  &:hover {
+    background-color: var(--arrow-background-color);
+  }
+  path {
+    stroke: var(--arrow-color);
+  }
+}
