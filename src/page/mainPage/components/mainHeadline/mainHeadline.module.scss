@@ -1,0 +1,118 @@
+@import '../../../../style/media';
+@import '/src/page/mainPage/style';
+@import '/src/style/index';
+@import '/src/page/mainPage/style';
+
+.container_headline{
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+  margin-top: 7.45%;
+
+  @include max-1440{
+    margin-top: 8.64%;
+  }
+  @include max-1200{
+    flex-direction: column;
+    gap: 96px;
+    margin-top: 8%;
+  }
+  @include max-991{
+    margin-top: 11%;
+    gap: calc(60px + (96 - 60) * ( (100vw - 768px) / ( 991 - 768) ));
+  }
+  @include max-768{
+    gap: calc(64px + (60 - 64) * ( (100vw - 375px) / ( 768 - 375) ));
+  }
+  @include max-576{
+    margin-top: 14.5%;
+  }
+
+  .text_headline{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 64%;
+    margin-bottom: 5%;
+
+    @include max-1440{
+      margin-bottom: 7%;
+      width: 61%;
+    }
+    @include max-1365{
+      width: 67%;
+    }
+    @include max-1200{
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    .main_headline_second_text{
+      margin-top: 16px;
+
+      @include max-768{
+        margin-top: calc(8px + (16 - 8) * ( (100vw - 375px) / ( 768 - 375) ));
+      }
+    }
+
+    .main_headline_button{
+      width: max-content;
+      margin-top: 48px;
+
+      @include max-1440{
+        margin-top: 39px;
+      }
+
+      @include max-768{
+        margin-top: calc(32px + (40 - 32) * ( (100vw - 375px) / ( 768 - 375) ));
+      }
+      @include max-576{
+        width: 100%;
+      }
+    }
+
+    .main_headline_button button{
+      padding: 20px 46px;
+
+      @include max-1440{
+        padding: 16px 32px;
+      }
+      @include max-1200{
+        padding: 21px 49px;
+        border-radius: 12px;
+      }
+      @include max-576{
+        padding: 16px 0px;
+        width: 100%;
+      }
+    }
+  }
+
+  .img_headline{
+    width: 36%;
+    height: 640px;
+
+    @include max-1440{
+      height: 520px;
+      width: 39%;
+    }
+    @include max-1365{
+      width: 33%;
+    }
+    @include max-1200{
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+  }
+
+  .img_headline img{
+    height: 100%;
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.12));
+    border-radius: 24px;
+
+    @include max-1200{
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@import '../../../../style/media';
+@import '/src/page/mainPage/style';
+@import '/src/style/index';
+@import '/src/page/mainPage/style';
+
+.MySwiper{
+  .swiperItem{
+    width: 49.3%;
+    @include max-1440{
+      width: 49%;
+    }
+    @include max-1200{
+      width: 64%;
+      height: 26rem;
+    }
+    @include max-991{
+      width: 83%;
+      border-radius: 32px;
+    }
+    @include max-720{
+      width: 100%;
+      height: 21.5rem;
+      overflow: hidden;
+      border-radius: calc(24px + (32 - 24) * ( (100vw - 375px) / ( 768 - 375) ));
+    }
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.MySwiperClass{
+  position: relative;
+  &>:first-child{
+    padding: 0 240px;
+
+    @include max-1680{
+      padding: 0 calc(98px + (120 - 98) * ( (100vw - 1366px) / ( 1680 - 1366) ));
+    }
+
+    @include max-1365{
+      padding: 0 calc(64px + (86 - 64) * ( (100vw - 1024px) / ( 1366 - 1024) ));
+    }
+    @include max-991{
+      padding: 0 calc(40px + (64 - 40) * ( (100vw - 768px) / ( 1024 - 768) ));
+    }
+    @include max-768{
+      padding: 0 calc(16px + (40 - 16) * ( (100vw - 375px) / ( 768 - 375) ));
+    }
+  }
+}
+
+.navigationButtons{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  position: absolute;
+  right: 12.5%;
+  top: -22%;
+  
+  @include max-1440{
+    gap: 16px;
+    right:6.5%;
+    top: -18%;
+  }
+
+  @include max-1200{
+    position: initial;
+    width: max-content;
+    margin: 30px auto 0px;
+  }
+
+  @include max-991{
+    margin: 25px auto 0px;
+  }
+
+  div{
+    cursor: pointer;
+  }
+}
