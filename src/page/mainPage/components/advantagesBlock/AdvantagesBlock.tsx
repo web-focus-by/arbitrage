@@ -12,7 +12,7 @@ import ImgHedging from '../../img/advantages/ImgHedging';
 import ImgSpreadAlerts from '../../img/advantages/ImgSpreadAlerts';
 import ImgCoinTransferTime from '../../img/advantages/ImgCoinTransferTime';
 import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import React, { useCallback, useRef } from 'react';
 import useWindow from '../../../../hooks/useWindow';
 
@@ -83,7 +83,7 @@ const dataAdvantages = [
 
 const AdvantagesBlock = () => {
   const { formatMessage } = useIntl();
-  const sliderRef = useRef(null);
+  const sliderRef: React.MutableRefObject<SwiperRef | null> = useRef(null);
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;

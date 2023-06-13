@@ -131,13 +131,13 @@ export const schema = yup.object({
   buy: yup
     .object()
     .shape({})
-    .test('buy', '', (value: IFilterSelect) => {
+    .test('buy', '', (value: IFilterSelect['buy']) => {
       return Object.values(value).some((el) => el);
     }),
   sell: yup
     .object()
     .shape({})
-    .test('sell', '', (value: IFilterSelect) => {
+    .test('sell', '', (value: IFilterSelect['sell']) => {
       return Object.values(value).some((el) => el);
     }),
   blackListCoins: yup.array().of(yup.object().shape({ title: yup.string(), value: yup.string() })),

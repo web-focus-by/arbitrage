@@ -20,6 +20,8 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
 
+    "noImplicitAny": false,
+
     "types": ["vitest/globals"]
   },
   "include": ["src"],

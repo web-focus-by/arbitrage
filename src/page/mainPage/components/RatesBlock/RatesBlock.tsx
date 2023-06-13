@@ -5,8 +5,8 @@ import { useIntl } from 'react-intl';
 import AppButton from '../../../../components/button/AppButton';
 import CheckIcon from '@mui/icons-material/Check';
 import useWindow from '../../../../hooks/useWindow';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { useCallback, useRef } from 'react';
+import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
+import React, { useCallback, useRef } from 'react';
 import { Navigation } from 'swiper';
 
 const dataRates = [
@@ -44,7 +44,7 @@ const dataRates = [
 const RatesBlock = () => {
   const { formatMessage } = useIntl();
   const { windowSize } = useWindow();
-  const sliderRef = useRef(null);
+  const sliderRef: React.MutableRefObject<SwiperRef | null> = useRef(null);
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
