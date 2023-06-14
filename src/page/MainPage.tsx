@@ -9,7 +9,6 @@ import InfoAboutTgBotsBlock from './mainPage/components/InfoAboutTgBotsBlock/Inf
 import OurPartners from './mainPage/components/OurPartners/OurPartners';
 import QuestionAnswerBlock from './mainPage/components/QuestionAnswerBlock/QuestionAnswerBlock';
 import QuestionsRemainBlock from './mainPage/components/QuestionsRemainBlock/QuestionsRemainBlock';
-import Page404 from './Page404';
 
 const MainPage = () => {
   return (
@@ -25,7 +24,6 @@ const MainPage = () => {
       <QuestionAnswerBlock />
       <QuestionsRemainBlock />
       <Footer />
-      {/*<Page404 />*/}
     </>
   );
 };
