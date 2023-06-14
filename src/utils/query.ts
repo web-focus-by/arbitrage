@@ -37,6 +37,8 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
   await mutex.waitForUnlock();
   let result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 401) {
+    const refreshToken = (api.getState() as RootState).auth.refreshToken;
+
     // checking whether the mutex is locked
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
@@ -45,17 +47,17 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
           {
             url: '/refresh',
             method: 'POST',
-            body: { refresh_token: localStorage.getItem('refresh_token') },
+            body: { refresh_token: refreshToken },
           },
           api,
           extraOptions,
         );
-        console.log('refresh', { refreshResult });
         if (refreshResult.data) {
           api.dispatch(restoreCredentials({ ...(refreshResult.data as TCredentialsRestore) }));
           // retry the initial query
           result = await baseQuery(args, api, extraOptions);
         } else {
+          // api.dispatch(apiAuth.endpoints.logout.initiate());
           api.dispatch(logout());
         }
       } finally {
