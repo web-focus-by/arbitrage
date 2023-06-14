@@ -138,10 +138,6 @@ const FilterDashboard = () => {
   }, [getValues, setValue, watch]);
 
   useEffect(() => {
-    console.log({ errors });
-  }, [errors]);
-
-  useEffect(() => {
     if (user) {
       reset(getDefaultFormData(user, marketNameArray));
     }

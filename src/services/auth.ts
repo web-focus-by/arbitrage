@@ -2,6 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from '../utils/query.ts';
 import { apiUserInfo } from './userInfo.ts';
 import { apiTable } from './table.ts';
+import { logout } from '../features/auth/authSlice.ts';
 
 export interface IUser {
   fee: number;
@@ -58,13 +59,6 @@ export const apiAuth = createApi({
         return { ...response };
       },
     }),
-    refresh: builder.mutation<IUserResponse, void>({
-      query: (credentials) => ({
-        url: '/refresh',
-        method: 'POST',
-        body: credentials,
-      }),
-    }),
     signup: builder.mutation<IUserResponse, ILoginRequest>({
       query: (credentials) => ({
         url: '/signup',
@@ -83,9 +77,15 @@ export const apiAuth = createApi({
         method: 'POST',
       }),
       invalidatesTags: ['Auth'],
-      async onQueryStarted(_, { dispatch }) {
-        dispatch(apiTable.util.resetApiState());
-        dispatch(apiUserInfo.util.resetApiState());
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(logout());
+          dispatch(apiTable.util.resetApiState());
+          dispatch(apiUserInfo.util.resetApiState());
+        } catch (e) {
+          console.log({ e });
+        }
       },
     }),
   }),
