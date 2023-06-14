@@ -15,7 +15,7 @@ import Poloniex from '../../../../../public/mainPage/ourPartners/Poloniex.svg';
 
 const OurPartners = () => {
   return (
-    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)} id={'Партнеры'}>
       <div className={style.ourPartnersHeadline}>
         <BlockTitle value={'Наши партнеры'} />
         <AppTooltip title={'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem'} placement={'top'} />

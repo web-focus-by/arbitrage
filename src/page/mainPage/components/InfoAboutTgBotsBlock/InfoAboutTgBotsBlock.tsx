@@ -5,7 +5,7 @@ import imgInfoAboutTgBotsBlock from '../../../../../public/mainPage/InfoAboutTgB
 
 const InfoAboutTgBotsBlock = () => {
   return (
-    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)} id={'Сканер'}>
       <div className={style.InfoAboutTgBotsBlockContainer}>
         <div className={style.InfoAboutTgBotsBlockText}>
           <h3>

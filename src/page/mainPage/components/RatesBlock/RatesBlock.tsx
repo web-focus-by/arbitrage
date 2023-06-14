@@ -8,6 +8,8 @@ import useWindow from '../../../../hooks/useWindow';
 import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
 import React, { useCallback, useRef } from 'react';
 import { Navigation } from 'swiper';
+import videoArrowLeft from '../../../../../public/mainPage/videoBlock/ArrowLeft.svg';
+import videoArrowRight from '../../../../../public/mainPage/videoBlock/ArrowRight.svg';
 
 const dataRates = [
   {
@@ -57,7 +59,7 @@ const RatesBlock = () => {
   }, []);
 
   return (
-    <div>
+    <div id={'Тарифы'}>
       {windowSize.width > 1200 ? (
         <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
           <BlockTitle value={'Тарифы'} />
@@ -161,10 +163,10 @@ const RatesBlock = () => {
             </Swiper>
             <div className={style.navigationButtons}>
               <div onClick={handlePrev}>
-                <img src={'src/page/mainPage/img/videoBlock/ArrowLeft.svg'} />
+                <img src={videoArrowLeft} />
               </div>
               <div onClick={handleNext}>
-                <img src={'src/page/mainPage/img/videoBlock/ArrowRight.svg'} />
+                <img src={videoArrowRight} />
               </div>
             </div>
           </div>

@@ -23,7 +23,7 @@ const VideoBlock = () => {
     sliderRef.current.swiper.slideNext();
   }, []);
   return (
-    <div className={style.spacing_between_blocks}>
+    <div className={style.spacing_between_blocks} id={'Видео'}>
       <div className={classNames(style.mainPageContainer)}>
         <BlockTitle value={'Видео'} />
       </div>
