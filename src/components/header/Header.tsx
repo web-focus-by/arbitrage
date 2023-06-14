@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import appLogo from '../../../public/logo.svg';
 import style from './header.module.scss';
 import classNames from 'classnames';
@@ -11,10 +10,10 @@ import AuthModal from './authModal/AuthModal.tsx';
 import AppButton from '../button/AppButton';
 import AppSwitch from '../switch/AppSwitch.tsx';
 import useWindow from '../../hooks/useWindow';
+import AuthBlock from './authBlock/AuthBlock.tsx';
 
 const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
 const Header = () => {
-  const navigate = useNavigate();
   const auth = useAuth();
   const { theme, setThemeHandler } = useTheme();
   const { windowSize } = useWindow();
@@ -55,15 +54,7 @@ const Header = () => {
           </div>
           <div>
             {auth ? (
-              <AppButton
-                onClick={() => {
-                  navigate('/dashboard');
-                }}
-                color={'secondary'}
-                className={style.authButton}
-              >
-                Кабинет
-              </AppButton>
+              <AuthBlock />
             ) : (
               <AppButton
                 onClick={() => {
@@ -132,15 +123,7 @@ const Header = () => {
                 </div>
                 <div>
                   {auth ? (
-                    <AppButton
-                      onClick={() => {
-                        navigate('/dashboard');
-                      }}
-                      color={'secondary'}
-                      className={style.authButton}
-                    >
-                      Кабинет
-                    </AppButton>
+                    <AuthBlock />
                   ) : (
                     <AppButton
                       onClick={() => {
@@ -164,7 +147,7 @@ const Header = () => {
                     <path d="M5 8H27" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M5 24H27" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <div className={classNames(style.burgerTextBlock, { [style.isOpenBurgerMenu]: isOpenBurger })}>
+                  <div className={classNames(style.burgerTextBlock, { [style.openBurgerMenu]: isOpenBurger })}>
                     <div className={style.burgerMobileMenu}>
                       <nav className={style.header__nav}>
                         <ul className={style.header__nav__list}>
@@ -181,15 +164,7 @@ const Header = () => {
                         </div>
                         <div>
                           {auth ? (
-                            <AppButton
-                              onClick={() => {
-                                navigate('/dashboard');
-                              }}
-                              color={'secondary'}
-                              className={style.authButton}
-                            >
-                              Кабинет
-                            </AppButton>
+                            <AuthBlock />
                           ) : (
                             <AppButton
                               onClick={() => {

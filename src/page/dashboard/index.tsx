@@ -14,7 +14,6 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-
       <div className={style.wrapper}>
         <div className={classNames(style.container, style.containerPadding)}>
           <h3 className={classNames({ h1: windowSize.width < 1200 }, style.title)}>

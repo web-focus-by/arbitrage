@@ -24,6 +24,7 @@ import { useAppSelector } from '../../../../store/hooks.ts';
 import { selectUserInfo } from '../../../../features/userInfo/userInfoSelect.ts';
 import { useUpdateUserInfoMutation } from '../../../../services/userInfo.ts';
 import AppLink from '../../../../components/link/AppLink.tsx';
+import AppTooltip from '../../../../components/toollip/AppTooltip.tsx';
 
 export interface ITableContent {
   base_coin: string;
@@ -71,6 +72,7 @@ const headTableItems: THeadTableItems[] = [
   },
   {
     name: 'volume',
+    tooltip: 'dashboard.tooltip.volume',
   },
   {
     name: 'profit',
@@ -83,12 +85,15 @@ const headTableItems: THeadTableItems[] = [
   },
   {
     name: 'price',
+    tooltip: 'dashboard.tooltip.price',
   },
   {
     name: 'range',
+    tooltip: 'dashboard.tooltip.range',
   },
   {
     name: 'orders',
+    tooltip: 'dashboard.tooltip.orders',
   },
   {
     name: 'fee.spot',
@@ -101,6 +106,7 @@ const headTableItems: THeadTableItems[] = [
   },
   {
     name: 'time',
+    tooltip: 'dashboard.tooltip.time',
   },
   {
     name: 'hedge',
@@ -147,7 +153,10 @@ const TableDashboard = () => {
                   <TableRow ref={tableHead}>
                     {headTableItems.map((item, index) => (
                       <AppTableCell key={item.name + index}>
-                        {formatMessage({ id: 'dashboard.table.head.' + item.name })}
+                        <div className={classNames({ [style.tooltipWrapper]: !!item.tooltip })}>
+                          {formatMessage({ id: 'dashboard.table.head.' + item.name })}
+                          {item.tooltip && <AppTooltip title={formatMessage({ id: item.tooltip })} />}
+                        </div>
                       </AppTableCell>
                     ))}
                   </TableRow>

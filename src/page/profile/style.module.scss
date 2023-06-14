@@ -2,14 +2,17 @@
 
 .wrapper {
   margin-top: clamp(80px, 5.3vw, 100px);
+  margin-bottom: clamp(176px, 12.5vw, 240px);
   @include max-1200 {
     margin-top: 85px;
+    margin-bottom: 140px;
   }
   @include max-991 {
     margin-top: 70px;
   }
   @include max-576 {
     margin-top: 50px;
+    margin-bottom: 100px;
   }
 }
 .content {

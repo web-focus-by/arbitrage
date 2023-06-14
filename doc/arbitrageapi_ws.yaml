@@ -7,7 +7,6 @@ servers:
   - url: ws://185.240.103.242:50052
 
 paths:
-
   /spreads:
     get:
       summary: Получение спредов
@@ -27,13 +26,46 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  spreads:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/spread'
+                type: array
+                items:
+                  $ref: '#/components/schemas/spread'
 
+        '400':
+          description: Required parameter is missing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+        '406':
+          description: Token expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+  /notifications:
+    get:
+      summary: Получение уведомлений
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/notification'
 
         '400':
           description: Required parameter is missing
@@ -51,7 +83,6 @@ paths:
 
 components:
   schemas:
-
     spread:
       type: object
       properties:
@@ -115,6 +146,10 @@ components:
           type: string
           description: Комиссия сети в монетах
           required: true
+        withdraw_fee_usdt:
+          type: string
+          description: Комиссия сети в долларах
+          required: true
         ask_spot_fee:
           type: string
           description: Комиссия спота на бирже покупки в долларах
@@ -152,8 +187,8 @@ components:
           required: false
           description: Конец диапазона цен на продажу, если только один ордер - отсутствует
         hedge:
-          type: integer
-          description: 0 - нет хеджа, 1 - есть хедж
+          type: boolean
+          description: False - нет хеджа, True - есть хедж
           required: true
         withdraw_time_category:
           type: integer
@@ -163,6 +198,30 @@ components:
           type: string
           description: Текстовое описание времени
           required: false
+
+    notification:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id уведомления
+          required: true
+        title:
+          type: string
+          description: Заголовок
+          required: true
+        content:
+          type: string
+          description: Содержание
+          required: true
+        creation_date:
+          type: string
+          description: Время создания. Например, "Tue, 13 Jun 2023 21:36:05 GMT"
+          required: true
+        if_read:
+          type: boolean
+          description: Прочитано ли уведомление
+          required: true
 
     error_message:
       type: object

@@ -111,3 +111,10 @@
     padding: 72px 16px;
   }
 }
+
+.errorWrapperMargin {
+  margin-top: 24px;
+  @include max-576 {
+    margin-top: 32px;
+  }
+}

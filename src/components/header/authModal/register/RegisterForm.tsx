@@ -16,8 +16,8 @@ import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import Modal from '../../../modal/Modal.tsx';
 
 export interface IUserRegister extends ILoginRequest {
-  username: string;
-  telegramName: string;
+  name: string;
+  telegram: string;
 }
 const RegisterForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +31,7 @@ const RegisterForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IUserRegister>({
-    defaultValues: { email: '', username: '', telegramName: '', password: '' },
+    defaultValues: { email: '', name: '', telegram: '', password: '' },
   });
 
   const [signup, { isError, error }] = useSignupMutation();
@@ -58,21 +58,21 @@ const RegisterForm = () => {
   }, [auth]);
 
   const navigateHandler = () => {
-    navigate('/private');
+    navigate('/dashboard');
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(submitHandler)} className={style.formWrapper}>
         {errorMessages && (
-          <div className={style.error}>
+          <div className={'errorWrapper'}>
             <HighlightOffRoundedIcon sx={{ fontSize: 18, color: 'red' }} />
             <span>{errorMessages}</span>
           </div>
         )}
         <div className={style.inputsWrapper}>
           <Controller
-            name="username"
+            name="name"
             control={control}
             rules={{
               required: formatMessage({ id: 'error.required' }),
@@ -118,7 +118,7 @@ const RegisterForm = () => {
             )}
           />
           <Controller
-            name="telegramName"
+            name="telegram"
             control={control}
             rules={{
               required: formatMessage({ id: 'error.required' }),
