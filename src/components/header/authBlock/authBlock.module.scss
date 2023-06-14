@@ -30,3 +30,34 @@
     stroke: var(--arrow-color);
   }
 }
+
+.menu {
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  padding: 0;
+}
+.list {
+  padding: 12px 0;
+  min-width: 280px;
+  @include max-1680 {
+    min-width: clamp(180px, 16.7vw, 280px);
+    padding: clamp(8px, 0.8vw, 12px) 0;
+  }
+
+  .menuItem {
+    padding: 16px 32px;
+    text-align: left;
+    line-height: 110%;
+
+    @include max-1680 {
+      padding: clamp(12px, 1vw, 16px) clamp(20px, 2vw, 32px);
+    }
+  }
+}
+.logout {
+  margin-top: 20px;
+  @include max-1200 {
+    margin-top: 8px;
+  }
+}

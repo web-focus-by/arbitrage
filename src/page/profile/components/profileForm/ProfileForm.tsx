@@ -5,6 +5,10 @@ import { VALIDATION_REGEX } from '../../../../constants';
 import AppButton from '../../../../components/button/AppButton.tsx';
 import { IUserRegister } from '../../../../components/header/authModal/register/RegisterForm.tsx';
 import { useIntl } from 'react-intl';
+import { useAppSelector } from '../../../../store/hooks.ts';
+import { selectUserInfo } from '../../../../features/userInfo/userInfoSelect.ts';
+import { useEffect, useMemo } from 'react';
+import { getDefaultFormValue } from './profileFrom.ts';
 
 interface IProfileForm extends IUserRegister {
   newPassword?: string;
@@ -13,15 +17,29 @@ interface IProfileForm extends IUserRegister {
 
 const ProfileForm = () => {
   const { formatMessage } = useIntl();
+  const user = useAppSelector(selectUserInfo);
+
+  useEffect(() => {
+    console.log({ user });
+  }, [user]);
+
   const {
     control,
     watch,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<IProfileForm>({
-    defaultValues: { email: '', username: '', telegramName: '', newPassword: '', confirmPassword: '' },
+    defaultValues: useMemo(() => {
+      return getDefaultFormValue(user);
+    }, [user]),
   });
 
+  useEffect(() => {
+    if (user) {
+      reset(getDefaultFormValue(user));
+    }
+  }, [reset, user]);
   const submitHandler: SubmitHandler<IProfileForm> = (data) => {
     console.log(data);
   };

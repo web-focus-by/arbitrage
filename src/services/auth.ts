@@ -13,6 +13,9 @@ export interface IUser {
   profit_spread: number;
   volume_max: number;
   volume_min: number;
+  email: string;
+  name: string;
+  telegram: string;
   monitoring: 0 | 1;
   risk_type: 0 | 1;
   hedge_type: 0 | 1;

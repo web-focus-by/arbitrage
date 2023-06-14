@@ -12,7 +12,7 @@ const App = () => {
 
   store.dispatch(apiGeneralInfo.endpoints.getMarketsInfo.initiate());
   store.dispatch(apiGeneralInfo.endpoints.getVideosInfo.initiate());
-  console.log({ env: import.meta.env });
+
   return (
     <Provider store={store}>
       <IntlProvider messages={dictionary} locale={navigator.language} defaultLocale="ru">
