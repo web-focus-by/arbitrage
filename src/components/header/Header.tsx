@@ -88,9 +88,11 @@ const Header = () => {
                     <nav className={style.header__nav}>
                       <ul className={style.header__nav__list}>
                         {navItems.map((el, i) => (
-                          <li key={'nav_el_' + i} className={classNames(style.header__nav__item, style.subtitle3)}>
-                            {el}
-                          </li>
+                          <a href={'#' + el}>
+                            <li key={'nav_el_' + i} className={classNames(style.header__nav__item, style.subtitle3)}>
+                              {el}
+                            </li>
+                          </a>
                         ))}
                       </ul>
                     </nav>
@@ -178,12 +180,14 @@ const Header = () => {
                           <nav className={style.header__nav}>
                             <ul className={style.header__nav__list}>
                               {navItems.map((el, i) => (
-                                <li
-                                  key={'nav_el_' + i}
-                                  className={classNames(style.header__nav__item, style.subtitle3)}
-                                >
-                                  {el}
-                                </li>
+                                <a href={'#' + el}>
+                                  <li
+                                    key={'nav_el_' + i}
+                                    className={classNames(style.header__nav__item, style.subtitle3)}
+                                  >
+                                    {el}
+                                  </li>
+                                </a>
                               ))}
                             </ul>
                           </nav>
@@ -254,9 +258,14 @@ const Header = () => {
                         <nav className={style.header__nav}>
                           <ul className={style.header__nav__list}>
                             {navItems.map((el, i) => (
-                              <li key={'nav_el_' + i} className={classNames(style.header__nav__item, style.subtitle3)}>
-                                {el}
-                              </li>
+                              <a href={'#' + el}>
+                                <li
+                                  key={'nav_el_' + i}
+                                  className={classNames(style.header__nav__item, style.subtitle3)}
+                                >
+                                  {el}
+                                </li>
+                              </a>
                             ))}
                           </ul>
                         </nav>
