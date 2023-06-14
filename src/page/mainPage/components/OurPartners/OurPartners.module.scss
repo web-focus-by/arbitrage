@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  column-gap: calc(75px + (97 - 75) * ((100vw - 1366px) / (1920 - 1366)));
+  column-gap: calc(75px + (96 - 75) * ((100vw - 1366px) / (1920 - 1366)));
   row-gap: 50px;
   justify-content: space-around;
 

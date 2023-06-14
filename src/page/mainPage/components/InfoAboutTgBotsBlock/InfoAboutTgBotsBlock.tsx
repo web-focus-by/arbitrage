@@ -1,10 +1,11 @@
 import style from './InfoAboutTgBotsBlock.module.scss';
 import classNames from 'classnames';
 import AppButton from '../../../../components/button/AppButton';
+import imgInfoAboutTgBotsBlock from '../../../../../public/mainPage/InfoAboutTgBotsBlockImg.png';
 
 const InfoAboutTgBotsBlock = () => {
   return (
-    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)} id={'Сканер'}>
       <div className={style.InfoAboutTgBotsBlockContainer}>
         <div className={style.InfoAboutTgBotsBlockText}>
           <h3>
@@ -14,7 +15,7 @@ const InfoAboutTgBotsBlock = () => {
           <AppButton color={'primary'}>Перейти</AppButton>
         </div>
         <div className={style.InfoAboutTgBotsBlockImg}>
-          <img src="src/page/mainPage/components/InfoAboutTgBotsBlock/img/InfoAboutTgBotsBlockImg.png" />
+          <img src={imgInfoAboutTgBotsBlock} />
         </div>
       </div>
     </div>

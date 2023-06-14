@@ -1,6 +1,9 @@
 import style from './VideoBlock.module.scss';
 import classNames from 'classnames';
 import BlockTitle from '../BlockTitles/BlockTitle';
+import videoImage from '../../../../../public/mainPage/videoBlock/videoImage.png';
+import videoArrowLeft from '../../../../../public/mainPage/videoBlock/ArrowLeft.svg';
+import videoArrowRight from '../../../../../public/mainPage/videoBlock/ArrowRight.svg';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
@@ -20,7 +23,7 @@ const VideoBlock = () => {
     sliderRef.current.swiper.slideNext();
   }, []);
   return (
-    <div className={style.spacing_between_blocks}>
+    <div className={style.spacing_between_blocks} id={'Видео'}>
       <div className={classNames(style.mainPageContainer)}>
         <BlockTitle value={'Видео'} />
       </div>
@@ -51,33 +54,33 @@ const VideoBlock = () => {
           }}
         >
           <SwiperSlide className={style.swiperItem}>
-            <img src={'src/page/mainPage/img/videoBlock/videoImage.png'} />
+            <img src={videoImage} />
           </SwiperSlide>
           <SwiperSlide className={style.swiperItem}>
-            <img src={'src/page/mainPage/img/videoBlock/videoImage.png'} />
+            <img src={videoImage} />
           </SwiperSlide>
           <SwiperSlide className={style.swiperItem}>
-            <img src={'src/page/mainPage/img/videoBlock/videoImage.png'} />
+            <img src={videoImage} />
           </SwiperSlide>
           <SwiperSlide className={style.swiperItem}>
-            <img src={'src/page/mainPage/img/videoBlock/videoImage.png'} />
+            <img src={videoImage} />
           </SwiperSlide>
           <SwiperSlide className={style.swiperItem}>
-            <img src={'src/page/mainPage/img/videoBlock/videoImage.png'} />
+            <img src={videoImage} />
           </SwiperSlide>
           <SwiperSlide className={style.swiperItem}>
-            <img src={'src/page/mainPage/img/videoBlock/videoImage.png'} />
+            <img src={videoImage} />
           </SwiperSlide>
           <SwiperSlide className={style.swiperItem}>
-            <img src={'src/page/mainPage/img/videoBlock/videoImage.png'} />
+            <img src={videoImage} />
           </SwiperSlide>
         </Swiper>
         <div className={style.navigationButtons}>
           <div onClick={handlePrev}>
-            <img src={'src/page/mainPage/img/videoBlock/ArrowLeft.svg'} />
+            <img src={videoArrowLeft} />
           </div>
           <div onClick={handleNext}>
-            <img src={'src/page/mainPage/img/videoBlock/ArrowRight.svg'} />
+            <img src={videoArrowRight} />
           </div>
         </div>
       </div>

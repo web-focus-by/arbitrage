@@ -2,19 +2,21 @@ import style from './AdvantagesBlock.module.scss';
 import classNames from 'classnames';
 import BlockTitle from '../BlockTitles/BlockTitle';
 import { useIntl } from 'react-intl';
-import ImgLinksBetweenExchanges from '../../img/advantages/ImgLinksBetweenExchanges';
+import ImgLinksBetweenExchanges from '../../../../../public/mainPage/advantages/ImgLinksBetweenExchanges';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import SearchIcon from '@mui/icons-material/Search';
-import ImgConvenientFilters from '../../img/advantages/ImgConvenientFilters';
-import ImgCalcTransactionAmount from '../../img/advantages/ImgCalcTransactionAmount';
-import ImgCommissionAccounting from '../../img/advantages/ImgCommissionAccountong';
-import ImgHedging from '../../img/advantages/ImgHedging';
-import ImgSpreadAlerts from '../../img/advantages/ImgSpreadAlerts';
-import ImgCoinTransferTime from '../../img/advantages/ImgCoinTransferTime';
+import ImgConvenientFilters from '../../../../../public/mainPage/advantages/ImgConvenientFilters';
+import ImgCalcTransactionAmount from '../../../../../public/mainPage/advantages/ImgCalcTransactionAmount';
+import ImgCommissionAccounting from '../../../../../public/mainPage/advantages/ImgCommissionAccountong';
+import ImgHedging from '../../../../../public/mainPage/advantages/ImgHedging';
+import ImgSpreadAlerts from '../../../../../public/mainPage/advantages/ImgSpreadAlerts';
+import ImgCoinTransferTime from '../../../../../public/mainPage/advantages/ImgCoinTransferTime';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import React, { useCallback, useRef } from 'react';
 import useWindow from '../../../../hooks/useWindow';
+import videoArrowLeft from '../../../../../public/mainPage/videoBlock/ArrowLeft.svg';
+import videoArrowRight from '../../../../../public/mainPage/videoBlock/ArrowRight.svg';
 
 const dataAdvantages = [
   {
@@ -98,7 +100,7 @@ const AdvantagesBlock = () => {
   const { windowSize } = useWindow();
 
   return (
-    <div>
+    <div id={'Преимущества'}>
       {windowSize.width > 1200 ? (
         <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
           <BlockTitle value={'Преимущества'} />
@@ -155,10 +157,10 @@ const AdvantagesBlock = () => {
             </Swiper>
             <div className={style.navigationButtons}>
               <div onClick={handlePrev}>
-                <img src={'src/page/mainPage/img/videoBlock/ArrowLeft.svg'} />
+                <img src={videoArrowLeft} />
               </div>
               <div onClick={handleNext}>
-                <img src={'src/page/mainPage/img/videoBlock/ArrowRight.svg'} />
+                <img src={videoArrowRight} />
               </div>
             </div>
           </div>
