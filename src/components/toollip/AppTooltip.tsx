@@ -6,7 +6,7 @@ import { FC } from 'react';
 type AppTooltipProps = Omit<TooltipProps, 'children'>;
 const AppTooltip: FC<AppTooltipProps> = (prop) => {
   return (
-    <Tooltip {...prop} arrow>
+    <Tooltip {...prop} arrow placement={'top'}>
       <IconButton disableRipple={true} classes={{ root: style.icon }}>
         <InfoIcon />
       </IconButton>

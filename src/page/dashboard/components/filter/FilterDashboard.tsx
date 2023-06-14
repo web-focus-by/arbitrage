@@ -27,6 +27,8 @@ import {
 import { useUpdateUserInfoMutation } from '../../../../services/userInfo.ts';
 import { yupResolver } from '@hookform/resolvers/yup';
 import AppLink from '../../../../components/link/AppLink.tsx';
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
+import AppTooltip from '../../../../components/toollip/AppTooltip.tsx';
 
 const FilterDashboard = () => {
   const { formatMessage } = useIntl();
@@ -150,6 +152,12 @@ const FilterDashboard = () => {
       {windowSize.width < 991 && <span className={'h1'}>{formatMessage({ id: 'filter' })}</span>}
       <div className={style.rowWrapper}>
         <div className={'subtitle2'}>{formatMessage({ id: 'dashboard.select.subtitle' })}</div>
+        {errors.buy || errors.sell ? (
+          <div className={classNames('errorWrapper', style.errorWrapperMargin)}>
+            <HighlightOffRoundedIcon sx={{ fontSize: 18, color: 'red' }} />
+            <span>{formatMessage({ id: 'dashboard.error.empty.sell.or.buy' })}</span>
+          </div>
+        ) : null}
         <div>
           <div className={style.subRowWrapper}>
             <div className={classNames(subtitleClass)}>{formatMessage({ id: 'dashboard.select.buy' })}</div>
@@ -294,7 +302,12 @@ const FilterDashboard = () => {
                   type={'text'}
                   inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
-                  label={formatMessage({ id: 'dashboard.input.value.profit' })}
+                  label={
+                    <span>
+                      {formatMessage({ id: 'dashboard.input.value.profit' })}
+                      <AppTooltip title={formatMessage({ id: 'dashboard.tooltip.profit' })} />
+                    </span>
+                  }
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                   classes={{ root: style.textFieldWrapper }}
                   error={!!errors.profit}
@@ -313,7 +326,12 @@ const FilterDashboard = () => {
                   type={'text'}
                   inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
-                  label={formatMessage({ id: 'dashboard.input.value.profit.spread' })}
+                  label={
+                    <span>
+                      {formatMessage({ id: 'dashboard.input.value.profit.spread' })}
+                      <AppTooltip title={formatMessage({ id: 'dashboard.tooltip.profit.spread' })} />
+                    </span>
+                  }
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                   classes={{ root: style.textFieldWrapper }}
                   error={!!errors.profitSpread}
@@ -362,7 +380,12 @@ const FilterDashboard = () => {
                   type={'text'}
                   inputProps={{ inputMode: 'numeric', 'aria-valuemin': 0 }}
                   variant={'standard'}
-                  label={formatMessage({ id: 'dashboard.input.value.fee.max' })}
+                  label={
+                    <span>
+                      {formatMessage({ id: 'dashboard.input.value.fee.max' })}
+                      <AppTooltip title={formatMessage({ id: 'dashboard.tooltip.fee' })} />
+                    </span>
+                  }
                   placeholder={formatMessage({ id: 'dashboard.input.value.placeholder' })}
                   classes={{
                     root: classNames(style.textFieldWrapper, style.lastTextWrapper),

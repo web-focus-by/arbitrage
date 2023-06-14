@@ -61,3 +61,8 @@
   border-top: none !important;
   border-bottom: none !important;
 }
+.tooltipWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

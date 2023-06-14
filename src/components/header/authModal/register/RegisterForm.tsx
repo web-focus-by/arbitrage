@@ -65,7 +65,7 @@ const RegisterForm = () => {
     <>
       <form onSubmit={handleSubmit(submitHandler)} className={style.formWrapper}>
         {errorMessages && (
-          <div className={style.error}>
+          <div className={'errorWrapper'}>
             <HighlightOffRoundedIcon sx={{ fontSize: 18, color: 'red' }} />
             <span>{errorMessages}</span>
           </div>

@@ -1,5 +1,5 @@
 import Switch, { SwitchProps } from '@mui/material/Switch';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import classNames from 'classnames';
 import style from './AppSwitch.module.scss';
 import { FormControlLabel, FormControlLabelProps } from '@mui/material';
@@ -11,9 +11,6 @@ interface IAppSwitchProps {
 
 const AppSwitch: FC<IAppSwitchProps> = (props) => {
   const { switchProps, formControlLabelProps } = props;
-  useEffect(() => {
-    console.log(switchProps);
-  }, [switchProps]);
   return (
     <FormControlLabel
       {...formControlLabelProps}
