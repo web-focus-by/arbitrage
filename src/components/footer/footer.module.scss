@@ -2,9 +2,7 @@
 @import '/src/style/index';
 
 .footer {
-  position: relative;
-  width: 100%;
-  bottom: 0;
+  margin-top: auto;
   padding: 120px calc(80px + (200 - 80) * ((100vw - 1680px) / (1920 - 1680))) 48px;
   background: #262626;
   border-radius: 88px 88px 0px 0px;
