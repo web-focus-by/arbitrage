@@ -44,10 +44,8 @@ const Header = () => {
           <nav className={style.header__nav}>
             <ul className={style.header__nav__list}>
               {navItems.map((el, i) => (
-                <a href={'#' + el}>
-                  <li key={'nav_el_' + i} className={classNames(style.header__nav__item, style.subtitle3)}>
-                    {el}
-                  </li>
+                <a key={'nav_el_' + i} href={'#' + el}>
+                  <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
                 </a>
               ))}
             </ul>
@@ -88,10 +86,8 @@ const Header = () => {
                     <nav className={style.header__nav}>
                       <ul className={style.header__nav__list}>
                         {navItems.map((el, i) => (
-                          <a href={'#' + el}>
-                            <li key={'nav_el_' + i} className={classNames(style.header__nav__item, style.subtitle3)}>
-                              {el}
-                            </li>
+                          <a href={'#' + el} key={'nav_el_' + i}>
+                            <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
                           </a>
                         ))}
                       </ul>
@@ -180,13 +176,8 @@ const Header = () => {
                           <nav className={style.header__nav}>
                             <ul className={style.header__nav__list}>
                               {navItems.map((el, i) => (
-                                <a href={'#' + el}>
-                                  <li
-                                    key={'nav_el_' + i}
-                                    className={classNames(style.header__nav__item, style.subtitle3)}
-                                  >
-                                    {el}
-                                  </li>
+                                <a href={'#' + el} key={'nav_el_' + i}>
+                                  <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
                                 </a>
                               ))}
                             </ul>
@@ -258,13 +249,8 @@ const Header = () => {
                         <nav className={style.header__nav}>
                           <ul className={style.header__nav__list}>
                             {navItems.map((el, i) => (
-                              <a href={'#' + el}>
-                                <li
-                                  key={'nav_el_' + i}
-                                  className={classNames(style.header__nav__item, style.subtitle3)}
-                                >
-                                  {el}
-                                </li>
+                              <a href={'#' + el} key={'nav_el_' + i}>
+                                <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
                               </a>
                             ))}
                           </ul>
