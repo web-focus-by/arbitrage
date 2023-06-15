@@ -1,19 +1,21 @@
 import style from './Page404Component.module.scss';
+import { Navigate } from 'react-router-dom';
 import classNames from 'classnames';
 import logo404 from '../../../public/page404/404.svg';
 import AppButton from '../../components/button/AppButton';
+import { useIntl } from 'react-intl';
 
 const Page404Component = () => {
+  const { formatMessage } = useIntl();
   return (
     <div className={style.page404_container}>
       <div className={style.page404_img}>
         <img src={logo404} alt={'logo 404'} />
       </div>
-      <div className={classNames(style.page404_text, style.text)}>
-        Мы не можем найти эту страницу, воспользуйтесь навигацией или вернитесь на главную страницу сайта.
-      </div>
-      <div className={style.page404_button}>
-        <AppButton color={'primary'}>На главную</AppButton>
+
+      <div className={classNames(style.page404_text, style.text)}>{formatMessage({ id: 'page404.text' })}</div>
+      <div className={style.page404_button} onClick={handleClickButton}>
+        <AppButton color={'primary'}>{formatMessage({ id: 'page404.button' })}</AppButton>
       </div>
     </div>
   );

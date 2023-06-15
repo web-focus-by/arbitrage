@@ -4,12 +4,13 @@ import { createBrowserRouter } from 'react-router-dom';
 import { PrivateOutlet } from './PrivateOutlet';
 import Dashboard from '../page/dashboard';
 import Profile from '../page/profile';
+import Page404 from '../page/Page404';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <MainPage />,
-    errorElement: <ErrorPage />,
+    errorElement: <Page404 />,
   },
   {
     path: '/',

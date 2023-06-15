@@ -1,10 +1,11 @@
 import main from './main.json';
-import mainPage from "./pages/mainPage.json";
+import mainPage from './pages/mainPage.json';
 import form from './form.json';
 import errors from './errors.json';
 import modal from './modal.json';
 import profilePage from './pages/profilePage.json';
 import dashboardPage from './pages/dashboard.json';
+import page404 from './pages/page404.json';
 
 const lang = {
   ...errors,
@@ -14,6 +15,7 @@ const lang = {
   ...modal,
   ...profilePage,
   ...dashboardPage,
+  ...page404,
 };
 
 export default lang;
