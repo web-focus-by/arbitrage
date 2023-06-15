@@ -14,17 +14,19 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <div className={style.wrapper}>
-        <div className={classNames(style.container, style.containerPadding)}>
-          <h3 className={classNames({ h1: windowSize.width < 1200 }, style.title)}>
-            {formatMessage({ id: 'dashboard.title' })}
-          </h3>
-          <FilterDashboard />
+      <main>
+        <div className={style.wrapper}>
+          <div className={classNames(style.container, style.containerPadding)}>
+            <h3 className={classNames({ h1: windowSize.width < 1200 }, style.title)}>
+              {formatMessage({ id: 'dashboard.title' })}
+            </h3>
+            <FilterDashboard />
+          </div>
+          <div className={classNames(style.container, style.containerPadding, style.tablePadding)}>
+            <TableDashboard />
+          </div>
         </div>
-        <div className={classNames(style.container, style.containerPadding, style.tablePadding)}>
-          <TableDashboard />
-        </div>
-      </div>
+      </main>
       <Footer />
     </>
   );
