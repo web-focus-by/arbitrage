@@ -43,7 +43,7 @@ const Header = () => {
           </div>
           <nav className={style.header__nav}>
             <ul className={style.header__nav__list}>
-              {navItems.map((el, i) => (
+              {navItems.map((el, i) => (                
                 <a key={'nav_el_' + i} href={'/#' + el}>
                   <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
                 </a>
