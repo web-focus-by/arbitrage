@@ -1,0 +1,59 @@
+@import '../../../style/settings';
+@import '../../../style/media';
+
+.icon {
+  margin-right: 35px;
+  color: var(--bell-background-color);
+
+  path {
+    stroke: var(--bell-border-color);
+  }
+
+  @include max-720 {
+    margin-right: 20px;
+  }
+}
+.isReadNotification {
+  color: var(--bell-background-color);
+}
+
+.notificationMenu {
+  padding: 24px;
+  border-radius: 24px;
+  width: 480px;
+  height: 645px;
+  .notificationItemsWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+    row-gap: 34px;
+  }
+  .notificationCount {
+    padding: 14px 30px;
+    border-radius: 12px;
+    background-color: $color-blue-1;
+    color: $color-white;
+  }
+  .notifyDescriptionBlock {
+    width: 100%;
+  }
+  .notifyShortContent {
+    margin-top: 8px;
+    color: $color-gray-2;
+  }
+  .notifyTime {
+    display: flex;
+    margin-top: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.menuItem {
+  padding: 0;
+  display: flex;
+  gap: 19px;
+  &:hover {
+    background-color: var(--menu-item-background-color);
+  }
+}

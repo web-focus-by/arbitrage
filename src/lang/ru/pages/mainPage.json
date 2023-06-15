@@ -35,5 +35,6 @@
   "ratesBlock.content.inter.exchange.scanner": "Межбиржевой сканер",
   "ratesBlock.content.inter.exchange.tg.bot": "Межбиржевой телеграм бот",
   "ratesBlock.content.user.chat": "Чат пользователей",
-  "ratesBlock.content.intra.exchange.tg.bot": "Внутрибиржевой телеграм бот"
+  "ratesBlock.content.intra.exchange.tg.bot": "Внутрибиржевой телеграм бот",
+  "notification.new.count": "Новых уведомлений: {count}"
 }

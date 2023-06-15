@@ -7,6 +7,7 @@ interface INotification {
   content: string;
   creation_date: string;
   if_read: boolean;
+  ntype: 'spread' | 'text';
 }
 
 export const apiNotifications = createApi({

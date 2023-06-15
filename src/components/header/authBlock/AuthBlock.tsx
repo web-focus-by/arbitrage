@@ -1,9 +1,8 @@
-import BellIcon from '../../icon/BellIcon.tsx';
 import { Avatar, IconButton, Menu } from '@mui/material';
 import style from './authBlock.module.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { useState, MouseEvent, useEffect } from 'react';
+import { useState, MouseEvent } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
@@ -12,19 +11,20 @@ import { logout as logoutAction } from '../../../features/auth/authSlice.ts';
 import { useAppDispatch } from '../../../store/hooks.ts';
 import classNames from 'classnames';
 import useWindow from '../../../hooks/useWindow.ts';
-import { useGetNotificationsQuery } from '../../../services/notification.ts';
+import Notification from '../notification/Notification.tsx';
 
 const AuthBlock = () => {
   const { windowSize } = useWindow();
   const navigate = useNavigate();
   const { formatMessage } = useIntl();
   const dispatch = useAppDispatch();
-  const [logout] = useLogoutMutation();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-  const { data } = useGetNotificationsQuery();
+  const [logout] = useLogoutMutation();
+
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
+
   const handleCloseUserMenu = (rout: string | object) => {
     if (rout && typeof rout === 'string') {
       navigate('/' + rout);
@@ -40,13 +40,10 @@ const AuthBlock = () => {
       //TODO вынести ошибку в тост
     }
   };
-  useEffect(() => {
-    console.log({ data });
-  }, [data]);
 
   return (
     <div className={style.wrapper}>
-      <BellIcon className={style.icon} />
+      <Notification />
       <Avatar classes={{ root: style.avatar }} />
       <IconButton onClick={handleOpenUserMenu} disableRipple={true} classes={{ root: style.arrowWrapper }}>
         {anchorElUser ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
@@ -83,7 +80,7 @@ const AuthBlock = () => {
         </MenuItem>
         <MenuItem
           classes={{
-            root: classNames(style.menuItem, 'text'),
+            root: classNames(style.menuItem, 'text', { ['text2']: windowSize.width < 1366 }),
           }}
           onClick={() => {
             handleCloseUserMenu('dashboard');
@@ -93,7 +90,7 @@ const AuthBlock = () => {
         </MenuItem>
         <MenuItem
           classes={{
-            root: classNames(style.menuItem, style.logout, 'text'),
+            root: classNames(style.menuItem, style.logout, 'text', { ['text2']: windowSize.width < 1366 }),
           }}
           onClick={logoutHandler}
         >

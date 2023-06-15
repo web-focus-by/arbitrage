@@ -66,7 +66,7 @@ export const apiTable = createApi({
                     body: JSON.stringify({ refresh_token: (getState() as RootState).auth.refreshToken }),
                   });
                   const newToken = await response.json();
-                  console.log({ newToken });
+
                   if (!newToken.access_token) {
                     throw new Error('No access token');
                   }
