@@ -3,7 +3,7 @@ import { Avatar, IconButton, Menu } from '@mui/material';
 import style from './authBlock.module.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, useEffect } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ import { logout as logoutAction } from '../../../features/auth/authSlice.ts';
 import { useAppDispatch } from '../../../store/hooks.ts';
 import classNames from 'classnames';
 import useWindow from '../../../hooks/useWindow.ts';
+import { useGetNotificationsQuery } from '../../../services/notification.ts';
 
 const AuthBlock = () => {
   const { windowSize } = useWindow();
@@ -20,7 +21,7 @@ const AuthBlock = () => {
   const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-
+  const { data } = useGetNotificationsQuery();
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -39,6 +40,9 @@ const AuthBlock = () => {
       //TODO вынести ошибку в тост
     }
   };
+  useEffect(() => {
+    console.log({ data });
+  }, [data]);
 
   return (
     <div className={style.wrapper}>
