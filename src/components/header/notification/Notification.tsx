@@ -1,4 +1,4 @@
-import React, { MouseEvent, useMemo, useState } from 'react';
+import React, { MouseEvent, useEffect, useMemo, useState } from 'react';
 import { CircularProgress, IconButton, Menu } from '@mui/material';
 import BellIcon from '../../icon/BellIcon.tsx';
 import style from './notidication.module.scss';
@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import {
   INotification,
   useGetNotificationsQuery,
+  useNotificationStreamQuery,
   useReadNotificationMutation,
 } from '../../../services/notification.ts';
 import { useIntl } from 'react-intl';
@@ -36,6 +37,7 @@ const Notification = () => {
   const [openModal, setOpenModal] = useState(false);
   const [modalData, setModalData] = useState<null | INotification>(null);
   const markets = useAppSelector(selectAllMarkets);
+  const { data: notificationData } = useNotificationStreamQuery();
 
   const handleOpenNotificationMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNotification(event.currentTarget);
@@ -69,10 +71,14 @@ const Notification = () => {
     return data?.filter((item) => !item.if_read).length;
   }, [data]);
 
+  useEffect(() => {
+    console.log({ notificationData });
+  }, [notificationData]);
+
   return (
     <React.Fragment>
       <IconButton onClick={handleOpenNotificationMenu} disableRipple={true}>
-        <BellIcon className={style.icon} />
+        <BellIcon className={style.icon} haveNotification={newNotificationCount > 0} />
       </IconButton>
       <Menu
         anchorEl={anchorElNotification}

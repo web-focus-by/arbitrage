@@ -4,15 +4,7 @@ import { getWebSocket, resetWebSocket } from '../utils/webSoket.ts';
 import { ITableContent } from '../page/dashboard/components/table/TableDashboard.tsx';
 import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { restoreCredentials } from '../features/auth/authSlice.ts';
-
-function isJsonString(str: string) {
-  try {
-    JSON.parse(str);
-  } catch (e) {
-    return false;
-  }
-  return true;
-}
+import { isJsonString } from '../utils';
 
 const isMessage = (data: ITableContent) => {
   return typeof data === 'object';
@@ -36,7 +28,7 @@ export const apiTable = createApi({
         const token = (getState() as RootState).auth.accessToken;
 
         // create a websocket connection when the cache subscription starts
-        const ws = getWebSocket();
+        const ws = getWebSocket('spread');
 
         ws.addEventListener('open', () => {
           ws.send(JSON.stringify({ access_token: token }));
@@ -98,7 +90,7 @@ export const apiTable = createApi({
         // await cacheEntryRemoved;
         await cacheEntryRemoved;
         // perform cleanup steps once the `cacheEntryRemoved` promise resolves
-        resetWebSocket();
+        resetWebSocket('spread');
       },
     }),
   }),
