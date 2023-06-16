@@ -4,11 +4,19 @@ import BellIcon from '../../icon/BellIcon.tsx';
 import style from './notidication.module.scss';
 import classNames from 'classnames';
 import MenuItem from '@mui/material/MenuItem';
-import { useGetNotificationsQuery } from '../../../services/notification.ts';
+import {
+  INotification,
+  useGetNotificationsQuery,
+  useReadNotificationMutation,
+} from '../../../services/notification.ts';
 import { useIntl } from 'react-intl';
 import WarningCircleIcon from '../../icon/WarningCircleIcon.tsx';
 import CheckIcon from '../../icon/CheckIcon.tsx';
 import { getFormattedSpreadString } from './notification.ts';
+import Modal from '../../modal/Modal.tsx';
+import { useAppSelector } from '../../../store/hooks.ts';
+import { selectAllMarkets } from '../../../features/general/generalSelect.ts';
+import SpreadNotificationContent from './spreadNotificationContent/SpreadNotificationContent.tsx';
 
 type Unit = 'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year';
 
@@ -24,12 +32,36 @@ const Notification = () => {
   const { formatMessage, formatRelativeTime, formatDate, formatTime } = useIntl();
   const [anchorElNotification, setAnchorElNotification] = useState<null | HTMLElement>(null);
   const { data, isLoading } = useGetNotificationsQuery();
+  const [readNotification] = useReadNotificationMutation();
+  const [openModal, setOpenModal] = useState(false);
+  const [modalData, setModalData] = useState<null | INotification>(null);
+  const markets = useAppSelector(selectAllMarkets);
+
   const handleOpenNotificationMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNotification(event.currentTarget);
   };
 
   const handleCloseNotificationMenu = () => {
     setAnchorElNotification(null);
+  };
+
+  const closeModalHandler = () => {
+    setTimeout(() => {
+      setModalData(null);
+    }, 300);
+  };
+
+  const openModalHandler = async (item) => {
+    setOpenModal(true);
+    setModalData(item);
+
+    try {
+      if (!item.if_read) {
+        await readNotification(item.id);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const newNotificationCount = useMemo(() => {
@@ -73,7 +105,6 @@ const Notification = () => {
             <CircularProgress />
           ) : (
             data?.map((item) => {
-              console.log(item);
               const timeDiff = new Date(item.creation_date).getTime() - new Date().getTime();
               // const timeDiff = new Date().getTime() - new Date().getTime() - 1000 * 60 * 59;
               const [val, type] = getRelativeTimeOptions(timeDiff);
@@ -88,7 +119,7 @@ const Notification = () => {
                     <div className={'text2'}>{item.title}</div>
                     <div className={classNames('text2', style.notifyShortContent)}>
                       {item.ntype === 'spread'
-                        ? getFormattedSpreadString(JSON.parse(item.content))
+                        ? getFormattedSpreadString(JSON.parse(item.content), markets)
                         : item.content.length > descriptionLength
                         ? item.content.slice(0, descriptionLength) + '...'
                         : item.content}
@@ -99,7 +130,14 @@ const Notification = () => {
                           ? formatRelativeTime(val as number, type as Unit, { numeric: 'auto' })
                           : formatDate(item.creation_date) + ' ' + formatTime(item.creation_date)}
                       </span>
-                      <span className={'table-link'}>Подробнее</span>
+                      <span
+                        className={'table-link'}
+                        onClick={() => {
+                          openModalHandler(item);
+                        }}
+                      >
+                        Подробнее
+                      </span>
                     </div>
                   </div>
                 </MenuItem>
@@ -108,6 +146,20 @@ const Notification = () => {
           )}
         </div>
       </Menu>
+      <Modal
+        isOpen={openModal}
+        setIsOpen={setOpenModal}
+        callbackClose={closeModalHandler}
+        customTextContainer={true}
+        title={modalData?.ntype === 'spread' ? formatMessage({ id: 'notification.modal.title' }) : modalData?.title}
+        text={
+          modalData?.ntype === 'spread' ? (
+            <SpreadNotificationContent data={JSON.parse(modalData.content)} />
+          ) : (
+            <div className={style.contentWrapper}>{modalData?.content}</div>
+          )
+        }
+      />
     </React.Fragment>
   );
 };

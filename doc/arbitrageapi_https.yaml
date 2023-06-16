@@ -484,6 +484,28 @@ paths:
                           type: string
                           description: Путь к картинке
 
+  /general/subscriptions:
+    get:
+      summary: Виды подписок
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  subscriptions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        price:
+                          type: integer
+
   /general/markets:
     get:
       summary: Список бирж и их названия
@@ -521,8 +543,7 @@ components:
           type: string
           description: Имя пользователя
         telegram:
-          type: integer
-          description: Телеграм
+          type: string
         email:
           type: string
           description: Почта
@@ -533,8 +554,8 @@ components:
           type: integer
           description: Всего страниц для пользователя
         monitoring:
-          type: integer
-          description: 0 - не присылать уведомления, 1 - присылать
+          type: boolean
+          description: false - не присылать уведомления, true - присылать
         profit_spread:
           type: string
           description: Спред в долларах
@@ -545,11 +566,11 @@ components:
           type: string
           description: Максимальная комиссия
         hedge_type:
-          type: integer
-          description: 0 - любые монеты, 1 - только хедж
+          type: boolean
+          description: false - любые монеты, true - только хедж
         risk_type:
           type: integer
-          description: 0 - безопасный режим, 1 - рискованный
+          description: false - безопасный режим, true - рискованный
         volume_min:
           type: string
           description: Минимальный объем
@@ -576,6 +597,12 @@ components:
           items:
             type: string
           description: Сети в ЧС
+        subscription_id:
+          type: integer
+          description: id подписки, 0 - нет подписки
+        start_date:
+          type: string
+          description: Дата начала подписки
         end_date:
           type: string
           description: Дата окончания подписки
@@ -586,23 +613,21 @@ components:
         id:
           type: integer
           description: id уведомления
-          required: true
         title:
           type: string
           description: Заголовок
-          required: true
         content:
           type: string
           description: Содержание
-          required: true
         creation_date:
           type: string
           description: Время создания. Например, "Tue, 13 Jun 2023 21:36:05 GMT"
-          required: true
         if_read:
           type: boolean
           description: Прочитано ли уведомление
-          required: true
+        ntype:
+          type: string
+          description: Тип уведомления, 'text' - текстовое, 'spread' - уведомление о спреде
 
     error_message:
       type: object

@@ -25,8 +25,11 @@
   .notificationItemsWrapper {
     display: flex;
     flex-direction: column;
-    margin-top: 24px;
     row-gap: 34px;
+    margin-top: 24px;
+    &:first-child {
+      margin-top: 0;
+    }
   }
   .notificationCount {
     padding: 14px 30px;
@@ -56,4 +59,12 @@
   &:hover {
     background-color: var(--menu-item-background-color);
   }
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
 }

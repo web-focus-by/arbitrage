@@ -1,19 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-type TMarket = {
+export type TMarket = {
   market: string;
   name: string;
 };
 
-type TVideo = {
+export type TVideo = {
   link: string;
   image: string;
 };
 
-interface IMarketsInfo {
+export interface IMarketsInfo {
   markets: TMarket[];
 }
-interface IVideosInfo {
+export interface IVideosInfo {
   videos: TVideo[];
 }
 

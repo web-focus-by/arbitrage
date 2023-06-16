@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from '../utils/query.ts';
 
-interface INotification {
+export interface INotification {
   id: number;
   title: string;
   content: string;
@@ -25,7 +25,18 @@ export const apiNotifications = createApi({
       }),
       providesTags: ['Notifications'],
     }),
+    readNotification: build.mutation<INotification, number>({
+      query: (id) => ({
+        url: `/notifications`,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      }),
+      invalidatesTags: ['Notifications'],
+    }),
   }),
 });
 
-export const { useGetNotificationsQuery } = apiNotifications;
+export const { useGetNotificationsQuery, useReadNotificationMutation } = apiNotifications;

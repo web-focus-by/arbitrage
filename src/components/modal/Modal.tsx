@@ -9,6 +9,7 @@ import classNames from 'classnames';
 interface IModalContent {
   title?: string | ReactNode;
   text?: string | ReactNode;
+  customTextContainer?: boolean;
   actions?: ReactNode | ReactNode[];
 }
 
@@ -46,10 +47,14 @@ const Modal: FC<IModal> = (props) => {
           props.children
         ) : (
           <>
-            <DialogTitle component={'h4'} classes={{ root: style.title }}>
+            <DialogTitle component={'h4'} classes={{ root: classNames(style.title, 'h4') }}>
               {props.title}
             </DialogTitle>
-            <DialogContentText classes={{ root: style.text }}>{props.text}</DialogContentText>
+            {props.customTextContainer ? (
+              props.text
+            ) : (
+              <DialogContentText classes={{ root: style.text }}>{props.text}</DialogContentText>
+            )}
             <DialogActions>{props.actions}</DialogActions>
           </>
         )}
