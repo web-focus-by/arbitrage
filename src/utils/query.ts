@@ -13,6 +13,7 @@ export const baseQuery = fetchBaseQuery({
     if (token) {
       headers.set('authorization', `Bearer ${token}`);
     }
+    headers.set('Refer-policies', 'no-referrer-when-downgrade');
     return headers;
   },
 });
@@ -24,6 +25,7 @@ export const baseQueryWs = fetchBaseQuery({
     if (token) {
       headers.set('authorization', `Bearer ${token}`);
     }
+    headers.set('Refer-policies', 'no-referrer-when-downgrade');
     return headers;
   },
 });
