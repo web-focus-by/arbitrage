@@ -5,5 +5,7 @@
   "error.user.already.exist": "Пользователь с таким email уже существует",
   "error.user.not.exist": "Пользователь не существует",
   "error.passwords.not.match": "Пароли не совпадают",
-  "error.typeError": "Неверный формат данных"
+  "error.typeError": "Неверный формат данных",
+  "error.user.not.found": "Неверная почта или пароль",
+  "error.wrong.password": "Неверная почта или пароль"
 }
