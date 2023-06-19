@@ -6,19 +6,6 @@
   align-items: center;
 }
 
-.icon {
-  margin-right: 35px;
-  color: var(--bell-background-color);
-
-  path {
-    stroke: var(--bell-border-color);
-  }
-
-  @include max-720 {
-    margin-right: 20px;
-  }
-}
-
 .avatar {
   width: 56px;
   height: 56px;
@@ -39,7 +26,7 @@
   transition: background-color $transition-time $transition-animate;
 
   @include max-720 {
-    margin-left: 0px;
+    margin-left: 0;
   }
 
   &:hover {
@@ -82,6 +69,7 @@
 
 .logout {
   margin-top: 20px;
+
   @include max-1200 {
     margin-top: 8px;
   }

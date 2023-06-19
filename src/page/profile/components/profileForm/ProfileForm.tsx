@@ -50,7 +50,7 @@ const ProfileForm = () => {
         <h4>{formatMessage({ id: 'profile.personal.data' })}</h4>
         <div className={style.formSection}>
           <Controller
-            name="username"
+            name="name"
             control={control}
             rules={{
               required: formatMessage({ id: 'error.required' }),
@@ -96,7 +96,7 @@ const ProfileForm = () => {
             )}
           />
           <Controller
-            name="telegramName"
+            name="telegram"
             control={control}
             rules={{
               required: formatMessage({ id: 'error.required' }),

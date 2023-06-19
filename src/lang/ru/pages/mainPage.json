@@ -37,6 +37,7 @@
   "ratesBlock.content.inter.exchange.tg.bot": "Межбиржевой телеграм бот",
   "ratesBlock.content.user.chat": "Чат пользователей",
   "ratesBlock.content.intra.exchange.tg.bot": "Внутрибиржевой телеграм бот",
+  "notification.new.count": "Новых уведомлений: {count}",
   "infoAboutTgBotsBlock.text": "В дополнение к браузерной версии сервис предоставляет удобные телеграм боты для межбиржевого и внутрибиржевого арбитража.",
   "earningInfoBlock.headline": "Заработок на растущем и падающем рынке",
   "earningInfoBlock.text": "Куда бы не пошёл рынок, вверх или вниз, всегда есть арбитражные ситуации, на которых можно зарабатывать.",

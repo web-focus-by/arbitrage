@@ -5,6 +5,7 @@ import { apiAuth } from '../services/auth';
 import { apiUserInfo } from '../services/userInfo.ts';
 import { apiGeneralInfo } from '../services/generalInfo.ts';
 import { apiTable } from '../services/table.ts';
+import { apiNotifications } from '../services/notification.ts';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     [apiUserInfo.reducerPath]: apiUserInfo.reducer,
     [apiGeneralInfo.reducerPath]: apiGeneralInfo.reducer,
     [apiTable.reducerPath]: apiTable.reducer,
+    [apiNotifications.reducerPath]: apiNotifications.reducer,
     auth: authReducer,
     theme: themeReducer,
   },
@@ -20,7 +22,8 @@ export const store = configureStore({
       .concat(apiAuth.middleware)
       .concat(apiUserInfo.middleware)
       .concat(apiGeneralInfo.middleware)
-      .concat(apiTable.middleware),
+      .concat(apiTable.middleware)
+      .concat(apiNotifications.middleware),
 });
 
 store.dispatch(checkToken());

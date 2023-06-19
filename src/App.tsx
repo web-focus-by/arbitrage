@@ -12,6 +12,7 @@ const App = () => {
 
   store.dispatch(apiGeneralInfo.endpoints.getMarketsInfo.initiate());
   store.dispatch(apiGeneralInfo.endpoints.getVideosInfo.initiate());
+  store.dispatch(apiGeneralInfo.endpoints.getSubscriptionsInfo.initiate());
 
   return (
     <Provider store={store}>

@@ -205,23 +205,21 @@ components:
         id:
           type: integer
           description: id уведомления
-          required: true
         title:
           type: string
           description: Заголовок
-          required: true
         content:
           type: string
           description: Содержание
-          required: true
         creation_date:
           type: string
           description: Время создания. Например, "Tue, 13 Jun 2023 21:36:05 GMT"
-          required: true
         if_read:
           type: boolean
           description: Прочитано ли уведомление
-          required: true
+        ntype:
+          type: string
+          description: Тип уведомления, 'text' - текстовое, 'spread' - уведомление о спреде
 
     error_message:
       type: object
