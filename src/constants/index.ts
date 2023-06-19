@@ -1,3 +1,5 @@
+import videoImage from '../../public/mainPage/videoBlock/videoImage.png';
+
 export const VALIDATION_REGEX = {
   email: /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+$/,
   telegramUsername: /^@[a-zA-Z]+$/,
@@ -14,4 +16,14 @@ export const SHOP_ARR = [
   { market: 'huobi', name: 'Huobi' },
   { market: 'poloniex', name: 'Poloniex' },
   { market: 'mexc', name: 'Mexc' },
+];
+
+export const VIDEO_ARR = [
+  { id: 1, videoSrc: videoImage },
+  { id: 2, videoSrc: videoImage },
+  { id: 3, videoSrc: videoImage },
+  { id: 4, videoSrc: videoImage },
+  { id: 5, videoSrc: videoImage },
+  { id: 6, videoSrc: videoImage },
+  { id: 7, videoSrc: videoImage },
 ];

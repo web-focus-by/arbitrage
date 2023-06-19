@@ -1,6 +1,6 @@
 import { selectMarketsResult, selectVideosResult } from '../../services/generalInfo.ts';
 import { createSelector } from '@reduxjs/toolkit';
-import { SHOP_ARR } from '../../constants';
+import { SHOP_ARR, VIDEO_ARR } from '../../constants';
 
 export const selectAllMarkets = createSelector(
   selectMarketsResult,
@@ -8,5 +8,5 @@ export const selectAllMarkets = createSelector(
 );
 export const selectAllVideos = createSelector(
   selectVideosResult,
-  (videoResult) => videoResult.data?.videos ?? SHOP_ARR,
+  (videoResult) => videoResult.data?.videos ?? VIDEO_ARR,
 );
