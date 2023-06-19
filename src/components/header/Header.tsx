@@ -33,8 +33,8 @@ const Header = () => {
   };
 
   useEffect(() => {
-    document.body.style.overflow = isOpenModal || isOpenBurger ? 'hidden' : 'auto';
-  }, [isOpenModal, isOpenBurger]);
+    document.body.style.overflow = isOpenBurger ? 'hidden' : 'auto';
+  }, [isOpenBurger]);
 
   return (
     <header className={style.header}>
