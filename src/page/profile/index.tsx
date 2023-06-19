@@ -7,6 +7,11 @@ import AppLink from '../../components/link/AppLink.tsx';
 import classNames from 'classnames';
 import ProfileForm from './components/profileForm/ProfileForm.tsx';
 import useWindow from '../../hooks/useWindow.ts';
+import { useAppSelector } from '../../store/hooks.ts';
+import { selectUserInfo } from '../../features/userInfo/userInfoSelect.ts';
+import { useMemo } from 'react';
+import { selectAllSubscriptions } from '../../features/general/generalSelect.ts';
+import { TSubscription } from '../../services/generalInfo.ts';
 
 const additionalData = [
   { name: 'profile.additional.resources.inter.exchange.bot', link: '/' },
@@ -16,7 +21,13 @@ const additionalData = [
 const Profile = () => {
   const { formatMessage } = useIntl();
   const { windowSize } = useWindow();
+  const subscription = useAppSelector(selectAllSubscriptions);
+  const user = useAppSelector(selectUserInfo);
 
+  const usbscriptionData = useMemo(() => {
+    return (subscription as TSubscription[])?.find((item) => item.id === user?.subscription_id);
+  }, [subscription, user]);
+  console.log(usbscriptionData);
   return (
     <>
       <Header />

@@ -10,11 +10,21 @@ export type TVideo = {
   image: string;
 };
 
+export type TSubscription = {
+  id: number;
+  name: string;
+  price: number;
+};
+
 export interface IMarketsInfo {
   markets: TMarket[];
 }
 export interface IVideosInfo {
   videos: TVideo[];
+}
+
+export interface ISubscriptionsInfo {
+  subscriptions: TSubscription[];
 }
 
 export const apiGeneralInfo = createApi({
@@ -30,9 +40,13 @@ export const apiGeneralInfo = createApi({
     getVideosInfo: builder.query<IVideosInfo, void>({
       query: () => 'videos',
     }),
+    getSubscriptionsInfo: builder.query<ISubscriptionsInfo, void>({
+      query: () => 'subscriptions',
+    }),
   }),
 });
 
-export const { useGetMarketsInfoQuery, useGetVideosInfoQuery } = apiGeneralInfo;
+export const { useGetMarketsInfoQuery, useGetVideosInfoQuery, useGetSubscriptionsInfoQuery } = apiGeneralInfo;
 export const selectMarketsResult = apiGeneralInfo.endpoints.getMarketsInfo.select();
 export const selectVideosResult = apiGeneralInfo.endpoints.getVideosInfo.select();
+export const selectSubscriptionsResult = apiGeneralInfo.endpoints.getSubscriptionsInfo.select();

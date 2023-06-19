@@ -3,6 +3,7 @@ import { baseQuery } from '../utils/query.ts';
 import { apiUserInfo } from './userInfo.ts';
 import { apiTable } from './table.ts';
 import { logout } from '../features/auth/authSlice.ts';
+import { apiNotifications } from './notification.ts';
 
 export interface IUser {
   fee: number;
@@ -20,6 +21,7 @@ export interface IUser {
   monitoring: 0 | 1;
   risk_type: 0 | 1;
   hedge_type: 0 | 1;
+  subscription_id: number;
 }
 
 export interface IUserResponse {
@@ -83,6 +85,7 @@ export const apiAuth = createApi({
           dispatch(logout());
           dispatch(apiTable.util.resetApiState());
           dispatch(apiUserInfo.util.resetApiState());
+          dispatch(apiNotifications.util.resetApiState());
         } catch (e) {
           console.log({ e });
         }
