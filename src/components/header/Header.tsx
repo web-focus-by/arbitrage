@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import appLogo from '../../../public/logo.svg';
 import style from './header.module.scss';
 import classNames from 'classnames';
@@ -11,13 +10,16 @@ import AuthModal from './authModal/AuthModal.tsx';
 import AppButton from '../button/AppButton';
 import AppSwitch from '../switch/AppSwitch.tsx';
 import useWindow from '../../hooks/useWindow';
+import AuthBlock from './authBlock/AuthBlock.tsx';
+import { useIntl } from 'react-intl';
 
 const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
 const Header = () => {
-  const navigate = useNavigate();
   const auth = useAuth();
   const { theme, setThemeHandler } = useTheme();
   const { windowSize } = useWindow();
+
+  const { formatMessage } = useIntl();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenBurger, setIsOpenBurger] = useState(false);
@@ -40,13 +42,14 @@ const Header = () => {
         <div className={classNames(style.header__container)}>
           <div className={style.header__logo}>
             <img src={appLogo} className="logo" alt="Vite logo" />
+            <div className={style.h1}>{formatMessage({ id: 'logo.text' })}</div>
           </div>
           <nav className={style.header__nav}>
             <ul className={style.header__nav__list}>
               {navItems.map((el, i) => (
-                <li key={'nav_el_' + i} className={classNames(style.header__nav__item, style.subtitle3)}>
-                  {el}
-                </li>
+                <a key={'nav_el_' + i} href={'/#' + el}>
+                  <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
+                </a>
               ))}
             </ul>
           </nav>
@@ -55,15 +58,7 @@ const Header = () => {
           </div>
           <div>
             {auth ? (
-              <AppButton
-                onClick={() => {
-                  navigate('/dashboard');
-                }}
-                color={'secondary'}
-                className={style.authButton}
-              >
-                Кабинет
-              </AppButton>
+              <AuthBlock />
             ) : (
               <AppButton
                 onClick={() => {
@@ -72,7 +67,7 @@ const Header = () => {
                 color={'secondary'}
                 className={style.authButton}
               >
-                Войти
+                {formatMessage({ id: 'button.enter' })}
               </AppButton>
             )}
           </div>
@@ -94,9 +89,9 @@ const Header = () => {
                     <nav className={style.header__nav}>
                       <ul className={style.header__nav__list}>
                         {navItems.map((el, i) => (
-                          <li key={'nav_el_' + i} className={classNames(style.header__nav__item, style.subtitle3)}>
-                            {el}
-                          </li>
+                          <a key={'nav_el_' + i} href={'/#' + el}>
+                            <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
+                          </a>
                         ))}
                       </ul>
                     </nav>
@@ -123,6 +118,7 @@ const Header = () => {
 
                 <div className={style.header__logo}>
                   <img src={appLogo} className="logo" alt="Vite logo" />
+                  <div className={style.h1}>Arbitrage Services</div>
                 </div>
               </div>
 
@@ -132,15 +128,7 @@ const Header = () => {
                 </div>
                 <div>
                   {auth ? (
-                    <AppButton
-                      onClick={() => {
-                        navigate('/dashboard');
-                      }}
-                      color={'secondary'}
-                      className={style.authButton}
-                    >
-                      Кабинет
-                    </AppButton>
+                    <AuthBlock />
                   ) : (
                     <AppButton
                       onClick={() => {
@@ -149,7 +137,7 @@ const Header = () => {
                       color={'secondary'}
                       className={style.authButton}
                     >
-                      Войти
+                      {formatMessage({ id: 'button.enter' })}
                     </AppButton>
                   )}
                 </div>
@@ -157,64 +145,101 @@ const Header = () => {
             </div>
           ) : (
             <div className={classNames(style.header__container)}>
-              <div className={style.burgerAndLogo}>
-                <div className={style.burgerButton} onClick={handleClickBurger}>
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 16H27" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M5 8H27" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M5 24H27" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <div className={classNames(style.burgerTextBlock, { [style.isOpenBurgerMenu]: isOpenBurger })}>
-                    <div className={style.burgerMobileMenu}>
-                      <nav className={style.header__nav}>
-                        <ul className={style.header__nav__list}>
-                          {navItems.map((el, i) => (
-                            <li key={'nav_el_' + i} className={classNames(style.header__nav__item, style.subtitle3)}>
-                              {el}
-                            </li>
-                          ))}
-                        </ul>
-                      </nav>
-                      <div className={style.switchAndButton}>
-                        <div>
-                          <AppSwitch switchProps={{ onClick: setThemeHandler, checked: theme === ETheme.light }} />
+              {auth ? (
+                <div className={style.burgerAndLogo}>
+                  <div className={style.burgerAndLogo_container}>
+                    <div className={style.burgerButton}>
+                      <div onClick={handleClickBurger}>
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M5 16H27"
+                            stroke="black"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M5 8H27"
+                            stroke="black"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M5 24H27"
+                            stroke="black"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <div className={classNames(style.burgerTextBlock, { [style.openBurgerMenu]: isOpenBurger })}>
+                        <div className={style.burgerMobileMenu}>
+                          <nav className={style.header__nav}>
+                            <ul className={style.header__nav__list}>
+                              {navItems.map((el, i) => (
+                                <a key={'nav_el_' + i} href={'/#' + el}>
+                                  <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
+                                </a>
+                              ))}
+                            </ul>
+                          </nav>
+                          <div className={style.switchAndButton}>
+                            <div>
+                              <AppSwitch switchProps={{ onClick: setThemeHandler, checked: theme === ETheme.light }} />
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          {auth ? (
-                            <AppButton
-                              onClick={() => {
-                                navigate('/dashboard');
-                              }}
-                              color={'secondary'}
-                              className={style.authButton}
-                            >
-                              Кабинет
-                            </AppButton>
-                          ) : (
-                            <AppButton
-                              onClick={() => {
-                                handleClickOpenModal();
-                              }}
-                              color={'secondary'}
-                              className={style.authButton}
-                            >
-                              Войти
-                            </AppButton>
-                          )}
+                        <div className={style.burgerCross} onClick={handleClickBurger}>
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25 7L7 25"
+                              stroke="black"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M25 25L7 7"
+                              stroke="black"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
                         </div>
                       </div>
                     </div>
-                    <div className={style.burgerCross} onClick={handleClickBurger}>
+
+                    <div className={style.header__logo}>
+                      <img src={appLogo} className="logo" alt="Vite logo" />
+                      <div className={style.h1}>Arbitrage Services</div>
+                    </div>
+                  </div>
+                  <AuthBlock />
+                </div>
+              ) : (
+                <div className={classNames(style.burgerAndLogo, style.burgerAndLogoLogout)}>
+                  <div className={style.burgerButton}>
+                    <div onClick={handleClickBurger}>
                       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
-                          d="M25 7L7 25"
+                          d="M5 16H27"
                           stroke="black"
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
+                        <path d="M5 8H27" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         <path
-                          d="M25 25L7 7"
+                          d="M5 24H27"
                           stroke="black"
                           strokeWidth="2"
                           strokeLinecap="round"
@@ -222,13 +247,61 @@ const Header = () => {
                         />
                       </svg>
                     </div>
+                    <div className={classNames(style.burgerTextBlock, { [style.openBurgerMenu]: isOpenBurger })}>
+                      <div className={style.burgerMobileMenu}>
+                        <nav className={style.header__nav}>
+                          <ul className={style.header__nav__list}>
+                            {navItems.map((el, i) => (
+                              <a key={'nav_el_' + i} href={'/#' + el}>
+                                <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
+                              </a>
+                            ))}
+                          </ul>
+                        </nav>
+                        <div className={style.switchAndButton}>
+                          <div>
+                            <AppSwitch switchProps={{ onClick: setThemeHandler, checked: theme === ETheme.light }} />
+                          </div>
+                          <div>
+                            <AppButton
+                              onClick={() => {
+                                handleClickOpenModal();
+                              }}
+                              color={'secondary'}
+                              className={style.authButton}
+                            >
+                              {formatMessage({ id: 'button.enter' })}
+                            </AppButton>
+                          </div>
+                        </div>
+                      </div>
+                      <div className={style.burgerCross} onClick={handleClickBurger}>
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M25 7L7 25"
+                            stroke="black"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M25 25L7 7"
+                            stroke="black"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className={style.header__logo}>
+                    <img src={appLogo} className="logo" alt="Vite logo" />
+                    <div className={style.h1}>Arbitrage Services</div>
                   </div>
                 </div>
-
-                <div className={style.header__logo}>
-                  <img src={appLogo} className="logo" alt="Vite logo" />
-                </div>
-              </div>
+              )}
             </div>
           )}
         </div>

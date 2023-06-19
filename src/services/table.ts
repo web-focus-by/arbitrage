@@ -13,6 +13,7 @@ function isJsonString(str: string) {
   }
   return true;
 }
+
 const isMessage = (data: ITableContent) => {
   return typeof data === 'object';
   // return !!data;
@@ -65,11 +66,15 @@ export const apiTable = createApi({
                     body: JSON.stringify({ refresh_token: (getState() as RootState).auth.refreshToken }),
                   });
                   const newToken = await response.json();
-
+                  console.log({ newToken });
+                  if (!newToken.access_token) {
+                    throw new Error('No access token');
+                  }
                   dispatch(restoreCredentials({ ...newToken }));
 
                   ws.send(JSON.stringify({ access_token: (getState() as RootState).auth.accessToken }));
                 } catch (e) {
+                  console.log({ e });
                   dispatch(apiTable.util.resetApiState());
                 }
                 return;

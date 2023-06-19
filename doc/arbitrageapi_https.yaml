@@ -2,8 +2,10 @@ openapi: 3.0.0
 info:
   title: Arbitrage Services API
   version: 0.1.0
+
 servers:
-  - url: 'https://185.240.103.242:50051'
+  - url: https://185.240.103.242:50051
+
 paths:
   /signup:
     post:
@@ -39,18 +41,21 @@ paths:
                     type: string
                   refresh_token:
                     type: string
+
         '400':
           description: Required parameter is missing
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '408':
           description: User already exist
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
   /login:
     post:
       summary: Вход в аккаунт
@@ -81,24 +86,48 @@ paths:
                     type: string
                   user_info:
                     $ref: '#/components/schemas/user_info'
+
         '400':
           description: Required parameter is missing
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '402':
           description: User not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '403':
           description: Wrong password
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
+  /logout:
+    post:
+      summary: Выход
+      security:
+        - bearer_auth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+        '401':
+          description: Authorization invalids
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
   /refresh:
     post:
       summary: Обновление refresh_token
@@ -123,18 +152,21 @@ paths:
                   message:
                     type: string
                     description: Success
+
         '400':
           description: Required parameter is missing
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '404':
           description: Wrong refresh token
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
   /info:
     get:
       summary: Получение информации о пользователе
@@ -150,30 +182,35 @@ paths:
                 properties:
                   user_info:
                     $ref: '#/components/schemas/user_info'
+
         '401':
           description: Authorization invalids
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '402':
           description: User not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '405':
           description: Invalid signature
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '406':
           description: Token expired
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
     post:
       summary: Изменение параметров пользователя
       security:
@@ -184,6 +221,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/user_info'
+
       responses:
         '200':
           description: OK
@@ -191,38 +229,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '401':
           description: Authorization invalid
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '402':
           description: User not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '405':
           description: Invalid signature
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '406':
           description: Token expired
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '407':
           description: Invalid parameter
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
   /pay:
-    get:
+    post:
       summary: Оплата
       security:
         - bearer_auth: []
@@ -248,98 +292,35 @@ paths:
                   link:
                     type: string
                     description: Ссылка для оплаты
+
         '400':
           description: Required parameter is missing
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '401':
           description: Authorization invalid
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
         '407':
           description: Invalid parameter
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
-  /black_list:
-    get:
-      summary: Получение чёрного списка монет и сетей
-      security:
-        - bearer_auth: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  monets:
-                    type: array
-                    items:
-                      type: string
-                    required: true
-                  chains:
-                    type: array
-                    items:
-                      type: string
-                    required: true
-        '401':
-          description: Authorization invalid
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-    put:
-      summary: Добавление монеты или сети в чёрный список
-      security:
-        - bearer_auth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                option:
-                  type: string
-                  required: true
-                  description: 'monet - блокировка монеты, chain - сети'
-                name:
-                  type: string
-                  required: true
-                  description: Имя добавляемой монеты/сети
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-        '401':
-          description: Authorization invalid
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error_message'
-  /recover_password:
+
+  /password/recover:
     get:
       summary: Восстановление пароля
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  required: true
+      parameters:
+        - name: email
+          in: query
+          required: true
       responses:
         '200':
           description: OK
@@ -347,6 +328,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_message'
+
+        '401':
+          description: Authorization invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+        '402':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
     post:
       summary: Проверка кода
       requestBody:
@@ -362,16 +358,111 @@ paths:
       responses:
         '200':
           description: OK
-          content: null
-          application/json:
-            schema: null
-            $ref: '#/components/schemas/error_message'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+        '400':
+          description: Required parameter is missing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+        '407':
+          description: Code is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+  /password/change:
+    post:
+      summary: Изменение пароля
+      security:
+        - bearer_auth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+        '400':
+          description: Required parameter is missing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
         '401':
-          description: Coder invalid
-          content: null
+          description: Authorization invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+  /notifications:
+    get:
+      summary: Получение уведомлений пользователя
+      security:
+        - bearer_auth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/notification'
+
+        '401':
+          description: Authorization invalids
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+    post:
+      summary: Отметить уведомление прочитанным
+      security:
+        - bearer_auth: []
+      requestBody:
+        required: true
+        content:
           application/json:
-            schema: null
-            $ref: '#/components/schemas/error_message'
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  required: true
+                  description: id уведомления
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+        '400':
+          description: Required parameter is missing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+        '401':
+          description: Authorization invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
   /general/videos:
     get:
       summary: Ссылки на видео для блока на главной странице
@@ -392,6 +483,7 @@ paths:
                         image:
                           type: string
                           description: Путь к картинке
+
   /general/markets:
     get:
       summary: Список бирж и их названия
@@ -409,16 +501,18 @@ paths:
                       properties:
                         market:
                           type: string
-                          description: 'Системное название, например, "gateio"'
+                          description: Системное название, например, "gateio"
                         name:
                           type: string
-                          description: 'Название биржи, например "Gate.io"'
+                          description: Название биржи, например "Gate.io"
+
 components:
   securitySchemes:
     bearer_auth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+
   schemas:
     user_info:
       type: object
@@ -434,25 +528,28 @@ components:
           description: Почта
         page:
           type: integer
-          description: 'Страница, на которой находится пользователь (нумерация с нуля)'
+          description: Страница, на которой находится пользователь (нумерация с нуля)
         max_pages:
           type: integer
           description: Всего страниц для пользователя
         monitoring:
           type: integer
-          description: '0 - не присылать уведомления, 1 - присылать'
+          description: 0 - не присылать уведомления, 1 - присылать
         profit_spread:
           type: string
           description: Спред в долларах
         percent_spread:
           type: string
           description: Спред в процентах
+        fee:
+          type: string
+          description: Максимальная комиссия
         hedge_type:
           type: integer
-          description: '0 - любые монеты, 1 - только хедж'
+          description: 0 - любые монеты, 1 - только хедж
         risk_type:
           type: integer
-          description: '0 - безопасный режим, 1 - рискованный'
+          description: 0 - безопасный режим, 1 - рискованный
         volume_min:
           type: string
           description: Минимальный объем
@@ -463,10 +560,50 @@ components:
           type: array
           items:
             type: string
+          description: Биржи покупки
         markets_sell:
           type: array
           items:
             type: string
+          description: Биржи продажи
+        monets:
+          type: array
+          items:
+            type: string
+          description: Монеты в ЧС
+        chains:
+          type: array
+          items:
+            type: string
+          description: Сети в ЧС
+        end_date:
+          type: string
+          description: Дата окончания подписки
+
+    notification:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id уведомления
+          required: true
+        title:
+          type: string
+          description: Заголовок
+          required: true
+        content:
+          type: string
+          description: Содержание
+          required: true
+        creation_date:
+          type: string
+          description: Время создания. Например, "Tue, 13 Jun 2023 21:36:05 GMT"
+          required: true
+        if_read:
+          type: boolean
+          description: Прочитано ли уведомление
+          required: true
+
     error_message:
       type: object
       properties:

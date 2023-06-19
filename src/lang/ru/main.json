@@ -5,5 +5,8 @@
   "delete": "Удалить",
   "select.options": "Выберите вариант",
   "filter": "Фильтр",
-  "video": "Видео"
+  "video": "Видео",
+  "profile": "Профиль",
+  "scaner": "Сканер",
+  "logout": "Выйти"
 }

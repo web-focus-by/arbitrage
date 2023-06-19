@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { apiUserInfo } from '../services/userInfo.ts';
 
 export const useAuth = () => {
-  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const { isAuth } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

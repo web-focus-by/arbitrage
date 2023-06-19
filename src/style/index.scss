@@ -46,6 +46,17 @@
   --pagination-background-color: #{$color-blue-1};
   --pagination-text-color: #{$color-blue-1};
   --pagination-selected-text-color: #{$color-white-1};
+
+  //bell-style
+  --bell-background-color: #{$color-white};
+  --bell-border-color: #{$color-gray-2};
+
+  //arrow-style
+  --arrow-color: #{$color-blue-1};
+  --arrow-background-color: #{$color-blue-9};
+
+  //accordion
+  --accordion-border-bottom: #{$color-accordion-light}
 }
 
 :root[data-theme='dark'] {
@@ -92,17 +103,18 @@
   --pagination-background-color: #{$color-blue-8};
   --pagination-text-color: #{$color-blue-8};
   --pagination-selected-text-color: #{$color-white-1};
+
+  //bell-style
+  --bell-background-color: #{$color-black};
+  --bell-border-color: #{$color-white};
+
+  //arrow-style
+  --arrow-color: #{$color-white};
+  --arrow-background-color: #{$color-black};
+
+  //accordion
+  --accordion-border-bottom: #{$color-accordion-dark}
 }
-//
-//:root[data-theme='light'] {
-//  --background-color: #fff;
-//  --text-color: #262626;
-//}
-//
-//:root[data-theme='dark'] {
-//  --background-color: #131313;
-//  --text-color: #fff;
-//}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -136,13 +148,19 @@ a {
   text-decoration: inherit;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
   display: flex;
+  flex-direction: column;
   min-width: 320px;
   min-height: 100vh;
+  height: 100vh;
   background: var(--background-color);
   color: var(--text-color);
   transition: color $transition-time $transition-animate, background-color $transition-time $transition-animate;
@@ -178,12 +196,16 @@ button {
 
 #root {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .container {
   margin: 0 auto;
   max-width: 1440px;
   width: 100%;
+
   &Padding {
     @include max-1440 {
       padding: 0 80px;
@@ -219,4 +241,16 @@ path {
 
 .fixed-position {
   position: fixed;
+}
+
+.errorWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  padding: 19px 23px;
+  border-radius: 12px;
+  color: $color-red-error;
+  background-color: $color-red-1;
+  font-size: 16px;
 }
