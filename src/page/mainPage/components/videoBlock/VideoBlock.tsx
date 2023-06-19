@@ -10,6 +10,8 @@ import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
 import { Navigation } from 'swiper';
 import React, { useCallback, useRef } from 'react';
 import { useIntl } from 'react-intl';
+import { useAppSelector } from '../../../../store/hooks';
+import { selectAllVideos } from '../../../../features/general/generalSelect';
 
 const VideoBlock = () => {
   const { formatMessage } = useIntl();
@@ -24,6 +26,8 @@ const VideoBlock = () => {
     if (!sliderRef.current) return;
     sliderRef.current.swiper.slideNext();
   }, []);
+
+  const videos = useAppSelector(selectAllVideos);
 
   const dataVideo = [
     {
@@ -86,9 +90,9 @@ const VideoBlock = () => {
             },
           }}
         >
-          {dataVideo.map((item) => (
-            <SwiperSlide key={item.id} className={style.swiperItem}>
-              <img src={item.videoSrc} />
+          {videos.map((item, index) => (
+            <SwiperSlide key={index} className={style.swiperItem}>
+              <img src={item.image} />
             </SwiperSlide>
           ))}
         </Swiper>
