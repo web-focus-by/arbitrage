@@ -1,0 +1,72 @@
+@import '/src/style';
+
+.page404_container {
+  margin: 160px auto 235px;
+  width: 796px;
+
+  @include max-1680 {
+    width: 47.35%;
+    margin: 9.5% auto 14%;
+  }
+  @include max-1200 {
+    width: 46.8%;
+    margin: 16.4% auto 28%;
+  }
+  @include max-991 {
+    width: 90%;
+    margin: 13.8% auto 27%;
+  }
+  @include max-720 {
+    width: 85%;
+    margin: 21.5% auto 37.5%;
+  }
+
+  .page404_img {
+    img {
+      width: 100%;
+    }
+
+    width: 100%;
+    @include max-991 {
+      width: 69.45%;
+      margin: 0 auto;
+    }
+    @include max-720 {
+      width: 100%;
+    }
+  }
+
+  .page404_text {
+    width: 80%;
+    margin: 4.6% auto 0;
+    text-align: center;
+    @include max-1200 {
+      width: 100%;
+      font-size: 16px;
+      line-height: 21px;
+      margin: 6.5% auto 0;
+    }
+    @include max-991 {
+      font-size: 18px;
+      line-height: 23px;
+    }
+    @include max-720 {
+      font-size: 16px;
+      line-height: 21px;
+    }
+  }
+
+  .page404_button {
+    margin: 6% auto 0;
+    width: max-content;
+    @include max-1200 {
+      margin: 8% auto 0;
+    }
+    @include max-991 {
+      margin: 7% auto 0;
+    }
+    @include max-576 {
+      margin: 10% auto 0;
+    }
+  }
+}

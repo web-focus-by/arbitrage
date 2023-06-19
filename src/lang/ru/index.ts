@@ -5,6 +5,7 @@ import errors from './errors.json';
 import modal from './modal.json';
 import profilePage from './pages/profilePage.json';
 import dashboardPage from './pages/dashboard.json';
+import page404 from './pages/page404.json';
 import footer from './pages/footer.json';
 
 const lang = {
@@ -15,7 +16,8 @@ const lang = {
   ...modal,
   ...profilePage,
   ...dashboardPage,
-  ...footer,
+  ...page404,
+  ...footer
 };
 
 export default lang;
