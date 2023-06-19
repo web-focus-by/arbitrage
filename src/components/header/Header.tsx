@@ -11,12 +11,15 @@ import AppButton from '../button/AppButton';
 import AppSwitch from '../switch/AppSwitch.tsx';
 import useWindow from '../../hooks/useWindow';
 import AuthBlock from './authBlock/AuthBlock.tsx';
+import { useIntl } from 'react-intl';
 
 const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
 const Header = () => {
   const auth = useAuth();
   const { theme, setThemeHandler } = useTheme();
   const { windowSize } = useWindow();
+
+  const { formatMessage } = useIntl();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenBurger, setIsOpenBurger] = useState(false);
@@ -39,11 +42,11 @@ const Header = () => {
         <div className={classNames(style.header__container)}>
           <div className={style.header__logo}>
             <img src={appLogo} className="logo" alt="Vite logo" />
-            <div className={style.h1}>Arbitrage Services</div>
+            <div className={style.h1}>{formatMessage({ id: 'logo.text' })}</div>
           </div>
           <nav className={style.header__nav}>
             <ul className={style.header__nav__list}>
-              {navItems.map((el, i) => (                
+              {navItems.map((el, i) => (
                 <a key={'nav_el_' + i} href={'/#' + el}>
                   <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
                 </a>
@@ -64,7 +67,7 @@ const Header = () => {
                 color={'secondary'}
                 className={style.authButton}
               >
-                Войти
+                {formatMessage({ id: 'button.enter' })}
               </AppButton>
             )}
           </div>
@@ -134,7 +137,7 @@ const Header = () => {
                       color={'secondary'}
                       className={style.authButton}
                     >
-                      Войти
+                      {formatMessage({ id: 'button.enter' })}
                     </AppButton>
                   )}
                 </div>
@@ -267,7 +270,7 @@ const Header = () => {
                               color={'secondary'}
                               className={style.authButton}
                             >
-                              Войти
+                              {formatMessage({ id: 'button.enter' })}
                             </AppButton>
                           </div>
                         </div>

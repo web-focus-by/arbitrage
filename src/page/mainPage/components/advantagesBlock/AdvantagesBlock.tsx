@@ -100,10 +100,10 @@ const AdvantagesBlock = () => {
   const { windowSize } = useWindow();
 
   return (
-    <div id={'Преимущества'}>
+    <div id={'' + formatMessage({ id: 'adv_headline' })}>
       {windowSize.width > 1200 ? (
         <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
-          <BlockTitle value={'Преимущества'} />
+          <BlockTitle value={'' + formatMessage({ id: 'adv_headline' })} />
           <div className={style.advantages_container}>
             {dataAdvantages.map((item) => (
               <div key={item.id} className={style.advantage_block}>
@@ -119,7 +119,7 @@ const AdvantagesBlock = () => {
       ) : (
         <div className={style.spacing_between_blocks}>
           <div className={style.mainPageContainer}>
-            <BlockTitle value={'Преимущества'} />
+            <BlockTitle value={'' + formatMessage({ id: 'adv_headline' })} />
           </div>
           <div className={style.MySwiperClass}>
             <Swiper
