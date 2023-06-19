@@ -1,31 +1,32 @@
 {
+  "logo.text": "Arbitrage Services",
+  "button.purchase": "Приобрести",
+  "button.go.over": "Перейти",
+  "button.enter": "Войти",
+  "button.choose.tariff": "Выбрать тариф",
+  "mainHeadline.headline": "Сервис по поиску арбитражных сделок",
+  "mainHeadline.text": "Мониторинг спредов в реальном времени для любых сумм между m биржами.",
+  "adv_headline": "Преимущества",
   "advHeadline.links.between.exchanges": "Связки между 10 топовыми биржами",
   "advDescr.links.between.exchanges": "Сервис считывает данные с лучших бирж и рассчитывает спред для более чем 1500 монет.",
-
   "advHeadline.convenient.filters": "Удобные фильтры",
   "advDescr.convenient.filters": "С помощью фильтров можно настроить желаемую сумму сделки, спред, биржи, комиссии и многое другое.",
-
   "advHeadline.quick.update.spreads": "Быстрое обновление спредов",
   "advDescr.quick.update.spreads": "Сервис мониторит биржи 24/7 и обновляет спреды каждые 10 секунд.",
-
   "advHeadline.calc.transaction.amount": "Расчёт суммы сделки",
   "advDescr.calc.transaction.amount": "Сервис считает оптимальную сумму сделки для вашего депозита, при которой достигается максимальная прибыль.",
-
   "advHeadline.check.output.networks": "Проверка вывода и сетей",
   "advDescr.check.output.networks": "Сервис проверяет возможность ввода и вывода монет. Также проверяется совпадение сетей перевода на биржах.",
-
   "advHeadline.commission.accounting": "Учёт комиссий",
   "advDescr.commission.accounting": "Сервис рассчитывает комиссию за перевод и комиссию спота, после чего выдаёт чистый спред.",
-
   "advHeadline.hedging": "Хеджирование",
   "advDescr.hedging": "Хеджирование помогает избавиться от риска изменения цены при переводе монеты. Сервис проверяет и обозначает возможность хеджирования таких монет.",
-
   "advHeadline.spread.alerts": "Оповещения о спредах",
   "advDescr.spread.alerts": "Уведомления позволяют следить за рынком, даже когда вы не за комьютером. Мы отправляем оповещения в браузер и Telegram.",
-
   "advHeadline.coin.transfer.time": "Время перевода монеты",
   "advDescr.coin.transfer.time": "Сервис показывает возможное время перевода монеты между биржами.",
-
+  "videoBlock.headline": "Видео",
+  "ratesBlock.headline": "Тарифы",
   "ratesBlock.term.week": "Неделя",
   "ratesBlock.term.month": "Месяц",
   "ratesBlock.term.forever": "Навсегда",
@@ -36,5 +37,21 @@
   "ratesBlock.content.inter.exchange.tg.bot": "Межбиржевой телеграм бот",
   "ratesBlock.content.user.chat": "Чат пользователей",
   "ratesBlock.content.intra.exchange.tg.bot": "Внутрибиржевой телеграм бот",
-  "notification.new.count": "Новых уведомлений: {count}"
+  "notification.new.count": "Новых уведомлений: {count}",
+  "infoAboutTgBotsBlock.text": "В дополнение к браузерной версии сервис предоставляет удобные телеграм боты для межбиржевого и внутрибиржевого арбитража.",
+  "earningInfoBlock.headline": "Заработок на растущем и падающем рынке",
+  "earningInfoBlock.text": "Куда бы не пошёл рынок, вверх или вниз, всегда есть арбитражные ситуации, на которых можно зарабатывать.",
+  "ourPartners.headline": "Наши партнеры",
+  "ourPartners.tooltip": "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem",
+  "questionAnswer.headline": "Вопрос-ответ",
+  "questionAnswer.question.amount.to.start.and.average.profit": "С какой суммы можно начать торговать и какая средняя прибыль?",
+  "questionAnswer.answer.amount.to.start.and.average.profit": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  "questionAnswer.question.frequency.occurrence.spreads": "Как часто появляются спреды, как долго они живут?",
+  "questionAnswer.answer.frequency.occurrence.spreads": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  "questionAnswer.question.request.spread": "Как отбирать спреды, которые можно крутить?",
+  "questionAnswer.answer.request.spread": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  "questionAnswer.question.blocking.frequent.transfers": "Блокируют ли биржи аккаунт за частые переводы?",
+  "questionAnswer.answer.blocking.frequent.transfers": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  "questionsRemainBlock.headline": "Остались вопросы?",
+  "questionsRemainBlock.text": "Пишите нам в телеграме."
 }

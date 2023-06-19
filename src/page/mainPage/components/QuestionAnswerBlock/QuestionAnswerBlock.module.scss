@@ -5,25 +5,29 @@
 
 .questionAnswerAccordion {
 
-  .questionAnswerAccordionHeadline, .questionAnswerAccordionText{
+  .questionAnswerAccordionHeadline, .questionAnswerAccordionText {
     width: 78%;
   }
 
-  &>div{
+  & > div {
     padding: 26px 0px;
-    @include max-1440{
+    @include max-1440 {
       padding: 20px 0px;
     }
 
-    &>div{
+    & > div {
       padding: 0;
     }
   }
 }
 
-.h2{
+.h2 {
   margin-bottom: 20px;
-  @include max-768{
-    margin-bottom: calc(0px + (26 - 0) * ( (100vw - 375px) / ( 768 - 375) ));
+  @include max-768 {
+    margin-bottom: calc(0px + (26 - 0) * ((100vw - 375px) / (768 - 375)));
   }
+}
+
+.accordionWrapper {
+  border-bottom: var(--accordion-border-bottom);
 }

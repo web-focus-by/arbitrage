@@ -54,6 +54,9 @@
   //arrow-style
   --arrow-color: #{$color-blue-1};
   --arrow-background-color: #{$color-blue-9};
+
+  //accordion
+  --accordion-border-bottom: #{$color-accordion-light}
 }
 
 :root[data-theme='dark'] {
@@ -108,6 +111,9 @@
   //arrow-style
   --arrow-color: #{$color-white};
   --arrow-background-color: #{$color-black};
+
+  //accordion
+  --accordion-border-bottom: #{$color-accordion-dark}
 }
 
 :root {

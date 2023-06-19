@@ -9,8 +9,10 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
 import { Navigation } from 'swiper';
 import React, { useCallback, useRef } from 'react';
+import { useIntl } from 'react-intl';
 
 const VideoBlock = () => {
+  const { formatMessage } = useIntl();
   const sliderRef: React.MutableRefObject<SwiperRef | null> = useRef(null);
 
   const handlePrev = useCallback(() => {
@@ -22,10 +24,41 @@ const VideoBlock = () => {
     if (!sliderRef.current) return;
     sliderRef.current.swiper.slideNext();
   }, []);
+
+  const dataVideo = [
+    {
+      id: 1,
+      videoSrc: videoImage,
+    },
+    {
+      id: 2,
+      videoSrc: videoImage,
+    },
+    {
+      id: 3,
+      videoSrc: videoImage,
+    },
+    {
+      id: 4,
+      videoSrc: videoImage,
+    },
+    {
+      id: 5,
+      videoSrc: videoImage,
+    },
+    {
+      id: 6,
+      videoSrc: videoImage,
+    },
+    {
+      id: 7,
+      videoSrc: videoImage,
+    },
+  ];
   return (
-    <div className={style.spacing_between_blocks} id={'Видео'}>
+    <div className={style.spacing_between_blocks} id={'' + formatMessage({ id: 'videoBlock.headline' })}>
       <div className={classNames(style.mainPageContainer)}>
-        <BlockTitle value={'Видео'} />
+        <BlockTitle value={'' + formatMessage({ id: 'videoBlock.headline' })} />
       </div>
       <div className={style.MySwiperClass}>
         <Swiper
@@ -53,27 +86,11 @@ const VideoBlock = () => {
             },
           }}
         >
-          <SwiperSlide className={style.swiperItem}>
-            <img src={videoImage} />
-          </SwiperSlide>
-          <SwiperSlide className={style.swiperItem}>
-            <img src={videoImage} />
-          </SwiperSlide>
-          <SwiperSlide className={style.swiperItem}>
-            <img src={videoImage} />
-          </SwiperSlide>
-          <SwiperSlide className={style.swiperItem}>
-            <img src={videoImage} />
-          </SwiperSlide>
-          <SwiperSlide className={style.swiperItem}>
-            <img src={videoImage} />
-          </SwiperSlide>
-          <SwiperSlide className={style.swiperItem}>
-            <img src={videoImage} />
-          </SwiperSlide>
-          <SwiperSlide className={style.swiperItem}>
-            <img src={videoImage} />
-          </SwiperSlide>
+          {dataVideo.map((item) => (
+            <SwiperSlide key={item.id} className={style.swiperItem}>
+              <img src={item.videoSrc} />
+            </SwiperSlide>
+          ))}
         </Swiper>
         <div className={style.navigationButtons}>
           <div onClick={handlePrev}>

@@ -11,6 +11,7 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export type TAppAutocompleteOptions = { title: string; value: string };
+
 interface IAppAutocomplete
   extends Omit<
     AutocompleteProps<TAppAutocompleteOptions, boolean | undefined, boolean | undefined, boolean | undefined>,
@@ -18,6 +19,7 @@ interface IAppAutocomplete
   > {
   textFieldProps?: Omit<React.ComponentProps<typeof AppTextField>, 'onChange' | 'label'>;
 }
+
 const AppAutocomplete: FC<IAppAutocomplete> = (props) => {
   const { textFieldProps, ...otherProps } = props;
   return (
