@@ -27,10 +27,11 @@ export interface ISubscriptionsInfo {
   subscriptions: TSubscription[];
 }
 
+console.log(import.meta.env.VITE_BACKEND_BASE_URL);
 export const apiGeneralInfo = createApi({
   reducerPath: 'apiGeneralInfo',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api/general/',
+    baseUrl: (import.meta.env.VITE_BACKEND_BASE_URL as string) + '/general/',
   }),
   tagTypes: ['GeneralInfo'],
   endpoints: (builder) => ({

@@ -7,7 +7,7 @@ import { TCredentialsRestore } from '../services/auth.ts';
 const mutex = new Mutex();
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: '/api',
+  baseUrl: import.meta.env.VITE_BACKEND_BASE_URL as string,
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.accessToken;
     if (token) {
