@@ -1,7 +1,6 @@
 import style from './VideoBlock.module.scss';
 import classNames from 'classnames';
 import BlockTitle from '../BlockTitles/BlockTitle';
-import videoImage from '../../../../../public/mainPage/videoBlock/videoImage.png';
 import videoArrowLeft from '../../../../../public/mainPage/videoBlock/ArrowLeft.svg';
 import videoArrowRight from '../../../../../public/mainPage/videoBlock/ArrowRight.svg';
 import 'swiper/css';
@@ -29,36 +28,6 @@ const VideoBlock = () => {
 
   const videos = useAppSelector(selectAllVideos);
 
-  const dataVideo = [
-    {
-      id: 1,
-      videoSrc: videoImage,
-    },
-    {
-      id: 2,
-      videoSrc: videoImage,
-    },
-    {
-      id: 3,
-      videoSrc: videoImage,
-    },
-    {
-      id: 4,
-      videoSrc: videoImage,
-    },
-    {
-      id: 5,
-      videoSrc: videoImage,
-    },
-    {
-      id: 6,
-      videoSrc: videoImage,
-    },
-    {
-      id: 7,
-      videoSrc: videoImage,
-    },
-  ];
   return (
     <div className={style.spacing_between_blocks} id={'' + formatMessage({ id: 'videoBlock.headline' })}>
       <div className={classNames(style.mainPageContainer)}>
@@ -92,16 +61,16 @@ const VideoBlock = () => {
         >
           {videos.map((item, index) => (
             <SwiperSlide key={index} className={style.swiperItem}>
-              <img src={item.image} />
+              <img src={item.image} alt={'preview'} />
             </SwiperSlide>
           ))}
         </Swiper>
         <div className={style.navigationButtons}>
           <div onClick={handlePrev}>
-            <img src={videoArrowLeft} />
+            <img src={videoArrowLeft} alt={'left'} />
           </div>
           <div onClick={handleNext}>
-            <img src={videoArrowRight} />
+            <img src={videoArrowRight} alt={'right'} />
           </div>
         </div>
       </div>
