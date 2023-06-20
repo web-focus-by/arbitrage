@@ -11,5 +11,6 @@
   "notification.modal.table.title.fee.network": "Комиссия сети",
   "notification.modal.table.title.pure.spread": "Чистый спред",
   "notification.modal.table.title.time": "Время",
-  "notification.modal.table.content.order.value": "{val} ордеров"
+  "notification.modal.table.content.order.value": "{val} ордеров",
+  "notification.notification": "Уведомления"
 }

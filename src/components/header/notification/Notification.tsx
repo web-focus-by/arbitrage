@@ -1,7 +1,7 @@
 import React, { MouseEvent, useEffect, useMemo, useState } from 'react';
 import { CircularProgress, IconButton, Menu } from '@mui/material';
 import BellIcon from '../../icon/BellIcon.tsx';
-import style from './notidication.module.scss';
+import style from './notification.module.scss';
 import classNames from 'classnames';
 import MenuItem from '@mui/material/MenuItem';
 import {
@@ -18,6 +18,8 @@ import Modal from '../../modal/Modal.tsx';
 import { useAppSelector } from '../../../store/hooks.ts';
 import { selectAllMarkets } from '../../../features/general/generalSelect.ts';
 import SpreadNotificationContent from './spreadNotificationContent/SpreadNotificationContent.tsx';
+import useWindow from '../../../hooks/useWindow';
+import ButtonBack from '../../../../public/buttonBack';
 
 type Unit = 'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year';
 
@@ -27,9 +29,11 @@ enum TIME_UNITS {
   HOUR = 60 * 60 * 1000,
   DAY = 24 * 60 * 60 * 1000,
 }
+
 const descriptionLength = 40;
 
 const Notification = () => {
+  const { windowSize } = useWindow();
   const { formatMessage, formatRelativeTime, formatDate, formatTime } = useIntl();
   const [anchorElNotification, setAnchorElNotification] = useState<null | HTMLElement>(null);
   const { data, isLoading } = useGetNotificationsQuery();
@@ -84,9 +88,11 @@ const Notification = () => {
         anchorEl={anchorElNotification}
         open={Boolean(anchorElNotification)}
         onClose={handleCloseNotificationMenu}
-        classes={{ paper: style.notificationMenu }}
+        classes={{
+          paper: style.notificationMenu,
+          root: style.rootClass,
+        }}
         keepMounted
-        sx={{ mt: '45px' }}
         transformOrigin={{
           vertical: 'top',
           horizontal: 'right',
@@ -96,61 +102,129 @@ const Notification = () => {
           horizontal: 'right',
         }}
       >
-        {newNotificationCount > 0 && (
-          <div className={classNames(style.notificationCount, 'text2')}>
-            {formatMessage(
-              { id: 'notification.new.count' },
-              {
-                count: newNotificationCount,
-              },
+        {windowSize.width > 576 ? (
+          <div>
+            {newNotificationCount > 0 && (
+              <div className={classNames(style.notificationCount, 'text2')}>
+                {formatMessage(
+                  { id: 'notification.new.count' },
+                  {
+                    count: newNotificationCount,
+                  },
+                )}
+              </div>
             )}
+            <div className={style.notificationItemsWrapper}>
+              {isLoading ? (
+                <CircularProgress />
+              ) : (
+                data?.map((item) => {
+                  const timeDiff = new Date(item.creation_date).getTime() - new Date().getTime();
+                  // const timeDiff = new Date().getTime() - new Date().getTime() - 1000 * 60 * 59;
+                  const [val, type] = getRelativeTimeOptions(timeDiff);
+                  return (
+                    <MenuItem key={item.id} classes={{ root: style.menuItem }} disableRipple={true}>
+                      {item.if_read ? (
+                        <CheckIcon className={style.isReadNotification} />
+                      ) : (
+                        <WarningCircleIcon className={style.isReadNotification} />
+                      )}
+                      <div className={style.notifyDescriptionBlock}>
+                        <div className={'text2'}>{item.title}</div>
+                        <div className={classNames('text2', style.notifyShortContent)}>
+                          {item.ntype === 'spread'
+                            ? getFormattedSpreadString(JSON.parse(item.content), markets)
+                            : item.content.length > descriptionLength
+                            ? item.content.slice(0, descriptionLength) + '...'
+                            : item.content}
+                        </div>
+                        <div className={classNames(style.notifyTime)}>
+                          <span className={'table-headline'}>
+                            {type !== 'day'
+                              ? formatRelativeTime(val as number, type as Unit, { numeric: 'auto' })
+                              : formatDate(item.creation_date) + ' ' + formatTime(item.creation_date)}
+                          </span>
+                          <span
+                            className={'table-link'}
+                            onClick={() => {
+                              openModalHandler(item);
+                            }}
+                          >
+                            Подробнее
+                          </span>
+                        </div>
+                      </div>
+                    </MenuItem>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className={classNames(style.mobileNotification, 'text')}>
+              <div onClick={handleCloseNotificationMenu} className={style.buttonBack}>
+                <ButtonBack />
+              </div>
+              <div>{formatMessage({ id: 'notification.notification' })}</div>
+            </div>
+            {newNotificationCount > 0 && (
+              <div className={classNames(style.notificationCount, 'text2')}>
+                {formatMessage(
+                  { id: 'notification.new.count' },
+                  {
+                    count: newNotificationCount,
+                  },
+                )}
+              </div>
+            )}
+            <div className={style.notificationItemsWrapper}>
+              {isLoading ? (
+                <CircularProgress />
+              ) : (
+                data?.map((item) => {
+                  const timeDiff = new Date(item.creation_date).getTime() - new Date().getTime();
+                  // const timeDiff = new Date().getTime() - new Date().getTime() - 1000 * 60 * 59;
+                  const [val, type] = getRelativeTimeOptions(timeDiff);
+                  return (
+                    <MenuItem key={item.id} classes={{ root: style.menuItem }} disableRipple={true}>
+                      {item.if_read ? (
+                        <CheckIcon className={style.isReadNotification} />
+                      ) : (
+                        <WarningCircleIcon className={style.isReadNotification} />
+                      )}
+                      <div className={style.notifyDescriptionBlock}>
+                        <div className={'text2'}>{item.title}</div>
+                        <div className={classNames('text2', style.notifyShortContent)}>
+                          {item.ntype === 'spread'
+                            ? getFormattedSpreadString(JSON.parse(item.content), markets)
+                            : item.content.length > descriptionLength
+                            ? item.content.slice(0, descriptionLength) + '...'
+                            : item.content}
+                        </div>
+                        <div className={classNames(style.notifyTime)}>
+                          <span className={'table-headline'}>
+                            {type !== 'day'
+                              ? formatRelativeTime(val as number, type as Unit, { numeric: 'auto' })
+                              : formatDate(item.creation_date) + ' ' + formatTime(item.creation_date)}
+                          </span>
+                          <span
+                            className={'table-link'}
+                            onClick={() => {
+                              openModalHandler(item);
+                            }}
+                          >
+                            Подробнее
+                          </span>
+                        </div>
+                      </div>
+                    </MenuItem>
+                  );
+                })
+              )}
+            </div>
           </div>
         )}
-        <div className={style.notificationItemsWrapper}>
-          {isLoading ? (
-            <CircularProgress />
-          ) : (
-            data?.map((item) => {
-              const timeDiff = new Date(item.creation_date).getTime() - new Date().getTime();
-              // const timeDiff = new Date().getTime() - new Date().getTime() - 1000 * 60 * 59;
-              const [val, type] = getRelativeTimeOptions(timeDiff);
-              return (
-                <MenuItem key={item.id} classes={{ root: style.menuItem }} disableRipple={true}>
-                  {item.if_read ? (
-                    <CheckIcon className={style.isReadNotification} />
-                  ) : (
-                    <WarningCircleIcon className={style.isReadNotification} />
-                  )}
-                  <div className={style.notifyDescriptionBlock}>
-                    <div className={'text2'}>{item.title}</div>
-                    <div className={classNames('text2', style.notifyShortContent)}>
-                      {item.ntype === 'spread'
-                        ? getFormattedSpreadString(JSON.parse(item.content), markets)
-                        : item.content.length > descriptionLength
-                        ? item.content.slice(0, descriptionLength) + '...'
-                        : item.content}
-                    </div>
-                    <div className={classNames(style.notifyTime)}>
-                      <span className={'table-headline'}>
-                        {type !== 'day'
-                          ? formatRelativeTime(val as number, type as Unit, { numeric: 'auto' })
-                          : formatDate(item.creation_date) + ' ' + formatTime(item.creation_date)}
-                      </span>
-                      <span
-                        className={'table-link'}
-                        onClick={() => {
-                          openModalHandler(item);
-                        }}
-                      >
-                        Подробнее
-                      </span>
-                    </div>
-                  </div>
-                </MenuItem>
-              );
-            })
-          )}
-        </div>
       </Menu>
       <Modal
         isOpen={openModal}
