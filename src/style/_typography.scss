@@ -17,6 +17,7 @@ h1,
     font-size: clamp(39px, 8vw, 60px);
   }
 }
+
 h2,
 .h2 {
   font-family: 'RockStar', sans-serif;
@@ -32,6 +33,7 @@ h2,
     font-size: clamp(26px, 6.25vw, 48px);
   }
 }
+
 h3,
 .h3 {
   font-family: 'RockStar', sans-serif;
@@ -51,6 +53,7 @@ h3,
     line-height: 140%;
   }
 }
+
 h4,
 .h4 {
   font-family: 'RockStar', sans-serif;
@@ -65,6 +68,7 @@ h4,
     font-size: clamp(20px, 4vw, 28px);
   }
 }
+
 .prise {
   font-family: 'Proxima Nova', sans-serif;
   font-style: normal;
@@ -85,6 +89,7 @@ h4,
     font-size: 32px;
   }
 }
+
 .subtitle1 {
   font-family: 'RockStar', sans-serif;
   font-style: normal;
@@ -98,6 +103,7 @@ h4,
     font-size: calc(20px + (28 - 20) * ((100vw - 375px) / (768 - 375)));
   }
 }
+
 .subtitle2 {
   font-family: 'Proxima Nova', sans-serif;
   font-style: normal;
@@ -111,6 +117,7 @@ h4,
     font-size: 20px;
   }
 }
+
 .subtitle3 {
   font-family: 'Proxima Nova', sans-serif;
   font-style: normal;
@@ -121,6 +128,7 @@ h4,
 
 .text {
   font-family: 'Proxima Nova', sans-serif;
+  color: #262626;
   font-weight: 400;
   font-size: clamp(18px, 1.1vw, 20px);
   line-height: 130%;
@@ -134,12 +142,24 @@ h4,
     font-size: clamp(16px, 2.5vw, 18px);
   }
 }
+
 .text2 {
   font-family: 'Proxima Nova', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 120%;
+  @include max-1680 {
+    font-size: 14px;
+    line-height: 110%;
+  }
+  @include max-1200 {
+    font-size: 16px;
+    line-height: 120%;
+  }
+  @include max-991 {
+    line-height: 110%;
+  }
 }
 
 .button-text {
@@ -156,6 +176,7 @@ h4,
     font-size: clamp(16px, 2.5vw, 18px);
   }
 }
+
 .button-text2 {
   font-family: 'Proxima Nova', sans-serif;
   font-style: normal;
@@ -167,6 +188,7 @@ h4,
     font-size: clamp(16px, 2.5vw, 18px);
   }
 }
+
 .table-link {
   font-family: 'Proxima Nova', sans-serif;
   font-style: normal;
@@ -174,17 +196,30 @@ h4,
   font-size: 16px;
   line-height: 120%;
   text-decoration-line: underline;
+  @include max-1440 {
+    font-size: 14px;
+    line-height: 120%;
+  }
   @include max-1200 {
-    font-size: clamp(14px, 1.5vw, 16px);
+    font-size: 14px;
+    line-height: 110%;
   }
   @include max-576 {
     font-size: 16px;
+    line-height: 120%;
   }
 }
+
 .table-headline {
   font-family: 'Proxima Nova', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 110%;
+  @include max-1440 {
+    font-size: 13px;
+  }
+  @include max-1200 {
+    font-size: 14px;
+  }
 }
