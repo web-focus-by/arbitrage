@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Autocomplete, { AutocompleteProps } from '@mui/material/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
@@ -22,11 +22,18 @@ interface IAppAutocomplete
 
 const AppAutocomplete: FC<IAppAutocomplete> = (props) => {
   const { textFieldProps, ...otherProps } = props;
+
   return (
     <Autocomplete
       {...otherProps}
       options={props.options ?? []}
       limitTags={1}
+      // ListboxProps={{
+      //   className: style.listbox, // Добавьте класс стилей для выпадающего меню
+      // }}
+      // OptionProps={{
+      //   className: style.option, // Добавьте класс стилей для пунктов меню
+      // }}
       isOptionEqualToValue={(option, value) => {
         return option?.value === value?.value;
       }}
@@ -56,7 +63,10 @@ const AppAutocomplete: FC<IAppAutocomplete> = (props) => {
             InputProps={{
               ...params.InputProps,
               inputRef: textFieldProps?.ref,
-              classes: { input: classNames(style.input, 'text2'), root: classNames(style.textField) },
+              classes: {
+                input: classNames(style.input, 'text2'),
+                root: classNames(style.textField),
+              },
             }}
           />
         );

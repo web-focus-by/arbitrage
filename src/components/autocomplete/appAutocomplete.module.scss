@@ -7,7 +7,7 @@
 
 .textField {
   padding-top: 8px;
-  padding-bottom: 8px;
+  padding-bottom: 8px !important;
   padding-left: 12px;
   border: 1px solid $color-gray-3;
   border-radius: 8px;
@@ -31,4 +31,30 @@
 
 .input {
   border: none;
+}
+
+.listbox {
+  background-color: #ffffff; /* Цвет фона для выпадающего меню */
+  border-radius: 4px; /* Закругление углов для выпадающего меню */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для выпадающего меню */
+  overflow: auto; /* Включение прокрутки, если список слишком длинный */
+
+  &::-webkit-scrollbar {
+    background: #D9D9D9;
+    width: 4px;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #3366CC;
+  }
+}
+
+.option {
+  padding: 8px 16px; /* Отступы внутри пункта меню */
+  cursor: pointer; /* Изменение курсора при наведении на пункт меню */
+}
+
+.option:hover {
+  background-color: #f5f5f5; /* Цвет фона при наведении на пункт меню */
 }
