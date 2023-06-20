@@ -1,0 +1,11 @@
+{
+  "error.required": "This field is required",
+  "error.email.not.valid": "Invalid mail format",
+  "error.telegram.username.not.valid": "Invalid telegram nickname format",
+  "error.user.already.exist": "User with this email already exists",
+  "error.user.not.exist": "User does not exist",
+  "error.passwords.not.match": "Password mismatch",
+  "error.typeError": "Invalid data format",
+  "error.user.not.found": "Invalid email or password",
+  "error.wrong.password": "Invalid email or password"
+}
