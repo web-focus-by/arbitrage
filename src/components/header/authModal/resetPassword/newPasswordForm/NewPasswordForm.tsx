@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useCheckPasswordCodeMutation } from '../../../../../services/resetPassword.ts';
+import { useUpdatePasswordMutation } from '../../../../../services/resetPassword.ts';
 import { ICustomError } from '../../../../../services/auth.ts';
 import style from '../resetPassword.module.scss';
 import classNames from 'classnames';
@@ -24,7 +24,7 @@ const NewPasswordForm: FC<INewPasswordFormProps> = (props) => {
   } = useForm<INewPasswordFormRequest>({
     defaultValues: { newPassword: '' },
   });
-  const [sendCode, { error }] = useCheckPasswordCodeMutation();
+  const [updatePassword, { error }] = useUpdatePasswordMutation();
 
   const errorMessages = useMemo(() => {
     if (error) {
@@ -39,7 +39,10 @@ const NewPasswordForm: FC<INewPasswordFormProps> = (props) => {
     try {
       console.log(data);
       if (data.newPassword) {
-        await sendCode(data.newPassword);
+        await updatePassword({
+          newPassword: data.newPassword,
+          token: localStorage.getItem('resetPasswordToken') as string,
+        });
         props.setFormStep(1);
       }
     } catch (e) {

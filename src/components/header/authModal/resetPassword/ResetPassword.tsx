@@ -4,7 +4,7 @@ import CheckPasswordForm from './checkPasswordForm/CheckPasswordForm.tsx';
 import NewPasswordForm from './newPasswordForm/NewPasswordForm.tsx';
 
 const ResetPassword = () => {
-  const [formStep, setFormStep] = useState(2);
+  const [formStep, setFormStep] = useState(0);
   const [email, setEmail] = useState('');
 
   if (formStep === 0) {

@@ -32,4 +32,4 @@ export const apiUserInfo = createApi({
 });
 
 export const { useUpdateUserInfoMutation } = apiUserInfo;
-export const selectVideosResult = apiUserInfo.endpoints.getUserInfo.select();
+export const selectUserInfoData = apiUserInfo.endpoints.getUserInfo.select();

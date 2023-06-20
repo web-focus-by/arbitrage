@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { selectVideosResult } from '../../services/userInfo.ts';
+import { selectUserInfoData } from '../../services/userInfo.ts';
 
-export const selectUserInfo = createSelector(selectVideosResult, (user) => user.data?.user_info ?? null);
-export const selectUserInfoIsLoading = createSelector(selectVideosResult, (user) => user.isLoading);
+export const selectUserInfo = createSelector(selectUserInfoData, (user) => user.data?.user_info ?? null);
+export const selectUserInfoIsLoading = createSelector(selectUserInfoData, (user) => user.isLoading);
