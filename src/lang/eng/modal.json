@@ -1,0 +1,16 @@
+{
+  "success.register.modal.title": "Registration was successful!",
+  "success.register.modal.text": "You have successfully registered in the Arbitrage service. Now you can proceed to arbitrage cryptocurrencies.",
+  "success.register.modal.btn.text": "To main",
+  "notification.modal.title": "New result",
+  "notification.modal.table.title.buy": "Purchase",
+  "notification.modal.table.title.sell": "Sale",
+  "notification.modal.table.title.cost": "Price",
+  "notification.modal.table.title.value": "Volume",
+  "notification.modal.table.title.fee.spot": "Spot Commission",
+  "notification.modal.table.title.fee.network": "Network Commission",
+  "notification.modal.table.title.pure.spread": "Net spread",
+  "notification.modal.table.title.time": "Time",
+  "notification.modal.table.content.order.value": "{val} orders",
+  "notification.notification": "Notifications"
+}
