@@ -59,10 +59,10 @@ const RatesBlock = () => {
   }, []);
 
   return (
-    <div id={'Тарифы'}>
+    <div id={'' + formatMessage({ id: 'ratesBlock.headline' })}>
       {windowSize.width > 1200 ? (
         <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
-          <BlockTitle value={'Тарифы'} />
+          <BlockTitle value={'' + formatMessage({ id: 'ratesBlock.headline' })} />
           <div className={style.ratesBlockContainer}>
             {dataRates.map((item) => (
               <div key={item.id} className={style.ratesBlockItem}>
@@ -94,7 +94,7 @@ const RatesBlock = () => {
                     </div>
                   </div>
 
-                  <AppButton color={'secondary'}>Приобрести</AppButton>
+                  <AppButton color={'secondary'}>{formatMessage({ id: 'button.purchase' })}</AppButton>
                 </div>
               </div>
             ))}
@@ -103,7 +103,7 @@ const RatesBlock = () => {
       ) : (
         <div className={style.spacing_between_blocks}>
           <div className={style.mainPageContainer}>
-            <BlockTitle value={'Тарифы'} />
+            <BlockTitle value={'' + formatMessage({ id: 'ratesBlock.headline' })} />
           </div>
           <div className={classNames(style.ratesBlockContainer, style.MySwiperClass)}>
             <Swiper
@@ -155,7 +155,7 @@ const RatesBlock = () => {
                         </div>
                       </div>
 
-                      <AppButton color={'secondary'}>Приобрести</AppButton>
+                      <AppButton color={'secondary'}>{formatMessage({ id: 'button.purchase' })}</AppButton>
                     </div>
                   </div>
                 </SwiperSlide>

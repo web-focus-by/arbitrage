@@ -1,17 +1,27 @@
-let webSocket: WebSocket | null = null;
+interface IWebSocketStore {
+  [key: string]: WebSocket;
+}
+const webSocketStore: IWebSocketStore = {};
 
-const getWebSocket = () => {
-  console.log('getWebSocket', webSocket);
-  if (!webSocket) {
-    // webSocket = new WebSocket('wss://socketsbay.com/wss/v2/1/demo/');
-    webSocket = new WebSocket(import.meta.env.VITE_BACKEND_WS_URL + '/spreads');
+const getWebSocket = (url = 'spread') => {
+  if (!webSocketStore[url]) {
+    // webSocketStore[url] = new WebSocket('wss://socketsbay.com/wss/v2/1/demo/');
+    webSocketStore[url] = new WebSocket(import.meta.env.VITE_BACKEND_WS_URL + '/' + url);
   }
-  return webSocket;
+  return webSocketStore[url];
 };
 
-const resetWebSocket = () => {
-  webSocket?.close();
-  webSocket = null;
+const resetWebSocketStore = () => {
+  Object.keys(webSocketStore).forEach((key) => {
+    webSocketStore[key]?.close();
+    delete webSocketStore[key];
+  });
+};
+const resetWebSocket = (url = 'spread') => {
+  if (webSocketStore[url]) {
+    webSocketStore[url]?.close();
+    delete webSocketStore[url];
+  }
 };
 
-export { getWebSocket, resetWebSocket };
+export { getWebSocket, resetWebSocket, resetWebSocketStore };

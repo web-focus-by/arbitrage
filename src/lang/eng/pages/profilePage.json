@@ -1,0 +1,14 @@
+{
+  "profile.title": "Profile",
+  "profile.personal.data": "Personal data",
+  "profile.change.password": "Change password",
+  "profile.save.changes": "Save Changes",
+  "profile.additional.resources": "Additional Resources",
+  "profile.additional.resources.inter.exchange.bot": "Interexchange bot",
+  "profile.additional.resources.intra.exchange.bot": "Intraexchange bot",
+  "profile.additional.resources.chat": "Chat",
+  "profile.subscription": "Subscription",
+  "profile.subscription.empty.content": "There is no subscription, you can choose the appropriate tariff by clicking on the button below.",
+  "profile.subscription.btn.select": "Choose a plan",
+  "profile.delete.text": "Do you want to delete your account?"
+}
