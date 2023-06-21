@@ -3,13 +3,13 @@
 @import '/src/style/index';
 @import '/src/page/mainPage/style';
 
-.advantages_container{
+.advantages_container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
 
-  .advantage_block{
+  .advantage_block {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,76 +19,76 @@
     border: 1px solid #B7B7B7;
     border-radius: 32px;
 
-    @include max-1440{
+    @include max-1440 {
       height: 24.5rem;
       width: 32.3%;
       padding: 32px 39px 26px 32px;
     }
 
-    @include max-1200{
+    @include max-1200 {
       height: 26.25rem;
       width: 570px;
     }
 
-    @include max-768{
-      width: calc(343px + (570 - 343) * ( (100vw - 375px) / ( 768 - 375) ));
-      padding: calc(24px + (32 - 24) * ( (100vw - 375px) / ( 768 - 375) ));
-      border-radius: calc(24px + (32 - 24) * ( (100vw - 375px) / ( 768 - 375) ));
+    @include max-768 {
+      width: calc(343px + (570 - 343) * ((100vw - 375px) / (768 - 375)));
+      padding: calc(24px + (32 - 24) * ((100vw - 375px) / (768 - 375)));
+      border-radius: calc(24px + (32 - 24) * ((100vw - 375px) / (768 - 375)));
     }
 
-    @include max-576{
+    @include max-576 {
       height: 21.5rem;
     }
 
 
-    .advantage_block_text{
+    .advantage_block_text {
       display: flex;
       flex-direction: column;
       gap: 20px;
       color: #575757;
 
-      @include max-1440{
+      @include max-1440 {
         gap: 16px;
       }
-      @include max-1200{
+      @include max-1200 {
         gap: 20px;
       }
-      @include max-768{
-        gap: calc(10px + (20 - 10) * ( (100vw - 375px) / ( 768 - 375) ));
-      }
-
-      :first-child{
-        color: #262626;
+      @include max-768 {
+        gap: calc(10px + (20 - 10) * ((100vw - 375px) / (768 - 375)));
       }
     }
   }
 }
 
-.MySwiperClass{
-  &>:first-child{
-    padding: 0px calc(64px + (72 - 64) * ( (100vw - 1024px) / ( 1200 - 1024) ));
+.MySwiperClass {
+  & > :first-child {
+    padding: 0px calc(64px + (72 - 64) * ((100vw - 1024px) / (1200 - 1024)));
   }
-  @include max-991{
-    &>:first-child{
-      padding: 0px calc(40px + (64 - 40) * ( (100vw - 768px) / ( 991 - 768) ));
+
+  @include max-991 {
+    & > :first-child {
+      padding: 0px calc(40px + (64 - 40) * ((100vw - 768px) / (991 - 768)));
     }
   }
-  @include max-768{
-    &>:first-child{
-      padding: 0px calc(16px + (40 - 16) * ( (100vw - 375px) / ( 768 - 375) ));
+  @include max-768 {
+    & > :first-child {
+      padding: 0px calc(16px + (40 - 16) * ((100vw - 375px) / (768 - 375)));
     }
   }
-  .navigationButtons{
+
+  .navigationButtons {
     display: flex;
     flex-direction: row;
     gap: 24px;
     width: max-content;
     margin: 24px auto 0px;
-    div{
+
+    div {
       cursor: pointer;
     }
   }
-  .swiperItem{
+
+  .swiperItem {
     width: max-content;
   }
 }

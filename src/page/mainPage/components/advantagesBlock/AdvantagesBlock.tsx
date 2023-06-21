@@ -15,8 +15,8 @@ import { Navigation } from 'swiper';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import React, { useCallback, useRef } from 'react';
 import useWindow from '../../../../hooks/useWindow';
-import videoArrowLeft from '../../../../../public/mainPage/videoBlock/ArrowLeft.svg';
-import videoArrowRight from '../../../../../public/mainPage/videoBlock/ArrowRight.svg';
+import ArrowLeft from '../../../../../public/mainPage/videoBlock/ArrowLeft';
+import ArrowRight from '../../../../../public/mainPage/videoBlock/ArrowRight';
 
 const dataAdvantages = [
   {
@@ -109,7 +109,9 @@ const AdvantagesBlock = () => {
               <div key={item.id} className={style.advantage_block}>
                 <div className={style.advantage_block_text}>
                   <div className={style.subtitle1}>{formatMessage({ id: item.adv_headline })}</div>
-                  <div className={style.text}>{formatMessage({ id: item.adv_descr })}</div>
+                  <div className={classNames(style.text, style.textGrayColor)}>
+                    {formatMessage({ id: item.adv_descr })}
+                  </div>
                 </div>
                 <div>{item.adv_img}</div>
               </div>
@@ -157,10 +159,10 @@ const AdvantagesBlock = () => {
             </Swiper>
             <div className={style.navigationButtons}>
               <div onClick={handlePrev}>
-                <img src={videoArrowLeft} />
+                <ArrowLeft />
               </div>
               <div onClick={handleNext}>
-                <img src={videoArrowRight} />
+                <ArrowRight />
               </div>
             </div>
           </div>

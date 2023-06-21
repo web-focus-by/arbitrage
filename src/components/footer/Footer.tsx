@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className={classNames(style.footerEndLine, style.text2)}>
+      <div className={classNames(style.footerEndLine, style.text2, style.text2GrayColor)}>
         <div>{formatMessage({ id: 'footer.designed' })}</div>
         <div>{formatMessage({ id: 'footer.privacy.policy' })}</div>
       </div>

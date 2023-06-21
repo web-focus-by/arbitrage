@@ -5,6 +5,7 @@
 h1,
 .h1 {
   font-family: 'RockStar', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: clamp(60px, 4vw, 76px);
@@ -21,6 +22,7 @@ h1,
 h2,
 .h2 {
   font-family: 'RockStar', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: clamp(50px, 3.125vw, 60px);
@@ -37,6 +39,7 @@ h2,
 h3,
 .h3 {
   font-family: 'RockStar', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: clamp(28px, 2.2vw, 42px);
@@ -57,6 +60,7 @@ h3,
 h4,
 .h4 {
   font-family: 'RockStar', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: clamp(28px, 1.7vw, 32px);
@@ -71,6 +75,7 @@ h4,
 
 .prise {
   font-family: 'Proxima Nova', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: 36px;
@@ -92,6 +97,7 @@ h4,
 
 .subtitle1 {
   font-family: 'RockStar', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: clamp(20px, 1.25vw, 24px);
@@ -106,6 +112,7 @@ h4,
 
 .subtitle2 {
   font-family: 'Proxima Nova', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: clamp(20px, 1.25vw, 24px);
@@ -120,6 +127,7 @@ h4,
 
 .subtitle3 {
   font-family: 'Proxima Nova', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: clamp(16px, 1vw, 20px);
@@ -128,7 +136,7 @@ h4,
 
 .text {
   font-family: 'Proxima Nova', sans-serif;
-  color: #262626;
+  color: var(--color-text);
   font-weight: 400;
   font-size: clamp(18px, 1.1vw, 20px);
   line-height: 130%;
@@ -143,8 +151,13 @@ h4,
   }
 }
 
+.textGrayColor {
+  color: var(--color-text-gray);
+}
+
 .text2 {
   font-family: 'Proxima Nova', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -160,6 +173,10 @@ h4,
   @include max-991 {
     line-height: 110%;
   }
+}
+
+.text2GrayColor {
+  color: var(--color-text-2-gray);
 }
 
 .button-text {
@@ -191,6 +208,7 @@ h4,
 
 .table-link {
   font-family: 'Proxima Nova', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -212,6 +230,7 @@ h4,
 
 .table-headline {
   font-family: 'Proxima Nova', sans-serif;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

@@ -1,8 +1,6 @@
 import style from './VideoBlock.module.scss';
 import classNames from 'classnames';
 import BlockTitle from '../BlockTitles/BlockTitle';
-import videoArrowLeft from '../../../../../public/mainPage/videoBlock/ArrowLeft.svg';
-import videoArrowRight from '../../../../../public/mainPage/videoBlock/ArrowRight.svg';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
@@ -11,6 +9,8 @@ import React, { useCallback, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import { useAppSelector } from '../../../../store/hooks';
 import { selectAllVideos } from '../../../../features/general/generalSelect';
+import ArrowLeft from '../../../../../public/mainPage/videoBlock/ArrowLeft';
+import ArrowRight from '../../../../../public/mainPage/videoBlock/ArrowRight';
 
 const VideoBlock = () => {
   const { formatMessage } = useIntl();
@@ -67,10 +67,10 @@ const VideoBlock = () => {
         </Swiper>
         <div className={style.navigationButtons}>
           <div onClick={handlePrev}>
-            <img src={videoArrowLeft} alt={'left'} />
+            <ArrowLeft />
           </div>
           <div onClick={handleNext}>
-            <img src={videoArrowRight} alt={'right'} />
+            <ArrowRight />
           </div>
         </div>
       </div>

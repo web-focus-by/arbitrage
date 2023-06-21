@@ -3,61 +3,58 @@
 @import '/src/style/index';
 @import '/src/page/mainPage/style';
 
-.earningInfoBlockContainer{
+.earningInfoBlockContainer {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  @include max-1200{
+  @include max-1200 {
     flex-direction: column;
     gap: 40px;
   }
-  @include max-768{
-    gap: calc(32px + (40 - 32) * ( (100vw - 375px) / ( 768 - 375) ));
+  @include max-768 {
+    gap: calc(32px + (40 - 32) * ((100vw - 375px) / (768 - 375)));
   }
 
-  .earningInfoBlockText{
+  .earningInfoBlockText {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 50%;
-    @include max-1200{
+    @include max-1200 {
       width: 100%;
     }
 
-    :nth-child(2){
+    :nth-child(2) {
       width: 90%;
-      color: #575757;
-      @include max-1200{
+      @include max-1200 {
         width: 100%;
       }
     }
   }
 
-  .earningInfoBlockImg{
+  .earningInfoBlockImg {
     width: 50%;
     border-radius: 40px;
     background-color: #3366CC;
     padding: 149px 63px;
 
-    @include max-1440{
+    @include max-1440 {
       padding: 112px 51px;
     }
 
-    @include max-1200{
+    @include max-1200 {
       width: 100%;
       padding: 72px 160px;
     }
-    @include max-991{
-      padding: calc(66px + (72 - 66) * ( (100vw - 768px) / ( 1024 - 768) ))
-      calc(52px + (160 - 52) * ( (100vw - 768px) / ( 1024 - 768) ));
+    @include max-991 {
+      padding: calc(66px + (72 - 66) * ((100vw - 768px) / (1024 - 768))) calc(52px + (160 - 52) * ((100vw - 768px) / (1024 - 768)));
     }
-    @include max-768{
-      padding: calc(71px + (66 - 71) * ( (100vw - 375px) / ( 768 - 375) ))
-      calc(30px + (52 - 30) * ( (100vw - 375px) / ( 768 - 375) ));
-      border-radius: calc(24px + (40 - 24) * ( (100vw - 375px) / ( 768 - 375) ));
+    @include max-768 {
+      padding: calc(71px + (66 - 71) * ((100vw - 375px) / (768 - 375))) calc(30px + (52 - 30) * ((100vw - 375px) / (768 - 375)));
+      border-radius: calc(24px + (40 - 24) * ((100vw - 375px) / (768 - 375)));
     }
 
-    img{
+    img {
       width: 100%;
       filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.12));
       border-radius: 12px;

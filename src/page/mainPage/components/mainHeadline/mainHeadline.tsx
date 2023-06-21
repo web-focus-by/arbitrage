@@ -10,7 +10,7 @@ const MainHeadline = () => {
     <div className={classNames(style.mainPageContainer, style.container_headline, style.spacing_between_blocks)}>
       <div className={style.text_headline}>
         <h1>{formatMessage({ id: 'mainHeadline.headline' })}</h1>
-        <div className={classNames(style.main_headline_second_text, style.text)}>
+        <div className={classNames(style.main_headline_second_text, style.text, style.textGrayColor)}>
           {formatMessage({ id: 'mainHeadline.text' })}
         </div>
         <div className={style.main_headline_button}>

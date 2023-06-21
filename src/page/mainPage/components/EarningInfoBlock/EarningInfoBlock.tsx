@@ -11,7 +11,9 @@ const EarningInfoBlock = () => {
       <div className={style.earningInfoBlockContainer}>
         <div className={style.earningInfoBlockText}>
           <BlockTitle value={'' + formatMessage({ id: 'earningInfoBlock.headline' })} />
-          <div className={style.text}>{formatMessage({ id: 'earningInfoBlock.text' })}</div>
+          <div className={classNames(style.text, style.textGrayColor)}>
+            {formatMessage({ id: 'earningInfoBlock.text' })}
+          </div>
         </div>
         <div className={style.earningInfoBlockImg}>
           <img src={imgHeadline} />
