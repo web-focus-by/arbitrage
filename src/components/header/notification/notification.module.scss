@@ -29,7 +29,8 @@
 }
 
 .isReadNotification {
-  color: var(--bell-background-color);
+  color: var(--popups-backgroud);
+
   @include max-1440 {
     width: 20px;
     height: 20px;
@@ -45,6 +46,7 @@
 }
 
 .notificationMenu {
+  background: var(--popups-backgroud);
   padding: 24px 32px 24px 24px;
   border-radius: 24px;
   width: 480px;
@@ -119,7 +121,7 @@
 
   .notifyShortContent {
     margin-top: 8px;
-    color: $color-gray-2;
+    color: var(--popups-color-gray);
     @include max-1440 {
       margin-top: 6.5px;
     }
@@ -133,6 +135,11 @@
     margin-top: 10px;
     flex-direction: row;
     justify-content: space-between;
+
+    :first-child {
+      color: var(--popups-color-gray);
+    }
+
     @include max-1440 {
       margin-top: 7.5px;
     }

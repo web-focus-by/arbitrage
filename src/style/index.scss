@@ -56,7 +56,22 @@
   --arrow-background-color: #{$color-blue-9};
 
   //accordion
-  --accordion-border-bottom: #{$color-accordion-light}
+  --accordion-border-bottom: #{$color-accordion-light};
+  --accordion-backgroud: #{$accordion-backgroud-light};
+  --accordion-icon: #{$accordion-fill-icon-light};
+
+  //typography
+  --color-text: #{$color-text-light};
+  --color-text-gray: #{$color-text-gray-light};
+  --color-text-2-gray: #{$color-text-2-gray-light};
+  --backgroud-rates: #{$backgroud-rates-light};
+  --backgroud-rates-button: #{$backgroud-rates-button-light};
+  --color-rates-button: #{$color-rates-button-light};
+
+  --popups-backgroud: #{$popups-background-light};
+  --popups-color-gray: #{$popups-color-gray-light};
+
+  --burger-color: #{$burger-color-light};
 }
 
 :root[data-theme='dark'] {
@@ -113,7 +128,22 @@
   --arrow-background-color: #{$color-black};
 
   //accordion
-  --accordion-border-bottom: #{$color-accordion-dark}
+  --accordion-border-bottom: #{$color-accordion-dark};
+  --accordion-backgroud: #{$accordion-backgroud-dark};
+  --accordion-icon: #{$accordion-fill-icon-dark};
+
+  //typography
+  --color-text: #{$color-text-dark};
+  --color-text-gray: #{$color-text-gray-dark};
+  --color-text-2-gray: #{$color-text-2-gray-dark};
+  --backgroud-rates: #{$backgroud-rates-dark};
+  --backgroud-rates-button: #{$backgroud-rates-button-dark};
+  --color-rates-button: #{$color-rates-button-dark};
+
+  --popups-backgroud: #{$popups-background-dark};
+  --popups-color-gray: #{$popups-color-gray-dark};
+
+  --burger-color: #{$burger-color-dark};
 }
 
 :root {
@@ -253,4 +283,12 @@ path {
   color: $color-red-error;
   background-color: $color-red-1;
   font-size: 16px;
+}
+
+.arrowLeft, .arrowRight {
+  svg {
+    path {
+      stroke: var(--accordion-icon);
+    }
+  }
 }

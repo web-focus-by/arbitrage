@@ -62,6 +62,7 @@
       }
 
       li {
+        color: #FFFFFF;
         @include max-576 {
           width: 40%;
         }
