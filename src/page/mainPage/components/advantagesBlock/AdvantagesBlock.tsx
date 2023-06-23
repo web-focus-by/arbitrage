@@ -100,7 +100,7 @@ const AdvantagesBlock = () => {
   const { windowSize } = useWindow();
 
   return (
-    <div id={'' + formatMessage({ id: 'adv_headline' })}>
+    <div id={'' + formatMessage({ id: 'adv_headline_id' })}>
       {windowSize.width > 1200 ? (
         <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
           <BlockTitle value={'' + formatMessage({ id: 'adv_headline' })} />
