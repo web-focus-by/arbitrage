@@ -72,6 +72,8 @@
   --popups-color-gray: #{$popups-color-gray-light};
 
   --burger-color: #{$burger-color-light};
+
+  --backgroud-autocomplete: #{$backgroud-autocomplete-light};
 }
 
 :root[data-theme='dark'] {
@@ -144,6 +146,7 @@
   --popups-color-gray: #{$popups-color-gray-dark};
 
   --burger-color: #{$burger-color-dark};
+  --backgroud-autocomplete: #{$backgroud-autocomplete-dark};
 }
 
 :root {

@@ -3,6 +3,20 @@
 
 .wrapper {
   width: 100%;
+
+  label {
+    & + div {
+      div {
+        background: var(--backgroud-autocomplete);
+      }
+    }
+  }
+
+  input {
+    & + div {
+      background: var(--backgroud-color) !important;
+    }
+  }
 }
 
 .textField {
@@ -32,4 +46,14 @@
 .input {
   border: none;
   padding-bottom: 8px;
+
+    & + div {
+      button {
+        svg {
+          fill: var(--backgroud-rates-button);
+        }
+      }
+    }
+  }
 }
+

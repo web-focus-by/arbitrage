@@ -6,6 +6,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import AppTextField from '../input/AppTextField.tsx';
 import classNames from 'classnames';
 import style from './appAutocomplete.module.scss';
+import { autocompleteClasses, Popper, styled } from '@mui/material';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -22,6 +23,15 @@ interface IAppAutocomplete
 
 const AppAutocomplete: FC<IAppAutocomplete> = (props) => {
   const { textFieldProps, ...otherProps } = props;
+  const StyledPopper = styled(Popper)({
+    [`& .${autocompleteClasses.listbox}`]: {
+      backgroundColor: 'var(--popups-backgroud)',
+      color: 'var(--backgroud-rates-button)',
+      '& svg': {
+        fill: 'var(--backgroud-rates-button)',
+      },
+    },
+  });
   return (
     <Autocomplete
       {...otherProps}
@@ -30,6 +40,7 @@ const AppAutocomplete: FC<IAppAutocomplete> = (props) => {
       isOptionEqualToValue={(option, value) => {
         return option?.value === value?.value;
       }}
+      PopperComponent={StyledPopper}
       disableCloseOnSelect
       classes={{ ...props.classes, root: classNames(props.classes?.root, style.wrapper) }}
       getOptionLabel={(option) => {
