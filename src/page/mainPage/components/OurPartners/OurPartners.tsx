@@ -137,10 +137,7 @@ const OurPartners = () => {
   const { formatMessage } = useIntl();
   const { theme } = useTheme();
   return (
-    <div
-      className={classNames(style.mainPageContainer, style.spacing_between_blocks)}
-      id={formatMessage({ id: 'partners_headline_id' })}
-    >
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)} id={'partners'}>
       <div className={style.ourPartnersHeadline}>
         <BlockTitle value={'' + formatMessage({ id: 'ourPartners.headline' })} />
         <AppTooltip title={'' + formatMessage({ id: 'ourPartners.tooltip' })} placement={'top'} />

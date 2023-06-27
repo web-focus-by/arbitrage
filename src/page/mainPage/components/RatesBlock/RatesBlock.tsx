@@ -59,7 +59,7 @@ const RatesBlock = () => {
   }, []);
 
   return (
-    <div id={'' + formatMessage({ id: 'rates_headline_id' })}>
+    <div id={'rates'}>
       {windowSize.width > 1200 ? (
         <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
           <BlockTitle value={'' + formatMessage({ id: 'ratesBlock.headline' })} />
