@@ -27,6 +27,13 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+input[name="buyAll"] + svg {
+  path {
+    fill: #575757;
+  }
+}
+
 .textFieldWrapper {
   max-width: clamp(178px, 11.5vw, 220px);
   @include max-1200 {
@@ -58,6 +65,7 @@
     column-gap: 20px;
   }
 }
+
 .btnWrapper {
   display: flex;
   justify-content: flex-end;
@@ -65,12 +73,14 @@
   @include max-991 {
     justify-content: center;
   }
+
   .btn {
     @include max-576 {
       width: 100%;
     }
   }
 }
+
 .lastTextWrapper {
   @include max-991 {
     max-width: 100%;
@@ -88,12 +98,14 @@
   display: flex;
   justify-content: right;
   margin-top: 40px;
+
   .btnPadding {
     padding: 20px 46px;
     @include max-576 {
       width: 100%;
     }
   }
+
   @include max-576 {
     width: 100%;
     margin-top: 32px;
@@ -101,6 +113,7 @@
 }
 
 .modalWrapper {
+  background: var(--popups-backgroud);
   margin: 0;
   max-height: 100vh;
   height: 100vh;
