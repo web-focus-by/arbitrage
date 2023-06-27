@@ -58,5 +58,7 @@
   "video_headline_id": "Video",
   "scanner_headline_id": "Scanner",
   "rates_headline_id": "Rates",
-  "partners_headline_id": "Partners"
+  "partners_headline_id": "Partners",
+  "ourPartners.title": "Partners",
+  "scanner.title": "Scanner"
 }
