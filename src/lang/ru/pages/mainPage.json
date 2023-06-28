@@ -53,5 +53,12 @@
   "questionAnswer.question.blocking.frequent.transfers": "Блокируют ли биржи аккаунт за частые переводы?",
   "questionAnswer.answer.blocking.frequent.transfers": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
   "questionsRemainBlock.headline": "Остались вопросы?",
-  "questionsRemainBlock.text": "Пишите нам в телеграме."
+  "questionsRemainBlock.text": "Пишите нам в телеграме.",
+  "adv_headline_id": "advantages",
+  "video_headline_id": "video",
+  "scanner_headline_id": "scanner",
+  "rates_headline_id": "rates",
+  "partners_headline_id": "partners",
+  "ourPartners.title": "Партнеры",
+  "scanner.title": "Сканер"
 }

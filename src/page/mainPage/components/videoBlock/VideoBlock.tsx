@@ -29,7 +29,7 @@ const VideoBlock = () => {
   const videos = useAppSelector(selectAllVideos);
 
   return (
-    <div className={style.spacing_between_blocks} id={'' + formatMessage({ id: 'videoBlock.headline' })}>
+    <div className={style.spacing_between_blocks} id={'video'}>
       <div className={classNames(style.mainPageContainer)}>
         <BlockTitle value={'' + formatMessage({ id: 'videoBlock.headline' })} />
       </div>

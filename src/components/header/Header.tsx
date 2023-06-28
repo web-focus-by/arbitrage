@@ -13,7 +13,33 @@ import useWindow from '../../hooks/useWindow';
 import AuthBlock from './authBlock/AuthBlock.tsx';
 import { useIntl } from 'react-intl';
 
-const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
+const navItems = [
+  {
+    href: 'advantages',
+    key: 'adv_headline_id',
+    title: 'adv_headline',
+  },
+  {
+    href: 'video',
+    key: 'video_headline_id',
+    title: 'videoBlock.headline',
+  },
+  {
+    href: 'scanner',
+    key: 'scanner_headline_id',
+    title: 'scanner.title',
+  },
+  {
+    href: 'rates',
+    key: 'rates_headline_id',
+    title: 'ratesBlock.headline',
+  },
+  {
+    href: 'partners',
+    key: 'partners_headline_id',
+    title: 'ourPartners.title',
+  },
+];
 const Header = () => {
   const auth = useAuth();
   const { theme, setThemeHandler } = useTheme();
@@ -47,8 +73,10 @@ const Header = () => {
           <nav className={style.header__nav}>
             <ul className={style.header__nav__list}>
               {navItems.map((el, i) => (
-                <a key={'nav_el_' + i} href={'/#' + el}>
-                  <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
+                <a key={'nav_el_' + i} href={'/#' + el.href}>
+                  <li className={classNames(style.header__nav__item, style.subtitle3)}>
+                    {formatMessage({ id: el.title })}
+                  </li>
                 </a>
               ))}
             </ul>
@@ -89,8 +117,10 @@ const Header = () => {
                     <nav className={style.header__nav}>
                       <ul className={style.header__nav__list}>
                         {navItems.map((el, i) => (
-                          <a key={'nav_el_' + i} href={'/#' + el}>
-                            <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
+                          <a key={'nav_el_' + i} href={'/#' + el.href}>
+                            <li className={classNames(style.header__nav__item, style.subtitle3)}>
+                              {formatMessage({ id: el.title })}
+                            </li>
                           </a>
                         ))}
                       </ul>
@@ -179,8 +209,10 @@ const Header = () => {
                           <nav className={style.header__nav}>
                             <ul className={style.header__nav__list}>
                               {navItems.map((el, i) => (
-                                <a key={'nav_el_' + i} href={'/#' + el}>
-                                  <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
+                                <a key={'nav_el_' + i} href={'/#' + el.href}>
+                                  <li className={classNames(style.header__nav__item, style.subtitle3)}>
+                                    {formatMessage({ id: el.title })}
+                                  </li>
                                 </a>
                               ))}
                             </ul>
@@ -252,8 +284,10 @@ const Header = () => {
                         <nav className={style.header__nav}>
                           <ul className={style.header__nav__list}>
                             {navItems.map((el, i) => (
-                              <a key={'nav_el_' + i} href={'/#' + el}>
-                                <li className={classNames(style.header__nav__item, style.subtitle3)}>{el}</li>
+                              <a key={'nav_el_' + i} href={'/#' + el.href}>
+                                <li className={classNames(style.header__nav__item, style.subtitle3)}>
+                                  {formatMessage({ id: el.title })}
+                                </li>
                               </a>
                             ))}
                           </ul>

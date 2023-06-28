@@ -53,5 +53,12 @@
   "questionAnswer.question.blocking.frequent.transfers": "Do exchanges block an account for frequent transfers?",
   "questionAnswer.answer.blocking.frequent.transfers": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
   "questionsRemainBlock.headline": "Do you have any questions?",
-  "questionsRemainBlock.text": "Write to us on telegram."
+  "questionsRemainBlock.text": "Write to us on telegram.",
+  "adv_headline_id": "advantages",
+  "video_headline_id": "video",
+  "scanner_headline_id": "scanner",
+  "rates_headline_id": "rates",
+  "partners_headline_id": "partners",
+  "ourPartners.title": "Partners",
+  "scanner.title": "Scanner"
 }

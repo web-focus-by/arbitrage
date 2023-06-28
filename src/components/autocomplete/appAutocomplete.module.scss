@@ -47,11 +47,10 @@
   border: none;
   padding-bottom: 8px;
 
-    & + div {
-      button {
-        svg {
-          fill: var(--backgroud-rates-button);
-        }
+  & + div {
+    button {
+      svg {
+        fill: var(--backgroud-rates-button);
       }
     }
   }

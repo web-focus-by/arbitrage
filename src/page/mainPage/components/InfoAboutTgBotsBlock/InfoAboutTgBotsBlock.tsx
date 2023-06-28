@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 const InfoAboutTgBotsBlock = () => {
   const { formatMessage } = useIntl();
   return (
-    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)} id={'Сканер'}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)} id={'scanner'}>
       <div className={style.InfoAboutTgBotsBlockContainer}>
         <div className={style.InfoAboutTgBotsBlockText}>
           <h3>{formatMessage({ id: 'infoAboutTgBotsBlock.text' })}</h3>
