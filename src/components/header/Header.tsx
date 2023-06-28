@@ -15,22 +15,27 @@ import { useIntl } from 'react-intl';
 
 const navItems = [
   {
+    href: 'advantages',
     key: 'adv_headline_id',
     title: 'adv_headline',
   },
   {
+    href: 'video',
     key: 'video_headline_id',
     title: 'videoBlock.headline',
   },
   {
+    href: 'scanner',
     key: 'scanner_headline_id',
     title: 'scanner.title',
   },
   {
+    href: 'rates',
     key: 'rates_headline_id',
     title: 'ratesBlock.headline',
   },
   {
+    href: 'partners',
     key: 'partners_headline_id',
     title: 'ourPartners.title',
   },
@@ -68,7 +73,7 @@ const Header = () => {
           <nav className={style.header__nav}>
             <ul className={style.header__nav__list}>
               {navItems.map((el, i) => (
-                <a key={'nav_el_' + i} href={'/#' + formatMessage({ id: el.key })}>
+                <a key={'nav_el_' + i} href={'/#' + el.href}>
                   <li className={classNames(style.header__nav__item, style.subtitle3)}>
                     {formatMessage({ id: el.title })}
                   </li>
@@ -112,7 +117,7 @@ const Header = () => {
                     <nav className={style.header__nav}>
                       <ul className={style.header__nav__list}>
                         {navItems.map((el, i) => (
-                          <a key={'nav_el_' + i} href={'/#' + formatMessage({ id: el.key })}>
+                          <a key={'nav_el_' + i} href={'/#' + el.href}>
                             <li className={classNames(style.header__nav__item, style.subtitle3)}>
                               {formatMessage({ id: el.title })}
                             </li>
@@ -204,7 +209,7 @@ const Header = () => {
                           <nav className={style.header__nav}>
                             <ul className={style.header__nav__list}>
                               {navItems.map((el, i) => (
-                                <a key={'nav_el_' + i} href={'/#' + formatMessage({ id: el.key })}>
+                                <a key={'nav_el_' + i} href={'/#' + el.href}>
                                   <li className={classNames(style.header__nav__item, style.subtitle3)}>
                                     {formatMessage({ id: el.title })}
                                   </li>
@@ -279,7 +284,7 @@ const Header = () => {
                         <nav className={style.header__nav}>
                           <ul className={style.header__nav__list}>
                             {navItems.map((el, i) => (
-                              <a key={'nav_el_' + i} href={'/#' + formatMessage({ id: el.key })}>
+                              <a key={'nav_el_' + i} href={'/#' + el.href}>
                                 <li className={classNames(style.header__nav__item, style.subtitle3)}>
                                   {formatMessage({ id: el.title })}
                                 </li>
