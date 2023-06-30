@@ -24,8 +24,6 @@ import gateIODark from '../../../../../public/mainPage/ourPartners/darkTheme/gat
 import BitmartDark from '../../../../../public/mainPage/ourPartners/darkTheme/Bitmart.svg';
 import PoloniexDark from '../../../../../public/mainPage/ourPartners/darkTheme/Poloniex.svg';
 import { useIntl } from 'react-intl';
-import { useState } from 'react';
-import { ETheme } from '../../../../features/theme/type';
 
 const dataPartnersLight = [
   {
