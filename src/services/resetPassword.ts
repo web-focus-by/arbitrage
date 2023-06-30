@@ -9,7 +9,7 @@ interface IChangePasswordCodeRequest {
   code: string;
 }
 interface IChangePasswordResponse {
-  token: string;
+  access_token: string;
 }
 interface IUpdatePasswordRequest {
   newPassword: string;
@@ -37,6 +37,10 @@ export const apiResetPassword = createApi({
         method: 'POST',
         body: { code: code },
       }),
+      transformResponse: (response: IChangePasswordResponse) => {
+        localStorage.setItem('resetPasswordToken', response.access_token);
+        return { ...response };
+      },
     }),
     updatePassword: builder.mutation<IChangePasswordCodeRequest, IUpdatePasswordRequest>({
       query: ({ newPassword, token }) => ({
@@ -45,7 +49,7 @@ export const apiResetPassword = createApi({
         headers: {
           authorization: `Bearer ${token}`,
         },
-        body: { new_password: newPassword },
+        body: { password: newPassword },
       }),
     }),
   }),

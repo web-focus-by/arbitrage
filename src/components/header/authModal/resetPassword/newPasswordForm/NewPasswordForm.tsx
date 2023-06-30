@@ -2,20 +2,24 @@ import { FC, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useUpdatePasswordMutation } from '../../../../../services/resetPassword.ts';
-import { ICustomError } from '../../../../../services/auth.ts';
+import { ICustomError, useLoginMutation } from '../../../../../services/auth.ts';
 import style from '../resetPassword.module.scss';
 import classNames from 'classnames';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import AppTextField from '../../../../input/AppTextField.tsx';
 import AppButton from '../../../../button/AppButton.tsx';
+import { setCredentials } from '../../../../../features/auth/authSlice.ts';
+import { useAppDispatch } from '../../../../../store/hooks.ts';
 
 interface INewPasswordFormProps {
+  email: string;
   setFormStep: (step: number) => void;
 }
 interface INewPasswordFormRequest {
   newPassword: string;
 }
 const NewPasswordForm: FC<INewPasswordFormProps> = (props) => {
+  const dispatch = useAppDispatch();
   const { formatMessage } = useIntl();
   const {
     control,
@@ -25,6 +29,7 @@ const NewPasswordForm: FC<INewPasswordFormProps> = (props) => {
     defaultValues: { newPassword: '' },
   });
   const [updatePassword, { error }] = useUpdatePasswordMutation();
+  const [login] = useLoginMutation();
 
   const errorMessages = useMemo(() => {
     if (error) {
@@ -37,12 +42,20 @@ const NewPasswordForm: FC<INewPasswordFormProps> = (props) => {
 
   const submitHandler: SubmitHandler<INewPasswordFormRequest> = async (data) => {
     try {
-      console.log(data);
       if (data.newPassword) {
         await updatePassword({
           newPassword: data.newPassword,
           token: localStorage.getItem('resetPasswordToken') as string,
         });
+
+        const response = await login({
+          email: props.email,
+          password: data.newPassword,
+        }).unwrap();
+
+        localStorage.removeItem('resetPasswordToken');
+        dispatch(setCredentials(response));
+
         props.setFormStep(1);
       }
     } catch (e) {

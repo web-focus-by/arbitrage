@@ -40,7 +40,7 @@ const GetResetCodeForm: FC<IGetResetCodeFormProps> = (props) => {
   const submitHandler: SubmitHandler<IResetPasswordRequest> = async (data) => {
     try {
       if (data.email) {
-        await sendCode(data.email);
+        await sendCode(data.email).unwrap();
         props.setFormEmail(data.email);
         props.setFormStep(1);
       }

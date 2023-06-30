@@ -14,9 +14,9 @@ const ResetPassword = () => {
     return <CheckPasswordForm email={email} setFormStep={setFormStep} />;
   }
   if (formStep === 2) {
-    return <NewPasswordForm setFormStep={setFormStep} />;
+    return <NewPasswordForm email={email} setFormStep={setFormStep} />;
   }
-  return <div>ResetPassword</div>;
+  return null;
 };
 
 export default ResetPassword;

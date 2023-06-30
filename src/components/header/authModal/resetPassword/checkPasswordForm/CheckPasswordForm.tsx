@@ -40,7 +40,7 @@ const CheckPasswordForm: FC<IGetResetCodeFormProps> = (props) => {
     try {
       console.log(data);
       if (data.code) {
-        await sendCode(data.code);
+        await sendCode(data.code).unwrap();
         props.setFormStep(2);
       }
     } catch (e) {
