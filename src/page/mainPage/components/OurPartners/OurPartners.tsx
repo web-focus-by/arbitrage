@@ -10,7 +10,7 @@ import KUCOINLight from '../../../../../public/mainPage/ourPartners/lightTheme/K
 import BitgetLight from '../../../../../public/mainPage/ourPartners/lightTheme/Bitget.svg';
 import MEXCLight from '../../../../../public/mainPage/ourPartners/lightTheme/MEXC.svg';
 import huobiLight from '../../../../../public/mainPage/ourPartners/lightTheme/huobi.svg';
-import gateIOLight from '../../../../../public/mainPage/ourPartners/lightTheme/gateIO.svg';
+import gateIOLight from '../../../../../public/mainPage/ourPartners/lightTheme/GateIO.svg';
 import BitmartLight from '../../../../../public/mainPage/ourPartners/lightTheme/Bitmart.svg';
 import PoloniexLight from '../../../../../public/mainPage/ourPartners/lightTheme/Poloniex.svg';
 import BinanceDark from '../../../../../public/mainPage/ourPartners/darkTheme/Binance.svg';
@@ -20,7 +20,7 @@ import KUCOINDark from '../../../../../public/mainPage/ourPartners/darkTheme/KUC
 import BitgetDark from '../../../../../public/mainPage/ourPartners/darkTheme/Bitget.svg';
 import MEXCDark from '../../../../../public/mainPage/ourPartners/darkTheme/MEXC.svg';
 import huobiDark from '../../../../../public/mainPage/ourPartners/darkTheme/huobi.svg';
-import gateIODark from '../../../../../public/mainPage/ourPartners/darkTheme/gateIO.svg';
+import gateIODark from '../../../../../public/mainPage/ourPartners/darkTheme/GateIO.svg';
 import BitmartDark from '../../../../../public/mainPage/ourPartners/darkTheme/Bitmart.svg';
 import PoloniexDark from '../../../../../public/mainPage/ourPartners/darkTheme/Poloniex.svg';
 import { useIntl } from 'react-intl';
