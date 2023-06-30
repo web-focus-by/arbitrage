@@ -6,6 +6,7 @@ import { apiUserInfo } from '../services/userInfo.ts';
 import { apiGeneralInfo } from '../services/generalInfo.ts';
 import { apiTable } from '../services/table.ts';
 import { apiNotifications } from '../services/notification.ts';
+import { apiResetPassword } from '../services/resetPassword.ts';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     [apiGeneralInfo.reducerPath]: apiGeneralInfo.reducer,
     [apiTable.reducerPath]: apiTable.reducer,
     [apiNotifications.reducerPath]: apiNotifications.reducer,
+    [apiResetPassword.reducerPath]: apiResetPassword.reducer,
     auth: authReducer,
     theme: themeReducer,
   },
@@ -23,7 +25,8 @@ export const store = configureStore({
       .concat(apiUserInfo.middleware)
       .concat(apiGeneralInfo.middleware)
       .concat(apiTable.middleware)
-      .concat(apiNotifications.middleware),
+      .concat(apiNotifications.middleware)
+      .concat(apiResetPassword.middleware),
 });
 
 store.dispatch(checkToken());
