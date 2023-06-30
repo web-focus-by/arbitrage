@@ -7,5 +7,6 @@
   "error.passwords.not.match": "Пароли не совпадают",
   "error.typeError": "Неверный формат данных",
   "error.user.not.found": "Неверная почта или пароль",
-  "error.wrong.password": "Неверная почта или пароль"
+  "error.wrong.password": "Неверная почта или пароль",
+  "reset.password.error.user.not.found": "Пользователь не найден"
 }

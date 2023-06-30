@@ -18,13 +18,11 @@ import AppCheckbox from '../../../../components/checkbox/AppCheckbox.tsx';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import useWindow from '../../../../hooks/useWindow.ts';
-import { useGetMessagesQuery } from '../../../../services/table.ts';
+import { apiTable, useGetSpreadQuery } from '../../../../services/table.ts';
 import AppPagination from '../../../../components/pagination/AppPagination.tsx';
-import { useAppSelector } from '../../../../store/hooks.ts';
-import { selectUserInfo } from '../../../../features/userInfo/userInfoSelect.ts';
-import { useUpdateUserInfoMutation } from '../../../../services/userInfo.ts';
 import AppLink from '../../../../components/link/AppLink.tsx';
 import AppTooltip from '../../../../components/toollip/AppTooltip.tsx';
+import { useAppDispatch } from '../../../../store/hooks.ts';
 
 export interface ITableContent {
   base_coin: string;
@@ -114,13 +112,14 @@ const headTableItems: THeadTableItems[] = [
 ];
 
 const TableDashboard = () => {
+  const dispatch = useAppDispatch();
   const { windowSize } = useWindow();
   const { formatMessage } = useIntl();
   const tableHead: React.MutableRefObject<HTMLTableRowElement | null> = useRef(null);
-  const { data } = useGetMessagesQuery();
+  const [page, setPage] = useState(1);
+  const { data } = useGetSpreadQuery(page);
+  const tableContent = data?.data;
   const [tableHeadWidth, setTableHeadWidth] = useState([] as number[]);
-  const user = useAppSelector(selectUserInfo);
-  const [updateUserInfo] = useUpdateUserInfoMutation();
 
   const updateTableHeadWidth = () => {
     if (tableHead.current) {
@@ -134,18 +133,22 @@ const TableDashboard = () => {
   };
 
   const changePageHandler = (_: React.ChangeEvent<unknown>, page: number) => {
-    updateUserInfo({ page });
+    setPage(page);
   };
 
   useEffect(() => {
     updateTableHeadWidth();
-  }, [tableHead, windowSize.width, data]);
+  }, [tableHead, windowSize.width, data?.page, data?.data]);
+
+  useEffect(() => {
+    dispatch(apiTable.endpoints?.getMessages.initiate());
+  }, [dispatch]);
 
   return (
     <div className={style.wrapper}>
       <div className={'subtitle2'}>{formatMessage({ id: 'dashboard.result.subtitle' })}</div>
       <div className={classNames(style.tableWrapper)}>
-        {data && data.length > 0 ? (
+        {tableContent && tableContent.length > 0 ? (
           <>
             <TableContainer component={Paper} classes={{ root: style.tableContainer }}>
               <Table sx={{ minWidth: 700 }} aria-label="customized collapsible table" classes={{ root: style.table }}>
@@ -162,7 +165,7 @@ const TableDashboard = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {Object.entries(transformData(data)).map(([baseCoin, tableContent], coinIndex) => {
+                  {Object.entries(transformData(tableContent)).map(([baseCoin, tableContent], coinIndex) => {
                     return (
                       <NestedRow
                         item={tableContent}
@@ -176,7 +179,7 @@ const TableDashboard = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-            <AppPagination count={user?.max_pages} page={user?.page ?? 1} onChange={changePageHandler} />
+            <AppPagination count={data?.last_page} page={data?.page ?? 1} onChange={changePageHandler} />
           </>
         ) : (
           <div className={classNames('subtitle3', style.textCenter)}>

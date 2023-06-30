@@ -13,8 +13,16 @@
   "login.form.enter.email": "Введите e-mail",
   "login.form.enter.password": "Введите пароль",
   "login.form.enter.telegram.username": "Например, @user",
+  "personal.info.password": "Пароль",
   "personal.info.new.password": "Новый пароль",
   "personal.info.enter.new.password": "Введите новый пароль",
   "personal.info.confirm.new.password": "Подтверждение пароля",
-  "personal.info.enter.confirm.new.password": "Введите подтверждение пароля"
+  "personal.info.enter.confirm.new.password": "Введите подтверждение пароля",
+  "reset.password.send.code": "Отправить код",
+  "reset.password.form.title": "Восстановления пароля",
+  "reset.password.form.subtitle": "Для восстановления пароля мы отправим вам код на почту.",
+  "reset.password.form.email.subtitle": "Введите код, мы отправили его на e-mail {email}.",
+  "reset.password.form.enter.new.password": "Введите новый пароль.",
+  "login.form.enter.code": "Введите код",
+  "login.form.code": "Код"
 }
