@@ -8,8 +8,8 @@ import useWindow from '../../../../hooks/useWindow';
 import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
 import React, { useCallback, useRef } from 'react';
 import { Navigation } from 'swiper';
-import videoArrowLeft from '../../../../../public/mainPage/videoBlock/ArrowLeft.svg';
-import videoArrowRight from '../../../../../public/mainPage/videoBlock/ArrowRight.svg';
+import ArrowLeft from '../../../../../public/mainPage/videoBlock/ArrowLeft';
+import ArrowRight from '../../../../../public/mainPage/videoBlock/ArrowRight';
 
 const dataRates = [
   {
@@ -59,7 +59,7 @@ const RatesBlock = () => {
   }, []);
 
   return (
-    <div id={'' + formatMessage({ id: 'ratesBlock.headline' })}>
+    <div id={'rates'}>
       {windowSize.width > 1200 ? (
         <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)}>
           <BlockTitle value={'' + formatMessage({ id: 'ratesBlock.headline' })} />
@@ -72,7 +72,7 @@ const RatesBlock = () => {
                     <div className={classNames(style.ratesPrice, style.prise)}>
                       {formatMessage({ id: item.ratesPrice })}
                     </div>
-                    <div className={classNames(style.ratesContentText, style.text)}>
+                    <div className={classNames(style.ratesContentText, style.text, style.textGrayColor)}>
                       <div className={style.ratesContent}>
                         <CheckIcon sx={{ color: '#3366CC' }} />
                         {formatMessage({ id: item.ratesContentInterExchangeScanner })}
@@ -163,10 +163,10 @@ const RatesBlock = () => {
             </Swiper>
             <div className={style.navigationButtons}>
               <div onClick={handlePrev}>
-                <img src={videoArrowLeft} />
+                <ArrowLeft />
               </div>
               <div onClick={handleNext}>
-                <img src={videoArrowRight} />
+                <ArrowRight />
               </div>
             </div>
           </div>

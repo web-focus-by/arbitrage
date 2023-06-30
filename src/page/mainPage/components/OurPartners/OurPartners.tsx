@@ -2,85 +2,158 @@ import style from './OurPartners.module.scss';
 import classNames from 'classnames';
 import BlockTitle from '../BlockTitles/BlockTitle';
 import AppTooltip from '../../../../components/toollip/AppTooltip.tsx';
-import Binance from '../../../../../public/mainPage/ourPartners/Binance.svg';
-import OKX from '../../../../../public/mainPage/ourPartners/OKX.svg';
-import Bybit from '../../../../../public/mainPage/ourPartners/Bybit.svg';
-import KUCOIN from '../../../../../public/mainPage/ourPartners/KUCOIN.svg';
-import Bitget from '../../../../../public/mainPage/ourPartners/Bitget.svg';
-import MEXC from '../../../../../public/mainPage/ourPartners/MEXC.svg';
-import huobi from '../../../../../public/mainPage/ourPartners/huobi.svg';
-import gateIO from '../../../../../public/mainPage/ourPartners/gateIO.svg';
-import Bitmart from '../../../../../public/mainPage/ourPartners/Bitmart.svg';
-import Poloniex from '../../../../../public/mainPage/ourPartners/Poloniex.svg';
+import useTheme from '../../../../hooks/useTheme';
+import BinanceLight from '../../../../../public/mainPage/ourPartners/lightTheme/Binance.svg';
+import OKXLight from '../../../../../public/mainPage/ourPartners/lightTheme/OKX.svg';
+import BybitLight from '../../../../../public/mainPage/ourPartners/lightTheme/Bybit.svg';
+import KUCOINLight from '../../../../../public/mainPage/ourPartners/lightTheme/KUCOIN.svg';
+import BitgetLight from '../../../../../public/mainPage/ourPartners/lightTheme/Bitget.svg';
+import MEXCLight from '../../../../../public/mainPage/ourPartners/lightTheme/MEXC.svg';
+import huobiLight from '../../../../../public/mainPage/ourPartners/lightTheme/huobi.svg';
+import gateIOLight from '../../../../../public/mainPage/ourPartners/lightTheme/gateIO.svg';
+import BitmartLight from '../../../../../public/mainPage/ourPartners/lightTheme/Bitmart.svg';
+import PoloniexLight from '../../../../../public/mainPage/ourPartners/lightTheme/Poloniex.svg';
+import BinanceDark from '../../../../../public/mainPage/ourPartners/darkTheme/Binance.svg';
+import OKXDark from '../../../../../public/mainPage/ourPartners/darkTheme/OKX.svg';
+import BybitDark from '../../../../../public/mainPage/ourPartners/darkTheme/Bybit.svg';
+import KUCOINDark from '../../../../../public/mainPage/ourPartners/darkTheme/KUCOIN.svg';
+import BitgetDark from '../../../../../public/mainPage/ourPartners/darkTheme/Bitget.svg';
+import MEXCDark from '../../../../../public/mainPage/ourPartners/darkTheme/MEXC.svg';
+import huobiDark from '../../../../../public/mainPage/ourPartners/darkTheme/huobi.svg';
+import gateIODark from '../../../../../public/mainPage/ourPartners/darkTheme/gateIO.svg';
+import BitmartDark from '../../../../../public/mainPage/ourPartners/darkTheme/Bitmart.svg';
+import PoloniexDark from '../../../../../public/mainPage/ourPartners/darkTheme/Poloniex.svg';
 import { useIntl } from 'react-intl';
+import { useState } from 'react';
+import { ETheme } from '../../../../features/theme/type';
 
-const dataPartners = [
+const dataPartnersLight = [
   {
     id: 1,
-    src: Binance,
+    src: BinanceLight,
     alt: 'Binance',
   },
   {
     id: 2,
-    src: OKX,
+    src: OKXLight,
     alt: 'OKX',
   },
   {
     id: 3,
-    src: Bybit,
+    src: BybitLight,
     alt: 'Bybit',
   },
   {
     id: 4,
-    src: KUCOIN,
+    src: KUCOINLight,
     alt: 'KUCOIN',
   },
   {
     id: 5,
-    src: Bitget,
+    src: BitgetLight,
     alt: 'Bitget',
   },
   {
     id: 6,
-    src: MEXC,
+    src: MEXCLight,
     alt: 'MEXC',
   },
   {
     id: 7,
-    src: huobi,
+    src: huobiLight,
     alt: 'huobi',
   },
   {
     id: 8,
-    src: gateIO,
+    src: gateIOLight,
     alt: 'gateIO',
   },
   {
     id: 9,
-    src: Bitmart,
+    src: BitmartLight,
     alt: 'Bitmart',
   },
   {
     id: 10,
-    src: Poloniex,
+    src: PoloniexLight,
+    alt: 'Poloniex',
+  },
+];
+
+const dataPartnersDark = [
+  {
+    id: 1,
+    src: BinanceDark,
+    alt: 'Binance',
+  },
+  {
+    id: 2,
+    src: OKXDark,
+    alt: 'OKX',
+  },
+  {
+    id: 3,
+    src: BybitDark,
+    alt: 'Bybit',
+  },
+  {
+    id: 4,
+    src: KUCOINDark,
+    alt: 'KUCOIN',
+  },
+  {
+    id: 5,
+    src: BitgetDark,
+    alt: 'Bitget',
+  },
+  {
+    id: 6,
+    src: MEXCDark,
+    alt: 'MEXC',
+  },
+  {
+    id: 7,
+    src: huobiDark,
+    alt: 'huobi',
+  },
+  {
+    id: 8,
+    src: gateIODark,
+    alt: 'gateIO',
+  },
+  {
+    id: 9,
+    src: BitmartDark,
+    alt: 'Bitmart',
+  },
+  {
+    id: 10,
+    src: PoloniexDark,
     alt: 'Poloniex',
   },
 ];
 
 const OurPartners = () => {
   const { formatMessage } = useIntl();
+  const { theme } = useTheme();
   return (
-    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)} id={'Партнеры'}>
+    <div className={classNames(style.mainPageContainer, style.spacing_between_blocks)} id={'partners'}>
       <div className={style.ourPartnersHeadline}>
         <BlockTitle value={'' + formatMessage({ id: 'ourPartners.headline' })} />
         <AppTooltip title={'' + formatMessage({ id: 'ourPartners.tooltip' })} placement={'top'} />
       </div>
       <div className={style.OurPartnersContainer}>
-        {dataPartners.map((item) => (
-          <div key={item.id} className={style.OurPartnersContainerImg}>
-            <img src={item.src} alt={item.alt} />
-          </div>
-        ))}
+        {theme == 'light'
+          ? dataPartnersLight.map((item) => (
+              <div key={item.id} className={style.OurPartnersContainerImg}>
+                <img src={item.src} alt={item.alt} />
+              </div>
+            ))
+          : dataPartnersDark.map((item) => (
+              <div key={item.id} className={style.OurPartnersContainerImg}>
+                <img src={item.src} alt={item.alt} />
+              </div>
+            ))}
       </div>
     </div>
   );

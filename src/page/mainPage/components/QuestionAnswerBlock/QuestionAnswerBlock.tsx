@@ -18,7 +18,7 @@ const Accordion = styled((props: AccordionProps) => (
 }));
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
-  <MuiAccordionSummary expandIcon={<AddIcon sx={{ fontSize: '2rem' }} />} {...props} />
+  <MuiAccordionSummary expandIcon={<AddIcon sx={{ fontSize: '2rem', fill: 'var(--accordion-icon)' }} />} {...props} />
 ))(() => ({
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
     transform: 'rotate(135deg)',
@@ -60,14 +60,14 @@ const QuestionAnswerBlock = () => {
       <BlockTitle className={style.h2} value={'' + formatMessage({ id: 'questionAnswer.headline' })} />
       <div className={style.questionAnswerAccordion}>
         {dataQuestionAnswer.map((item) => (
-          <Accordion key={item.id}>
+          <Accordion key={item.id} className={style.accordionBlock}>
             <AccordionSummary aria-controls={item.id} id={item.id}>
               <Typography className={classNames(style.questionAnswerAccordionHeadline, style.subtitle2)}>
                 {formatMessage({ id: item.question })}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography className={classNames(style.questionAnswerAccordionText, style.text)}>
+              <Typography className={classNames(style.questionAnswerAccordionText, style.text, style.textGrayColor)}>
                 {formatMessage({ id: item.answer })}
               </Typography>
             </AccordionDetails>

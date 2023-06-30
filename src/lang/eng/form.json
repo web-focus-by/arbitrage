@@ -1,0 +1,20 @@
+{
+  "login": "Login",
+  "register": "Register",
+  "register.confirm": "By clicking the “Register“, button, you agree to {link}.",
+  "register.confirm.link.text": "privacy policy",
+  "login.forgot.password": "Forgot your password?",
+  "login.reset.password": "Restore",
+  "login.form.name": "Name",
+  "login.form.email": "E-mail",
+  "login.form.password": "Password",
+  "login.form.telegram.username": "Nick in telegram",
+  "login.form.enter.name": "Enter your name",
+  "login.form.enter.email": "Enter e-mail",
+  "login.form.enter.password": "Enter password",
+  "login.form.enter.telegram.username": "For example, @user",
+  "personal.info.new.password": "New Password",
+  "personal.info.enter.new.password": "Enter a new password",
+  "personal.info.confirm.new.password": "Password confirmation",
+  "personal.info.enter.confirm.new.password": "Enter password confirmation"
+}

@@ -39,7 +39,7 @@
 }
 
 .menu {
-  background: #ffffff;
+  background: var(--popups-backgroud);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
   border-radius: 20px;
   padding: 0;
@@ -60,6 +60,7 @@
     padding: 16px 32px;
     text-align: left;
     line-height: 110%;
+    color: var(--color-text);
 
     @include max-1680 {
       padding: clamp(12px, 1vw, 16px) clamp(20px, 2vw, 32px);
