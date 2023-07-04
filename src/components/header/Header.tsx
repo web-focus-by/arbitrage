@@ -12,6 +12,7 @@ import AppSwitch from '../switch/AppSwitch.tsx';
 import useWindow from '../../hooks/useWindow';
 import AuthBlock from './authBlock/AuthBlock.tsx';
 import { useIntl } from 'react-intl';
+import ComponentSwitch from './switchLang/ComponentSwitch';
 
 const navItems = [
   {
@@ -70,6 +71,7 @@ const Header = () => {
             <img src={appLogo} className="logo" alt="Vite logo" />
             <div className={style.h1}>{formatMessage({ id: 'logo.text' })}</div>
           </div>
+
           <nav className={style.header__nav}>
             <ul className={style.header__nav__list}>
               {navItems.map((el, i) => (
