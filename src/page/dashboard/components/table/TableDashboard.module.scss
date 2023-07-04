@@ -1,0 +1,68 @@
+@import '../../../../style/media';
+@import '../../../../style/settings';
+
+.wrapper {
+  margin-top: 72px;
+  @include max-1200 {
+    margin-top: 68px;
+  }
+  @include max-991 {
+    margin-top: 40px;
+  }
+  @include max-576 {
+    margin-top: 32px;
+  }
+}
+.tableWrapper {
+  margin-top: 24px;
+}
+.textCenter {
+  text-align: center;
+}
+.tableContainer {
+  box-shadow: none;
+  border: 1px solid $color-gray-4;
+  border-radius: 8px;
+  @include max-1200 {
+    border-radius: 8px 0 0 8px;
+  }
+}
+.resetMarginRight {
+  margin-right: 0;
+}
+.resetPadding {
+  padding: 0;
+}
+.baseCoinWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+
+  .baseCoin {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .baseCoinOpenText {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: max-content;
+      cursor: pointer;
+      color: $color-blue-1;
+    }
+  }
+}
+.tableCell {
+  border-top-width: 1px !important;
+  border-bottom-width: 0 !important;
+}
+.resetTopAndBottomBorder {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.tooltipWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

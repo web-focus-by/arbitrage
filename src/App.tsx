@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/public/vite.svg'
-import './App.css'
+import { IntlProvider } from 'react-intl';
+import { RouterProvider } from 'react-router-dom';
+import russian from './lang/ru';
+import english from './lang/eng';
+import router from './routes';
+import { store } from './store';
+import { Provider } from 'react-redux';
+import { apiGeneralInfo } from './services/generalInfo.ts';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const dictionary = navigator.language.includes('en') ? english : russian;
+
+  store.dispatch(apiGeneralInfo.endpoints.getMarketsInfo.initiate());
+  store.dispatch(apiGeneralInfo.endpoints.getVideosInfo.initiate());
+  store.dispatch(apiGeneralInfo.endpoints.getSubscriptionsInfo.initiate());
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Provider store={store}>
+      <IntlProvider messages={dictionary} locale={navigator.language} defaultLocale="ru">
+        <RouterProvider router={router} />
+      </IntlProvider>
+    </Provider>
+  );
+};
 
-export default App
+export default App;

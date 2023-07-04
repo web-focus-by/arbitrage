@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  title: Arbitrage Services WebSocket API
+  version: 0.1.0
+
+servers:
+  - url: ws://185.240.103.242:50053
+
+paths:
+  /spreads:
+    get:
+      summary: Получение сообщений о новых спредах
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 'spreads'
+
+        '400':
+          description: Required parameter is missing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+        '406':
+          description: Token expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+  /notifications:
+    get:
+      summary: Получение уведомлений
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/notification'
+
+        '400':
+          description: Required parameter is missing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+        '406':
+          description: Token expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+
+components:
+  schemas:
+    notification:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id уведомления
+        title:
+          type: string
+          description: Заголовок
+        content:
+          type: string
+          description: Содержание
+        creation_date:
+          type: string
+          description: Время создания. Например, "Tue, 13 Jun 2023 21:36:05 GMT"
+        if_read:
+          type: boolean
+          description: Прочитано ли уведомление
+        ntype:
+          type: string
+          description: Тип уведомления, 'text' - текстовое, 'spread' - уведомление о спреде
+
+    error_message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Описание ошибки

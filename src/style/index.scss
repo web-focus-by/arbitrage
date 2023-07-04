@@ -1,0 +1,297 @@
+@import 'settings';
+@import 'typography';
+@import 'public/assets/fonts/ProximaNova/stylesheet';
+@import 'public/assets/fonts/RSRockStar/stylesheet';
+
+:root[data-theme='light'] {
+  --background-color: #{$color-white};
+  --text-color: #{$color-gray-1};
+
+  //button-style
+
+  //primary-button
+  --primary-button-bacground-color: #{$color-black};
+  --primary-button-disabled-bacground-color: #{$color-gray-3};
+  --primary-button-hover-bacground-color: #{$color-blue-1};
+  --primary-button-color: #{$color-white};
+
+  //secondary-button
+  --secondary-button-bacground-color: #{$color-white};
+  --secondary-button-hover-bacground-color: #{$color-black};
+  --secondary-button-color: #{$color-black};
+  --secondary-button-hover-color: #{$color-white};
+  --secondary-border-color: #{$color-black};
+  --secondary-disabled-border-color: #{$color-gray-3};
+  --secondary-disabled-color: #{$color-gray-3};
+
+  //check-box-style
+  --check-box-checked-color: #{$color-black};
+
+  //switch-style
+  --switch-color: #{$color-white};
+  --switch-unchecked-background-color: #{$color-gray-5};
+  --switch-checked-background-color: #{$color-blue-1};
+  --switch-disabled-background-color: #{$color-blue-5};
+  --switch-hover-checked-background-color: #{$color-blue-4};
+  --switch-hover-unchecked-background-color: #{$color-gray-8};
+  --switch-pressed-unchecked-background-color: #{$color-gray-9};
+  --switch-pressed-checked-background-color: #{$color-blue-3};
+
+  //table-style
+  --table-head-background-color: #{$color-white};
+  --table-body-background-color: #{$color-white};
+  --table-text-color: #{$color-black};
+
+  //pagination-style
+  --pagination-background-color: #{$color-blue-1};
+  --pagination-text-color: #{$color-blue-1};
+  --pagination-selected-text-color: #{$color-white-1};
+
+  //bell-style
+  --bell-background-color: #{$color-white};
+  --bell-border-color: #{$color-gray-2};
+
+  //arrow-style
+  --arrow-color: #{$color-blue-1};
+  --arrow-background-color: #{$color-blue-9};
+
+  //accordion
+  --accordion-border-bottom: #{$color-accordion-light};
+  --accordion-backgroud: #{$accordion-backgroud-light};
+  --accordion-icon: #{$accordion-fill-icon-light};
+
+  //typography
+  --color-text: #{$color-text-light};
+  --color-text-gray: #{$color-text-gray-light};
+  --color-text-2-gray: #{$color-text-2-gray-light};
+  --backgroud-rates: #{$backgroud-rates-light};
+  --backgroud-rates-button: #{$backgroud-rates-button-light};
+  --color-rates-button: #{$color-rates-button-light};
+
+  --popups-backgroud: #{$popups-background-light};
+  --popups-color-gray: #{$popups-color-gray-light};
+
+  --burger-color: #{$burger-color-light};
+
+  --backgroud-autocomplete: #{$backgroud-autocomplete-light};
+}
+
+:root[data-theme='dark'] {
+  --background-color: #{$color-black};
+  --text-color: #{$color-white};
+
+  //button-style
+
+  //primary-button
+  --primary-button-bacground-color: #{$color-blue-1};
+  --primary-button-disabled-bacground-color: #{$color-gray-1};
+  --primary-button-hover-bacground-color: #{$color-blue-2};
+  --primary-button-color: #{$color-white};
+
+  //secondary-button
+  --secondary-button-bacground-color: #{$color-black};
+  --secondary-button-hover-bacground-color: #{$color-gray-1};
+  --secondary-button-color: #{$color-white};
+  --secondary-button-hover-color: #{$color-white};
+  --secondary-border-color: #{$color-white};
+  --secondary-border-hover-color: #{$color-gray-1};
+  --secondary-disabled-border-color: #{$color-gray-3};
+  --secondary-disabled-color: #{$color-gray-3};
+
+  //check-box-style
+  --check-box-checked-color: #{$color-blue-1};
+
+  //switch-style
+  --switch-color: #{$color-white};
+  --switch-unchecked-background-color: #{$color-gray-5};
+  --switch-checked-background-color: #{$color-blue-1};
+  --switch-disabled-background-color: #{$color-blue-5};
+  --switch-hover-checked-background-color: #{$color-blue-6};
+  --switch-hover-unchecked-background-color: #{$color-gray-6};
+  --switch-pressed-unchecked-background-color: #{$color-gray-7};
+  --switch-pressed-checked-background-color: #{$color-blue-7};
+
+  //table-style
+  --table-head-background-color: #{$color-black};
+  --table-body-background-color: #{$color-black};
+  --table-text-color: #{$color-white};
+
+  //pagination-style
+  --pagination-background-color: #{$color-blue-8};
+  --pagination-text-color: #{$color-blue-8};
+  --pagination-selected-text-color: #{$color-white-1};
+
+  //bell-style
+  --bell-background-color: #{$color-black};
+  --bell-border-color: #{$color-white};
+
+  //arrow-style
+  --arrow-color: #{$color-white};
+  --arrow-background-color: #{$color-black};
+
+  //accordion
+  --accordion-border-bottom: #{$color-accordion-dark};
+  --accordion-backgroud: #{$accordion-backgroud-dark};
+  --accordion-icon: #{$accordion-fill-icon-dark};
+
+  //typography
+  --color-text: #{$color-text-dark};
+  --color-text-gray: #{$color-text-gray-dark};
+  --color-text-2-gray: #{$color-text-2-gray-dark};
+  --backgroud-rates: #{$backgroud-rates-dark};
+  --backgroud-rates-button: #{$backgroud-rates-button-dark};
+  --color-rates-button: #{$color-rates-button-dark};
+
+  --popups-backgroud: #{$popups-background-dark};
+  --popups-color-gray: #{$popups-color-gray-dark};
+
+  --burger-color: #{$burger-color-dark};
+  --backgroud-autocomplete: #{$backgroud-autocomplete-dark};
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  transition: color $transition-time $transition-animate, background-color $transition-time $transition-animate;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 100vh;
+  height: 100vh;
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: color $transition-time $transition-animate, background-color $transition-time $transition-animate;
+  @include max-1200 {
+    overflow-x: initial;
+  }
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+//@media (prefers-color-scheme: light) {
+//  :root {
+//    color: #213547;
+//    background-color: #ffffff;
+//  }
+//  a:hover {
+//    color: #747bff;
+//  }
+//  button {
+//    background-color: #f9f9f9;
+//  }
+//}
+
+#root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1440px;
+  width: 100%;
+
+  &Padding {
+    @include max-1440 {
+      padding: 0 80px;
+    }
+    @include max-1200 {
+      padding: 0 65px;
+    }
+    @include max-991 {
+      padding: 0 40px;
+    }
+    @include max-768 {
+      padding: 0 clamp(16px, 5.2vw, 40px);
+    }
+    @include max-576 {
+      padding: 0 16px;
+    }
+  }
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+.button-padding {
+  padding-left: 46px;
+  padding-right: 46px;
+}
+
+path {
+  transition: fill $transition-time $transition-animate;
+}
+
+.fixed-position {
+  position: fixed;
+}
+
+.errorWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  padding: 19px 23px;
+  border-radius: 12px;
+  color: $color-red-error;
+  background-color: $color-red-1;
+  font-size: 16px;
+}
+
+.arrowLeft, .arrowRight {
+  svg {
+    path {
+      stroke: var(--accordion-icon);
+    }
+  }
+}

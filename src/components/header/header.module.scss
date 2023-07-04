@@ -1,0 +1,274 @@
+@import '../../style/media';
+@import '/src/style/index';
+
+.header {
+  position: relative;
+  display: block;
+  //height: 100px; // ? Лучше 70 - 80
+  padding-top: 1.57%;
+
+  @include max-1440 {
+    padding-top: 0.9%;
+  }
+  @include max-1200 {
+    padding-top: 1.8%;
+  }
+  @include max-720 {
+    padding-top: 5%;
+  }
+
+
+  &__container {
+    margin: 0 auto;
+    max-width: 1520px;
+    width: 91%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include max-1200 {
+      width: 87%;
+    }
+
+    @include max-768 {
+      width: 90%;
+    }
+
+    @include max-576 {
+      width: 91%;
+    }
+
+    .authButton {
+      padding: 18px 46px;
+
+      @include max-1440 {
+        padding: 15px 38px;
+      }
+
+      @include max-1200 {
+        padding: 20px 46px;
+      }
+
+      @include max-720 {
+        width: 100%;
+        padding: 16px 0px;
+      }
+    }
+
+    @include max-1200 {
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 15%;
+
+    @include max-1200 {
+      width: 23%;
+    }
+
+    img {
+      width: 30%;
+      @include max-1440 {
+        width: 31%;
+      }
+    }
+  }
+
+  &__nav {
+    &__list {
+      display: flex;
+
+      a {
+        text-decoration: none;
+        color: #262626;
+      }
+    }
+
+    &__item {
+      padding: 0 28px;
+    }
+  }
+
+  .switchAndButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+
+    @include max-991 {
+      gap: 150px;
+    }
+  }
+
+  .burgerAndLogo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .burgerAndLogo_container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @include max-1200 {
+      width: 30%;
+    }
+
+    @include max-991 {
+      width: 32%;
+    }
+    @include max-720 {
+      width: 100%;
+    }
+
+    .burgerTextBlock {
+      cursor: initial;
+      z-index: 50;
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--backgroud-rates);
+      transition: 0.5s;
+
+      padding: 80px 40px;
+
+      @include max-720 {
+        padding: 56px 16px 40px;
+      }
+
+      .header__nav__list {
+        flex-direction: column;
+        gap: 48px;
+        width: max-content;
+
+        li {
+          font-size: 36px;
+          padding: 0px;
+          width: max-content;
+          @include max-720 {
+            font-size: 20px;
+          }
+        }
+      }
+
+      .burgerCross {
+        cursor: pointer;
+        position: absolute;
+        top: 3%;
+        right: 3%;
+      }
+
+      .burgerMobileMenu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+
+        .switchAndButton {
+          flex-direction: column;
+          width: max-content;
+          gap: 32px;
+
+          & > :first-child {
+            width: 80%;
+          }
+
+          @include max-720 {
+            width: 100%;
+            & > :first-child {
+              width: 93%;
+            }
+            & > :last-child {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .openBurgerMenu {
+      left: 0%;
+      transition: 0.5s;
+    }
+
+    .header__logo {
+      display: flex;
+      align-items: baseline;
+      width: 15.5%;
+
+      @include max-1200 {
+        width: 75%;
+      }
+
+      @include max-991 {
+        width: 73%;
+      }
+
+      img {
+        width: 100%;
+        @include max-1200 {
+          width: 30%;
+        }
+      }
+    }
+
+    .burgerButton {
+      cursor: pointer;
+      height: 32px;
+
+      svg {
+        path {
+          stroke: var(--burger-color);
+        }
+      }
+    }
+  }
+
+  .burgerAndLogoLogout {
+    width: 195px;
+  }
+}
+
+.modalWrapper {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: clamp(60px, 4vw, 72px) 0;
+  border-radius: clamp(32px, 3vw, 40px);
+  max-width: clamp(570px, 37vw, 710px);
+  width: 100%;
+  @include max-1200 {
+    max-width: 710px;
+    border-radius: 40px;
+    padding: 72px 0;
+  }
+  @include max-991 {
+    padding: 64px 0;
+    border-radius: 32px;
+  }
+  @include max-576 {
+    padding: 64px 20px;
+    height: 100%;
+    margin: 0;
+  }
+}
+
+.h1 {
+  font-size: 14px;
+  @include max-1440 {
+    font-size: 11px;
+  }
+  @include max-1200 {
+    font-size: 12px;
+  }
+  @include max-991 {
+    font-size: 10px;
+  }
+  @include max-720 {
+    font-size: 9px;
+  }
+}

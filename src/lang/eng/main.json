@@ -1,0 +1,12 @@
+{
+  "modal.login": "Login",
+  "modal.auth": "Registration",
+  "link": "Link",
+  "delete": "Delete",
+  "select.options": "Select an option",
+  "filter": "Filter",
+  "video": "Video",
+  "profile": "Profile",
+  "scaner": "Scanner",
+  "logout": "Logout"
+}

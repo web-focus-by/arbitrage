@@ -1,0 +1,37 @@
+@import '../../../../style/media';
+@import '/src/page/mainPage/style';
+@import '/src/style/index';
+@import '/src/page/mainPage/style';
+
+.questionAnswerAccordion {
+
+  .questionAnswerAccordionHeadline, .questionAnswerAccordionText {
+    width: 78%;
+  }
+
+  & > div {
+    padding: 26px 0px;
+    @include max-1440 {
+      padding: 20px 0px;
+    }
+
+    & > div {
+      padding: 0;
+    }
+  }
+}
+
+.h2 {
+  margin-bottom: 20px;
+  @include max-768 {
+    margin-bottom: calc(0px + (26 - 0) * ((100vw - 375px) / (768 - 375)));
+  }
+}
+
+.accordionWrapper {
+  border-bottom: var(--accordion-border-bottom);
+}
+
+.accordionBlock {
+  background: var(--accordion-backgroud);
+}

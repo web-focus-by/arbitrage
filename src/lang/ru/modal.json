@@ -1,0 +1,16 @@
+{
+  "success.register.modal.title": "Регистрация прошла успешно!",
+  "success.register.modal.text": "Вы успешно зарегистрировались в сервисе Arbitrage. Теперь вы можете приступить к арбитражу криптовалют.",
+  "success.register.modal.btn.text": "На главную",
+  "notification.modal.title": "Новый результат",
+  "notification.modal.table.title.buy": "Покупка",
+  "notification.modal.table.title.sell": "Продажа",
+  "notification.modal.table.title.cost": "Цена",
+  "notification.modal.table.title.value": "Объём",
+  "notification.modal.table.title.fee.spot": "Комиссия спота",
+  "notification.modal.table.title.fee.network": "Комиссия сети",
+  "notification.modal.table.title.pure.spread": "Чистый спред",
+  "notification.modal.table.title.time": "Время",
+  "notification.modal.table.content.order.value": "{val} ордеров",
+  "notification.notification": "Уведомления"
+}

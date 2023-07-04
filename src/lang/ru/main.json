@@ -1,0 +1,12 @@
+{
+  "modal.login": "Вход",
+  "modal.auth": "Регистрация",
+  "link": "Ссылка",
+  "delete": "Удалить",
+  "select.options": "Выберите вариант",
+  "filter": "Фильтр",
+  "video": "Видео",
+  "profile": "Профиль",
+  "scaner": "Сканер",
+  "logout": "Выйти"
+}

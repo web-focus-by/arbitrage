@@ -1,0 +1,77 @@
+@import '../../../style/settings';
+@import '../../../style/media';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  @include max-991 {
+    width: 40px;
+    height: 40px;
+  }
+  @include max-720 {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.arrowWrapper {
+  border-radius: 4px;
+  margin-left: 8px;
+  padding: 0;
+  transition: background-color $transition-time $transition-animate;
+
+  @include max-720 {
+    margin-left: 0;
+  }
+
+  &:hover {
+    background-color: var(--arrow-background-color);
+  }
+
+  path {
+    stroke: var(--arrow-color);
+  }
+}
+
+.menu {
+  background: var(--popups-backgroud);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  padding: 0;
+  @include max-720 {
+    top: 15px !important;
+  }
+}
+
+.list {
+  padding: 12px 0;
+  min-width: 280px;
+  @include max-1680 {
+    min-width: clamp(180px, 16.7vw, 280px);
+    padding: clamp(8px, 0.8vw, 12px) 0;
+  }
+
+  .menuItem {
+    padding: 16px 32px;
+    text-align: left;
+    line-height: 110%;
+    color: var(--color-text);
+
+    @include max-1680 {
+      padding: clamp(12px, 1vw, 16px) clamp(20px, 2vw, 32px);
+    }
+  }
+}
+
+.logout {
+  margin-top: 20px;
+
+  @include max-1200 {
+    margin-top: 8px;
+  }
+}

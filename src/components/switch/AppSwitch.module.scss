@@ -1,0 +1,64 @@
+@import '../../style/media';
+@import '../../style/settings';
+
+.root {
+  width: 44px;
+  height: 28px;
+  border-radius: 14px;
+  &:has(.disabled) {
+    opacity: 0.25;
+  }
+}
+.resetPadding {
+  padding: 0;
+}
+.resetMargin {
+  margin-left: 0;
+}
+.switchBase {
+  left: 2px;
+  top: 2px;
+  color: var(--switch-color);
+  &.checked {
+    transform: translateX(16px);
+    color: var(--switch-color);
+  }
+  & + .track {
+    background-color: var(--switch-unchecked-background-color);
+    opacity: 1;
+  }
+  &.disabled + .track {
+    opacity: 1;
+  }
+
+  &:hover + .track {
+    background-color: var(--switch-hover-unchecked-background-color);
+  }
+  &:active + .track {
+    background-color: var(--switch-pressed-unchecked-background-color);
+  }
+  &.checked + .track {
+    background-color: var(--switch-checked-background-color);
+    opacity: 1;
+  }
+  &.checked:hover + .track {
+    background-color: var(--switch-hover-checked-background-color);
+  }
+  &.checked:active + .track {
+    background-color: var(--switch-pressed-checked-background-color);
+  }
+  &.disabled,
+  &.checked.disabled {
+    color: var(--switch-color);
+    background-color: var(--switch-disabled-background-color);
+  }
+}
+
+.thumb {
+  width: 24px;
+  height: 24px;
+}
+
+.label {
+  margin-left: 12px;
+}

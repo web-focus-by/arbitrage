@@ -1,0 +1,24 @@
+@import '../../../../style/settings';
+@import '../../../../style/media';
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: clamp(30px, 3vw, 48px);
+  @include max-1200 {
+    row-gap: 48px;
+  }
+}
+
+.inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.additionalData {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-between;
+}
