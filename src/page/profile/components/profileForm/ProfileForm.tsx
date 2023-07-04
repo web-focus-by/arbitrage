@@ -9,6 +9,7 @@ import { useAppSelector } from '../../../../store/hooks.ts';
 import { selectUserInfo } from '../../../../features/userInfo/userInfoSelect.ts';
 import { useEffect, useMemo } from 'react';
 import { getDefaultFormValue } from './profileFrom.ts';
+import { useUpdateProfilePasswordMutation, useUpdateUserInfoMutation } from '../../../../services/userInfo.ts';
 
 interface IProfileForm extends IUserRegister {
   newPassword?: string;
@@ -18,6 +19,8 @@ interface IProfileForm extends IUserRegister {
 const ProfileForm = () => {
   const { formatMessage } = useIntl();
   const user = useAppSelector(selectUserInfo);
+  const [updatePassword] = useUpdateProfilePasswordMutation();
+  const [updateUserInfo] = useUpdateUserInfoMutation();
 
   useEffect(() => {
     console.log({ user });
@@ -40,8 +43,21 @@ const ProfileForm = () => {
       reset(getDefaultFormValue(user));
     }
   }, [reset, user]);
-  const submitHandler: SubmitHandler<IProfileForm> = (data) => {
-    console.log(data);
+  const submitHandler: SubmitHandler<IProfileForm> = async (data) => {
+    try {
+      const userInfoUpdateData = {
+        name: data.name,
+        email: data.email,
+        telegram: data.telegram,
+      };
+      await updateUserInfo(userInfoUpdateData).unwrap();
+      if (data.newPassword && data.newPassword !== '') {
+        console.log('newPassword', data.newPassword);
+        await updatePassword({ password: data.newPassword }).unwrap();
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

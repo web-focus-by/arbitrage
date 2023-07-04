@@ -44,7 +44,7 @@ const NewPasswordForm: FC<INewPasswordFormProps> = (props) => {
     try {
       if (data.newPassword) {
         await updatePassword({
-          newPassword: data.newPassword,
+          password: data.newPassword,
           token: localStorage.getItem('resetPasswordToken') as string,
         });
 
