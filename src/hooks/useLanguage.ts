@@ -12,9 +12,8 @@ const useLanguage = () => {
     localStorage.setItem('language', language);
   }, [language]);
 
-  const setLanguageHandler = () => {
-    const next = language === ELanguage.ru ? ELanguage.en : ELanguage.ru;
-    dispatch(setLanguage(next));
+  const setLanguageHandler = (lang: ELanguage) => {
+    dispatch(setLanguage(lang));
   };
   return { setLanguageHandler, language };
 };

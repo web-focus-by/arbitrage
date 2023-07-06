@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import appLogo from '../../../public/logo.svg';
 import style from './header.module.scss';
 import classNames from 'classnames';
@@ -12,7 +12,13 @@ import AppSwitch from '../switch/AppSwitch.tsx';
 import useWindow from '../../hooks/useWindow';
 import AuthBlock from './authBlock/AuthBlock.tsx';
 import { useIntl } from 'react-intl';
-import ComponentSwitch from './switchLang/ComponentSwitch';
+import { IconButton, Menu } from '@mui/material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import MenuItem from '@mui/material/MenuItem';
+import useLanguage from '../../hooks/useLanguage';
+import { ELanguage } from '../../features/language/languageType';
+import { useAppSelector } from '../../store/hooks';
 
 const navItems = [
   {
@@ -44,6 +50,7 @@ const navItems = [
 const Header = () => {
   const auth = useAuth();
   const { theme, setThemeHandler } = useTheme();
+  const { language, setLanguageHandler } = useLanguage();
   const { windowSize } = useWindow();
 
   const { formatMessage } = useIntl();
@@ -63,13 +70,81 @@ const Header = () => {
     document.body.style.overflow = isOpenBurger ? 'hidden' : 'auto';
   }, [isOpenBurger]);
 
+  const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const handleCloseUserMenu = (rout: string | object) => {
+    setAnchorElUser(null);
+  };
+
+  const lang = useAppSelector((state) => state.language);
+  const handleLanguageBrowser = (str: string) => {
+    if (str === 'ru') {
+      setLanguageHandler(ELanguage.ru);
+    } else {
+      setLanguageHandler(ELanguage.en);
+    }
+
+    setAnchorElUser(null);
+  };
+
   return (
     <header className={style.header}>
       {windowSize.width > 1200 ? (
         <div className={classNames(style.header__container)}>
           <div className={style.header__logo}>
-            <img src={appLogo} className="logo" alt="Vite logo" />
-            <div className={style.h1}>{formatMessage({ id: 'logo.text' })}</div>
+            <div className={style.header__logo_container}>
+              <img src={appLogo} className="logo" alt="Vite logo" />
+              <div className={style.h1}>{formatMessage({ id: 'logo.text' })}</div>
+            </div>
+            <div>
+              <div>
+                {lang === 'ru' ? formatMessage({ id: 'LangRussian' }) : formatMessage({ id: 'LangEnglish' })}
+                <IconButton onClick={handleOpenUserMenu} disableRipple={true} classes={{ root: style.arrowWrapper }}>
+                  {anchorElUser ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                </IconButton>
+              </div>
+              <Menu
+                sx={{ mt: '45px' }}
+                anchorEl={anchorElUser}
+                id="menu-appbar"
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+                classes={{
+                  paper: style.menu,
+                  list: style.list,
+                }}
+              >
+                <MenuItem
+                  onClick={() => handleLanguageBrowser('ru')}
+                  classes={{
+                    root: classNames(style.menuItem, 'text', { ['text2']: windowSize.width < 1366 }),
+                  }}
+                >
+                  {formatMessage({ id: 'LangRussian' })}
+                </MenuItem>
+                <MenuItem
+                  onClick={() => handleLanguageBrowser('en')}
+                  classes={{
+                    root: classNames(style.menuItem, 'text', { ['text2']: windowSize.width < 1366 }),
+                  }}
+                >
+                  {formatMessage({ id: 'LangEnglish' })}
+                </MenuItem>
+              </Menu>
+            </div>
           </div>
 
           <nav className={style.header__nav}>

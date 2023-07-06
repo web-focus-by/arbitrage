@@ -6,13 +6,11 @@ const getLanguage = () => {
   if (language === ELanguage.ru || language === ELanguage.en) {
     return language;
   }
-  const userMedia = window.matchMedia('(prefers-color-scheme: light)');
-  if (userMedia.matches) return ELanguage.en;
 
   return ELanguage.ru;
 };
 
-const initialState = getLanguage();
+const initialState = ELanguage.ru;
 
 const slice = createSlice({
   name: 'language',

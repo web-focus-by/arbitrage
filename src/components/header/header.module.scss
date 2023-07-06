@@ -59,10 +59,19 @@
   }
 
   &__logo {
+
+    &_container {
+      display: flex;
+      flex-direction: row;
+      gap: 11px;
+      align-items: baseline;
+      width: 73%;
+    }
+
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
-    width: 15%;
+    align-items: center;
+    width: 21%;
 
     @include max-1200 {
       width: 23%;
@@ -270,5 +279,24 @@
   }
   @include max-720 {
     font-size: 9px;
+  }
+}
+
+.arrowWrapper {
+  border-radius: 4px;
+  margin-left: 8px;
+  padding: 0;
+  transition: background-color $transition-time $transition-animate;
+
+  @include max-720 {
+    margin-left: 0;
+  }
+
+  &:hover {
+    background-color: var(--arrow-background-color);
+  }
+
+  path {
+    stroke: var(--arrow-color);
   }
 }
