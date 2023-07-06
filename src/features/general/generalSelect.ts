@@ -8,8 +8,7 @@ export const selectAllMarkets = createSelector(
 );
 export const selectAllVideos = createSelector(
   selectVideosResult,
-  // (videoResult) => videoResult.data?.videos ?? VIDEO_ARR,
-  (videoResult) => VIDEO_ARR,
+  (videoResult) => videoResult.data?.videos ?? VIDEO_ARR,
 );
 export const selectAllSubscriptions = createSelector(
   selectSubscriptionsResult,
