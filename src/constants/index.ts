@@ -19,11 +19,11 @@ export const SHOP_ARR = [
 ];
 
 export const VIDEO_ARR = [
-  { id: 1, videoSrc: videoImage },
-  { id: 2, videoSrc: videoImage },
-  { id: 3, videoSrc: videoImage },
-  { id: 4, videoSrc: videoImage },
-  { id: 5, videoSrc: videoImage },
-  { id: 6, videoSrc: videoImage },
-  { id: 7, videoSrc: videoImage },
+  { id: 1, image: videoImage, link: 'https://google.com/', title: 'Video Title' },
+  { id: 2, image: videoImage, link: 'https://google.com/', title: 'Video Title' },
+  { id: 3, image: videoImage, link: 'https://google.com/', title: 'Video Title' },
+  { id: 4, image: videoImage, link: 'https://google.com/', title: 'Video Title' },
+  { id: 5, image: videoImage, link: 'https://google.com/', title: 'Video Title' },
+  { id: 6, image: videoImage, link: 'https://google.com/', title: 'Video Title' },
+  { id: 7, image: videoImage, link: 'https://google.com/', title: 'Video Title' },
 ];

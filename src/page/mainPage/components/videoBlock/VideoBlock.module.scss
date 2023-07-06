@@ -6,6 +6,9 @@
 .MySwiper {
   .swiperItem {
     width: 49.3%;
+    overflow: hidden;
+    border-radius: 32px;
+    max-height: 441px;
     @include max-1440 {
       width: 49%;
     }
@@ -25,8 +28,28 @@
     }
 
     img {
-      width: 100%;
+      width: 110%;
       height: 100%;
+      @include max-1200 {
+        width: initial;
+      }
+    }
+
+    .videoSlideTitle {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: absolute;
+      top: 70%;
+      left: 5%;
+
+      .videoSlideText {
+        color: #FFFFFF;
+      }
+
+      .videoSlideButton {
+        color: #FFFFFF;
+      }
     }
   }
 }
