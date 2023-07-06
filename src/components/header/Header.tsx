@@ -101,7 +101,7 @@ const Header = () => {
               <div className={style.h1}>{formatMessage({ id: 'logo.text' })}</div>
             </div>
             <div>
-              <div>
+              <div className={style.text2}>
                 {lang === 'ru' ? formatMessage({ id: 'LangRussian' }) : formatMessage({ id: 'LangEnglish' })}
                 <IconButton onClick={handleOpenUserMenu} disableRipple={true} classes={{ root: style.arrowWrapper }}>
                   {anchorElUser ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -123,14 +123,14 @@ const Header = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
                 classes={{
-                  paper: style.menu,
-                  list: style.list,
+                  paper: style.menuLang,
+                  list: style.listLang,
                 }}
               >
                 <MenuItem
                   onClick={() => handleLanguageBrowser('ru')}
                   classes={{
-                    root: classNames(style.menuItem, 'text', { ['text2']: windowSize.width < 1366 }),
+                    root: classNames(style.menuLangItem, 'text', { ['text2']: windowSize.width < 1366 }),
                   }}
                 >
                   {formatMessage({ id: 'LangRussian' })}
@@ -138,7 +138,7 @@ const Header = () => {
                 <MenuItem
                   onClick={() => handleLanguageBrowser('en')}
                   classes={{
-                    root: classNames(style.menuItem, 'text', { ['text2']: windowSize.width < 1366 }),
+                    root: classNames(style.menuLangItem, 'text', { ['text2']: windowSize.width < 1366 }),
                   }}
                 >
                   {formatMessage({ id: 'LangEnglish' })}
@@ -202,6 +202,55 @@ const Header = () => {
                         ))}
                       </ul>
                     </nav>
+                    <div className={style.langMobile}>
+                      <div className={style.text2}>
+                        {lang === 'ru' ? formatMessage({ id: 'LangRussian' }) : formatMessage({ id: 'LangEnglish' })}
+                        <IconButton
+                          onClick={handleOpenUserMenu}
+                          disableRipple={true}
+                          classes={{ root: style.arrowWrapper }}
+                        >
+                          {anchorElUser ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                        </IconButton>
+                      </div>
+                      <Menu
+                        sx={{ mt: '45px' }}
+                        anchorEl={anchorElUser}
+                        id="menu-appbar"
+                        anchorOrigin={{
+                          vertical: 'top',
+                          horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                          vertical: 'top',
+                          horizontal: 'right',
+                        }}
+                        open={Boolean(anchorElUser)}
+                        onClose={handleCloseUserMenu}
+                        classes={{
+                          paper: style.menuLang,
+                          list: style.listLang,
+                        }}
+                      >
+                        <MenuItem
+                          onClick={() => handleLanguageBrowser('ru')}
+                          classes={{
+                            root: classNames(style.menuLangItem, 'text', { ['text2']: windowSize.width < 1366 }),
+                          }}
+                        >
+                          {formatMessage({ id: 'LangRussian' })}
+                        </MenuItem>
+                        <MenuItem
+                          onClick={() => handleLanguageBrowser('en')}
+                          classes={{
+                            root: classNames(style.menuLangItem, 'text', { ['text2']: windowSize.width < 1366 }),
+                          }}
+                        >
+                          {formatMessage({ id: 'LangEnglish' })}
+                        </MenuItem>
+                      </Menu>
+                    </div>
                     <div className={style.burgerCross} onClick={handleClickBurger}>
                       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -295,7 +344,62 @@ const Header = () => {
                             </ul>
                           </nav>
                           <div className={style.switchAndButton}>
-                            <div>
+                            <div className={style.switchWithLang}>
+                              <div className={style.langMobile}>
+                                <div className={style.text2}>
+                                  {lang === 'ru'
+                                    ? formatMessage({ id: 'LangRussian' })
+                                    : formatMessage({ id: 'LangEnglish' })}
+                                  <IconButton
+                                    onClick={handleOpenUserMenu}
+                                    disableRipple={true}
+                                    classes={{ root: style.arrowWrapper }}
+                                  >
+                                    {anchorElUser ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                  </IconButton>
+                                </div>
+                                <Menu
+                                  sx={{ mt: '45px' }}
+                                  anchorEl={anchorElUser}
+                                  id="menu-appbar"
+                                  anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                  }}
+                                  keepMounted
+                                  transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                  }}
+                                  open={Boolean(anchorElUser)}
+                                  onClose={handleCloseUserMenu}
+                                  classes={{
+                                    paper: style.menuLang,
+                                    list: style.listLang,
+                                  }}
+                                >
+                                  <MenuItem
+                                    onClick={() => handleLanguageBrowser('ru')}
+                                    classes={{
+                                      root: classNames(style.menuLangItem, 'text', {
+                                        ['text2']: windowSize.width < 1366,
+                                      }),
+                                    }}
+                                  >
+                                    {formatMessage({ id: 'LangRussian' })}
+                                  </MenuItem>
+                                  <MenuItem
+                                    onClick={() => handleLanguageBrowser('en')}
+                                    classes={{
+                                      root: classNames(style.menuLangItem, 'text', {
+                                        ['text2']: windowSize.width < 1366,
+                                      }),
+                                    }}
+                                  >
+                                    {formatMessage({ id: 'LangEnglish' })}
+                                  </MenuItem>
+                                </Menu>
+                              </div>
                               <AppSwitch switchProps={{ onClick: setThemeHandler, checked: theme === ETheme.light }} />
                             </div>
                           </div>
@@ -370,7 +474,62 @@ const Header = () => {
                           </ul>
                         </nav>
                         <div className={style.switchAndButton}>
-                          <div>
+                          <div className={style.switchWithLang}>
+                            <div className={style.langMobile}>
+                              <div className={style.text2}>
+                                {lang === 'ru'
+                                  ? formatMessage({ id: 'LangRussian' })
+                                  : formatMessage({ id: 'LangEnglish' })}
+                                <IconButton
+                                  onClick={handleOpenUserMenu}
+                                  disableRipple={true}
+                                  classes={{ root: style.arrowWrapper }}
+                                >
+                                  {anchorElUser ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                </IconButton>
+                              </div>
+                              <Menu
+                                sx={{ mt: '45px' }}
+                                anchorEl={anchorElUser}
+                                id="menu-appbar"
+                                anchorOrigin={{
+                                  vertical: 'top',
+                                  horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                  vertical: 'top',
+                                  horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                                classes={{
+                                  paper: style.menuLang,
+                                  list: style.listLang,
+                                }}
+                              >
+                                <MenuItem
+                                  onClick={() => handleLanguageBrowser('ru')}
+                                  classes={{
+                                    root: classNames(style.menuLangItem, 'text', {
+                                      ['text2']: windowSize.width < 1366,
+                                    }),
+                                  }}
+                                >
+                                  {formatMessage({ id: 'LangRussian' })}
+                                </MenuItem>
+                                <MenuItem
+                                  onClick={() => handleLanguageBrowser('en')}
+                                  classes={{
+                                    root: classNames(style.menuLangItem, 'text', {
+                                      ['text2']: windowSize.width < 1366,
+                                    }),
+                                  }}
+                                >
+                                  {formatMessage({ id: 'LangEnglish' })}
+                                </MenuItem>
+                              </Menu>
+                            </div>
                             <AppSwitch switchProps={{ onClick: setThemeHandler, checked: theme === ETheme.light }} />
                           </div>
                           <div>
