@@ -8,5 +8,7 @@
   "video": "Video",
   "profile": "Profile",
   "scaner": "Scanner",
-  "logout": "Logout"
+  "logout": "Logout",
+  "LangRussian": "Рус",
+  "LangEnglish": "Eng"
 }

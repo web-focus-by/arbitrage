@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer, { checkToken } from '../features/auth/authSlice';
 import themeReducer from '../features/theme/themeSlice';
+import languageReducer from '../features/language/languageSlice';
 import { apiAuth } from '../services/auth';
 import { apiUserInfo } from '../services/userInfo.ts';
 import { apiGeneralInfo } from '../services/generalInfo.ts';
@@ -18,6 +19,7 @@ export const store = configureStore({
     [apiResetPassword.reducerPath]: apiResetPassword.reducer,
     auth: authReducer,
     theme: themeReducer,
+    language: languageReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()

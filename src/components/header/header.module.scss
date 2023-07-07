@@ -59,10 +59,27 @@
   }
 
   &__logo {
+
+    &_container {
+      display: flex;
+      flex-direction: row;
+      gap: 11px;
+      align-items: baseline;
+      width: 67%;
+
+      @include max-1365 {
+        width: 70%;
+      }
+    }
+
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
-    width: 15%;
+    align-items: center;
+    width: 23%;
+
+    @include max-1365 {
+      width: 25%;
+    }
 
     @include max-1200 {
       width: 23%;
@@ -107,6 +124,13 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    .langMobile {
+      margin-top: 7%;
+      @include max-720 {
+        margin-top: 0px;
+      }
+    }
 
     .burgerAndLogo_container {
       display: flex;
@@ -173,6 +197,12 @@
           flex-direction: column;
           width: max-content;
           gap: 32px;
+
+          .switchWithLang {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+          }
 
           & > :first-child {
             width: 80%;
@@ -271,4 +301,36 @@
   @include max-720 {
     font-size: 9px;
   }
+}
+
+.arrowWrapper {
+  border-radius: 4px;
+  margin-left: 8px;
+  padding: 0;
+  transition: background-color $transition-time $transition-animate;
+
+  @include max-720 {
+    margin-left: 0;
+  }
+
+  &:hover {
+    background-color: var(--arrow-background-color);
+  }
+
+  path {
+    stroke: var(--arrow-color);
+  }
+}
+
+.menuLang {
+  border-radius: 16px;
+  padding: 8px 0px;
+
+  .menuLangItem {
+    padding: 8px 32px;
+  }
+}
+
+.listLang {
+  padding: 0px;
 }
