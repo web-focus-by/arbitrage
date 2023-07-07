@@ -1,4 +1,3 @@
-// import React from 'react';
 import russian from './lang/ru';
 import english from './lang/eng';
 import { IntlProvider } from 'react-intl';

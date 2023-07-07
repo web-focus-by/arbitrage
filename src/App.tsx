@@ -2,7 +2,6 @@ import { apiGeneralInfo } from './services/generalInfo';
 import { RouterProvider } from 'react-router-dom';
 import LintWrapper from './LintWrapper';
 import { Provider } from 'react-redux';
-// import React from 'react';
 import router from './routes';
 import { store } from './store';
 
