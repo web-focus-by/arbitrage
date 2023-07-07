@@ -50,7 +50,7 @@ const navItems = [
 const Header = () => {
   const auth = useAuth();
   const { theme, setThemeHandler } = useTheme();
-  const { language, setLanguageHandler } = useLanguage();
+  const { setLanguageHandler } = useLanguage();
   const { windowSize } = useWindow();
 
   const { formatMessage } = useIntl();
@@ -76,13 +76,13 @@ const Header = () => {
 
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const handleCloseUserMenu = (rout: string | object) => {
+  const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
   const lang = useAppSelector((state) => state.language);
   const handleLanguageBrowser = (str: string) => {
-    if (str === 'ru') {
+    if (str === ELanguage.ru) {
       setLanguageHandler(ELanguage.ru);
     } else {
       setLanguageHandler(ELanguage.en);

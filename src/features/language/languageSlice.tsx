@@ -10,7 +10,7 @@ const getLanguage = () => {
   return ELanguage.ru;
 };
 
-const initialState = ELanguage.ru;
+const initialState = getLanguage();
 
 const slice = createSlice({
   name: 'language',

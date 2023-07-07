@@ -6,7 +6,33 @@ import SocYoutube from '../../../public/footer/socYoutube';
 import SocPhone from '../../../public/footer/socPhone';
 import { useIntl } from 'react-intl';
 
-const navItems = ['Преимущества', 'Видео', 'Сканер', 'Тарифы', 'Партнеры'];
+const navItems = [
+  {
+    href: 'advantages',
+    key: 'adv_headline_id',
+    title: 'adv_headline',
+  },
+  {
+    href: 'video',
+    key: 'video_headline_id',
+    title: 'videoBlock.headline',
+  },
+  {
+    href: 'scanner',
+    key: 'scanner_headline_id',
+    title: 'scanner.title',
+  },
+  {
+    href: 'rates',
+    key: 'rates_headline_id',
+    title: 'ratesBlock.headline',
+  },
+  {
+    href: 'partners',
+    key: 'partners_headline_id',
+    title: 'ourPartners.title',
+  },
+];
 
 const Footer = () => {
   const { formatMessage } = useIntl();
@@ -20,9 +46,9 @@ const Footer = () => {
         <nav className={style.footer__nav}>
           <ul className={style.footer__nav__list}>
             {navItems.map((el, i) => (
-              <li key={'nav_el_' + i} className={classNames(style.footer__nav__item, style.text)}>
-                {el}
-              </li>
+              <a key={'nav_el_' + i} href={'/#' + el.href}>
+                <li className={classNames(style.footer__nav__item, style.text)}>{formatMessage({ id: el.title })}</li>
+              </a>
             ))}
           </ul>
         </nav>
