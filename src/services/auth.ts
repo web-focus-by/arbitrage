@@ -22,6 +22,8 @@ export interface IUser {
   risk_type: 0 | 1;
   hedge_type: 0 | 1;
   subscription_id: number;
+  start_date: string;
+  end_date: string;
 }
 
 export interface IUserResponse {

@@ -11,8 +11,8 @@ interface IChangePasswordCodeRequest {
 interface IChangePasswordResponse {
   access_token: string;
 }
-interface IUpdatePasswordRequest {
-  newPassword: string;
+export interface IUpdatePasswordRequest {
+  password: string;
   token: string;
 }
 export const apiResetPassword = createApi({
@@ -43,13 +43,13 @@ export const apiResetPassword = createApi({
       },
     }),
     updatePassword: builder.mutation<IChangePasswordCodeRequest, IUpdatePasswordRequest>({
-      query: ({ newPassword, token }) => ({
+      query: ({ password, token }) => ({
         url: '/change',
         method: 'POST',
         headers: {
           authorization: `Bearer ${token}`,
         },
-        body: { password: newPassword },
+        body: { password },
       }),
     }),
   }),

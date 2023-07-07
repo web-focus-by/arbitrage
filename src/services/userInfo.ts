@@ -1,6 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from '../utils/query.ts';
 import { IUser } from './auth.ts';
+import { IUpdatePasswordRequest } from './resetPassword.ts';
 
 interface IUserResponse {
   user_info: IUser;
@@ -28,8 +29,15 @@ export const apiUserInfo = createApi({
       }),
       invalidatesTags: ['UserInfo'],
     }),
+    updateProfilePassword: builder.mutation({
+      query: (credentials: Omit<IUpdatePasswordRequest, 'token'>) => ({
+        url: '/password/change',
+        method: 'POST',
+        body: credentials,
+      }),
+    }),
   }),
 });
 
-export const { useUpdateUserInfoMutation } = apiUserInfo;
+export const { useUpdateUserInfoMutation, useUpdateProfilePasswordMutation } = apiUserInfo;
 export const selectUserInfoData = apiUserInfo.endpoints.getUserInfo.select();
