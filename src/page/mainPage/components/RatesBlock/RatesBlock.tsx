@@ -65,36 +65,38 @@ const RatesBlock = () => {
           <BlockTitle value={'' + formatMessage({ id: 'ratesBlock.headline' })} />
           <div className={style.ratesBlockContainer}>
             {dataRates.map((item) => (
-              <div key={item.id} className={style.ratesBlockItem}>
-                <h4 className={style.ratesTerm}>{formatMessage({ id: item.ratesTerm })}</h4>
-                <div className={style.ratesBlockItemContent}>
-                  <div>
-                    <div className={classNames(style.ratesPrice, style.prise)}>
-                      {formatMessage({ id: item.ratesPrice })}
-                    </div>
-                    <div className={classNames(style.ratesContentText, style.text, style.textGrayColor)}>
-                      <div className={style.ratesContent}>
-                        <CheckIcon sx={{ color: '#3366CC' }} />
-                        {formatMessage({ id: item.ratesContentInterExchangeScanner })}
+              <div className={style.ratesBlockItemContainer}>
+                <div key={item.id} className={style.ratesBlockItem}>
+                  <h4 className={style.ratesTerm}>{formatMessage({ id: item.ratesTerm })}</h4>
+                  <div className={style.ratesBlockItemContent}>
+                    <div>
+                      <div className={classNames(style.ratesPrice, style.prise)}>
+                        {formatMessage({ id: item.ratesPrice })}
                       </div>
-                      <div className={style.ratesContent}>
-                        <CheckIcon sx={{ color: '#3366CC' }} />
-                        {formatMessage({ id: item.ratesContentInterExchangeTgBot })}
-                      </div>
-                      <div className={style.ratesContent}>
-                        <CheckIcon sx={{ color: '#3366CC' }} />
-                        {formatMessage({ id: item.ratesContentUserChat })}
-                      </div>
-                      {item.ratesContentIntraExchangeTgBot && (
+                      <div className={classNames(style.ratesContentText, style.text, style.textGrayColor)}>
                         <div className={style.ratesContent}>
                           <CheckIcon sx={{ color: '#3366CC' }} />
-                          {formatMessage({ id: item.ratesContentIntraExchangeTgBot })}
+                          {formatMessage({ id: item.ratesContentInterExchangeScanner })}
                         </div>
-                      )}
+                        <div className={style.ratesContent}>
+                          <CheckIcon sx={{ color: '#3366CC' }} />
+                          {formatMessage({ id: item.ratesContentInterExchangeTgBot })}
+                        </div>
+                        <div className={style.ratesContent}>
+                          <CheckIcon sx={{ color: '#3366CC' }} />
+                          {formatMessage({ id: item.ratesContentUserChat })}
+                        </div>
+                        {item.ratesContentIntraExchangeTgBot && (
+                          <div className={style.ratesContent}>
+                            <CheckIcon sx={{ color: '#3366CC' }} />
+                            {formatMessage({ id: item.ratesContentIntraExchangeTgBot })}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
 
-                  <AppButton color={'secondary'}>{formatMessage({ id: 'button.purchase' })}</AppButton>
+                    <AppButton color={'secondary'}>{formatMessage({ id: 'button.purchase' })}</AppButton>
+                  </div>
                 </div>
               </div>
             ))}

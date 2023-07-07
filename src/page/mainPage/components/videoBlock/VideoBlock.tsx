@@ -62,6 +62,12 @@ const VideoBlock = () => {
           {videos.map((item, index) => (
             <SwiperSlide key={index} className={style.swiperItem}>
               <img src={item.image} alt={'preview'} />
+              <div className={style.videoSlideTitle}>
+                <div className={classNames(style.videoSlideText, style.subtitle2)}>{item.title}</div>
+                <a href={item.link} className={classNames(style.videoSlideButton, style.buttonText2)} target={'_blank'}>
+                  {formatMessage({ id: 'videoBlock.watch.video' })}
+                </a>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
