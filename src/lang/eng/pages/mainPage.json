@@ -26,6 +26,7 @@
   "advHeadline.coin.transfer.time": "Coin transfer time",
   "advDescr.coin.transfer.time": "The service shows the possible time for transferring a coin between exchanges.",
   "videoBlock.headline": "Video",
+  "videoBlock.watch.video": "Watch video",
   "ratesBlock.headline": "Rates",
   "ratesBlock.term.week": "Week",
   "ratesBlock.term.month": "Month",

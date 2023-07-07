@@ -65,7 +65,7 @@ const VideoBlock = () => {
               <div className={style.videoSlideTitle}>
                 <div className={classNames(style.videoSlideText, style.subtitle2)}>{item.title}</div>
                 <a href={item.link} className={classNames(style.videoSlideButton, style.buttonText2)} target={'_blank'}>
-                  Посмотреть видео
+                  {formatMessage({ id: 'videoBlock.watch.video' })}
                 </a>
               </div>
             </SwiperSlide>
