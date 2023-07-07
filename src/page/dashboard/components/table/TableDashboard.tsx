@@ -23,6 +23,7 @@ import AppPagination from '../../../../components/pagination/AppPagination.tsx';
 import AppLink from '../../../../components/link/AppLink.tsx';
 import AppTooltip from '../../../../components/toollip/AppTooltip.tsx';
 import { useAppDispatch } from '../../../../store/hooks.ts';
+import useGeneralData from '../../../../hooks/useGeneralData.ts';
 
 export interface ITableContent {
   base_coin: string;
@@ -283,7 +284,7 @@ const Row = ({
   updateTableHeadWidth?: () => void;
 }) => {
   const { formatMessage } = useIntl();
-  // console.log('tdWidth', tdWidth);
+  const { marketsDictionary } = useGeneralData();
   const isHaveTopAndBotBorder = itemLength >= 1 && index === 0;
 
   return (
@@ -327,12 +328,12 @@ const Row = ({
       <AppTableCell sx={{ width: tdWidth ? tdWidth[4] : 'unset' }}>
         <div>
           <AppLink to={row.ask_url} target={'_blank'} referrerPolicy={'no-referrer'}>
-            {row.ask_market}
+            {marketsDictionary[row.ask_market] ?? row.ask_market}
           </AppLink>
         </div>
         <div>
           <AppLink to={row.bid_url} target={'_blank'} referrerPolicy={'no-referrer'}>
-            {row.bid_market}
+            {marketsDictionary[row.bid_market] ?? row.bid_market}
           </AppLink>
         </div>
       </AppTableCell>
